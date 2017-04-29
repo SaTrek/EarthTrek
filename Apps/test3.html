@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Use correct character set. -->
+    <meta charset="utf-8">
+    <!-- Tell IE to use the latest, best version. -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Make the application on mobile take up the full browser screen and disable user scaling. -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+    <title>GEO</title>
+    <script src="../node_modules/cesium/Build/Cesium/Cesium.js"></script>
+    <script src="../node_modules/jquery/dist/jquery.js"></script>
+    <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.4.4/underscore-min.js"></script>
+
+    <script src="js/tilling-scheme.js"></script>
+    <script src="js/time3.js"></script>
+    <style>
+        @import url(../node_modules/cesium/Build/Cesium/Widgets/widgets.css);
+        @import url(css/main.css);
+        @import url(css/satellite.css);
+    </style>
+</head>
+<body>
+<div id="map">
+    <div id="slider" style="display: none;"></div>
+    <div id="satellite-toolbar" style="display: none;">
+        <div id="satellite-instruments">
+        </div>
+    </div>
+</div>
+<script>
+    /*
+    function addUpperLeftDiv() {
+        var divUL = document.getElementById('divUpperLeft');
+        if (!divUL) {
+            divUL = document.createElement('div');
+            divUL.id = 'divUpperLeft';
+            divUL.style.position = "absolute";
+            divUL.style.background = "rgba(0,0,0,0)";
+            divUL.style.left = "10px";
+            divUL.style.top = "10px";
+            divUL.innerHTML = "";
+            divUL.style.zIndex = 2000;
+            document.getElementById("map").appendChild(divUL);
+        }
+    }
+    function includeSearchWidget() {
+        var divContainer = document.createElement("div");
+        divContainer.id = "divSearchContainer";
+        divContainer.style.top = "20px";
+
+        var txtField = document.createElement("input");
+        txtField.id = "txtSearchField";
+        txtField.type = "text";
+        txtField.style.border = "0px solid";
+        txtField.style.width = "150px";
+        txtField.onkeydown = function(e) {
+            // Enter Key
+            var keycode = e.which ? e.which : e.keyCode;
+            if (keycode === 13) {
+                window.alert("You hit the enter key while focus was on the search text field!");
+            }
+        };
+        divContainer.appendChild(txtField);
+
+        var btnSearch = document.createElement("input");
+        btnSearch.id = "btnSearch";
+        btnSearch.type = "button";
+        btnSearch.value = "Compare";
+     //   btnSearch.style.width = "50px";
+        btnSearch.style.marginLeft = "10px";
+        btnSearch.onclick = function() {
+            var slider = document.getElementById("slider");
+            slider.style.display = "block"
+        };
+
+        divContainer.appendChild(btnSearch);
+
+        document.getElementById("divUpperLeft").appendChild(divContainer);
+    }
+    addUpperLeftDiv();
+    includeSearchWidget();*/
+</script>
+</body>
+</html>

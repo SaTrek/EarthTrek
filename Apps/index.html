@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Use correct character set. -->
+    <meta charset="utf-8">
+    <!-- Tell IE to use the latest, best version. -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Make the application on mobile take up the full browser screen and disable user scaling. -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+    <title>GEO</title>
+    <script src="../node_modules/jquery/dist/jquery.js"></script>
+    <script src="../node_modules/cesium/Build/Cesium/Cesium.js"></script>
+    <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.4.4/underscore-min.js"></script>
+
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/css/materialize.min.css">
+
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js"></script>
+
+
+    <style>
+        @import url(../node_modules/cesium/Build/Cesium/Widgets/widgets.css);
+        @import url(css/main.css);
+        @import url(css/satellite.css);
+    </style>
+</head>
+<body>
+<div id="map">
+    <div id="slider" style="display: none;"></div>
+    <div id="satellite-toolbar" style="display: none;">
+        <div id="satellite-instruments">
+        </div>
+        <div id="satellite-instrument-layers">
+        </div>
+    </div>
+</div>
+<script src="js/tilling-scheme.js"></script>
+<script src="js/main.js"></script>
+<script src="js/satellite.js"></script>
+</body>
+</html>

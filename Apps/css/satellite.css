@@ -1,0 +1,51 @@
+#satellite-toolbar {
+    border: 1px solid white;
+    position: absolute;
+    top: 200px;
+    right: 10px;
+    z-index: 1;
+    color: white;
+    width: 300px;
+    background: rgba(0, 0, 0, 0.6);
+}
+
+#satellite-toolbar span {
+    font-weight: bold;
+    font-size: 16px;
+    padding: 5px;
+}
+
+.satellite-instrument {
+    color: black;
+    font-size: 14px;
+    font-weight: bold;
+    background: rgba(200, 200, 200, 1);
+    border: 1px solid black;
+    float: left;
+    clear: both;
+    width:  100%;
+}
+
+.satellite-instrument div {
+    float: left;
+}
+.satellite-instrument button {
+    color: white;
+    font-size: 14px;
+    font-weight: bold;
+    background: rgba(120, 150, 45, 0.9);
+    padding: 5px;
+    border: 1px solid black;
+    float: right;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+}
+
+.satellite-instrument button:hover {
+    color: white;
+    background: rgba(50, 210, 215, 0.9);
+}
+
+.satellite-instrument .button-selected {
+    background: rgba(50, 210, 215, 0.9);
+}

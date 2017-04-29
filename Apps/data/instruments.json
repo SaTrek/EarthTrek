@@ -1,0 +1,53 @@
+{
+  "satellites": [
+    {
+      "id": "terra",
+      "instruments": [
+        { "name" : "ASTER"},
+        { "name" : "CERES"},
+        { "name" : "MISR"},
+        { "name" : "MODIS", "full-name": "Moderate-Resolution Imaging Spectroradiometer",
+          "layers": [
+            { "title": "Corrected Reflectance (True Color, MODIS, Terra)",
+              "name": "MODIS_Terra_CorrectedReflectance_TrueColor", "resolution": "250m", "format": "image/jpeg" },
+            { "title": "Corrected Reflectance (Bands 7-2-1, MODIS, Terra)",
+              "name":  "MODIS_Terra_CorrectedReflectance_Bands721", "resolution": "250m", "format": "image/jpeg" }
+          ]
+        },
+        { "name" : "MOPITT "}
+      ]
+    },
+    {
+      "id": "aqua",
+      "instruments": [
+        { "name" : "AIRS", "full-name": "Atmospheric Infrared Sounder"},
+        { "name" : "AMSU-A", "full-name": "Advanced Microwave Sounding Unit"},
+        { "name" : "CERES", "full-name": "Clouds and the Earth's Radiant Energy System"},
+        { "name" : "HSB", "full-name": "Humidity Sounder for Brazil "},
+        { "name" : "MODIS", "full-name": "Moderate-Resolution Imaging Spectroradiometer",
+          "layers": [
+            { "title": "Corrected Reflectance (True Color, MODIS, Terra)",
+              "name": "MODIS_Terra_CorrectedReflectance_TrueColor", "resolution": "250m", "format": "image/jpeg" },
+            { "title": "Corrected Reflectance (Bands 7-2-1, MODIS, Terra)",
+              "name":  "MODIS_Terra_CorrectedReflectance_Bands721", "resolution": "250m", "format": "image/jpeg" }
+          ]
+        },
+        { "name" : "AMSR-E",  "full-name": "Advanced Microwave Scanning Radiometer for EOS",
+          "layers": [
+            { "title": "Brightness Temperature 89Ghz Horizontal (Day)",
+              "name": "AMSRE_Brightness_Temp_89H_Day", "resolution": "2km", "format": "image/png" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "aura",
+      "instruments": [
+        { "name" : "HIRDLS", "full-name": "High Resolution Dynamics Limb Sounder"},
+        { "name" : "MLS", "full-name": "Microwave Limb Sounder"},
+        { "name" : "OMI", "full-name": "Ozone Monitoring Instrument"},
+        { "name" : "TES", "full-name": "Tropospheric Emission Spectrometer"}
+      ]
+    }
+  ]
+}

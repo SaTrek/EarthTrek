@@ -1,0 +1,20 @@
+{
+  "name": "nasa-satellite",
+  "version": "1.0.0",
+  "description": "NASA Satellite Challenge.",
+  "homepage": "http://cesiumjs.org",
+  "license": "Apache-2.0",
+  "author": {
+    "name": "Alejandro Sanchez",
+    "url": "http://www.agi.com"
+  },
+  "dependencies": {
+    "cesium": "^1.32.1",
+    "connect": "^3.6.1",
+    "jquery": "^3.2.1",
+    "serve-static": "^1.12.1"
+  },
+  "devDependencies": {
+    "mocha": "^3.3.0"
+  }
+}
