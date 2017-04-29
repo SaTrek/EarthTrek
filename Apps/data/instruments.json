@@ -9,9 +9,20 @@
         { "name" : "MODIS", "full-name": "Moderate-Resolution Imaging Spectroradiometer",
           "layers": [
             { "title": "Corrected Reflectance (True Color, MODIS, Terra)",
-              "name": "MODIS_Terra_CorrectedReflectance_TrueColor", "resolution": "250m", "format": "image/jpeg" },
-            { "title": "Corrected Reflectance (Bands 7-2-1, MODIS, Terra)",
-              "name":  "MODIS_Terra_CorrectedReflectance_Bands721", "resolution": "250m", "format": "image/jpeg" }
+              "name": "MODIS_Terra_CorrectedReflectance_TrueColor",
+              "resolution": "250m",
+              "format": "image/jpeg",
+              "startDate": "",
+              "endDate": ""
+            },
+            {
+              "title": "Corrected Reflectance (Bands 7-2-1, MODIS, Terra)",
+              "name":  "MODIS_Terra_CorrectedReflectance_Bands721",
+              "resolution": "250m",
+              "format": "image/jpeg",
+              "startDate": "",
+              "endDate": ""
+            }
           ]
         },
         { "name" : "MOPITT "}
@@ -26,16 +37,42 @@
         { "name" : "HSB", "full-name": "Humidity Sounder for Brazil "},
         { "name" : "MODIS", "full-name": "Moderate-Resolution Imaging Spectroradiometer",
           "layers": [
-            { "title": "Corrected Reflectance (True Color, MODIS, Terra)",
-              "name": "MODIS_Terra_CorrectedReflectance_TrueColor", "resolution": "250m", "format": "image/jpeg" },
-            { "title": "Corrected Reflectance (Bands 7-2-1, MODIS, Terra)",
-              "name":  "MODIS_Terra_CorrectedReflectance_Bands721", "resolution": "250m", "format": "image/jpeg" }
+            {
+              "title": "Corrected Reflectance (True Color, MODIS, Terra)",
+              "name": "MODIS_Aqua_CorrectedReflectance_TrueColor",
+              "resolution": "250m",
+              "format": "image/jpeg",
+              "startDate": "2012-05-08",
+              "endDate": "2017-04-29"
+            },
+            {
+              "title": "Corrected Reflectance (Bands 7-2-1, MODIS, Terra)",
+              "name":  "MODIS_Aqua_CorrectedReflectance_Bands721",
+              "resolution": "250m",
+              "format": "image/jpeg",
+              "startDate": "2012-05-08",
+              "endDate": "2017-04-29"
+            },
+            {
+              "title": "Sea Surface Temperature (L4 MUR)",
+              "name":  "GHRSST_L4_MUR_Sea_Surface_Temperature",
+              "resolution": "1km",
+              "format": "image/png",
+              "startDate": "2002-06-01",
+              "endDate": "2017-04-29"
+            }
           ]
         },
         { "name" : "AMSR-E",  "full-name": "Advanced Microwave Scanning Radiometer for EOS",
           "layers": [
-            { "title": "Brightness Temperature 89Ghz Horizontal (Day)",
-              "name": "AMSRE_Brightness_Temp_89H_Day", "resolution": "2km", "format": "image/png" }
+            {
+              "title": "Brightness Temperature 89Ghz Horizontal (Day)",
+              "name": "AMSRE_Brightness_Temp_89H_Day",
+              "resolution": "2km",
+              "format": "image/png",
+              "startDate": "2002-06-01",
+              "endDate": "2011-10-04"
+            }
           ]
         }
       ]
