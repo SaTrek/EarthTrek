@@ -1,11 +1,13 @@
 
-    /**
+var satellite = satellite || {};
+
+/**
      * Show Satellite Toolbar UI
      * @param dataSource
      */
     showSatelliteToolbar = function (entity, satellitesData) {
-        var satelliteToolbar = document.getElementById('satellite-toolbar');
-        satelliteToolbar.style.display = "block";
+        var satelliteToolbar = $('#satellite-toolbar');
+        satelliteToolbar.show();
 
         var instruments;
         //ESTO YA NO ES NECESARIO, LAS PROPIEDADES SE LAS QUEDA EL DATASOURCE...
@@ -15,33 +17,37 @@
 
                 if (instruments.length > 0) {
                     var instrumentText = document.createElement('div')
-                    instrumentText.innerHTML = "<span>INSTRUMENTS</span>";
-                    document.getElementById("satellite-instruments").appendChild(instrumentText);
+                    $(instrumentText).html = "<span>INSTRUMENTOS</span>";
+                    $("#satellite-instruments").append(instrumentText);
                 }
 
                 for (var i = 0; i <= instruments.length - 1; i++) {
                     var instrumentName = instruments[i];
                     var instrument = document.createElement('div');
                     instrument.id = "satellite-instrument-" + satellite.id + "-" + instrumentName.name;
-                    instrument.className = "satellite-instrument";
-                    instrument.innerHTML = "<div>" + instrumentName.name + "</div>";
+                    $(instrument).addClass("satellite-instrument");
+                    $(instrument).html("<div>" + instrumentName.name + "</div>");
                     $(instrument).data('instrument', instrumentName.name);
 
                     var compareButton = document.createElement("button");
-                    compareButton.innerHTML = "Compare";
-                    compareButton.addEventListener('click', compare, false);
-                    instrument.appendChild(compareButton);
+                    $(compareButton).html("Comparar");
+                    compareButton.addEventListener('click', openCompare, false);
+                    $(instrument).append(compareButton);
 
                     var layerButton = document.createElement("button");
-                    layerButton.innerHTML = "Layers";
+                    layerButton.innerHTML = "Capas";
                     layerButton.addEventListener('click', showLayers, false);
                     instrument.appendChild(layerButton);
 
-                    document.getElementById("satellite-instruments").appendChild(instrument);
+                    $("#satellite-instruments").append(instrument);
                 }
             }
         });
 
+    }
+
+    openCompare = function () {
+        //$('#date-modal').modal('open');
     }
 
     showLayers = function (caller) {
@@ -52,36 +58,34 @@
                 $.each(instrument.layers, function(key, layer ) {
                     var instrumentLayer = document.createElement('div');
                     $(instrumentLayer).html(layer.title);
-
-                    var time = "TIME=" + isoDate('2010-11-18');
-
                     var toggleLayerButton = document.createElement("button");
                     $(toggleLayerButton).on('click', function () {
-
-
                         console.log(viewer.scene.imageryLayers.length)
                         for (var i = 0; i <= viewer.scene.imageryLayers.length - 1; i++) {
                           //  console.log(viewer.scene.imageryLayers.get(i).imageryProvider.)
                         }
-                        var provider = new Cesium.WebMapTileServiceImageryProvider({
+
+                        //var isoDateTime = clock.currentTime.toString();
+
+                       /* var provider = new Cesium.WebMapTileServiceImageryProvider({
                             url: "//map1.vis.earthdata.nasa.gov/wmts-geo/wmts.cgi?" + time,
                             layer: layer.name,
                             style: "",
-                            format: "image/png",
-                            tileMatrixSetID: "EPSG4326_2km",
+                            format: layer.format,
+                            tileMatrixSetID: "EPSG4326_" + layer.resolution,
                             maximumLevel: 8,
                             tileWidth: 256,
                             tileHeight: 256,
                             tilingScheme: gibs.GeographicTilingScheme()
-                        });
+                        });*/
+
+                        provider = getProvider(layer.name, layer.startDate, layer.format, "EPSG4326_" + layer.resolution);
 
                         viewer.scene.imageryLayers.addImageryProvider(provider);
                     });
 
-                    $(toggleLayerButton).text("Ver");
-
+                    $(toggleLayerButton).text("View");
                     $(instrumentLayer).append(toggleLayerButton);
-
                     $("#satellite-instrument-layers").append(instrumentLayer);
                 });
             }
@@ -106,7 +110,7 @@
             }
         }
         this.className = "button-selected";
-        var slider = document.getElementById("slider");
+        var slider = $("#slider");
         toogle(slider, function() {
             secondView.splitDirection = Cesium.ImagerySplitDirection.RIGHT;
         }, function() {
