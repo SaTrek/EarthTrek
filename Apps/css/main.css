@@ -8,7 +8,7 @@ html, body, #map {
     left: 50%;
     top: 0px;
     background-color: #D3D3D3;
-    width: 2px;
+    width: 6px;
     height: 100%;
     z-index: 9999;
 }
