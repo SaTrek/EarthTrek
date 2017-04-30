@@ -1,4 +1,4 @@
-window.onload = function() {
+
 
     var dragStartX = 0;
 
@@ -21,4 +21,3 @@ window.onload = function() {
         slider.style.left = 100.0 * splitPosition + "%";
         viewer.scene.imagerySplitPosition = splitPosition;
     }
-};
