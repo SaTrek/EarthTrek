@@ -5,59 +5,49 @@ var satellite = satellite || {};
      * Show Satellite Toolbar UI
      * @param dataSource
      */
-    showSatelliteToolbar = function (entity, satellitesData) {
+    showSatelliteToolbar = function (entity) {
         var satelliteToolbar = $('#satellite-toolbar');
         satelliteToolbar.show();
+        var instruments = entity.properties.instruments.getValue();
 
-        var instruments;
-        //ESTO YA NO ES NECESARIO, LAS PROPIEDADES SE LAS QUEDA EL DATASOURCE...
-        $.each( satellitesData.satellites, function( key, satellite  ) {
-            if (satellite.id == entity.id) {
-                instruments = satellite.instruments;
+        if (instruments.length > 0) {
+            var instrumentText = document.createElement('div')
+            $(instrumentText).html = "<span>INSTRUMENTOS</span>";
+            $("#satellite-instruments").append(instrumentText);
+        }
 
-                if (instruments.length > 0) {
-                    var instrumentText = document.createElement('div')
-                    $(instrumentText).html = "<span>INSTRUMENTOS</span>";
-                    $("#satellite-instruments").append(instrumentText);
-                }
+        for (var i = 0; i <= instruments.length - 1; i++) {
+            var instrumentName = instruments[i];
+            var instrument = document.createElement('div');
+            instrument.id = "satellite-instrument-" + satellite.id + "-" + instrumentName.name;
+            $(instrument).addClass("satellite-instrument");
+            $(instrument).html("<div>" + instrumentName.name + "</div>");
+            $(instrument).data('instrument', instrumentName.name);
 
-                for (var i = 0; i <= instruments.length - 1; i++) {
-                    var instrumentName = instruments[i];
-                    var instrument = document.createElement('div');
-                    instrument.id = "satellite-instrument-" + satellite.id + "-" + instrumentName.name;
-                    $(instrument).addClass("satellite-instrument");
-                    $(instrument).html("<div>" + instrumentName.name + "</div>");
-                    $(instrument).data('instrument', instrumentName.name);
 
-                    var compareButton = document.createElement("button");
-                    $(compareButton).html("Comparar");
-                    compareButton.addEventListener('click', openCompare, false);
-                    $(instrument).append(compareButton);
+            var layerButton = document.createElement("button");
+            $(layerButton).html("Capas");
+            $(layerButton).click(showLayers);
+            $(instrument).append(layerButton);
 
-                    var layerButton = document.createElement("button");
-                    layerButton.innerHTML = "Capas";
-                    layerButton.addEventListener('click', showLayers, false);
-                    instrument.appendChild(layerButton);
-
-                    $("#satellite-instruments").append(instrument);
-                }
-            }
-        });
-
+            $("#satellite-instruments").append(instrument);
+        }
     }
 
-    openCompare = function () {
-        //$('#date-modal').modal('open');
-    }
-
-    showLayers = function (caller) {
+    showLayers = function (event) {
         $("#satellite-instrument-layers").empty();
-        caller.srcElement.parentElement.id;
         $.each(viewer.selectedEntity.properties.instruments.getValue(), function(key, instrument) {
-            if (instrument.name == $(caller.srcElement.parentElement).data('instrument')) {
+            if (instrument.name == $(event.target.parentElement).data('instrument')) {
                 $.each(instrument.layers, function(key, layer ) {
+
                     var instrumentLayer = document.createElement('div');
+                    $(instrumentLayer).data("name", layer.name);
+                    $(instrumentLayer).data("startDate", layer.startDate);
+                    $(instrumentLayer).data("format", layer.format);
+                    $(instrumentLayer).data("resolution", layer.resolution);
+
                     $(instrumentLayer).html(layer.title);
+
                     var toggleLayerButton = document.createElement("button");
                     $(toggleLayerButton).on('click', function () {
                         console.log(viewer.scene.imageryLayers.length)
@@ -66,19 +56,6 @@ var satellite = satellite || {};
                         }
 
                         //var isoDateTime = clock.currentTime.toString();
-
-                       /* var provider = new Cesium.WebMapTileServiceImageryProvider({
-                            url: "//map1.vis.earthdata.nasa.gov/wmts-geo/wmts.cgi?" + time,
-                            layer: layer.name,
-                            style: "",
-                            format: layer.format,
-                            tileMatrixSetID: "EPSG4326_" + layer.resolution,
-                            maximumLevel: 8,
-                            tileWidth: 256,
-                            tileHeight: 256,
-                            tilingScheme: gibs.GeographicTilingScheme()
-                        });*/
-
                         provider = getProvider(layer.name, layer.startDate, layer.format, "EPSG4326_" + layer.resolution);
 
                         viewer.scene.imageryLayers.addImageryProvider(provider);
@@ -86,29 +63,57 @@ var satellite = satellite || {};
 
                     $(toggleLayerButton).text("View");
                     $(instrumentLayer).append(toggleLayerButton);
+
+                    var compareButton = document.createElement("button");
+                    $(compareButton).html("Comparar");
+                    $(compareButton).click(function () {
+                        $('.compare-selected').removeClass('compare-selected');
+                        $(compareButton).addClass("compare-selected");
+                        $('#compare-modal').show();
+                    });
+                    $(instrumentLayer).append(compareButton);
+
+
                     $("#satellite-instrument-layers").append(instrumentLayer);
                 });
             }
-/*
-            var instrument = document.createElement('div')
-            instrument.className = "satellite-instrument";
-            instrument.innerHTML = "<div>" + instrumentName.name + "</div>";*/
         });
-        //$("satellite-instrument-layers").show();
+
+
+        $("#accept-date").click(function () {
+            if ($('#compare-date').val()) {
+                var layer = {};
+                layer.name = $('.compare-selected').parent().data("name");
+                layer.firstDate = $('#compare-date').val();
+                layer.secondDate = clock.currentTime.toString();
+                layer.format = $('.compare-selected').parent().data("format");
+                layer.resolution = $('.compare-selected').parent().data("resolution");
+
+                compare(layer);
+                $('#compare-modal').hide();
+            }
+        });
     }
 
 
     /**
      * Compare FirstView and Second View of Earth
      */
-    compare = function () {
-        var compareSelected = document.getElementsByClassName("button-selected");
+    compare = function (layer) {
+        /*var compareSelected = document.getElementsByClassName("button-selected");
         for(var i = 0; i < compareSelected.length; i++) {
             compareSelected[i].classList.remove("button-selected");
             if (compareSelected[i] == this) {
 
             }
-        }
+        }*/
+
+        provider = getProvider(layer.name, layer.firstDate, layer.format, "EPSG4326_" + layer.resolution);
+        viewer.scene.imageryLayers.addImageryProvider(provider);
+
+        provider = getProvider(layer.name, layer.secondDate, layer.format, "EPSG4326_" + layer.resolution);
+        secondView = viewer.scene.imageryLayers.addImageryProvider(provider);
+
         this.className = "button-selected";
         var slider = $("#slider");
         toogle(slider, function() {
@@ -116,4 +121,7 @@ var satellite = satellite || {};
         }, function() {
             secondView.splitDirection =  Cesium.ImageryLayer.DEFAULT_SPLIT;
         });
+
+        referenceLayerProvider = getProvider("Reference_Labels", '2016-11-19', "image/png", "EPSG4326_250m");
+        viewer.scene.imageryLayers.addImageryProvider(referenceLayerProvider);
     }

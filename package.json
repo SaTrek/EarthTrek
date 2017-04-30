@@ -9,6 +9,8 @@
     "url": "http://www.agi.com"
   },
   "dependencies": {
+    "bootstrap": "^3.3.7",
+    "bootstrap-datepicker": "^1.6.4",
     "cesium": "^1.32.1",
     "connect": "^3.6.1",
     "jquery": "^3.2.1",
