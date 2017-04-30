@@ -3,16 +3,15 @@
     var backgroundLayerProvider;
     var referenceLayerProvider;
     $('.datepicker').datepicker();
-    //$('#satellite-toolbar').draggable();
-    // Initially start at June 15, 2014
+
     var initialTime = Cesium.JulianDate.fromDate(
-        new Date(Date.UTC(2017, 04, 27)));
+        new Date(Date.UTC(2015, 10, 08)));
 
     var startTime = Cesium.JulianDate.fromDate(
-        new Date(Date.UTC(2017, 04, 27)));
+        new Date(Date.UTC(2015, 10, 08)));
 
     var endTime = Cesium.JulianDate.fromDate(
-        new Date(Date.UTC(2017, 05, 18)));
+        new Date(Date.UTC(2017, 05, 01)));
 
     var clock = new Cesium.Clock({
         startTime: startTime,
@@ -38,7 +37,7 @@
    // var getDataSource = function () {
         var satellitesData;
         var dataSource = new Cesium.CzmlDataSource();
-        dataSource.load('data/satellites-2017-04-27.czml').then(function(){
+        dataSource.load('data/satellites-2011-01-01.czml').then(function(){
             $.getJSON( "data/instruments.json", function( data ) {
                 satellitesData = data;
             }).done(function(data) {
@@ -105,6 +104,7 @@
         if (time !== previousTime) {
             viewer.dataSources.removeAll();
             var dataSource = new Cesium.CzmlDataSource();
+            dataSource.load('data/satellites-' + time +'.czml');
             dataSource.load('data/satellites-' + time +'.czml').then(function(){
                 setSatellitesProperties(dataSource);
             });
@@ -113,10 +113,7 @@
             previousTime = time;
             for (var i = 0; i <= viewer.scene.imageryLayers.length - 1; i++) {
                 var layer = viewer.scene.imageryLayers.get(i);
-                console.log(backgroundLayerProvider)
-                console.log(layer)
                 if (layer.imageryProvider != backgroundLayerProvider) {
-                    console.log('Borra')
                     viewer.scene.imageryLayers.remove(layer);
                 }
             }

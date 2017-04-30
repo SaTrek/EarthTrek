@@ -14,24 +14,24 @@ var satellite = satellite || {};
             var instrumentText = document.createElement('div')
             $(instrumentText).html = "<span>INSTRUMENTOS</span>";
             $("#satellite-instruments").append(instrumentText);
+
+            for (var i = 0; i <= instruments.length - 1; i++) {
+                var instrumentName = instruments[i];
+                var instrument = document.createElement('div');
+                instrument.id = "satellite-instrument-" + satellite.id + "-" + instrumentName.name;
+                $(instrument).addClass("satellite-instrument");
+                $(instrument).html("<div>" + instrumentName.name + "</div>");
+                $(instrument).data('instrument', instrumentName.name);
+
+                var layerButton = document.createElement("button");
+                $(layerButton).html("Layers");
+                $(layerButton).click(showLayers);
+                $(instrument).append(layerButton);
+
+                $("#satellite-instruments").append(instrument);
+            }
         }
 
-        for (var i = 0; i <= instruments.length - 1; i++) {
-            var instrumentName = instruments[i];
-            var instrument = document.createElement('div');
-            instrument.id = "satellite-instrument-" + satellite.id + "-" + instrumentName.name;
-            $(instrument).addClass("satellite-instrument");
-            $(instrument).html("<div>" + instrumentName.name + "</div>");
-            $(instrument).data('instrument', instrumentName.name);
-
-
-            var layerButton = document.createElement("button");
-            $(layerButton).html("Capas");
-            $(layerButton).click(showLayers);
-            $(instrument).append(layerButton);
-
-            $("#satellite-instruments").append(instrument);
-        }
     }
 
     showLayers = function (event) {
@@ -41,6 +41,7 @@ var satellite = satellite || {};
                 $.each(instrument.layers, function(key, layer ) {
 
                     var instrumentLayer = document.createElement('div');
+                    $(instrumentLayer).addClass("instrument-layer");
                     $(instrumentLayer).data("name", layer.name);
                     $(instrumentLayer).data("startDate", layer.startDate);
                     $(instrumentLayer).data("format", layer.format);
@@ -50,18 +51,12 @@ var satellite = satellite || {};
 
                     var toggleLayerButton = document.createElement("button");
                     $(toggleLayerButton).on('click', function () {
-                        console.log(viewer.scene.imageryLayers.length)
-                        for (var i = 0; i <= viewer.scene.imageryLayers.length - 1; i++) {
-                          //  console.log(viewer.scene.imageryLayers.get(i).imageryProvider.)
-                        }
-
-                        //var isoDateTime = clock.currentTime.toString();
                         provider = getProvider(layer.name, layer.startDate, layer.format, "EPSG4326_" + layer.resolution);
-
                         viewer.scene.imageryLayers.addImageryProvider(provider);
                     });
 
                     $(toggleLayerButton).text("View");
+                    $(toggleLayerButton).addClass("view");
                     $(instrumentLayer).append(toggleLayerButton);
 
                     var compareButton = document.createElement("button");
