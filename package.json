@@ -14,7 +14,8 @@
     "cesium": "^1.32.1",
     "connect": "^3.6.1",
     "jquery": "^3.2.1",
-    "serve-static": "^1.12.1"
+    "serve-static": "^1.12.1",
+    "underscore": "^1.8.3"
   },
   "devDependencies": {
     "mocha": "^3.3.0"
