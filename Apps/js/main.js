@@ -1,14 +1,13 @@
 
+
     var backgroundLayerProvider;
     var referenceLayerProvider;
-
+    $('.datepicker').datepicker();
     //$('#satellite-toolbar').draggable();
     // Initially start at June 15, 2014
     var initialTime = Cesium.JulianDate.fromDate(
         new Date(Date.UTC(2017, 04, 27)));
 
-
-    // Earliest date of Corrected Reflectance in archive: May 8, 2012
     var startTime = Cesium.JulianDate.fromDate(
         new Date(Date.UTC(2017, 04, 27)));
 
@@ -19,71 +18,75 @@
         startTime: startTime,
         endTime: endTime,
         currentTime: initialTime,
-        multiplier: 0,   // Don't start animation by default
-      //  clockRange: Cesium.ClockRange.CLAMPED,
+        multiplier: 0,
         clockStep : Cesium.ClockStep.SYSTEM_CLOCK_MULTIPLIER
     });
-
-    // Keep track of the previous day. Only update the layer on a tick if the
-    // day has actually changed.
-    // GIBS needs the day as a string parameter in the form of YYYY-MM-DD.
-    // Date.toISOString returns YYYY-MM-DDTHH:MM:SSZ. Split at the "T" and
-    // take the date which is the first part.
     var isoDate = function(isoDateTime) {
         return isoDateTime.split("T")[0];
     };
-    // Current layer being shown
-    var dailyProvider = null;
-
-
-
     var viewer = new Cesium.Viewer("map", {
         clock: clock,
         baseLayerPicker: false, // Only showing one layer in this demo,
-        requestWaterMask: true,
-      //  infoBox: false
-   //     imageryProvider: createDailyProvider()
+        requestWaterMask: true
     });
-
-    var layers = viewer.imageryLayers;
-/*
-    var time = "TIME=" + isoDate('2012-02-07');
-    var provider = new Cesium.WebMapTileServiceImageryProvider({
-        url: "//gibs-c.earthdata.nasa.gov/wmts/epsg4326/best/wmts.cgi?" + time,
-        layer: "MODIS_Terra_CorrectedReflectance_TrueColor",
-        style: "",
-        format: "image/jpeg",
-        tileMatrixSetID: "EPSG4326_250m",
-        maximumLevel: 8,
-        tileWidth: 256,
-        tileHeight: 256,
-        tilingScheme: gibs.GeographicTilingScheme()
-    });
-    var firstView = viewer.scene.imageryLayers.addImageryProvider(provider);
-
-    var time = "TIME=" + isoDate('2015-10-18');
-    var provider = new Cesium.WebMapTileServiceImageryProvider({
-        url: "//gibs-c.earthdata.nasa.gov/wmts/epsg4326/best/wmts.cgi?" + time,
-        layer: "MODIS_Terra_CorrectedReflectance_TrueColor",
-        style: "",
-        format: "image/jpeg",
-        tileMatrixSetID: "EPSG4326_250m",
-        maximumLevel: 8,
-        tileWidth: 256,
-        tileHeight: 256,
-        tilingScheme: gibs.GeographicTilingScheme()
-    });
-    var secondView = viewer.scene.imageryLayers.addImageryProvider(provider);
-*/
 
     var handler = new Cesium.ScreenSpaceEventHandler(viewer.scene.canvas);
 
     /**
      * DATA SOURCE
      */
-    var satellitesData;
-    var dataSource = new Cesium.CzmlDataSource();
-    dataSource.load('data/satellites-2017-04-27.czml').then(function(){
+   // var getDataSource = function () {
+        var satellitesData;
+        var dataSource = new Cesium.CzmlDataSource();
+        dataSource.load('data/satellites-2017-04-27.czml').then(function(){
+            $.getJSON( "data/instruments.json", function( data ) {
+                satellitesData = data;
+            }).done(function(data) {
+                $.each(data.satellites, function( key, satellite  ) {
+                    var entity = dataSource.entities.getById(satellite.id);
+                    if (entity != undefined) {
+                        entity.properties = satellite;
+                    }
+                });
+            });
+        });
+   // }
+
+   // var dataSource = getDataSource();
+    viewer.dataSources.add(dataSource);
+
+    var previousTime = null;
+
+    handler.setInputAction(function (movement) {
+        var pick = viewer.scene.pick(movement.position);
+        var satelliteToolbar = $('#satellite-toolbar');
+        $("#satellite-instruments").empty();
+
+        if (Cesium.defined(pick) && Cesium.defined(pick.node) && Cesium.defined(pick.mesh)) {
+            var entity = dataSource.entities.getById(pick.id._id);
+            if (entity != undefined) {
+                showSatelliteToolbar(entity);
+            }
+        } else {
+            viewer.trackedEntity = undefined;
+            satelliteToolbar.hide();
+        }
+    }, Cesium.ScreenSpaceEventType.LEFT_CLICK);
+
+    var toogle = function(div, callbackOn, callbackOff) {
+        if (div.is(":visible")) {
+            div.hide();
+            callbackOff();
+        } else  {
+            div.show();
+            callbackOn();
+        }
+    }
+
+    viewer.timeline.zoomTo(startTime, endTime);
+    viewer.scene.globe.baseColor = Cesium.Color.BLACK;
+
+    var setSatellitesProperties = function(dataSource) {
         $.getJSON( "data/instruments.json", function( data ) {
             satellitesData = data;
         }).done(function(data) {
@@ -94,65 +97,18 @@
                 }
             });
         });
-    });
-    viewer.dataSources.add(dataSource);
-
-    var previousTime = null;
-
-    handler.setInputAction(function (movement) {
-        var pick = viewer.scene.pick(movement.position);
-        var satelliteToolbar = document.getElementById('satellite-toolbar');
-        document.getElementById("satellite-instruments").innerHTML = "";
-        if (Cesium.defined(pick) && Cesium.defined(pick.node) && Cesium.defined(pick.mesh)) {
-            var entity = dataSource.entities.getById(pick.id._id);
-            if (entity != undefined) {
-                console.log(satellitesData)
-                showSatelliteToolbar(entity, satellitesData);
-            }
-        } else {
-            viewer.trackedEntity = undefined;
-            satelliteToolbar.style.display = "none";
-        }
-    }, Cesium.ScreenSpaceEventType.LEFT_CLICK);
-
-    toogle = function(div, callbackOn, callbackOff) {
-        if (div.style.display == "block") {
-            div.style.display = "none";
-            callbackOff();
-        } else  {
-            div.style.display = "block";
-            callbackOn();
-        }
     }
-
-    viewer.timeline.zoomTo(startTime, endTime);
-    viewer.scene.globe.baseColor = Cesium.Color.BLACK;
 
     var onClockUpdate = _.throttle(function() {
         var isoDateTime = clock.currentTime.toString();
         var time = isoDate(isoDateTime);
-        if ( time !== previousTime ) {
-          //  viewer.dataSources.removeAll();
+        if (time !== previousTime) {
+            viewer.dataSources.removeAll();
             var dataSource = new Cesium.CzmlDataSource();
-
             dataSource.load('data/satellites-' + time +'.czml').then(function(){
-                $.getJSON( "data/instruments.json", function( data ) {
-                    satellitesData = data;
-                }).done(function(data) {
-                    $.each(data.satellites, function( key, satellite  ) {
-                        var entity = dataSource.entities.getById(satellite.id);
-                        if (entity != undefined) {
-                            entity.properties = satellite;
-                        }
-                    });
-                });
+                setSatellitesProperties(dataSource);
             });
             viewer.dataSources.add(dataSource);
-          /*  if (!viewer.dataSources.contains(dataSource)) {
-                console.log(viewer.dataSources.contains(dataSource))
-                viewer.dataSources.add(dataSource);
-            }
-            */
 
             previousTime = time;
             for (var i = 0; i <= viewer.scene.imageryLayers.length - 1; i++) {
@@ -164,19 +120,6 @@
                     viewer.scene.imageryLayers.remove(layer);
                 }
             }
-            /*
-            var time = "TIME=" + isoDate('2016-11-19');
-            var provider = new Cesium.WebMapTileServiceImageryProvider({
-                url: "//map1.vis.earthdata.nasa.gov/wmts-geo/wmts.cgi?" + time,
-                layer: "VIIRS_SNPP_CorrectedReflectance_TrueColor",
-                style: "",
-                format: "image/jpeg",
-                tileMatrixSetID: "EPSG4326_250m",
-                maximumLevel: 12,
-                tileWidth: 256,
-                tileHeight: 256,
-                tilingScheme: gibs.GeographicTilingScheme()
-            });*/
             if (backgroundLayerProvider == undefined){
                 backgroundLayerProvider = getProvider(
                     "VIIRS_SNPP_CorrectedReflectance_TrueColor",
@@ -187,15 +130,12 @@
                 viewer.scene.imageryLayers.addImageryProvider(backgroundLayerProvider);
             }
 
-         //   if (referenceLayerProvider == undefined) {
-                referenceLayerProvider = getProvider("Reference_Labels", '2016-11-19', "image/png", "EPSG4326_250m");
-                viewer.scene.imageryLayers.addImageryProvider(referenceLayerProvider);
-          //  }
+             referenceLayerProvider = getProvider("Reference_Labels", '2016-11-19', "image/png", "EPSG4326_250m");
+             viewer.scene.imageryLayers.addImageryProvider(referenceLayerProvider);
         }
     });
 
     viewer.clock.onTick.addEventListener(onClockUpdate);
-
 
     var getProvider = function(layer, time, format, tileMatrixSetID) {
         var isoTime = "TIME=" + isoDate(time);

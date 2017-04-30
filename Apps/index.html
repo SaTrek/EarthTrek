@@ -11,24 +11,27 @@
     <script src="../node_modules/jquery/dist/jquery.js"></script>
     <script src="../node_modules/cesium/Build/Cesium/Cesium.js"></script>
     <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.4.4/underscore-min.js"></script>
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
-    <!-- Latest compiled and minified JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-
+    <script src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="../node_modules/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
    <style>
         @import url(../node_modules/cesium/Build/Cesium/Widgets/widgets.css);
+        @import url(../node_modules/bootstrap/dist/css/bootstrap.min.css);
+        @import url(../node_modules/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css);
         @import url(css/main.css);
         @import url(css/satellite.css);
     </style>
 </head>
 <body>
 <div id="map">
-    <div id="date-modal" class="modal">
+    <div id="compare-modal" style="display: none;">
+        <legend>Seleccione una fecha a comparar</legend>
+        <input id="compare-date" class="datepicker" data-date-format="yyyy-mm-dd">
+        <input type="button" value="OK" id="accept-date"/>
     </div>
     <div id="slider" style="display: none;"></div>
     <div id="satellite-toolbar" style="display: none;">
+        <div id="satelite-info"></div>
         <div id="satellite-instruments">
         </div>
         <div id="satellite-instrument-layers">

@@ -2,13 +2,14 @@
   "satellites": [
     {
       "id": "terra",
+      "type": "SATELLITE",
       "instruments": [
         { "name" : "ASTER"},
         { "name" : "CERES"},
         { "name" : "MISR"},
         { "name" : "MODIS", "full-name": "Moderate-Resolution Imaging Spectroradiometer",
           "layers": [
-            { "title": "Corrected Reflectance (True Color, MODIS, Terra)",
+            { "title": "Corrected Reflectance (True Color)",
               "name": "MODIS_Terra_CorrectedReflectance_TrueColor",
               "resolution": "250m",
               "format": "image/jpeg",
@@ -16,7 +17,7 @@
               "endDate": ""
             },
             {
-              "title": "Corrected Reflectance (Bands 7-2-1, MODIS, Terra)",
+              "title": "Corrected Reflectance (Bands 7-2-1)",
               "name":  "MODIS_Terra_CorrectedReflectance_Bands721",
               "resolution": "250m",
               "format": "image/jpeg",
@@ -30,6 +31,7 @@
     },
     {
       "id": "aqua",
+      "type": "SATELLITE",
       "instruments": [
         { "name" : "AIRS", "full-name": "Atmospheric Infrared Sounder"},
         { "name" : "AMSU-A", "full-name": "Advanced Microwave Sounding Unit"},
@@ -38,7 +40,7 @@
         { "name" : "MODIS", "full-name": "Moderate-Resolution Imaging Spectroradiometer",
           "layers": [
             {
-              "title": "Corrected Reflectance (True Color, MODIS, Terra)",
+              "title": "Corrected Reflectance (True Color)",
               "name": "MODIS_Aqua_CorrectedReflectance_TrueColor",
               "resolution": "250m",
               "format": "image/jpeg",
@@ -46,7 +48,7 @@
               "endDate": "2017-04-29"
             },
             {
-              "title": "Corrected Reflectance (Bands 7-2-1, MODIS, Terra)",
+              "title": "Corrected Reflectance (Bands 7-2-1)",
               "name":  "MODIS_Aqua_CorrectedReflectance_Bands721",
               "resolution": "250m",
               "format": "image/jpeg",
@@ -79,12 +81,27 @@
     },
     {
       "id": "aura",
+      "type": "SATELLITE",
       "instruments": [
         { "name" : "HIRDLS", "full-name": "High Resolution Dynamics Limb Sounder"},
         { "name" : "MLS", "full-name": "Microwave Limb Sounder"},
         { "name" : "OMI", "full-name": "Ozone Monitoring Instrument"},
         { "name" : "TES", "full-name": "Tropospheric Emission Spectrometer"}
       ]
+    },
+    {
+      "id": "iss",
+      "type": "SPACE_STATION",
+      "instruments": [
+        { "name" : "HIRDLS", "full-name": "High Resolution Dynamics Limb Sounder"},
+        { "name" : "MLS", "full-name": "Microwave Limb Sounder"},
+        { "name" : "OMI", "full-name": "Ozone Monitoring Instrument"},
+        { "name" : "TES", "full-name": "Tropospheric Emission Spectrometer"}
+      ]
+    },
+    {
+      "id": "hubble",
+      "type": "TELESCOPE"
     }
   ]
 }
