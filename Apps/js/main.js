@@ -104,7 +104,6 @@
         if (time !== previousTime) {
             viewer.dataSources.removeAll();
             var dataSource = new Cesium.CzmlDataSource();
-            dataSource.load('data/satellites-' + time +'.czml');
             dataSource.load('data/satellites-' + time +'.czml').then(function(){
                 setSatellitesProperties(dataSource);
             });
