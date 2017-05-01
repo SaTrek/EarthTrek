@@ -30,15 +30,7 @@
     float: left;
 }
 .satellite-instrument button {
-    color: white;
-    font-size: 14px;
-    font-weight: bold;
-    background: rgba(120, 150, 45, 0.9);
-    padding: 5px;
-    border: 1px solid black;
     float: right;
-    -webkit-transition-duration: 0.4s; /* Safari */
-    transition-duration: 0.4s;
 }
 
 .satellite-instrument button:hover {
@@ -76,7 +68,6 @@ button {
     background: rgba(120, 150, 45, 0.9);
     padding: 5px;
     border: 1px solid black;
-    float: right;
     -webkit-transition-duration: 0.4s; /* Safari */
     transition-duration: 0.4s;
 }

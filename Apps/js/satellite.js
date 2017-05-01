@@ -95,13 +95,6 @@ var satellite = satellite || {};
      * Compare FirstView and Second View of Earth
      */
     compare = function (layer) {
-        /*var compareSelected = document.getElementsByClassName("button-selected");
-        for(var i = 0; i < compareSelected.length; i++) {
-            compareSelected[i].classList.remove("button-selected");
-            if (compareSelected[i] == this) {
-
-            }
-        }*/
 
         provider = getProvider(layer.name, layer.firstDate, layer.format, "EPSG4326_" + layer.resolution);
         viewer.scene.imageryLayers.addImageryProvider(provider);
