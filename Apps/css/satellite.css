@@ -3,9 +3,9 @@
     position: absolute;
     top: 200px;
     right: 10px;
-    z-index: 1;
+    z-index: 2;
     color: white;
-    width: 300px;
+    width: 380px;
     background: rgba(0, 0, 0, 0.6);
 }
 
@@ -30,15 +30,7 @@
     float: left;
 }
 .satellite-instrument button {
-    color: white;
-    font-size: 14px;
-    font-weight: bold;
-    background: rgba(120, 150, 45, 0.9);
-    padding: 5px;
-    border: 1px solid black;
     float: right;
-    -webkit-transition-duration: 0.4s; /* Safari */
-    transition-duration: 0.4s;
 }
 
 .satellite-instrument button:hover {
@@ -68,4 +60,22 @@
 }
 #compare-modal input {
     color: black;
+}
+button {
+    color: white;
+    font-size: 14px;
+    font-weight: bold;
+    background: rgba(120, 150, 45, 0.9);
+    padding: 5px;
+    border: 1px solid black;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+}
+.instrument-layer {
+    float: left;
+    clear: both;
+    background: rgba(80, 20, 250, 1);
+    width: 100%;
+    color: white;
+    font-weight: bold;
 }

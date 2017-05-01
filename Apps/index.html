@@ -7,13 +7,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <!-- Make the application on mobile take up the full browser screen and disable user scaling. -->
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
-    <title>GEO</title>
+    <title>EarthTrek</title>
     <script src="../node_modules/jquery/dist/jquery.js"></script>
     <script src="../node_modules/cesium/Build/Cesium/Cesium.js"></script>
     <script src="../node_modules/underscore/underscore-min.js"></script>
     <script src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="../node_modules/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
-   <style>
+    <style>
         @import url(../node_modules/cesium/Build/Cesium/Widgets/widgets.css);
         @import url(../node_modules/bootstrap/dist/css/bootstrap.min.css);
         @import url(../node_modules/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css);
@@ -26,7 +26,7 @@
     <div id="compare-modal" style="display: none;">
         <legend>Seleccione una fecha a comparar</legend>
         <input id="compare-date" class="datepicker" data-date-format="yyyy-mm-dd">
-        <input type="button" value="OK" id="accept-date"/>
+        <button id="accept-date">OK</button>
     </div>
     <div id="slider" style="display: none;"></div>
     <div id="satellite-toolbar" style="display: none;">
