@@ -6,7 +6,7 @@
         new Date(Date.now()));
 
     var startTime = Cesium.JulianDate.fromDate(
-        new Date(Date.now()));
+        new Date(Date.UTC(2011, 1, 1)));
 
     var endTime = Cesium.JulianDate.fromDate(
         new Date(Date.now()));
@@ -24,7 +24,9 @@
     var viewer = new Cesium.Viewer("map", {
         clock: clock,
         baseLayerPicker: false, // Only showing one layer in this demo,
-        requestWaterMask: true
+        requestWaterMask: true,
+        automaticallyTrackDataSourceClocks: false,
+        navigationHelpButton: false
     });
 
     var handler = new Cesium.ScreenSpaceEventHandler(viewer.scene.canvas);
@@ -114,7 +116,7 @@
 
     backgroundLayerProvider = provider.getProvider(
         "VIIRS_SNPP_CorrectedReflectance_TrueColor",
-        '2016-11-19',
+        '2016-11-21',
         "image/jpeg",
         "EPSG4326_250m"
     );
