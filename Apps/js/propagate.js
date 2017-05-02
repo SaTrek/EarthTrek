@@ -10,7 +10,6 @@ var tleLine1 = '1 25544U 98067A   13149.87225694  .00009369  00000-0  16828-3 0 
 // Initialize a satellite record
 var satrec = satellite.twoline2satrec(tleLine1, tleLine2);
 
-console.log(satrec)
 var positionAndVelocity = satellite.propagate(satrec, new Date());
 var positionEci = positionAndVelocity.position,
     velocityEci = positionAndVelocity.velocity;
