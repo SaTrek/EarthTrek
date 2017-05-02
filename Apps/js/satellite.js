@@ -112,3 +112,13 @@
         referenceLayerProvider = provider.getProvider("Reference_Labels", '2016-11-19', "image/png", "EPSG4326_250m");
         viewer.scene.imageryLayers.addImageryProvider(referenceLayerProvider);
     }
+
+
+    $('#search-satellite-button').click(function() {
+        var entity = dataSource.entities.getById($('#search-satellite-text').val());
+        console.log(entity)
+        if (entity != undefined) {
+            console.log(entity)
+            viewer.flyTo(entity);
+        }
+    })
