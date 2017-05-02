@@ -1,4 +1,5 @@
-[
+{
+  "satellites": [
   {
     "id": "GCOM-W1",
     "instruments": [
@@ -162,7 +163,7 @@
     ]
   },
   {
-    "id": "Aqua",
+    "id": "aqua",
     "instruments": [
       {
         "name": "AMSR-E",
@@ -1074,17 +1075,7 @@
             "resolution": "2km",
             "startDate": "2011-08-25",
             "endDate": "2011-08-25"
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "id": "Aquarius",
-    "instruments": [
-      {
-        "name": "SAC-D",
-        "layers": [
+          },
           {
             "id": "Aquarius_Sea_Surface_Salinity_L3_7Day_RunningMean",
             "title": "Sea Surface Salinity (L3, 7-Day Running Mean, SAC-D, Aquarius)",
@@ -2687,7 +2678,7 @@
     ]
   },
   {
-    "id": "Aura",
+    "id": "aura",
     "instruments": [
       {
         "name": "MLS",
@@ -4303,7 +4294,7 @@
     ]
   },
   {
-    "id": "SNPP",
+    "id": "suomi",
     "instruments": [
       {
         "name": "VIIRS",
@@ -4353,17 +4344,7 @@
             "resolution": "250m",
             "startDate": "2015-11-24",
             "endDate": "2017-04-30"
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "id": "VIIRS",
-    "instruments": [
-      {
-        "name": "Suomi NPP",
-        "layers": [
+          },
           {
             "id": "VIIRS_SNPP_DayNightBand_ENCC",
             "title": "Nighttime Imagery (Day/Night Band, Enhanced Near Constant Contrast, Suomi NPP, VIIRS)",
@@ -4480,4 +4461,5 @@
       }
     ]
   }
-]
+  ]
+}

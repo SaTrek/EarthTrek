@@ -31,7 +31,6 @@ var satellite = satellite || {};
                 $("#satellite-instruments").append(instrument);
             }
         }
-
     }
 
     showLayers = function (event) {
@@ -42,7 +41,7 @@ var satellite = satellite || {};
 
                     var instrumentLayer = document.createElement('div');
                     $(instrumentLayer).addClass("instrument-layer");
-                    $(instrumentLayer).data("name", layer.name);
+                    $(instrumentLayer).data("id", layer.id);
                     $(instrumentLayer).data("startDate", layer.startDate);
                     $(instrumentLayer).data("format", layer.format);
                     $(instrumentLayer).data("resolution", layer.resolution);
@@ -51,8 +50,8 @@ var satellite = satellite || {};
 
                     var toggleLayerButton = document.createElement("button");
                     $(toggleLayerButton).on('click', function () {
-                        provider = getProvider(layer.name, layer.startDate, layer.format, "EPSG4326_" + layer.resolution);
-                        viewer.scene.imageryLayers.addImageryProvider(provider);
+                        var newProvider = provider.getProvider(layer.id, layer.startDate, layer.format, "EPSG4326_" + layer.resolution);
+                        viewer.scene.imageryLayers.addImageryProvider(newProvider);
                     });
 
                     $(toggleLayerButton).text("View");
@@ -78,7 +77,7 @@ var satellite = satellite || {};
         $("#accept-date").click(function () {
             if ($('#compare-date').val()) {
                 var layer = {};
-                layer.name = $('.compare-selected').parent().data("name");
+                layer.id = $('.compare-selected').parent().data("id");
                 layer.firstDate = $('#compare-date').val();
                 layer.secondDate = clock.currentTime.toString();
                 layer.format = $('.compare-selected').parent().data("format");
@@ -96,11 +95,11 @@ var satellite = satellite || {};
      */
     compare = function (layer) {
 
-        provider = getProvider(layer.name, layer.firstDate, layer.format, "EPSG4326_" + layer.resolution);
-        viewer.scene.imageryLayers.addImageryProvider(provider);
+        var newProvider = provider.getProvider(layer.id, layer.firstDate, layer.format, "EPSG4326_" + layer.resolution);
+        viewer.scene.imageryLayers.addImageryProvider(newProvider);
 
-        provider = getProvider(layer.name, layer.secondDate, layer.format, "EPSG4326_" + layer.resolution);
-        secondView = viewer.scene.imageryLayers.addImageryProvider(provider);
+        newProvider = provider.getProvider(layer.id, layer.secondDate, layer.format, "EPSG4326_" + layer.resolution);
+        secondView = viewer.scene.imageryLayers.addImageryProvider(newProvider);
 
         this.className = "button-selected";
         var slider = $("#slider");
@@ -110,6 +109,6 @@ var satellite = satellite || {};
             secondView.splitDirection =  Cesium.ImageryLayer.DEFAULT_SPLIT;
         });
 
-        referenceLayerProvider = getProvider("Reference_Labels", '2016-11-19', "image/png", "EPSG4326_250m");
+        referenceLayerProvider = provider.getProvider("Reference_Labels", '2016-11-19', "image/png", "EPSG4326_250m");
         viewer.scene.imageryLayers.addImageryProvider(referenceLayerProvider);
     }

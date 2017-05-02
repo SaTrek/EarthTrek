@@ -29,7 +29,7 @@
 
     var handler = new Cesium.ScreenSpaceEventHandler(viewer.scene.canvas);
 
-    var getProvider = function(layer, time, format, tileMatrixSetID) {
+   /* var getProvider = function(layer, time, format, tileMatrixSetID) {
         var isoTime = "TIME=" + isoDate(time);
         var provider = new Cesium.WebMapTileServiceImageryProvider({
             url: "//gibs-c.earthdata.nasa.gov/wmts/epsg4326/best/wmts.cgi?" + isoTime,
@@ -43,7 +43,7 @@
             tilingScheme: gibs.GeographicTilingScheme()
         });
         return provider;
-    }
+    }*/
     /**
      * DATA SOURCE
      */
@@ -53,7 +53,7 @@
         var isoDateTime = clock.currentTime.toString();
         var time = isoDate(isoDateTime);
         dataSource.load('data/satellites-' + time +'.czml').then(function(){
-            $.getJSON( "data/instruments.json", function( data ) {
+            $.getJSON( "data/instrumentsFULL.json", function( data ) {
                 satellitesData = data;
             }).done(function(data) {
                 $.each(data.satellites, function( key, satellite  ) {
@@ -100,7 +100,7 @@
     viewer.scene.globe.baseColor = Cesium.Color.BLACK;
 
     var setSatellitesProperties = function(dataSource) {
-        $.getJSON( "data/instruments.json", function( data ) {
+        $.getJSON( "data/instrumentsFULL.json", function( data ) {
             satellitesData = data;
         }).done(function(data) {
             $.each(data.satellites, function( key, satellite  ) {
@@ -112,7 +112,7 @@
         });
     }
 
-    backgroundLayerProvider = getProvider(
+    backgroundLayerProvider = provider.getProvider(
         "VIIRS_SNPP_CorrectedReflectance_TrueColor",
         '2016-11-19',
         "image/jpeg",
@@ -120,7 +120,7 @@
     );
     viewer.scene.imageryLayers.addImageryProvider(backgroundLayerProvider);
 
-    referenceLayerProvider = getProvider("Reference_Labels", '2016-11-19', "image/png", "EPSG4326_250m");
+    referenceLayerProvider = provider.getProvider("Reference_Labels", '2016-11-19', "image/png", "EPSG4326_250m");
     viewer.scene.imageryLayers.addImageryProvider(referenceLayerProvider);
 
     var onClockUpdate = _.throttle(function() {
@@ -142,7 +142,7 @@
                 }
             }
             if (backgroundLayerProvider == undefined){
-                backgroundLayerProvider = getProvider(
+                backgroundLayerProvider = provider.getProvider(
                     "VIIRS_SNPP_CorrectedReflectance_TrueColor",
                     '2016-11-19',
                     "image/jpeg",
@@ -151,7 +151,7 @@
                 viewer.scene.imageryLayers.addImageryProvider(backgroundLayerProvider);
             }
 
-             referenceLayerProvider = getProvider("Reference_Labels", '2016-11-19', "image/png", "EPSG4326_250m");
+             referenceLayerProvider = provider.getProvider("Reference_Labels", '2016-11-19', "image/png", "EPSG4326_250m");
              viewer.scene.imageryLayers.addImageryProvider(referenceLayerProvider);
         }
     });
