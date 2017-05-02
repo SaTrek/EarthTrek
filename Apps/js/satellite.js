@@ -1,5 +1,5 @@
 
-var satellite = satellite || {};
+//var satellite = satellite || {};
 
 /**
      * Show Satellite Toolbar UI

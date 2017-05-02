@@ -114,7 +114,7 @@
 
     backgroundLayerProvider = provider.getProvider(
         "VIIRS_SNPP_CorrectedReflectance_TrueColor",
-        '2016-11-19',
+        '2016-11-21',
         "image/jpeg",
         "EPSG4326_250m"
     );
