@@ -6,11 +6,16 @@
      * @param dataSource
      */
     showSatelliteToolbar = function (entity) {
+        $('#satellite-instruments').empty();
         var satelliteToolbar = $('#satellite-toolbar');
-        satelliteToolbar.show();
+        if (entity.properties == undefined) {
+            satelliteToolbar.hide();
+            return false;
+        }
         var instruments = entity.properties.instruments.getValue();
 
         if (instruments.length > 0) {
+            satelliteToolbar.show();
             var instrumentText = document.createElement('div')
             $(instrumentText).html = "<span>INSTRUMENTOS</span>";
             $("#satellite-instruments").append(instrumentText);
@@ -30,6 +35,8 @@
 
                 $("#satellite-instruments").append(instrument);
             }
+        } else {
+            satelliteToolbar.hide();
         }
     }
 
@@ -114,11 +121,20 @@
     }
 
 
-    $('#search-satellite-button').click(function() {
+
+    var searchSatellite = function() {
         var entity = dataSource.entities.getById($('#search-satellite-text').val());
-        console.log(entity)
         if (entity != undefined) {
-            console.log(entity)
-            viewer.flyTo(entity);
+            showSatelliteToolbar(entity);
+            $('#search-satellite-text').val("");
+            viewer.trackedEntity = entity;
+            viewer.selectedEntity = entity;
+            viewer.camera.zoomIn(100000);
         }
-    })
+    }
+    $('#search-satellite-button').click(searchSatellite);
+    $('#search-satellite-text').on('keypress', function(e) {
+        if (e.keyCode === 13) {
+            searchSatellite();
+        }
+    });
