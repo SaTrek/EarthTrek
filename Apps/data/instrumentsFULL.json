@@ -2,6 +2,7 @@
   "satellites": [
   {
     "id": "GCOM-W1",
+    "name": "GCOM-W1",
     "instruments": [
       {
         "name": "AMSR2",
@@ -164,6 +165,7 @@
   },
   {
     "id": "aqua",
+    "name": "Aqua",
     "instruments": [
       {
         "name": "AMSR-E",
@@ -2679,6 +2681,7 @@
   },
   {
     "id": "aura",
+    "name": "Aura",
     "instruments": [
       {
         "name": "MLS",
@@ -3033,6 +3036,7 @@
   },
   {
     "id": "SMAP",
+    "name": "SMAP",
     "instruments": [
       {
         "name": "Radiometer",
@@ -4295,6 +4299,7 @@
   },
   {
     "id": "suomi",
+    "name": "Suomi NPP",
     "instruments": [
       {
         "name": "VIIRS",

@@ -62,6 +62,10 @@
                 $.each(data.satellites, function( key, satellite  ) {
                     var entity = dataSource.entities.getById(satellite.id);
                     if (entity != undefined) {
+                        if (satellite.name != undefined) {
+                            entity.name = satellite.name;
+                            entity.label = satellite.name;
+                        }
                         entity.properties = satellite;
                     }
                 });
@@ -70,7 +74,11 @@
    // }
 
     viewer.dataSources.add(dataSource);
-
+    $.each(viewer.dataSources.entities, function( entity  ) {
+        console.log(entity)
+        if (entity != undefined) {
+        }
+    });
     var previousTime = null;
 
     handler.setInputAction(function (movement) {
