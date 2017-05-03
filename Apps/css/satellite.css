@@ -8,6 +8,14 @@
     width: 380px;
     background: rgba(0, 0, 0, 0.6);
 }
+#search-satellite {
+    position: absolute;
+    top: 0%;
+    right: 15%;
+    text-align: center;
+    z-index: 1;
+    color: black;
+}
 
 #satellite-toolbar span {
     font-weight: bold;
