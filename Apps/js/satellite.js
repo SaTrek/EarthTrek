@@ -122,8 +122,7 @@
 
 
 
-    var searchSatellite = function() {
-        var entity = dataSource.entities.getById($('#search-satellite-text').val());
+    var searchSatellite = function(entity) {
         if (entity != undefined) {
             showSatelliteToolbar(entity);
             $('#search-satellite-text').val("");
@@ -131,9 +130,12 @@
             viewer.selectedEntity = entity;
         }
     }
-    $('#search-satellite-button').click(searchSatellite);
+    $('#search-satellite-button').click(function(e) {
+        searchSatellite(dataSource.entities.getById($('#search-satellite-text').val()));
+    });
+
     $('#search-satellite-text').on('keypress', function(e) {
         if (e.keyCode === 13) {
-            searchSatellite();
+            searchSatellite(dataSource.entities.getById($(e.target).val()));
         }
     });

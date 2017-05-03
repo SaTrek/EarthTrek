@@ -127,6 +127,8 @@
     viewer.scene.imageryLayers.addImageryProvider(referenceLayerProvider);
 
     var onClockUpdate = _.throttle(function() {
+     //   console.log(viewer.selectedEntity)
+    //    viewer.trackedEntity = viewer.selectedEntity
         var isoDateTime = clock.currentTime.toString();
         var time = isoDate(isoDateTime);
         if (time !== previousTime) {
