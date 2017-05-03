@@ -129,7 +129,6 @@
             $('#search-satellite-text').val("");
             viewer.trackedEntity = entity;
             viewer.selectedEntity = entity;
-            viewer.camera.zoomIn(100000);
         }
     }
     $('#search-satellite-button').click(searchSatellite);
