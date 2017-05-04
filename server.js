@@ -1,9 +1,21 @@
-var connect = require('connect');
-var serveStatic = require('serve-static');
-connect().use(serveStatic(__dirname))
-    .use(function(req, res) {
-        res.setHeader("Access-Control-Allow-Origin", "http://localhost:8080");
-    })
-    .listen(8080, function() {
-    console.log('Server running on 8080...');
+var express = require('express')
+
+var port = process.env.PORT || 8080
+
+var app = express()
+
+app.use(express.static(__dirname))
+app.use(express.static(__dirname + '/Apps'))
+app.use(express.static(__dirname + '/API'))
+   
+app.get('/', function(req, res) {
+    res.sendFile(__dirname + '/Apps/index.html')
+})
+
+app.get('/cap-parser', function(req, res) {
+    res.sendFile(__dirname + '/API/cap-parser.html')
+})
+
+app.listen(port, function() {
+    console.log('Server running on port %s...', port)
 });
