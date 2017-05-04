@@ -15,7 +15,7 @@
         startTime: startTime,
         endTime: endTime,
         currentTime: initialTime,
-        multiplier: 0,
+        multiplier: 10,
         clockStep : Cesium.ClockStep.SYSTEM_CLOCK_MULTIPLIER
     });
     var isoDate = function(isoDateTime) {
@@ -156,7 +156,13 @@
                 viewer.scene.imageryLayers.addImageryProvider(backgroundLayerProvider);
             }
 
-             referenceLayerProvider = provider.getProvider("Reference_Labels", '2016-11-19', "image/png", "epsg4326", "250m");
+             referenceLayerProvider = provider.getProvider(
+                 "Reference_Labels",
+                 '2016-11-19',
+                 "image/png",
+                 "epsg4326",
+                 "250m"
+             );
              viewer.scene.imageryLayers.addImageryProvider(referenceLayerProvider);
         }
     });
