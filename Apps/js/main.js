@@ -9,7 +9,7 @@
         new Date(Date.UTC(2011, 1, 1)));
 
     var endTime = Cesium.JulianDate.fromDate(
-        new Date(Date.UTC(2017, 4, 2)));
+        new Date(Date.UTC(2017, 4, 18)));
 
     var clock = new Cesium.Clock({
         startTime: startTime,
