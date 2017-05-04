@@ -42,19 +42,9 @@
         var time = isoDate(isoDateTime);
         dataSource
             .load('data/satellites-' + time +'.czml')
-            .then(function(){
-                $.getJSON( "data/instrumentsFULL.json", function( data ) {
-                    satellitesData = data;
-                }).done(function(data) {
-                    $.each(data.satellites, function( key, satellite  ) {
-                        var entity = dataSource.entities.getById(satellite.id);
-                        if (entity != undefined) {
-                            entity.properties = satellite;
-                        }
-                    });
-                });
+            .then(function() {
+                setSatellitesProperties(dataSource);
             });
-   // }
 
     viewer.dataSources.add(dataSource);
 
@@ -115,6 +105,7 @@
         var isoDateTime = clock.currentTime.toString();
         var time = isoDate(isoDateTime);
         if (time !== previousTime) {
+
             viewer.dataSources.removeAll();
             var dataSource = new Cesium.CzmlDataSource();
             dataSource

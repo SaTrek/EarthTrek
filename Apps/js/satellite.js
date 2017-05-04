@@ -19,6 +19,17 @@
         }
     }, Cesium.ScreenSpaceEventType.LEFT_CLICK);
 
+    handler.setInputAction(function (movement) {
+       var pick = viewer.scene.pick(movement.endPosition);
+        if (Cesium.defined(pick)) {
+            var entity = dataSource.entities.getById(pick.id._id);
+            if (entity != undefined) {
+                console.log("RICA CHICA")
+                entity.label.text = "RANCIO"
+            }
+        }
+    }, Cesium.ScreenSpaceEventType.MOUSE_MOVE);
+
     /**
      * Show Satellite Toolbar UI
      * @param dataSource
