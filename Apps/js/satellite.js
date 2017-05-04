@@ -6,11 +6,16 @@
      * @param dataSource
      */
     showSatelliteToolbar = function (entity) {
+        $('#satellite-instruments').empty();
         var satelliteToolbar = $('#satellite-toolbar');
-        satelliteToolbar.show();
+        if (entity.properties == undefined) {
+            satelliteToolbar.hide();
+            return false;
+        }
         var instruments = entity.properties.instruments.getValue();
 
         if (instruments.length > 0) {
+            satelliteToolbar.show();
             var instrumentText = document.createElement('div')
             $(instrumentText).html = "<span>INSTRUMENTOS</span>";
             $("#satellite-instruments").append(instrumentText);
@@ -30,6 +35,8 @@
 
                 $("#satellite-instruments").append(instrument);
             }
+        } else {
+            satelliteToolbar.hide();
         }
     }
 
@@ -112,3 +119,21 @@
         referenceLayerProvider = provider.getProvider("Reference_Labels", '2016-11-19', "image/png", "EPSG4326_250m");
         viewer.scene.imageryLayers.addImageryProvider(referenceLayerProvider);
     }
+
+
+
+    var searchSatellite = function() {
+        var entity = dataSource.entities.getById($('#search-satellite-text').val());
+        if (entity != undefined) {
+            showSatelliteToolbar(entity);
+            $('#search-satellite-text').val("");
+            viewer.trackedEntity = entity;
+            viewer.selectedEntity = entity;
+        }
+    }
+    $('#search-satellite-button').click(searchSatellite);
+    $('#search-satellite-text').on('keypress', function(e) {
+        if (e.keyCode === 13) {
+            searchSatellite();
+        }
+    });

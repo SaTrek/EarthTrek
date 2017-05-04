@@ -3,13 +3,13 @@
     $('.datepicker').datepicker();
 
     var initialTime = Cesium.JulianDate.fromDate(
-        new Date(Date.now()));
+        new Date(Date.UTC(2017, 4, 2)));
 
     var startTime = Cesium.JulianDate.fromDate(
         new Date(Date.UTC(2011, 1, 1)));
 
     var endTime = Cesium.JulianDate.fromDate(
-        new Date(Date.now()));
+        new Date(Date.UTC(2017, 4, 2)));
 
     var clock = new Cesium.Clock({
         startTime: startTime,
@@ -26,7 +26,8 @@
         baseLayerPicker: false, // Only showing one layer in this demo,
         requestWaterMask: true,
         automaticallyTrackDataSourceClocks: false,
-        navigationHelpButton: false
+        navigationHelpButton: false,
+        infoBox: false
     });
 
     var handler = new Cesium.ScreenSpaceEventHandler(viewer.scene.canvas);
