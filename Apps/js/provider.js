@@ -3,15 +3,15 @@
  */
 
 var provider = provider || {};
-provider.getProvider = function(layer, time, format, tileMatrixSetID) {
+provider.getProvider = function(layer, time, format, tileMatrixSetID, resolution) {
     var isoTime = "TIME=" + isoDate(time);
     var provider = new Cesium.WebMapTileServiceImageryProvider({
-        url: "//gibs-c.earthdata.nasa.gov/wmts/epsg4326/best/wmts.cgi?" + isoTime,
+        url: "//gibs-c.earthdata.nasa.gov/wmts/" + tileMatrixSetID + "/best/wmts.cgi?" + isoTime,
         layer: layer,
         style: "",
         format: format,
-        tileMatrixSetID: tileMatrixSetID,
-        maximumLevel: 12,
+        tileMatrixSetID: tileMatrixSetID.toUpperCase() + "_" + resolution,
+        maximumLevel: 8,
         tileWidth: 256,
         tileHeight: 256,
         tilingScheme: gibs.GeographicTilingScheme()

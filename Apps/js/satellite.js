@@ -57,7 +57,7 @@
 
                     var toggleLayerButton = document.createElement("button");
                     $(toggleLayerButton).on('click', function () {
-                        var newProvider = provider.getProvider(layer.id, layer.startDate, layer.format, "EPSG4326_" + layer.resolution);
+                        var newProvider = provider.getProvider(layer.id, layer.startDate, layer.format, "epsg4326", layer.resolution);
                         viewer.scene.imageryLayers.addImageryProvider(newProvider);
                     });
 
@@ -102,10 +102,10 @@
      */
     compare = function (layer) {
 
-        var newProvider = provider.getProvider(layer.id, layer.firstDate, layer.format, "EPSG4326_" + layer.resolution);
+        var newProvider = provider.getProvider(layer.id, layer.firstDate, layer.format, "epsg4326", layer.resolution);
         viewer.scene.imageryLayers.addImageryProvider(newProvider);
 
-        newProvider = provider.getProvider(layer.id, layer.secondDate, layer.format, "EPSG4326_" + layer.resolution);
+        newProvider = provider.getProvider(layer.id, layer.secondDate, layer.format, "epsg4326", layer.resolution);
         secondView = viewer.scene.imageryLayers.addImageryProvider(newProvider);
 
         this.className = "button-selected";
@@ -116,7 +116,7 @@
             secondView.splitDirection =  Cesium.ImageryLayer.DEFAULT_SPLIT;
         });
 
-        referenceLayerProvider = provider.getProvider("Reference_Labels", '2016-11-19', "image/png", "EPSG4326_250m");
+        referenceLayerProvider = provider.getProvider("Reference_Labels", '2016-11-19', "image/png", "epsg4326", "250m");
         viewer.scene.imageryLayers.addImageryProvider(referenceLayerProvider);
     }
 

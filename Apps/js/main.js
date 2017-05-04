@@ -32,21 +32,6 @@
 
     var handler = new Cesium.ScreenSpaceEventHandler(viewer.scene.canvas);
 
-   /* var getProvider = function(layer, time, format, tileMatrixSetID) {
-        var isoTime = "TIME=" + isoDate(time);
-        var provider = new Cesium.WebMapTileServiceImageryProvider({
-            url: "//gibs-c.earthdata.nasa.gov/wmts/epsg4326/best/wmts.cgi?" + isoTime,
-            layer: layer,
-            style: "",
-            format: format,
-            tileMatrixSetID: tileMatrixSetID,
-            maximumLevel: 12,
-            tileWidth: 256,
-            tileHeight: 256,
-            tilingScheme: gibs.GeographicTilingScheme()
-        });
-        return provider;
-    }*/
     /**
      * DATA SOURCE
      */
@@ -78,14 +63,15 @@
         var satelliteToolbar = $('#satellite-toolbar');
         $("#satellite-instruments").empty();
 
-        if (Cesium.defined(pick) && Cesium.defined(pick.node) && Cesium.defined(pick.mesh)) {
+        if (Cesium.defined(pick)) {
             var entity = dataSource.entities.getById(pick.id._id);
             if (entity != undefined) {
+                // && Cesium.defined(pick.node) && Cesium.defined(pick.mesh)
                 showSatelliteToolbar(entity);
+            }else {
+                viewer.trackedEntity = undefined;
+                satelliteToolbar.hide();
             }
-        } else {
-            viewer.trackedEntity = undefined;
-            satelliteToolbar.hide();
         }
     }, Cesium.ScreenSpaceEventType.LEFT_CLICK);
 
@@ -114,16 +100,27 @@
             });
         });
     }
-
+    /*
+    polarBackgroundLayerProvider = provider.getProvider(
+        "VIIRS_SNPP_CorrectedReflectance_TrueColor",
+        '2016-11-30',
+        "image/jpeg",
+        "epsg3413",
+        "250m"
+    );
+    viewer.scene.imageryLayers.addImageryProvider(polarBackgroundLayerProvider);
+*/
     backgroundLayerProvider = provider.getProvider(
         "VIIRS_SNPP_CorrectedReflectance_TrueColor",
         '2016-11-21',
         "image/jpeg",
-        "EPSG4326_250m"
+        "epsg4326",
+        "250m"
     );
     viewer.scene.imageryLayers.addImageryProvider(backgroundLayerProvider);
 
-    referenceLayerProvider = provider.getProvider("Reference_Labels", '2016-11-19', "image/png", "EPSG4326_250m");
+
+    referenceLayerProvider = provider.getProvider("Reference_Labels", '2016-11-19', "image/png", "epsg4326", "250m");
     viewer.scene.imageryLayers.addImageryProvider(referenceLayerProvider);
 
     var onClockUpdate = _.throttle(function() {
@@ -149,12 +146,13 @@
                     "VIIRS_SNPP_CorrectedReflectance_TrueColor",
                     '2016-11-19',
                     "image/jpeg",
-                    "EPSG4326_250m"
+                    "epsg4326",
+                    "250m"
                 );
                 viewer.scene.imageryLayers.addImageryProvider(backgroundLayerProvider);
             }
 
-             referenceLayerProvider = provider.getProvider("Reference_Labels", '2016-11-19', "image/png", "EPSG4326_250m");
+             referenceLayerProvider = provider.getProvider("Reference_Labels", '2016-11-19', "image/png", "epsg4326", "250m");
              viewer.scene.imageryLayers.addImageryProvider(referenceLayerProvider);
         }
     });
