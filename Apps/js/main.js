@@ -68,10 +68,10 @@
             if (entity != undefined) {
                 // && Cesium.defined(pick.node) && Cesium.defined(pick.mesh)
                 showSatelliteToolbar(entity);
-            }else {
-                viewer.trackedEntity = undefined;
-                satelliteToolbar.hide();
             }
+        } else  {
+            viewer.trackedEntity = undefined;
+            satelliteToolbar.hide();
         }
     }, Cesium.ScreenSpaceEventType.LEFT_CLICK);
 
