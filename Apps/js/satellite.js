@@ -1,7 +1,7 @@
 
 //var satellite = satellite || {};
 
-
+    var handler = new Cesium.ScreenSpaceEventHandler(viewer.scene.canvas);
     handler.setInputAction(function (movement) {
         var pick = viewer.scene.pick(movement.position);
         var satelliteToolbar = $('#satellite-toolbar');

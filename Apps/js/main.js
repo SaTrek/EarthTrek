@@ -1,15 +1,18 @@
     var backgroundLayerProvider;
     var referenceLayerProvider;
-    $('.datepicker').datepicker();
+    var previousTime;
+
+
+    var dataSource = new Cesium.CzmlDataSource();
+    
 
     var initialTime = Cesium.JulianDate.fromDate(
         new Date(Date.UTC(2017, 4, 2)));
-
     var startTime = Cesium.JulianDate.fromDate(
         new Date(Date.UTC(2011, 1, 1)));
-
     var endTime = Cesium.JulianDate.fromDate(
         new Date(Date.UTC(2017, 4, 18)));
+
 
     var clock = new Cesium.Clock({
         startTime: startTime,
@@ -21,6 +24,8 @@
     var isoDate = function(isoDateTime) {
         return isoDateTime.split("T")[0];
     };
+
+
     var viewer = new Cesium.Viewer("map", {
         clock: clock,
         baseLayerPicker: false, // Only showing one layer in this demo,
@@ -29,65 +34,10 @@
         navigationHelpButton: false,
         infoBox: false
     });
-
-    var handler = new Cesium.ScreenSpaceEventHandler(viewer.scene.canvas);
-
-    /**
-     * DATA SOURCE
-     */
-   // var getDataSource = function () {
-        var satellitesData;
-        var dataSource = new Cesium.CzmlDataSource();
-        var isoDateTime = clock.currentTime.toString();
-        var time = isoDate(isoDateTime);
-        dataSource
-            .load('data/satellites-' + time +'.czml')
-            .then(function(){
-                $.getJSON( "data/instrumentsFULL.json", function( data ) {
-                    satellitesData = data;
-                }).done(function(data) {
-                    $.each(data.satellites, function( key, satellite  ) {
-                        var entity = dataSource.entities.getById(satellite.id);
-                        if (entity != undefined) {
-                            entity.properties = satellite;
-                        }
-                    });
-                });
-            });
-   // }
-
-    viewer.dataSources.add(dataSource);
-
-    var previousTime = null;
-
-    var toogle = function(div, callbackOn, callbackOff) {
-        if (div.is(":visible")) {
-            div.hide();
-            callbackOff();
-        } else  {
-            div.show();
-            callbackOn();
-        }
-    }
-
     viewer.timeline.zoomTo(startTime, endTime);
     viewer.scene.globe.baseColor = Cesium.Color.BLACK;
 
-    var setSatellitesProperties = function(dataSource) {
-        $.getJSON( "data/instrumentsFULL.json", function( data ) {
-            satellitesData = data;
-        }).done(function(data) {
-            $.each(data.satellites, function( key, satellite  ) {
-                var entity = dataSource.entities.getById(satellite.id);
-                if (entity != undefined) {
-                    if (satellite.name != undefined) {
-                        entity.label.text = satellite.name
-                    }
-                    entity.properties = satellite;
-                }
-            });
-        });
-    }
+
     /*
     polarBackgroundLayerProvider = provider.getProvider(
         "VIIRS_SNPP_CorrectedReflectance_TrueColor",
@@ -107,20 +57,25 @@
     );
     viewer.scene.imageryLayers.addImageryProvider(backgroundLayerProvider);
 
-
-    referenceLayerProvider = provider.getProvider("Reference_Labels", '2016-11-19', "image/png", "epsg4326", "250m");
+    referenceLayerProvider = provider.getProvider(
+        "Reference_Labels",
+        '2016-11-19',
+        "image/png",
+        "epsg4326",
+        "250m"
+    );
     viewer.scene.imageryLayers.addImageryProvider(referenceLayerProvider);
+
 
     var onClockUpdate = _.throttle(function() {
         var isoDateTime = clock.currentTime.toString();
         var time = isoDate(isoDateTime);
         if (time !== previousTime) {
             viewer.dataSources.removeAll();
-            var dataSource = new Cesium.CzmlDataSource();
             dataSource
                 .load('data/satellites-' + time +'.czml')
                 .then(function(){
-                    setSatellitesProperties(dataSource);
+                    setSatellitesProperties()
                 });
             viewer.dataSources.add(dataSource);
 
@@ -155,12 +110,41 @@
 
     viewer.clock.onTick.addEventListener(onClockUpdate);
 
+    
+    function setSatellitesProperties() {
+        $.getJSON( "data/instrumentsFULL.json", function( satellites ) {
+            satellites.forEach(function( sat ) {
+                var entity = dataSource.entities.getById(sat.id.toLowerCase());
+                if (entity != undefined) {
+                    entity.properties = sat;
+                    if (sat.name != undefined) {
+                        entity.label.text = sat.name
+                    }
+                }
+            });
+        });
+    }
+
+
+    function toggle(div, callbackOn, callbackOff) {
+        if (div.is(":visible")) {
+            div.hide();
+            callbackOff();
+        } else  {
+            div.show();
+            callbackOn();
+        }
+    }
+
+
+    $('.datepicker').datepicker();
+
 
     /**
      * SLIDER
      */
 
-// Sync the position of the slider with the split position
+    // Sync the position of the slider with the split position
     var slider = document.getElementById('slider');
     viewer.scene.imagerySplitPosition = (slider.offsetLeft) / slider.parentElement.offsetWidth;
 
