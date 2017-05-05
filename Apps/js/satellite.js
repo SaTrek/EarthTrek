@@ -1,10 +1,29 @@
 
 //var satellite = satellite || {};
 
-/**
+
+    handler.setInputAction(function (movement) {
+        var pick = viewer.scene.pick(movement.position);
+        var satelliteToolbar = $('#satellite-toolbar');
+        $("#satellite-instruments").empty();
+
+        if (Cesium.defined(pick)) {
+            var entity = dataSource.entities.getById(pick.id._id);
+            if (entity != undefined) {
+                // && Cesium.defined(pick.node) && Cesium.defined(pick.mesh)
+                showSatelliteToolbar(entity);
+            }
+        } else  {
+            viewer.trackedEntity = undefined;
+            satelliteToolbar.hide();
+        }
+    }, Cesium.ScreenSpaceEventType.LEFT_CLICK);
+
+    /**
      * Show Satellite Toolbar UI
      * @param dataSource
      */
+
     showSatelliteToolbar = function (entity) {
         $('#satellite-instruments').empty();
         var satelliteToolbar = $('#satellite-toolbar');
@@ -119,8 +138,6 @@
         referenceLayerProvider = provider.getProvider("Reference_Labels", '2016-11-19', "image/png", "epsg4326", "250m");
         viewer.scene.imageryLayers.addImageryProvider(referenceLayerProvider);
     }
-
-
 
     var searchSatellite = function() {
         var entity = dataSource.entities.getById($('#search-satellite-text').val());

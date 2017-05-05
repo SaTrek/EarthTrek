@@ -164,6 +164,9 @@
   },
   {
     "id": "aqua",
+    "name": "Aqua",
+    "perigee": "708.7",
+    "apogee": "710.6",
     "instruments": [
       {
         "name": "AMSR-E",
@@ -2679,6 +2682,7 @@
   },
   {
     "id": "aura",
+    "name": "Aura",
     "instruments": [
       {
         "name": "MLS",

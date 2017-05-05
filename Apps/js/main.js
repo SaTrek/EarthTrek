@@ -60,23 +60,6 @@
 
     var previousTime = null;
 
-    handler.setInputAction(function (movement) {
-        var pick = viewer.scene.pick(movement.position);
-        var satelliteToolbar = $('#satellite-toolbar');
-        $("#satellite-instruments").empty();
-
-        if (Cesium.defined(pick)) {
-            var entity = dataSource.entities.getById(pick.id._id);
-            if (entity != undefined) {
-                // && Cesium.defined(pick.node) && Cesium.defined(pick.mesh)
-                showSatelliteToolbar(entity);
-            }
-        } else  {
-            viewer.trackedEntity = undefined;
-            satelliteToolbar.hide();
-        }
-    }, Cesium.ScreenSpaceEventType.LEFT_CLICK);
-
     var toogle = function(div, callbackOn, callbackOff) {
         if (div.is(":visible")) {
             div.hide();
@@ -97,6 +80,9 @@
             $.each(data.satellites, function( key, satellite  ) {
                 var entity = dataSource.entities.getById(satellite.id);
                 if (entity != undefined) {
+                    if (satellite.name != undefined) {
+                        entity.label.text = satellite.name
+                    }
                     entity.properties = satellite;
                 }
             });
