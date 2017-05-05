@@ -1,7 +1,7 @@
 
 //var satellite = satellite || {};
 
-
+    var handler = new Cesium.ScreenSpaceEventHandler(viewer.scene.canvas);
     handler.setInputAction(function (movement) {
         var pick = viewer.scene.pick(movement.position);
         var satelliteToolbar = $('#satellite-toolbar');
@@ -31,6 +31,7 @@
             satelliteToolbar.hide();
             return false;
         }
+        $('#satellite-name').html(entity.properties.name.getValue())
         var instruments = entity.properties.instruments.getValue();
 
         if (instruments.length > 0) {
@@ -48,7 +49,7 @@
                 $(instrument).data('instrument', instrumentName.name);
 
                 var layerButton = document.createElement("button");
-                $(layerButton).html("Layers");
+                $(layerButton).html("<>");
                 $(layerButton).click(showLayers);
                 $(instrument).append(layerButton);
 
@@ -60,6 +61,8 @@
     }
 
     showLayers = function (event) {
+        $('.satellite-instrument .selected').removeClass('selected');
+        $(this).addClass("selected");
         $("#satellite-instrument-layers").empty();
         $.each(viewer.selectedEntity.properties.instruments.getValue(), function(key, instrument) {
             if (instrument.name == $(event.target.parentElement).data('instrument')) {
@@ -76,25 +79,26 @@
 
                     var toggleLayerButton = document.createElement("button");
                     $(toggleLayerButton).on('click', function () {
+                        $(this).toggleClass('selected')
                         var newProvider = provider.getProvider(layer.id, layer.startDate, layer.format, "epsg4326", layer.resolution);
                         viewer.scene.imageryLayers.addImageryProvider(newProvider);
                     });
 
-                    $(toggleLayerButton).text("View");
+                    $(toggleLayerButton).text("V");
                     $(toggleLayerButton).addClass("view");
                     $(instrumentLayer).append(toggleLayerButton);
 
                     var compareButton = document.createElement("button");
-                    $(compareButton).html("Comparar");
+                    $(compareButton).html("C");
                     $(compareButton).click(function () {
                         $('.compare-selected').removeClass('compare-selected');
-                        $(compareButton).addClass("compare-selected");
+                        $(this).addClass("compare-selected");
                         $('#compare-modal').show();
                     });
                     $(instrumentLayer).append(compareButton);
 
 
-                    $("#satellite-instrument-layers").append(instrumentLayer);
+                    $("#satellite-instrument-layers").append(instrumentLayer).show();
                 });
             }
         });
