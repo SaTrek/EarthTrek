@@ -1,19 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Use correct character set. -->
     <meta charset="utf-8">
-    <!-- Tell IE to use the latest, best version. -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <!-- Make the application on mobile take up the full browser screen and disable user scaling. -->
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+
     <title>EarthTrek</title>
+
     <script src="../node_modules/jquery/dist/jquery.js"></script>
     <script src="../node_modules/cesium/Build/Cesium/Cesium.js"></script>
     <script src="../node_modules/underscore/underscore-min.js"></script>
     <script src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="../node_modules/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
     <script src="../node_modules/satellite.js/dist/satellite.min.js"></script>
+
     <style>
         @import url(../node_modules/cesium/Build/Cesium/Widgets/widgets.css);
         @import url(../node_modules/bootstrap/dist/css/bootstrap.min.css);
@@ -21,23 +21,48 @@
         @import url(css/main.css);
         @import url(css/satellite.css);
     </style>
+
 </head>
 <body>
+
 <div id="map">
+
     <div id="search-satellite" style="">
         <input id="search-satellite-text" type="text" placeholder="Satellite name"/> <button id="search-satellite-button">OK</button>
     </div>
+
     <div id="compare-modal" style="display: none;">
         <legend>Seleccione una fecha a comparar</legend>
         <input id="compare-date" class="datepicker" data-date-format="yyyy-mm-dd">
         <button id="accept-date">OK</button>
     </div>
+
     <div id="slider" style="display: none;"></div>
-    <div id="satellite-toolbar" style="display: none;">
-        <div id="satelite-info"></div>
-        <div id="satellite-instruments">
+
+    <div id="satellite-toolbar" class="container">
+        <div class="row" style="font-size: 1.5em">
+            <div class="col-sm-6"><strong id="satellite-name"></strong></div>
+            <div class="col-sm-6">instruments</div>
         </div>
-        <div id="satellite-instrument-layers">
+        <div class="row">
+            <div id="satelite-info" class="col-sm-6">
+                <div>
+                    perigee <br>
+                    apogee <br>
+                    inclination <br>
+                    period <br>
+                    eccentricity <br>
+                    mass <br>
+                    launch date
+                </div>
+                <div id="satelite-info-data"></div>
+            </div>
+            <div id="satellite-instruments" class="col-sm-6">
+            </div>
+        </div>
+        <div class="row">
+            <div id="satellite-instrument-layers" class="col-sm-12">
+            </div>
         </div>
     </div>
 </div>

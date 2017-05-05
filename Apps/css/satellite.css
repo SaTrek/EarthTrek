@@ -1,53 +1,84 @@
 #satellite-toolbar {
-    border: 1px solid white;
+    display: none;
     position: absolute;
-    top: 200px;
-    right: 10px;
-    z-index: 2;
-    color: white;
+    top: 10%;
+    right: 2%;
     width: 380px;
-    background: rgba(0, 0, 0, 0.6);
+    color: white;
+    background: rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 4px;
+    text-transform: uppercase;
+    z-index: 2;
 }
-#search-satellite {
-    position: absolute;
-    top: 5px;
-    right: 10%;
-    text-align: center;
-    z-index: 1;
-    color: black;
-}
-
 #satellite-toolbar span {
     font-weight: bold;
     font-size: 1rem;
     padding: 5px;
 }
-
-.satellite-instrument {
-    color: black;
-    font-size: 1rem;
-    font-weight: bold;
-    background: rgba(200, 200, 200, 1);
-    border: 1px solid black;
-    float: left;
-    clear: both;
-    width:  100%;
+#satellite-toolbar > .row:not(:last-child) {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
 }
-
-.satellite-instrument div {
-    float: left;
+#satellite-toolbar button {
+    position: absolute;
+    right: 0; top: 0;
+    width: 40px;
+    margin: 2px;
+    border-radius: 2px;
+    color: #000;
 }
-.satellite-instrument button {
-    float: right;
-}
-
-.satellite-instrument button:hover {
+#satellite-toolbar button:hover,
+#satellite-toolbar button.selected {
     color: white;
     background: rgba(50, 210, 215, 0.9);
 }
 
-.satellite-instrument .button-selected {
-    background: rgba(50, 210, 215, 0.9);
+#satellite-info > div {
+    width: 50%;
+}
+
+#search-satellite {
+    position: absolute;
+    top: 10px;
+    right: 11%;
+    text-align: center;
+    z-index: 1;
+    color: black;
+}
+
+.satellite-instrument {
+    position: relative;
+    padding: 5px 10px;
+    font-size: 1.3em;
+}
+.satellite-instrument:nth-child(even),
+.instrument-layer:nth-child(even) {
+    background-color: rgba(58, 94, 107, 0.5);
+}
+.satellite-instrument:nth-child(odd),
+.instrument-layer:nth-child(odd) {
+    background-color: rgba(3, 46, 67, 0.5);
+}
+
+#satellite-instrument-layers {
+    display: none;
+    max-height: 50vh;
+    overflow-y: auto;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+.instrument-layer {
+    position: relative;
+    min-height: 40px;
+    line-height: 1;
+    padding: 5px;
+    padding-right: 100px;
+}
+.instrument-layer button {
+    height: 40px;
+}
+.instrument-layer button.view {
+    right: 45px !important;
 }
 
 #compare-modal {
@@ -62,28 +93,10 @@
     height: 250px;
     background: rgba(0, 0, 0, 0.6);
 }
-
 #compare-modal legend {
     color: white;
 }
 #compare-modal input {
     color: black;
 }
-button {
-    color: white;
-    font-size: 1rem;
-    font-weight: bold;
-    background: rgba(120, 150, 45, 0.9);
-    padding: 5px;
-    border: 1px solid black;
-    -webkit-transition-duration: 0.4s; /* Safari */
-    transition-duration: 0.4s;
-}
-.instrument-layer {
-    float: left;
-    clear: both;
-    background: rgba(80, 20, 250, 1);
-    width: 100%;
-    color: white;
-    font-weight: bold;
-}
+
