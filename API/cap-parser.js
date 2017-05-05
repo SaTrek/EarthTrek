@@ -34,7 +34,10 @@ fetch('https://gibs.earthdata.nasa.gov/wmts/epsg4326/best/1.0.0/WMTSCapabilities
             
             layer = {
                 id : l.Identifier,
-                title : l.Title,
+                title : l.Title
+                    .replace(ins + ', ' + sat, '')
+                    .replace(', )',')')
+                    .replace(' ()', ''),
                 format : l.Format[0],
                 resolution : l.TileMatrixSetLink[0].TileMatrixSet,
                 startDate : _temp && _temp.length && _temp[0],
