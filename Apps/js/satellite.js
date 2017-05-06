@@ -134,7 +134,7 @@
 
         this.className = "button-selected";
         var slider = $("#slider");
-        toogle(slider, function() {
+        toggle(slider, function() {
             secondView.splitDirection = Cesium.ImagerySplitDirection.RIGHT;
         }, function() {
             secondView.splitDirection =  Cesium.ImageryLayer.DEFAULT_SPLIT;

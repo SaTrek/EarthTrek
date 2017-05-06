@@ -4315,7 +4315,7 @@
     ]
   },
   {
-    "id": "SNPP",
+    "id": "suomi",
     "instruments": [
       {
         "name": "VIIRS",
@@ -4365,18 +4365,7 @@
             "resolution": "250m",
             "startDate": "2015-11-24",
             "endDate": "2017-05-04"
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "id": "VIIRS",
-    "instruments": [
-      {
-        "name": "Suomi NPP",
-        "layers": [
-          {
+          },          {
             "id": "VIIRS_SNPP_DayNightBand_ENCC",
             "title": "Nighttime Imagery (Day/Night Band, Enhanced Near Constant Contrast)",
             "format": "image/png",
