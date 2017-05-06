@@ -120,7 +120,8 @@
     }
 
 
-    /**
+
+/**
      * Compare FirstView and Second View of Earth
      */
     compare = function (layer) {

@@ -126,7 +126,7 @@
     }
 
 
-    function toggle(div, callbackOn, callbackOff) {
+    function toogle(div, callbackOn, callbackOff) {
         if (div.is(":visible")) {
             div.hide();
             callbackOff();

@@ -506,6 +506,27 @@
         ]
       },
       {
+        "name": "GHRSST",
+        "layers": [
+          {
+            "id": "GHRSST_L4_G1SST_Sea_Surface_Temperature",
+            "title": "Sea Surface Temperature (L4)",
+            "format": "image/png",
+            "resolution": "1km",
+            "startDate": "2010-06-21",
+            "endDate": "2017-05-03"
+          },
+          {
+            "id": "GHRSST_L4_MUR_Sea_Surface_Temperature",
+            "title": "Sea Surface Temperature (L4)",
+            "format": "image/png",
+            "resolution": "1km",
+            "startDate": "2002-06-01",
+            "endDate": "2017-05-03"
+          }
+        ]
+      },
+      {
         "name": "MODIS",
         "layers": [
           {
@@ -2328,37 +2349,6 @@
             "resolution": "1km",
             "startDate": "1980-01-01",
             "endDate": "2015-12-31"
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "id": "GHRSST",
-    "instruments": [
-      {
-        "name": "G1SST Global Foundation",
-        "layers": [
-          {
-            "id": "GHRSST_L4_G1SST_Sea_Surface_Temperature",
-            "title": "Sea Surface Temperature (L4)",
-            "format": "image/png",
-            "resolution": "1km",
-            "startDate": "2010-06-21",
-            "endDate": "2017-05-03"
-          }
-        ]
-      },
-      {
-        "name": "MUR Global Foundation",
-        "layers": [
-          {
-            "id": "GHRSST_L4_MUR_Sea_Surface_Temperature",
-            "title": "Sea Surface Temperature (L4)",
-            "format": "image/png",
-            "resolution": "1km",
-            "startDate": "2002-06-01",
-            "endDate": "2017-05-03"
           }
         ]
       }
