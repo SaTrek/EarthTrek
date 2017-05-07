@@ -1,14 +1,10 @@
 .idea
 node_modules
-Apps/oldjs/*
-Apps/dataold
 Apps/data/satellites-2011*
 Apps/data/satellites-2012*
 Apps/data/satellites-2013*
 Apps/data/satellites-2014*
 Apps/data/satellites-2015*
 Apps/data/satellites-2016*
-Apps/data/satellites-2017*
-
-
-
+#Apps/data/satellites-2017*
+Apps/assets

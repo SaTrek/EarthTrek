@@ -7,7 +7,7 @@
     
 
     var initialTime = Cesium.JulianDate.fromDate(
-        new Date(Date.UTC(2017, 4, 2)));
+        new Date(Date.now()));
     var startTime = Cesium.JulianDate.fromDate(
         new Date(Date.UTC(2011, 1, 1)));
     var endTime = Cesium.JulianDate.fromDate(
@@ -25,14 +25,18 @@
         return isoDateTime.split("T")[0];
     };
 
-
     var viewer = new Cesium.Viewer("map", {
         clock: clock,
-        baseLayerPicker: false, // Only showing one layer in this demo,
+        //baseLayerPicker: false, // Only showing one layer in this demo,
         requestWaterMask: true,
         automaticallyTrackDataSourceClocks: false,
         navigationHelpButton: false,
-        infoBox: false
+        infoBox: false,
+        imageryProvider : new Cesium.createTileMapServiceImageryProvider({
+            url : 'Apps/assets/imagery/NaturalEarthII/',
+            maximumLevel : 12,
+            credit : 'Imagery courtesy Natural Earth'
+        }),
     });
     viewer.timeline.zoomTo(startTime, endTime);
     viewer.scene.globe.baseColor = Cesium.Color.BLACK;
@@ -48,6 +52,8 @@
     );
     viewer.scene.imageryLayers.addImageryProvider(polarBackgroundLayerProvider);
 */
+/*
+
     backgroundLayerProvider = provider.getProvider(
         "VIIRS_SNPP_CorrectedReflectance_TrueColor",
         '2016-11-21',
@@ -56,7 +62,7 @@
         "250m"
     );
     viewer.scene.imageryLayers.addImageryProvider(backgroundLayerProvider);
-
+*/
     referenceLayerProvider = provider.getProvider(
         "Reference_Labels",
         '2016-11-19',
@@ -83,10 +89,10 @@
             for (var i = 0; i <= viewer.scene.imageryLayers.length - 1; i++) {
                 var layer = viewer.scene.imageryLayers.get(i);
                 if (layer.imageryProvider != backgroundLayerProvider) {
-                    viewer.scene.imageryLayers.remove(layer);
+           //         viewer.scene.imageryLayers.remove(layer);
                 }
             }
-            if (backgroundLayerProvider == undefined){
+            /*if (backgroundLayerProvider == undefined){
                 backgroundLayerProvider = provider.getProvider(
                     "VIIRS_SNPP_CorrectedReflectance_TrueColor",
                     '2016-11-19',
@@ -95,7 +101,7 @@
                     "250m"
                 );
                 viewer.scene.imageryLayers.addImageryProvider(backgroundLayerProvider);
-            }
+            }*/
 
              referenceLayerProvider = provider.getProvider(
                  "Reference_Labels",
