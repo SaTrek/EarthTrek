@@ -506,6 +506,81 @@
         ]
       },
       {
+        "name": "CERES/Terra",
+        "description": "Combined Terra/Aqua CERES",
+        "layers": [
+          {
+            "id": "CERES_Combined_TOA_Longwave_Flux_All_Sky_Monthly",
+            "title": "TOA Longwave Flux All-Sky (Monthly, All-Sky)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2002-07-01",
+            "endDate": "2016-02-01"
+          },
+          {
+            "id": "CERES_Combined_TOA_Longwave_Flux_Clear_Sky_Monthly",
+            "title": "TOA Longwave Flux Clear-Sky (Monthly, Clear-Sky)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2002-07-01",
+            "endDate": "2016-02-01"
+          },
+          {
+            "id": "CERES_Combined_TOA_Shortwave_Flux_All_Sky_Monthly",
+            "title": "TOA Shortwave Flux All-Sky (Monthly, All-Sky)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2002-07-01",
+            "endDate": "2016-02-01"
+          },
+          {
+            "id": "CERES_Combined_TOA_Shortwave_Flux_Clear_Sky_Monthly",
+            "title": "TOA Shortwave Flux Clear-Sky (Monthly, Clear-Sky)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2002-07-01",
+            "endDate": "2016-02-01"
+          },
+          {
+            "id": "CERES_Combined_TOA_Window_Region_Flux_All_Sky_Monthly",
+            "title": "TOA Window-Region Flux All-Sky (Monthly, All-Sky)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2002-07-01",
+            "endDate": "2016-02-01"
+          },
+          {
+            "id": "CERES_Combined_TOA_Window_Region_Flux_Clear_Sky_Monthly",
+            "title": "TOA Window-Region Flux Clear-Sky (Monthly, Clear-Sky)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2002-07-01",
+            "endDate": "2016-02-01"
+          }
+        ]
+      },
+      {
+        "name": "GHRSST",
+        "layers": [
+          {
+            "id": "GHRSST_L4_G1SST_Sea_Surface_Temperature",
+            "title": "Sea Surface Temperature (L4)",
+            "format": "image/png",
+            "resolution": "1km",
+            "startDate": "2010-06-21",
+            "endDate": "2017-05-03"
+          },
+          {
+            "id": "GHRSST_L4_MUR_Sea_Surface_Temperature",
+            "title": "Sea Surface Temperature (L4)",
+            "format": "image/png",
+            "resolution": "1km",
+            "startDate": "2002-06-01",
+            "endDate": "2017-05-03"
+          }
+        ]
+      },
+      {
         "name": "MODIS",
         "layers": [
           {
@@ -1189,6 +1264,60 @@
             "title": "Digital Elevation Model (Greyscale Shaded Relief)",
             "format": "image/jpeg",
             "resolution": "31.25m"
+          }
+        ]
+      },
+      {
+        "name": "CERES/Aqua",
+        "description": "Combined Terra/Aqua CERES",
+        "layers": [
+          {
+            "id": "CERES_Combined_TOA_Longwave_Flux_All_Sky_Monthly",
+            "title": "TOA Longwave Flux All-Sky (Monthly, All-Sky)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2002-07-01",
+            "endDate": "2016-02-01"
+          },
+          {
+            "id": "CERES_Combined_TOA_Longwave_Flux_Clear_Sky_Monthly",
+            "title": "TOA Longwave Flux Clear-Sky (Monthly, Clear-Sky)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2002-07-01",
+            "endDate": "2016-02-01"
+          },
+          {
+            "id": "CERES_Combined_TOA_Shortwave_Flux_All_Sky_Monthly",
+            "title": "TOA Shortwave Flux All-Sky (Monthly, All-Sky)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2002-07-01",
+            "endDate": "2016-02-01"
+          },
+          {
+            "id": "CERES_Combined_TOA_Shortwave_Flux_Clear_Sky_Monthly",
+            "title": "TOA Shortwave Flux Clear-Sky (Monthly, Clear-Sky)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2002-07-01",
+            "endDate": "2016-02-01"
+          },
+          {
+            "id": "CERES_Combined_TOA_Window_Region_Flux_All_Sky_Monthly",
+            "title": "TOA Window-Region Flux All-Sky (Monthly, All-Sky)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2002-07-01",
+            "endDate": "2016-02-01"
+          },
+          {
+            "id": "CERES_Combined_TOA_Window_Region_Flux_Clear_Sky_Monthly",
+            "title": "TOA Window-Region Flux Clear-Sky (Monthly, Clear-Sky)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2002-07-01",
+            "endDate": "2016-02-01"
           }
         ]
       },
@@ -2211,64 +2340,6 @@
     ]
   },
   {
-    "id": "Aqua+Terra",
-    "instruments": [
-      {
-        "name": "CERES",
-        "layers": [
-          {
-            "id": "CERES_Combined_TOA_Longwave_Flux_All_Sky_Monthly",
-            "title": "TOA Longwave Flux All-Sky (Monthly, All-Sky)",
-            "format": "image/png",
-            "resolution": "2km",
-            "startDate": "2002-07-01",
-            "endDate": "2016-02-01"
-          },
-          {
-            "id": "CERES_Combined_TOA_Longwave_Flux_Clear_Sky_Monthly",
-            "title": "TOA Longwave Flux Clear-Sky (Monthly, Clear-Sky)",
-            "format": "image/png",
-            "resolution": "2km",
-            "startDate": "2002-07-01",
-            "endDate": "2016-02-01"
-          },
-          {
-            "id": "CERES_Combined_TOA_Shortwave_Flux_All_Sky_Monthly",
-            "title": "TOA Shortwave Flux All-Sky (Monthly, All-Sky)",
-            "format": "image/png",
-            "resolution": "2km",
-            "startDate": "2002-07-01",
-            "endDate": "2016-02-01"
-          },
-          {
-            "id": "CERES_Combined_TOA_Shortwave_Flux_Clear_Sky_Monthly",
-            "title": "TOA Shortwave Flux Clear-Sky (Monthly, Clear-Sky)",
-            "format": "image/png",
-            "resolution": "2km",
-            "startDate": "2002-07-01",
-            "endDate": "2016-02-01"
-          },
-          {
-            "id": "CERES_Combined_TOA_Window_Region_Flux_All_Sky_Monthly",
-            "title": "TOA Window-Region Flux All-Sky (Monthly, All-Sky)",
-            "format": "image/png",
-            "resolution": "2km",
-            "startDate": "2002-07-01",
-            "endDate": "2016-02-01"
-          },
-          {
-            "id": "CERES_Combined_TOA_Window_Region_Flux_Clear_Sky_Monthly",
-            "title": "TOA Window-Region Flux Clear-Sky (Monthly, Clear-Sky)",
-            "format": "image/png",
-            "resolution": "2km",
-            "startDate": "2002-07-01",
-            "endDate": "2016-02-01"
-          }
-        ]
-      }
-    ]
-  },
-  {
     "id": "OSM",
     "instruments": [
       {
@@ -2328,37 +2399,6 @@
             "resolution": "1km",
             "startDate": "1980-01-01",
             "endDate": "2015-12-31"
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "id": "GHRSST",
-    "instruments": [
-      {
-        "name": "G1SST Global Foundation",
-        "layers": [
-          {
-            "id": "GHRSST_L4_G1SST_Sea_Surface_Temperature",
-            "title": "Sea Surface Temperature (L4)",
-            "format": "image/png",
-            "resolution": "1km",
-            "startDate": "2010-06-21",
-            "endDate": "2017-05-03"
-          }
-        ]
-      },
-      {
-        "name": "MUR Global Foundation",
-        "layers": [
-          {
-            "id": "GHRSST_L4_MUR_Sea_Surface_Temperature",
-            "title": "Sea Surface Temperature (L4)",
-            "format": "image/png",
-            "resolution": "1km",
-            "startDate": "2002-06-01",
-            "endDate": "2017-05-03"
           }
         ]
       }
@@ -4325,7 +4365,8 @@
     ]
   },
   {
-    "id": "SNPP",
+    "id": "suomi",
+    "name": "Suomi NPP",
     "instruments": [
       {
         "name": "VIIRS",
@@ -4375,17 +4416,7 @@
             "resolution": "250m",
             "startDate": "2015-11-24",
             "endDate": "2017-05-04"
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "id": "VIIRS",
-    "instruments": [
-      {
-        "name": "Suomi NPP",
-        "layers": [
+          },
           {
             "id": "VIIRS_SNPP_DayNightBand_ENCC",
             "title": "Nighttime Imagery (Day/Night Band, Enhanced Near Constant Contrast)",

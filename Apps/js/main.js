@@ -7,7 +7,7 @@
     
 
     var initialTime = Cesium.JulianDate.fromDate(
-        new Date(Date.UTC(2017, 4, 2)));
+        new Date(Date.now()));
     var startTime = Cesium.JulianDate.fromDate(
         new Date(Date.UTC(2011, 1, 1)));
     var endTime = Cesium.JulianDate.fromDate(
