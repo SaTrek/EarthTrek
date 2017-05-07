@@ -23,7 +23,6 @@
      * Show Satellite Toolbar UI
      * @param dataSource
      */
-
     showSatelliteToolbar = function (entity) {
         $('#satellite-instruments').empty();
         var satelliteToolbar = $('#satellite-toolbar');
@@ -103,7 +102,6 @@
             }
         });
 
-
         $("#accept-date").click(function () {
             if ($('#compare-date').val()) {
                 var layer = {};
@@ -119,9 +117,7 @@
         });
     }
 
-
-
-/**
+    /**
      * Compare FirstView and Second View of Earth
      */
     compare = function (layer) {
@@ -153,6 +149,7 @@
             viewer.selectedEntity = entity;
         }
     }
+
     $('#search-satellite-button').click(searchSatellite);
     $('#search-satellite-text').on('keypress', function(e) {
         if (e.keyCode === 13) {
