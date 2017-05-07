@@ -1,6 +1,7 @@
 [
   {
-    "id": "GCOM-W1",
+    "id": "gcomw1",
+    "name": "GCOM-W1",
     "instruments": [
       {
         "name": "AMSR2",
