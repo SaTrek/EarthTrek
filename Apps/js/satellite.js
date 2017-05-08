@@ -142,12 +142,18 @@
 
     var searchSatellite = function() {
         var entity = dataSource.entities.getById($('#search-satellite-text').val());
-        if (entity != undefined) {
-            showSatelliteToolbar(entity);
-            $('#search-satellite-text').val("");
-            viewer.trackedEntity = entity;
-            viewer.selectedEntity = entity;
+        gotoSatellite(entity);
+        $('#search-satellite-text').val("");
+    }
+
+    var gotoSatellite = function(entity) {
+        if (entity == undefined) {
+            return false;
         }
+        showSatelliteToolbar(entity);
+        viewer.trackedEntity = entity;
+        viewer.selectedEntity = entity;
+        return true;
     }
 
     $('#search-satellite-button').click(searchSatellite);

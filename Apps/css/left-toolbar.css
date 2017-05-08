@@ -1,0 +1,21 @@
+#left-toolbar {
+    top: 10px;
+    left: 2%;
+    width: 700px;
+    height: 100px;
+}
+#left-toolbar .slick-slide {
+    width: 150px;
+}
+#left-toolbar .slick-slide:hover {
+    background: rgba(80, 150, 200, 0.7);
+}
+#left-toolbar .satellite-selected {
+    background: rgba(80, 150, 200, 0.5);
+}
+#left-toolbar .popover {
+    background-color: rgba(58, 94, 107, 0.5);
+}
+#left-toolbar .popover-title {
+    background-color: rgba(3, 46, 67, 0.5);
+}
