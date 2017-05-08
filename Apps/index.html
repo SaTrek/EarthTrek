@@ -13,21 +13,25 @@
     <script src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="../node_modules/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
     <script src="../node_modules/satellite.js/dist/satellite.min.js"></script>
+    <script src="../node_modules/slick-carousel/slick/slick.min.js"></script>
 
     <style>
         @import url(../node_modules/cesium/Build/Cesium/Widgets/widgets.css);
         @import url(../node_modules/bootstrap/dist/css/bootstrap.min.css);
         @import url(../node_modules/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css);
+        @import url(../node_modules/slick-carousel/slick/slick.css);
+        @import url(../node_modules/slick-carousel/slick/slick-theme.css);
         @import url(css/main.css);
         @import url(css/satellite.css);
+        @import url(css/left-toolbar.css);
     </style>
 
 </head>
 <body>
 
-<div id="map">
+<div id="main-container">
 
-    <div id="search-satellite" style="">
+    <div id="search-satellite" >
         <input id="search-satellite-text" type="text" placeholder="Satellite name"/> <button id="search-satellite-button">OK</button>
     </div>
 
@@ -69,6 +73,7 @@
 
 <script src="js/tilling-scheme.js"></script>
 <script src="js/provider.js"></script>
+<script src="js/earthtrek-toolbar.js"></script>
 <script src="js/main.js"></script>
 <script src="js/satellite.js"></script>
 <script src="js/propagate.js"></script>

@@ -1,6 +1,10 @@
 [
   {
-    "id": "GCOM-W1",
+    "id": "gcomw1",
+    "name": "GCOM-W1",
+    "type": "SATELLITE",
+    "agency": "NASA",
+    "program": "EOS",
     "instruments": [
       {
         "name": "AMSR2",
@@ -1243,6 +1247,7 @@
   },
   {
     "id": "Terra",
+    "program": "EOS",
     "instruments": [
       {
         "name": "ASTER",
@@ -4530,6 +4535,15 @@
             "endDate": "2011-11-01"
           }
         ]
+      }
+    ]
+  },
+  {
+    "id": "iss",
+    "name": "ISS",
+    "type": "SPACE_STATION",
+    "instruments": [
+      {
       }
     ]
   }

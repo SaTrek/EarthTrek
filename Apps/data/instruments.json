@@ -1,5 +1,4 @@
-{
-  "satellites": [
+[
     {
       "id": "terra",
       "type": "SATELLITE",
@@ -80,22 +79,24 @@
       ]
     },
     {
-      "id": "aura",
-      "type": "SATELLITE",
-      "instruments": [
-        { "name" : "HIRDLS", "full-name": "High Resolution Dynamics Limb Sounder"},
-        { "name" : "MLS", "full-name": "Microwave Limb Sounder"},
-        { "name" : "OMI", "full-name": "Ozone Monitoring Instrument"},
-        { "name" : "TES", "full-name": "Tropospheric Emission Spectrometer"}
-      ]
-    },
-    {
       "id": "iss",
+      "name": "ISS",
       "type": "SPACE_STATION"
     },
-    {
-      "id": "hubble",
-      "type": "TELESCOPE"
-    }
+  {
+    "id": "aura",
+    "name": "Aura",
+    "type": "SATELLITE",
+    "instruments": [
+      { "name" : "HIRDLS", "full-name": "High Resolution Dynamics Limb Sounder"},
+      { "name" : "MLS", "full-name": "Microwave Limb Sounder"},
+      { "name" : "OMI", "full-name": "Ozone Monitoring Instrument"},
+      { "name" : "TES", "full-name": "Tropospheric Emission Spectrometer"}
+    ]
+  },
+  {
+    "id": "jason2",
+    "name": "Jason-2",
+    "type": "SATELLITE"
+  }
   ]
-}
