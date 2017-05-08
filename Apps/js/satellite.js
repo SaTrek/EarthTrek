@@ -141,7 +141,7 @@
     }
 
     var searchSatellite = function() {
-        var entity = dataSource.entities.getById($('#search-satellite-text').val());
+        var entity = dataSource.entities.getById($('#search-satellite-text').val().toLowerCase());
         gotoSatellite(entity);
         $('#search-satellite-text').val("");
     }
