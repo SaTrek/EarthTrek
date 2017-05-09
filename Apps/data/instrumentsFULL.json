@@ -173,6 +173,7 @@
     "agency": "NASA",
     "program": "EOS",
     "status": "ACTIVE",
+    "description": "Aqua, Latin for water, is a NASA Earth Science satellite mission named for the large amount of information that the mission is collecting about the Earth's water cycle, including evaporation from the oceans, water vapor in the atmosphere, clouds, precipitation, soil moisture, sea ice, land ice, and snow cover on the land and ice. Additional variables also being measured by Aqua include radiative energy fluxes, aerosols, vegetation cover on the land, phytoplankton and dissolved organic matter in the oceans, and air, land, and water temperatures.",
     "orbitalData":  {
       "perigee": "702",
       "apogee": "703",
@@ -2786,6 +2787,7 @@
     "id": "aura",
     "name": "Aura",
     "image": "aura.png",
+    "description": "Aura is the third in the series of large Earth Observing System platforms to be flown by NASA with internationa contributions. Aura provides an unprecedented view of the global Earth system. The Aura mission consists of four instruments on a common spacecraft (the same bus design as for Aqua) designed to provide the essential services for the instruments.",
     "status": "ACTIVE",
     "orbitalData":  {
       "perigee": "708",
@@ -4415,6 +4417,7 @@
     "name": "Suomi NPP",
     "image": "suomi.png",
     "status": "ACTIVE",
+    "description": "Suomi National Polar-orbiting Partnership, formerly known as the NPOESS Preparatory Project, will serve as a bridge between the EOS satellites and the forthcoming series of Joint Polar Satellite System (JPSS) satellites. Suomi NPP represents a critical first step in building this next-generation satellite system. The JPSS satellites, previously called the National Polar-orbiting Operational Environmental Satellite System (NPOESS), will be developed by NASA for the National Oceanic and Atmospheric Administration (NOAA). Suomi NPP will carry five science instruments and test key technologies for the JPSS missions. Suomi NPP is the first satellite mission to address the challenge of acquiring a wide range of land, ocean, and atmospheric measurements for Earth system science while simultaneously preparing to address operational requirements for weather forecasting.",
     "orbitalData":  {
       "perigee": "833.7",
       "apogee": "834.3",
@@ -4595,6 +4598,7 @@
     "image": "iss.png",
     "type": "SPACE_STATION",
     "status": "ACTIVE",
+    "description": "The International Space Station is a global observation and diagnosis station. It promotes international Earth observations aimed at understanding and resolving the environmental issues of our home planet. The space station offers a unique vantage for observing the Earth's ecosystems with hands-on and automated equipment. These options enable astronauts to observe and explain what they witness in real time. Station crews can observe and collect camera images of events as they unfold and may also provide input to ground personnel programming the station's automated Earth-sensing systems. This flexibility is an advantage over sensors on unmanned spacecraft, especially when unexpected natural events, such as volcanic eruptions and earthquakes, occur.",
     "orbitalData":  {
       "perigee": "400.2",
       "apogee": "409.5",
@@ -4614,6 +4618,7 @@
     "image": "calipso.png",
     "type": "SATELLITE",
     "status": "ACTIVE",
+    "description": "The Cloud-Aerosol Lidar and Infrared Pathfinder Satellite Observation (CALIPSO) satellite provides new insight into the role that clouds and atmospheric aerosols (airborne particles) play in regulating Earth's weather, climate, and air quality. CALIPSO combines an active lidar instrument with passive infrared and visible imagers to probe the vertical structure and properties of thin clouds and aerosols over the globe. CALIPSO was launched on April 28, 2006 with the cloud profiling radar system on the CloudSat satellite.",
     "orbitalData":  {
       "perigee": "702",
       "apogee": "703",
@@ -4633,6 +4638,7 @@
     "image": "jason2.png",
     "type": "SATELLITE",
     "status": "ACTIVE",
+    "description": "The Ocean Surface Topography Mission (OSTM)/Jason-2 is an international satellite mission that will extend into the next decade the continuous climate record of sea surface height measurements begun in 1992 by the joint NASA/Centre National d'Etudes Spatiales (CNES) Topex/Poseidon mission and continued in 2001 by the NASA/CNES Jason-1 mission. This multi-decadal record has already helped scientists study global sea level rise and better understand how ocean circulation and climate change are related.",
     "instruments": [
       {
       }
@@ -4644,6 +4650,7 @@
     "image": "cloudsat.png",
     "type": "SATELLITE",
     "status": "ACTIVE",
+    "description": "NASA launched the CloudSat and the Cloud-Aerosol Lidar and Infrared Pathfinder Satellite Observation (CALIPSO) spacecraft to study the role that clouds and aerosols play in regulating Earth's weather, climate and air quality. Launch occurred on April 28, 2006, from Vandenberg Air Force Base, Calif., aboard a Boeing Delta II launch vehicle. The satellites launched into a 705-kilometer (438-mile) circular sun-synchronous polar orbit, and fly in orbital formation as part of the 'A-Train' constellation of three other Earth Observing satellites including Aqua, Aura and Centre National d'Etudes Spatiales' (CNES) PARASOL.",
     "orbitalData":  {
       "perigee": "702",
       "apogee": "703",

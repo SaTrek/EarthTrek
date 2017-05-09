@@ -166,8 +166,8 @@
                     });
                     $(satelliteContainer).popover({
                         trigger: 'hover',
-                        title: sat.id,
-                        content: sat.id,
+                        title: sat.name,
+                        content: sat.description,
                         placement: 'bottom',
                         container: "#left-toolbar"
                     });
