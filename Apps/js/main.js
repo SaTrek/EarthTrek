@@ -167,7 +167,7 @@
                     $(satelliteContainer).popover({
                         trigger: 'hover',
                         title: sat.name,
-                        content: sat.id,
+                        content: sat.description,
                         placement: 'bottom',
                         container: "#left-toolbar"
                     });
