@@ -16,7 +16,7 @@
             "format": "image/png",
             "resolution": "2km",
             "startDate": "2015-07-30",
-            "endDate": "2017-05-04"
+            "endDate": null
           },
           {
             "id": "AMSR2_Soil_Moisture_NPD_Day",
@@ -24,7 +24,7 @@
             "format": "image/png",
             "resolution": "2km",
             "startDate": "2012-07-24",
-            "endDate": "2017-05-04"
+            "endDate": null
           },
           {
             "id": "AMSR2_Soil_Moisture_NPD_Night",
@@ -32,7 +32,7 @@
             "format": "image/png",
             "resolution": "2km",
             "startDate": "2012-07-23",
-            "endDate": "2017-05-04"
+            "endDate": null
           },
           {
             "id": "AMSR2_Soil_Moisture_SCA_Day",
@@ -40,7 +40,7 @@
             "format": "image/png",
             "resolution": "2km",
             "startDate": "2012-07-24",
-            "endDate": "2017-05-04"
+            "endDate": null
           },
           {
             "id": "AMSR2_Soil_Moisture_SCA_Night",
@@ -48,7 +48,7 @@
             "format": "image/png",
             "resolution": "2km",
             "startDate": "2012-07-23",
-            "endDate": "2017-05-04"
+            "endDate": null
           },
           {
             "id": "AMSR2_Cloud_Liquid_Water_Day",
@@ -56,7 +56,7 @@
             "format": "image/png",
             "resolution": "2km",
             "startDate": "2015-06-07",
-            "endDate": "2017-05-04"
+            "endDate": null
           },
           {
             "id": "AMSR2_Cloud_Liquid_Water_Night",
@@ -64,7 +64,7 @@
             "format": "image/png",
             "resolution": "2km",
             "startDate": "2015-06-07",
-            "endDate": "2017-05-04"
+            "endDate": null
           },
           {
             "id": "AMSR2_Surface_Precipitation_Rate_Day",
@@ -72,7 +72,7 @@
             "format": "image/png",
             "resolution": "2km",
             "startDate": "2015-06-07",
-            "endDate": "2017-05-04"
+            "endDate": null
           },
           {
             "id": "AMSR2_Surface_Precipitation_Rate_Night",
@@ -80,7 +80,7 @@
             "format": "image/png",
             "resolution": "2km",
             "startDate": "2015-06-07",
-            "endDate": "2017-05-04"
+            "endDate": null
           },
           {
             "id": "AMSR2_Surface_Rain_Rate_Day",
@@ -88,7 +88,7 @@
             "format": "image/png",
             "resolution": "2km",
             "startDate": "2015-06-07",
-            "endDate": "2017-05-04"
+            "endDate": null
           },
           {
             "id": "AMSR2_Surface_Rain_Rate_Night",
@@ -96,7 +96,7 @@
             "format": "image/png",
             "resolution": "2km",
             "startDate": "2015-06-07",
-            "endDate": "2017-05-04"
+            "endDate": null
           },
           {
             "id": "AMSR2_Wind_Speed_Day",
@@ -104,7 +104,7 @@
             "format": "image/png",
             "resolution": "2km",
             "startDate": "2015-06-07",
-            "endDate": "2017-05-04"
+            "endDate": null
           },
           {
             "id": "AMSR2_Wind_Speed_Night",
@@ -112,7 +112,7 @@
             "format": "image/png",
             "resolution": "2km",
             "startDate": "2015-06-07",
-            "endDate": "2017-05-04"
+            "endDate": null
           },
           {
             "id": "AMSR2_Columnar_Water_Vapor_Day",
@@ -120,7 +120,7 @@
             "format": "image/png",
             "resolution": "2km",
             "startDate": "2015-06-07",
-            "endDate": "2017-05-04"
+            "endDate": null
           },
           {
             "id": "AMSR2_Columnar_Water_Vapor_Night",
@@ -128,7 +128,7 @@
             "format": "image/png",
             "resolution": "2km",
             "startDate": "2015-06-07",
-            "endDate": "2017-05-04"
+            "endDate": null
           },
           {
             "id": "AMSR2_Sea_Ice_Concentration_12km",
@@ -136,7 +136,7 @@
             "format": "image/png",
             "resolution": "2km",
             "startDate": "2016-01-13",
-            "endDate": "2017-05-04"
+            "endDate": null
           },
           {
             "id": "AMSR2_Sea_Ice_Concentration_25km",
@@ -144,7 +144,7 @@
             "format": "image/png",
             "resolution": "2km",
             "startDate": "2016-01-13",
-            "endDate": "2017-05-04"
+            "endDate": null
           },
           {
             "id": "AMSR2_Sea_Ice_Brightness_Temp_6km_89H",
@@ -152,7 +152,7 @@
             "format": "image/png",
             "resolution": "2km",
             "startDate": "2016-01-13",
-            "endDate": "2017-05-04"
+            "endDate": null
           },
           {
             "id": "AMSR2_Sea_Ice_Brightness_Temp_6km_89V",
@@ -160,7 +160,7 @@
             "format": "image/png",
             "resolution": "2km",
             "startDate": "2016-01-13",
-            "endDate": "2017-05-04"
+            "endDate": null
           }
         ]
       }
@@ -169,6 +169,9 @@
   {
     "id": "aqua",
     "name": "Aqua",
+    "type": "SATELLITE",
+    "agency": "NASA",
+    "program": "EOS",
     "status": "ACTIVE",
     "perigee": "708.7",
     "apogee": "710.6",
@@ -292,7 +295,7 @@
             "format": "image/png",
             "resolution": "2km",
             "startDate": "2013-11-18",
-            "endDate": "2017-05-04"
+            "endDate": null
           },
           {
             "id": "AIRS_CO_Total_Column_Night",
@@ -300,7 +303,7 @@
             "format": "image/png",
             "resolution": "2km",
             "startDate": "2013-11-18",
-            "endDate": "2017-05-04"
+            "endDate": null
           },
           {
             "id": "AIRS_Dust_Score_Ocean_Day",
@@ -308,7 +311,7 @@
             "format": "image/png",
             "resolution": "2km",
             "startDate": "2016-01-28",
-            "endDate": "2017-05-04"
+            "endDate": null
           },
           {
             "id": "AIRS_Dust_Score_Ocean_Night",
@@ -316,7 +319,7 @@
             "format": "image/png",
             "resolution": "2km",
             "startDate": "2016-02-09",
-            "endDate": "2017-05-04"
+            "endDate": null
           },
           {
             "id": "AIRS_Prata_SO2_Index_Day",
@@ -324,7 +327,7 @@
             "format": "image/png",
             "resolution": "2km",
             "startDate": "2012-05-08",
-            "endDate": "2017-05-04"
+            "endDate": null
           },
           {
             "id": "AIRS_Prata_SO2_Index_Night",
@@ -332,7 +335,7 @@
             "format": "image/png",
             "resolution": "2km",
             "startDate": "2012-05-08",
-            "endDate": "2017-05-04"
+            "endDate": null
           },
           {
             "id": "AIRS_Precipitation_Day",
@@ -340,7 +343,7 @@
             "format": "image/png",
             "resolution": "2km",
             "startDate": "2012-05-08",
-            "endDate": "2017-05-04"
+            "endDate": null
           },
           {
             "id": "AIRS_Precipitation_Night",
@@ -348,7 +351,7 @@
             "format": "image/png",
             "resolution": "2km",
             "startDate": "2012-05-08",
-            "endDate": "2017-05-04"
+            "endDate": null
           },
           {
             "id": "AIRS_RelativeHumidity_400hPa_Day",
@@ -356,7 +359,7 @@
             "format": "image/png",
             "resolution": "2km",
             "startDate": "2013-07-16",
-            "endDate": "2017-05-04"
+            "endDate": null
           },
           {
             "id": "AIRS_RelativeHumidity_400hPa_Night",
@@ -364,7 +367,7 @@
             "format": "image/png",
             "resolution": "2km",
             "startDate": "2013-07-16",
-            "endDate": "2017-05-04"
+            "endDate": null
           },
           {
             "id": "AIRS_RelativeHumidity_500hPa_Day",
@@ -372,7 +375,7 @@
             "format": "image/png",
             "resolution": "2km",
             "startDate": "2013-07-16",
-            "endDate": "2017-05-04"
+            "endDate": null
           },
           {
             "id": "AIRS_RelativeHumidity_500hPa_Night",
@@ -380,7 +383,7 @@
             "format": "image/png",
             "resolution": "2km",
             "startDate": "2013-07-16",
-            "endDate": "2017-05-04"
+            "endDate": null
           },
           {
             "id": "AIRS_RelativeHumidity_600hPa_Day",
@@ -388,7 +391,7 @@
             "format": "image/png",
             "resolution": "2km",
             "startDate": "2013-07-16",
-            "endDate": "2017-05-04"
+            "endDate": null
           },
           {
             "id": "AIRS_RelativeHumidity_600hPa_Night",
@@ -396,7 +399,7 @@
             "format": "image/png",
             "resolution": "2km",
             "startDate": "2013-07-16",
-            "endDate": "2017-05-04"
+            "endDate": null
           },
           {
             "id": "AIRS_RelativeHumidity_700hPa_Day",
@@ -404,7 +407,7 @@
             "format": "image/png",
             "resolution": "2km",
             "startDate": "2013-07-16",
-            "endDate": "2017-05-04"
+            "endDate": null
           },
           {
             "id": "AIRS_RelativeHumidity_700hPa_Night",
@@ -412,7 +415,7 @@
             "format": "image/png",
             "resolution": "2km",
             "startDate": "2013-07-16",
-            "endDate": "2017-05-04"
+            "endDate": null
           },
           {
             "id": "AIRS_RelativeHumidity_850hPa_Day",
@@ -420,7 +423,7 @@
             "format": "image/png",
             "resolution": "2km",
             "startDate": "2013-07-16",
-            "endDate": "2017-05-04"
+            "endDate": null
           },
           {
             "id": "AIRS_RelativeHumidity_850hPa_Night",
@@ -428,7 +431,7 @@
             "format": "image/png",
             "resolution": "2km",
             "startDate": "2013-07-16",
-            "endDate": "2017-05-04"
+            "endDate": null
           },
           {
             "id": "AIRS_Temperature_400hPa_Day",
@@ -436,7 +439,7 @@
             "format": "image/png",
             "resolution": "2km",
             "startDate": "2013-07-16",
-            "endDate": "2017-05-04"
+            "endDate": null
           },
           {
             "id": "AIRS_Temperature_400hPa_Night",
@@ -444,7 +447,7 @@
             "format": "image/png",
             "resolution": "2km",
             "startDate": "2013-07-16",
-            "endDate": "2017-05-04"
+            "endDate": null
           },
           {
             "id": "AIRS_Temperature_500hPa_Day",
@@ -452,7 +455,7 @@
             "format": "image/png",
             "resolution": "2km",
             "startDate": "2013-07-16",
-            "endDate": "2017-05-04"
+            "endDate": null
           },
           {
             "id": "AIRS_Temperature_500hPa_Night",
@@ -460,7 +463,7 @@
             "format": "image/png",
             "resolution": "2km",
             "startDate": "2013-07-16",
-            "endDate": "2017-05-04"
+            "endDate": null
           },
           {
             "id": "AIRS_Temperature_600hPa_Day",
@@ -468,7 +471,7 @@
             "format": "image/png",
             "resolution": "2km",
             "startDate": "2013-07-16",
-            "endDate": "2017-05-04"
+            "endDate": null
           },
           {
             "id": "AIRS_Temperature_600hPa_Night",
@@ -476,7 +479,7 @@
             "format": "image/png",
             "resolution": "2km",
             "startDate": "2013-07-16",
-            "endDate": "2017-05-04"
+            "endDate": null
           },
           {
             "id": "AIRS_Temperature_700hPa_Day",
@@ -484,7 +487,7 @@
             "format": "image/png",
             "resolution": "2km",
             "startDate": "2013-07-16",
-            "endDate": "2017-05-04"
+            "endDate": null
           },
           {
             "id": "AIRS_Temperature_700hPa_Night",
@@ -492,7 +495,7 @@
             "format": "image/png",
             "resolution": "2km",
             "startDate": "2013-07-16",
-            "endDate": "2017-05-04"
+            "endDate": null
           },
           {
             "id": "AIRS_Temperature_850hPa_Day",
@@ -500,7 +503,7 @@
             "format": "image/png",
             "resolution": "2km",
             "startDate": "2013-07-16",
-            "endDate": "2017-05-04"
+            "endDate": null
           },
           {
             "id": "AIRS_Temperature_850hPa_Night",
@@ -508,7 +511,7 @@
             "format": "image/png",
             "resolution": "2km",
             "startDate": "2013-07-16",
-            "endDate": "2017-05-04"
+            "endDate": null
           }
         ]
       },
@@ -596,7 +599,7 @@
             "format": "image/png",
             "resolution": "1km",
             "startDate": "2013-07-02",
-            "endDate": "2017-05-04"
+            "endDate": null
           },
           {
             "id": "MODIS_Aqua_Brightness_Temp_Band31_Day",
@@ -604,7 +607,7 @@
             "format": "image/png",
             "resolution": "1km",
             "startDate": "2010-01-01",
-            "endDate": "2017-05-04"
+            "endDate": null
           },
           {
             "id": "MODIS_Aqua_Brightness_Temp_Band31_Night",
@@ -612,7 +615,7 @@
             "format": "image/png",
             "resolution": "1km",
             "startDate": "2010-01-01",
-            "endDate": "2017-05-04"
+            "endDate": null
           },
           {
             "id": "MODIS_Aqua_Aerosol_Optical_Depth_3km",
@@ -620,7 +623,7 @@
             "format": "image/png",
             "resolution": "2km",
             "startDate": "2002-07-03",
-            "endDate": "2017-05-04"
+            "endDate": null
           },
           {
             "id": "MODIS_Aqua_Angstrom_Exponent_Land",
@@ -628,7 +631,7 @@
             "format": "image/png",
             "resolution": "2km",
             "startDate": "2002-07-03",
-            "endDate": "2017-05-04"
+            "endDate": null
           },
           {
             "id": "MODIS_Aqua_Angstrom_Exponent_Ocean",
@@ -636,7 +639,7 @@
             "format": "image/png",
             "resolution": "2km",
             "startDate": "2002-07-03",
-            "endDate": "2017-05-04"
+            "endDate": null
           },
           {
             "id": "MODIS_Aqua_AOD_Deep_Blue_Land",
@@ -644,7 +647,7 @@
             "format": "image/png",
             "resolution": "2km",
             "startDate": "2002-07-03",
-            "endDate": "2017-05-04"
+            "endDate": null
           },
           {
             "id": "MODIS_Aqua_AOD_Deep_Blue_Combined",
@@ -652,7 +655,7 @@
             "format": "image/png",
             "resolution": "2km",
             "startDate": "2002-07-03",
-            "endDate": "2017-05-04"
+            "endDate": null
           },
           {
             "id": "MODIS_Aqua_Aerosol",
@@ -660,7 +663,7 @@
             "format": "image/png",
             "resolution": "2km",
             "startDate": "2002-07-03",
-            "endDate": "2017-05-04"
+            "endDate": null
           },
           {
             "id": "MODIS_Aqua_Water_Vapor_5km_Day",
@@ -668,7 +671,7 @@
             "format": "image/png",
             "resolution": "2km",
             "startDate": "2002-07-03",
-            "endDate": "2017-05-04"
+            "endDate": null
           },
           {
             "id": "MODIS_Aqua_Water_Vapor_5km_Night",
@@ -676,7 +679,7 @@
             "format": "image/png",
             "resolution": "2km",
             "startDate": "2002-07-03",
-            "endDate": "2017-05-04"
+            "endDate": null
           },
           {
             "id": "MODIS_Aqua_Cloud_Effective_Radius_37_PCL",
@@ -684,7 +687,7 @@
             "format": "image/png",
             "resolution": "1km",
             "startDate": "2002-07-03",
-            "endDate": "2017-05-04"
+            "endDate": null
           },
           {
             "id": "MODIS_Aqua_Cloud_Effective_Radius_37",
@@ -692,7 +695,7 @@
             "format": "image/png",
             "resolution": "1km",
             "startDate": "2002-07-03",
-            "endDate": "2017-05-04"
+            "endDate": null
           },
           {
             "id": "MODIS_Aqua_Cloud_Effective_Radius",
@@ -700,7 +703,7 @@
             "format": "image/png",
             "resolution": "1km",
             "startDate": "2002-07-03",
-            "endDate": "2017-05-04"
+            "endDate": null
           },
           {
             "id": "MODIS_Aqua_Cloud_Effective_Radius_PCL",
@@ -708,7 +711,7 @@
             "format": "image/png",
             "resolution": "1km",
             "startDate": "2002-07-03",
-            "endDate": "2017-05-04"
+            "endDate": null
           },
           {
             "id": "MODIS_Aqua_Cloud_Multi_Layer_Flag",
@@ -716,7 +719,7 @@
             "format": "image/png",
             "resolution": "1km",
             "startDate": "2002-07-03",
-            "endDate": "2017-05-04"
+            "endDate": null
           },
           {
             "id": "MODIS_Aqua_Cloud_Optical_Thickness",
@@ -724,7 +727,7 @@
             "format": "image/png",
             "resolution": "1km",
             "startDate": "2002-07-03",
-            "endDate": "2017-05-04"
+            "endDate": null
           },
           {
             "id": "MODIS_Aqua_Cloud_Optical_Thickness_PCL",
@@ -732,7 +735,7 @@
             "format": "image/png",
             "resolution": "1km",
             "startDate": "2002-07-03",
-            "endDate": "2017-05-04"
+            "endDate": null
           },
           {
             "id": "MODIS_Aqua_Cloud_Phase_Optical_Properties",
@@ -740,7 +743,7 @@
             "format": "image/png",
             "resolution": "1km",
             "startDate": "2002-07-03",
-            "endDate": "2017-05-04"
+            "endDate": null
           },
           {
             "id": "MODIS_Aqua_Cloud_Water_Path",
@@ -748,7 +751,7 @@
             "format": "image/png",
             "resolution": "1km",
             "startDate": "2002-07-03",
-            "endDate": "2017-05-04"
+            "endDate": null
           },
           {
             "id": "MODIS_Aqua_Cloud_Water_Path_PCL",
@@ -756,7 +759,7 @@
             "format": "image/png",
             "resolution": "1km",
             "startDate": "2002-07-03",
-            "endDate": "2017-05-04"
+            "endDate": null
           },
           {
             "id": "MODIS_Aqua_Cloud_Fraction_Day",
@@ -764,7 +767,7 @@
             "format": "image/png",
             "resolution": "2km",
             "startDate": "2002-07-03",
-            "endDate": "2017-05-04"
+            "endDate": null
           },
           {
             "id": "MODIS_Aqua_Cloud_Phase_Infrared_Day",
@@ -772,7 +775,7 @@
             "format": "image/png",
             "resolution": "2km",
             "startDate": "2002-07-03",
-            "endDate": "2017-05-04"
+            "endDate": null
           },
           {
             "id": "MODIS_Aqua_Cloud_Top_Height_Day",
@@ -780,7 +783,7 @@
             "format": "image/png",
             "resolution": "2km",
             "startDate": "2002-07-03",
-            "endDate": "2017-05-04"
+            "endDate": null
           },
           {
             "id": "MODIS_Aqua_Cloud_Top_Pressure_Day",
@@ -788,7 +791,7 @@
             "format": "image/png",
             "resolution": "2km",
             "startDate": "2002-07-03",
-            "endDate": "2017-05-04"
+            "endDate": null
           },
           {
             "id": "MODIS_Aqua_Cloud_Top_Temp_Day",
@@ -796,7 +799,7 @@
             "format": "image/png",
             "resolution": "2km",
             "startDate": "2002-07-03",
-            "endDate": "2017-05-04"
+            "endDate": null
           },
           {
             "id": "MODIS_Aqua_Cloud_Fraction_Night",
@@ -804,7 +807,7 @@
             "format": "image/png",
             "resolution": "2km",
             "startDate": "2002-07-03",
-            "endDate": "2017-05-04"
+            "endDate": null
           },
           {
             "id": "MODIS_Aqua_Cloud_Phase_Infrared_Night",
@@ -812,7 +815,7 @@
             "format": "image/png",
             "resolution": "2km",
             "startDate": "2002-07-03",
-            "endDate": "2017-05-04"
+            "endDate": null
           },
           {
             "id": "MODIS_Aqua_Cloud_Top_Height_Night",
@@ -820,7 +823,7 @@
             "format": "image/png",
             "resolution": "2km",
             "startDate": "2002-07-03",
-            "endDate": "2017-05-04"
+            "endDate": null
           },
           {
             "id": "MODIS_Aqua_Cloud_Top_Pressure_Night",
@@ -828,7 +831,7 @@
             "format": "image/png",
             "resolution": "2km",
             "startDate": "2002-07-03",
-            "endDate": "2017-05-04"
+            "endDate": null
           },
           {
             "id": "MODIS_Aqua_Cloud_Top_Temp_Night",
@@ -836,7 +839,7 @@
             "format": "image/png",
             "resolution": "2km",
             "startDate": "2002-07-03",
-            "endDate": "2017-05-04"
+            "endDate": null
           },
           {
             "id": "MODIS_Aqua_SurfaceReflectance_Bands143",
@@ -844,7 +847,7 @@
             "format": "image/jpeg",
             "resolution": "500m",
             "startDate": "2010-01-01",
-            "endDate": "2017-05-04"
+            "endDate": null
           },
           {
             "id": "MODIS_Aqua_SurfaceReflectance_Bands721",
@@ -852,7 +855,7 @@
             "format": "image/jpeg",
             "resolution": "500m",
             "startDate": "2010-01-01",
-            "endDate": "2017-05-04"
+            "endDate": null
           },
           {
             "id": "MODIS_Aqua_SurfaceReflectance_Bands121",
@@ -860,7 +863,7 @@
             "format": "image/jpeg",
             "resolution": "250m",
             "startDate": "2010-01-01",
-            "endDate": "2017-05-04"
+            "endDate": null
           },
           {
             "id": "MODIS_Aqua_Snow_Cover",
@@ -876,7 +879,7 @@
             "format": "image/png",
             "resolution": "500m",
             "startDate": "2010-01-01",
-            "endDate": "2017-05-04"
+            "endDate": null
           },
           {
             "id": "MODIS_Aqua_Land_Surface_Temp_Day",
@@ -884,7 +887,7 @@
             "format": "image/png",
             "resolution": "1km",
             "startDate": "2010-01-01",
-            "endDate": "2017-05-04"
+            "endDate": null
           },
           {
             "id": "MODIS_Aqua_Land_Surface_Temp_Night",
@@ -892,7 +895,7 @@
             "format": "image/png",
             "resolution": "1km",
             "startDate": "2010-01-01",
-            "endDate": "2017-05-04"
+            "endDate": null
           },
           {
             "id": "MODIS_Aqua_Ice_Surface_Temp_Day",
@@ -900,7 +903,7 @@
             "format": "image/png",
             "resolution": "1km",
             "startDate": "2010-01-01",
-            "endDate": "2017-05-04"
+            "endDate": null
           },
           {
             "id": "MODIS_Aqua_Sea_Ice",
@@ -908,7 +911,7 @@
             "format": "image/png",
             "resolution": "1km",
             "startDate": "2010-01-01",
-            "endDate": "2017-05-04"
+            "endDate": null
           },
           {
             "id": "MODIS_Aqua_Ice_Surface_Temp_Night",
@@ -916,7 +919,7 @@
             "format": "image/png",
             "resolution": "1km",
             "startDate": "2010-01-01",
-            "endDate": "2017-05-04"
+            "endDate": null
           },
           {
             "id": "MODIS_Aqua_CorrectedReflectance_TrueColor",
@@ -924,7 +927,7 @@
             "format": "image/jpeg",
             "resolution": "250m",
             "startDate": "2012-01-01",
-            "endDate": "2017-05-04"
+            "endDate": null
           },
           {
             "id": "MODIS_Aqua_CorrectedReflectance_Bands721",
@@ -932,7 +935,7 @@
             "format": "image/jpeg",
             "resolution": "250m",
             "startDate": "2012-01-01",
-            "endDate": "2017-05-04"
+            "endDate": null
           },
           {
             "id": "MODIS_Aqua_Data_No_Data",
@@ -940,7 +943,7 @@
             "format": "image/png",
             "resolution": "250m",
             "startDate": "2012-01-01",
-            "endDate": "2017-05-04"
+            "endDate": null
           },
           {
             "id": "MODIS_Aqua_L3_SST_Thermal_4km_Day_8Day",
@@ -1252,6 +1255,8 @@
   },
   {
     "id": "Terra",
+    "type": "SATELLITE",
+    "agency": "NASA",
     "program": "EOS",
     "image": "terra.png",
     "status": "INACTIVE",
@@ -1640,7 +1645,7 @@
             "format": "image/png",
             "resolution": "1km",
             "startDate": "2013-07-02",
-            "endDate": "2017-05-04"
+            "endDate": null
           },
           {
             "id": "MODIS_Terra_Brightness_Temp_Band31_Day",
@@ -1648,7 +1653,7 @@
             "format": "image/png",
             "resolution": "1km",
             "startDate": "2010-01-01",
-            "endDate": "2017-05-04"
+            "endDate": null
           },
           {
             "id": "MODIS_Terra_Brightness_Temp_Band31_Night",
@@ -1656,7 +1661,7 @@
             "format": "image/png",
             "resolution": "1km",
             "startDate": "2010-01-01",
-            "endDate": "2017-05-04"
+            "endDate": null
           },
           {
             "id": "MODIS_Terra_Aerosol_Optical_Depth_3km",
@@ -1664,7 +1669,7 @@
             "format": "image/png",
             "resolution": "2km",
             "startDate": "2000-02-24",
-            "endDate": "2017-05-04"
+            "endDate": null
           },
           {
             "id": "MODIS_Terra_Angstrom_Exponent_Land",
@@ -1672,7 +1677,7 @@
             "format": "image/png",
             "resolution": "2km",
             "startDate": "2000-02-24",
-            "endDate": "2017-05-04"
+            "endDate": null
           },
           {
             "id": "MODIS_Terra_Angstrom_Exponent_Ocean",
@@ -1680,7 +1685,7 @@
             "format": "image/png",
             "resolution": "2km",
             "startDate": "2000-02-24",
-            "endDate": "2017-05-04"
+            "endDate": null
           },
           {
             "id": "MODIS_Terra_AOD_Deep_Blue_Land",
@@ -1688,7 +1693,7 @@
             "format": "image/png",
             "resolution": "2km",
             "startDate": "2000-02-24",
-            "endDate": "2017-05-04"
+            "endDate": null
           },
           {
             "id": "MODIS_Terra_AOD_Deep_Blue_Combined",
@@ -1696,7 +1701,7 @@
             "format": "image/png",
             "resolution": "2km",
             "startDate": "2000-02-24",
-            "endDate": "2017-05-04"
+            "endDate": null
           },
           {
             "id": "MODIS_Terra_Aerosol",
@@ -1704,7 +1709,7 @@
             "format": "image/png",
             "resolution": "2km",
             "startDate": "2000-02-24",
-            "endDate": "2017-05-04"
+            "endDate": null
           },
           {
             "id": "MODIS_Terra_Water_Vapor_5km_Day",
@@ -1712,7 +1717,7 @@
             "format": "image/png",
             "resolution": "2km",
             "startDate": "2000-02-24",
-            "endDate": "2017-05-04"
+            "endDate": null
           },
           {
             "id": "MODIS_Terra_Water_Vapor_5km_Night",
@@ -1720,7 +1725,7 @@
             "format": "image/png",
             "resolution": "2km",
             "startDate": "2000-02-24",
-            "endDate": "2017-05-04"
+            "endDate": null
           },
           {
             "id": "MODIS_Terra_Cloud_Effective_Radius_37_PCL",
@@ -1728,7 +1733,7 @@
             "format": "image/png",
             "resolution": "1km",
             "startDate": "2000-02-24",
-            "endDate": "2017-05-04"
+            "endDate": null
           },
           {
             "id": "MODIS_Terra_Cloud_Effective_Radius_37",
@@ -1736,7 +1741,7 @@
             "format": "image/png",
             "resolution": "1km",
             "startDate": "2000-02-24",
-            "endDate": "2017-05-04"
+            "endDate": null
           },
           {
             "id": "MODIS_Terra_Cloud_Effective_Radius",
@@ -1744,7 +1749,7 @@
             "format": "image/png",
             "resolution": "1km",
             "startDate": "2000-02-24",
-            "endDate": "2017-05-04"
+            "endDate": null
           },
           {
             "id": "MODIS_Terra_Cloud_Effective_Radius_PCL",
@@ -1752,7 +1757,7 @@
             "format": "image/png",
             "resolution": "1km",
             "startDate": "2000-02-24",
-            "endDate": "2017-05-04"
+            "endDate": null
           },
           {
             "id": "MODIS_Terra_Cloud_Multi_Layer_Flag",
@@ -1760,7 +1765,7 @@
             "format": "image/png",
             "resolution": "1km",
             "startDate": "2000-02-24",
-            "endDate": "2017-05-04"
+            "endDate": null
           },
           {
             "id": "MODIS_Terra_Cloud_Optical_Thickness",
@@ -1768,7 +1773,7 @@
             "format": "image/png",
             "resolution": "1km",
             "startDate": "2000-02-24",
-            "endDate": "2017-05-04"
+            "endDate": null
           },
           {
             "id": "MODIS_Terra_Cloud_Optical_Thickness_PCL",
@@ -1776,7 +1781,7 @@
             "format": "image/png",
             "resolution": "1km",
             "startDate": "2000-02-24",
-            "endDate": "2017-05-04"
+            "endDate": null
           },
           {
             "id": "MODIS_Terra_Cloud_Phase_Optical_Properties",
@@ -1784,7 +1789,7 @@
             "format": "image/png",
             "resolution": "1km",
             "startDate": "2000-02-24",
-            "endDate": "2017-05-04"
+            "endDate": null
           },
           {
             "id": "MODIS_Terra_Cloud_Water_Path",
@@ -1792,7 +1797,7 @@
             "format": "image/png",
             "resolution": "1km",
             "startDate": "2000-02-24",
-            "endDate": "2017-05-04"
+            "endDate": null
           },
           {
             "id": "MODIS_Terra_Cloud_Water_Path_PCL",
@@ -1800,7 +1805,7 @@
             "format": "image/png",
             "resolution": "1km",
             "startDate": "2000-02-24",
-            "endDate": "2017-05-04"
+            "endDate": null
           },
           {
             "id": "MODIS_Terra_Cloud_Fraction_Day",
@@ -1808,7 +1813,7 @@
             "format": "image/png",
             "resolution": "2km",
             "startDate": "2000-02-24",
-            "endDate": "2017-05-04"
+            "endDate": null
           },
           {
             "id": "MODIS_Terra_Cloud_Phase_Infrared_Day",
@@ -1816,7 +1821,7 @@
             "format": "image/png",
             "resolution": "2km",
             "startDate": "2000-02-24",
-            "endDate": "2017-05-04"
+            "endDate": null
           },
           {
             "id": "MODIS_Terra_Cloud_Top_Height_Day",
@@ -1824,7 +1829,7 @@
             "format": "image/png",
             "resolution": "2km",
             "startDate": "2000-02-24",
-            "endDate": "2017-05-04"
+            "endDate": null
           },
           {
             "id": "MODIS_Terra_Cloud_Top_Pressure_Day",
@@ -1832,7 +1837,7 @@
             "format": "image/png",
             "resolution": "2km",
             "startDate": "2000-02-24",
-            "endDate": "2017-05-04"
+            "endDate": null
           },
           {
             "id": "MODIS_Terra_Cloud_Top_Temp_Day",
@@ -1840,7 +1845,7 @@
             "format": "image/png",
             "resolution": "2km",
             "startDate": "2000-02-24",
-            "endDate": "2017-05-04"
+            "endDate": null
           },
           {
             "id": "MODIS_Terra_Cloud_Fraction_Night",
@@ -1848,7 +1853,7 @@
             "format": "image/png",
             "resolution": "2km",
             "startDate": "2000-02-24",
-            "endDate": "2017-05-04"
+            "endDate": null
           },
           {
             "id": "MODIS_Terra_Cloud_Phase_Infrared_Night",
@@ -1856,7 +1861,7 @@
             "format": "image/png",
             "resolution": "2km",
             "startDate": "2000-02-24",
-            "endDate": "2017-05-04"
+            "endDate": null
           },
           {
             "id": "MODIS_Terra_Cloud_Top_Height_Night",
@@ -1864,7 +1869,7 @@
             "format": "image/png",
             "resolution": "2km",
             "startDate": "2000-02-24",
-            "endDate": "2017-05-04"
+            "endDate": null
           },
           {
             "id": "MODIS_Terra_Cloud_Top_Pressure_Night",
@@ -1872,7 +1877,7 @@
             "format": "image/png",
             "resolution": "2km",
             "startDate": "2000-02-24",
-            "endDate": "2017-05-04"
+            "endDate": null
           },
           {
             "id": "MODIS_Terra_Cloud_Top_Temp_Night",
@@ -1880,7 +1885,7 @@
             "format": "image/png",
             "resolution": "2km",
             "startDate": "2000-02-24",
-            "endDate": "2017-05-04"
+            "endDate": null
           },
           {
             "id": "MODIS_Terra_SurfaceReflectance_Bands143",
@@ -1888,7 +1893,7 @@
             "format": "image/jpeg",
             "resolution": "500m",
             "startDate": "2010-01-01",
-            "endDate": "2017-05-04"
+            "endDate": null
           },
           {
             "id": "MODIS_Terra_SurfaceReflectance_Bands721",
@@ -1896,7 +1901,7 @@
             "format": "image/jpeg",
             "resolution": "500m",
             "startDate": "2010-01-01",
-            "endDate": "2017-05-04"
+            "endDate": null
           },
           {
             "id": "MODIS_Terra_SurfaceReflectance_Bands121",
@@ -1904,7 +1909,7 @@
             "format": "image/jpeg",
             "resolution": "250m",
             "startDate": "2010-01-01",
-            "endDate": "2017-05-04"
+            "endDate": null
           },
           {
             "id": "MODIS_Terra_Snow_Cover",
@@ -1920,7 +1925,7 @@
             "format": "image/png",
             "resolution": "500m",
             "startDate": "2010-01-01",
-            "endDate": "2017-05-04"
+            "endDate": null
           },
           {
             "id": "MODIS_Terra_Land_Surface_Temp_Day",
@@ -1928,7 +1933,7 @@
             "format": "image/png",
             "resolution": "1km",
             "startDate": "2010-01-01",
-            "endDate": "2017-05-04"
+            "endDate": null
           },
           {
             "id": "MODIS_Terra_Land_Surface_Temp_Night",
@@ -1936,7 +1941,7 @@
             "format": "image/png",
             "resolution": "1km",
             "startDate": "2010-01-01",
-            "endDate": "2017-05-04"
+            "endDate": null
           },
           {
             "id": "MODIS_Terra_EVI_8Day",
@@ -1960,7 +1965,7 @@
             "format": "image/png",
             "resolution": "1km",
             "startDate": "2010-01-01",
-            "endDate": "2017-05-04"
+            "endDate": null
           },
           {
             "id": "MODIS_Terra_Sea_Ice",
@@ -1968,7 +1973,7 @@
             "format": "image/png",
             "resolution": "1km",
             "startDate": "2010-01-01",
-            "endDate": "2017-05-04"
+            "endDate": null
           },
           {
             "id": "MODIS_Terra_Ice_Surface_Temp_Night",
@@ -1976,7 +1981,7 @@
             "format": "image/png",
             "resolution": "1km",
             "startDate": "2010-01-01",
-            "endDate": "2017-05-04"
+            "endDate": null
           },
           {
             "id": "MODIS_Terra_CorrectedReflectance_TrueColor",
@@ -1984,7 +1989,7 @@
             "format": "image/jpeg",
             "resolution": "250m",
             "startDate": "2012-01-01",
-            "endDate": "2017-05-04"
+            "endDate": null
           },
           {
             "id": "MODIS_Terra_CorrectedReflectance_Bands367",
@@ -1992,7 +1997,7 @@
             "format": "image/jpeg",
             "resolution": "250m",
             "startDate": "2012-01-01",
-            "endDate": "2017-05-04"
+            "endDate": null
           },
           {
             "id": "MODIS_Terra_CorrectedReflectance_Bands721",
@@ -2000,7 +2005,7 @@
             "format": "image/jpeg",
             "resolution": "250m",
             "startDate": "2012-01-01",
-            "endDate": "2017-05-04"
+            "endDate": null
           },
           {
             "id": "MODIS_Terra_Data_No_Data",
@@ -2008,7 +2013,7 @@
             "format": "image/png",
             "resolution": "250m",
             "startDate": "2012-01-01",
-            "endDate": "2017-05-04"
+            "endDate": null
           },
           {
             "id": "MODIS_Terra_L3_SST_Thermal_4km_Day_8Day",
@@ -2622,7 +2627,7 @@
             "format": "image/png",
             "resolution": "2km",
             "startDate": "2013-01-31",
-            "endDate": "2017-05-04"
+            "endDate": null
           }
         ]
       }
@@ -2776,7 +2781,7 @@
             "format": "image/png",
             "resolution": "2km",
             "startDate": "2013-05-09",
-            "endDate": "2017-05-04"
+            "endDate": null
           },
           {
             "id": "MLS_CO_215hPa_Night",
@@ -2784,7 +2789,7 @@
             "format": "image/png",
             "resolution": "2km",
             "startDate": "2013-05-09",
-            "endDate": "2017-05-04"
+            "endDate": null
           },
           {
             "id": "MLS_H2O_46hPa_Day",
@@ -2792,7 +2797,7 @@
             "format": "image/png",
             "resolution": "2km",
             "startDate": "2013-05-09",
-            "endDate": "2017-05-04"
+            "endDate": null
           },
           {
             "id": "MLS_H2O_46hPa_Night",
@@ -2800,7 +2805,7 @@
             "format": "image/png",
             "resolution": "2km",
             "startDate": "2013-05-09",
-            "endDate": "2017-05-04"
+            "endDate": null
           },
           {
             "id": "MLS_HNO3_46hPa_Day",
@@ -2808,7 +2813,7 @@
             "format": "image/png",
             "resolution": "2km",
             "startDate": "2013-05-09",
-            "endDate": "2017-05-04"
+            "endDate": null
           },
           {
             "id": "MLS_HNO3_46hPa_Night",
@@ -2816,7 +2821,7 @@
             "format": "image/png",
             "resolution": "2km",
             "startDate": "2013-05-09",
-            "endDate": "2017-05-04"
+            "endDate": null
           },
           {
             "id": "MLS_N2O_46hPa_Day",
@@ -2824,7 +2829,7 @@
             "format": "image/png",
             "resolution": "2km",
             "startDate": "2013-05-09",
-            "endDate": "2017-05-04"
+            "endDate": null
           },
           {
             "id": "MLS_N2O_46hPa_Night",
@@ -2832,7 +2837,7 @@
             "format": "image/png",
             "resolution": "2km",
             "startDate": "2013-05-09",
-            "endDate": "2017-05-04"
+            "endDate": null
           },
           {
             "id": "MLS_O3_46hPa_Day",
@@ -2840,7 +2845,7 @@
             "format": "image/png",
             "resolution": "2km",
             "startDate": "2013-05-09",
-            "endDate": "2017-05-04"
+            "endDate": null
           },
           {
             "id": "MLS_O3_46hPa_Night",
@@ -2848,7 +2853,7 @@
             "format": "image/png",
             "resolution": "2km",
             "startDate": "2013-05-09",
-            "endDate": "2017-05-04"
+            "endDate": null
           },
           {
             "id": "MLS_SO2_147hPa_Day",
@@ -2856,7 +2861,7 @@
             "format": "image/png",
             "resolution": "2km",
             "startDate": "2013-05-09",
-            "endDate": "2017-05-04"
+            "endDate": null
           },
           {
             "id": "MLS_SO2_147hPa_Night",
@@ -2864,7 +2869,7 @@
             "format": "image/png",
             "resolution": "2km",
             "startDate": "2013-05-09",
-            "endDate": "2017-05-04"
+            "endDate": null
           },
           {
             "id": "MLS_Temperature_46hPa_Day",
@@ -2872,7 +2877,7 @@
             "format": "image/png",
             "resolution": "2km",
             "startDate": "2013-05-09",
-            "endDate": "2017-05-04"
+            "endDate": null
           },
           {
             "id": "MLS_Temperature_46hPa_Night",
@@ -2880,7 +2885,7 @@
             "format": "image/png",
             "resolution": "2km",
             "startDate": "2013-05-09",
-            "endDate": "2017-05-04"
+            "endDate": null
           }
         ]
       },
@@ -2893,7 +2898,7 @@
             "format": "image/png",
             "resolution": "2km",
             "startDate": "2004-10-01",
-            "endDate": "2017-05-04"
+            "endDate": null
           },
           {
             "id": "OMI_Absorbing_Aerosol_Optical_Thickness_MW_388",
@@ -2909,7 +2914,7 @@
             "format": "image/png",
             "resolution": "2km",
             "startDate": "2004-10-01",
-            "endDate": "2017-05-04"
+            "endDate": null
           },
           {
             "id": "OMI_Aerosol_Optical_Depth",
@@ -2917,7 +2922,7 @@
             "format": "image/png",
             "resolution": "2km",
             "startDate": "2004-10-01",
-            "endDate": "2017-05-04"
+            "endDate": null
           },
           {
             "id": "OMI_Cloud_Pressure",
@@ -2925,7 +2930,7 @@
             "format": "image/png",
             "resolution": "2km",
             "startDate": "2005-01-01",
-            "endDate": "2017-05-04"
+            "endDate": null
           },
           {
             "id": "OMI_Nitric_Oxide_Tropo_Column",
@@ -2957,7 +2962,7 @@
             "format": "image/png",
             "resolution": "2km",
             "startDate": "2005-01-01",
-            "endDate": "2017-05-04"
+            "endDate": null
           },
           {
             "id": "OMI_SO2_Planetary_Boundary_Layer",
@@ -2965,7 +2970,7 @@
             "format": "image/png",
             "resolution": "2km",
             "startDate": "2004-10-01",
-            "endDate": "2017-05-04"
+            "endDate": null
           },
           {
             "id": "OMI_SO2_Lower_Troposphere",
@@ -2973,7 +2978,7 @@
             "format": "image/png",
             "resolution": "2km",
             "startDate": "2005-01-01",
-            "endDate": "2017-05-04"
+            "endDate": null
           },
           {
             "id": "OMI_SO2_Middle_Troposphere",
@@ -2981,7 +2986,7 @@
             "format": "image/png",
             "resolution": "2km",
             "startDate": "2005-01-01",
-            "endDate": "2017-05-04"
+            "endDate": null
           },
           {
             "id": "OMI_Single_Scattering_Albedo",
@@ -2989,7 +2994,7 @@
             "format": "image/png",
             "resolution": "2km",
             "startDate": "2004-10-01",
-            "endDate": "2017-05-04"
+            "endDate": null
           },
           {
             "id": "OMI_UV_Erythemal_Daily_Dose",
@@ -4417,7 +4422,7 @@
             "format": "image/jpeg",
             "resolution": "250m",
             "startDate": "2015-11-24",
-            "endDate": "2017-05-04"
+            "endDate": null
           },
           {
             "id": "VIIRS_SNPP_CorrectedReflectance_BandsM11-I2-I1",
@@ -4425,7 +4430,7 @@
             "format": "image/jpeg",
             "resolution": "250m",
             "startDate": "2015-11-24",
-            "endDate": "2017-05-04"
+            "endDate": null
           },
           {
             "id": "VIIRS_SNPP_CorrectedReflectance_BandsM3-I3-M11",
@@ -4433,7 +4438,7 @@
             "format": "image/jpeg",
             "resolution": "250m",
             "startDate": "2015-11-24",
-            "endDate": "2017-05-04"
+            "endDate": null
           },
           {
             "id": "VIIRS_SNPP_DayNightBand_ENCC",
@@ -4441,7 +4446,7 @@
             "format": "image/png",
             "resolution": "500m",
             "startDate": "2016-11-30",
-            "endDate": "2017-05-04"
+            "endDate": null
           }
         ]
       }
