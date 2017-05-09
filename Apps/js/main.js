@@ -166,7 +166,7 @@
                     });
                     $(satelliteContainer).popover({
                         trigger: 'hover',
-                        title: sat.id,
+                        title: sat.name,
                         content: sat.id,
                         placement: 'bottom',
                         container: "#left-toolbar"
