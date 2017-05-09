@@ -3,6 +3,7 @@
     "id": "gcomw1",
     "name": "GCOM-W1",
     "type": "SATELLITE",
+    "status": "INACTIVE",
     "agency": "NASA",
     "program": "EOS",
     "instruments": [
@@ -168,8 +169,10 @@
   {
     "id": "aqua",
     "name": "Aqua",
+    "status": "ACTIVE",
     "perigee": "708.7",
     "apogee": "710.6",
+    "image": "aqua.png",
     "instruments": [
       {
         "name": "AMSR-E",
@@ -1137,6 +1140,8 @@
   },
   {
     "id": "SAC-D",
+    "image": "sacd.png",
+    "status": "INACTIVE",
     "instruments": [
       {
         "name": "Aquarius",
@@ -1248,6 +1253,8 @@
   {
     "id": "Terra",
     "program": "EOS",
+    "image": "terra.png",
+    "status": "INACTIVE",
     "instruments": [
       {
         "name": "ASTER",
@@ -2445,6 +2452,8 @@
   },
   {
     "id": "GPM",
+    "image": "gpm.png",
+    "status": "INACTIVE",
     "instruments": [
       {
         "name": "GMI",
@@ -2755,6 +2764,8 @@
   {
     "id": "aura",
     "name": "Aura",
+    "image": "aura.png",
+    "status": "ACTIVE",
     "instruments": [
       {
         "name": "MLS",
@@ -4372,6 +4383,8 @@
   {
     "id": "suomi",
     "name": "Suomi NPP",
+    "image": "suomi.png",
+    "status": "ACTIVE",
     "instruments": [
       {
         "name": "VIIRS",
@@ -4541,7 +4554,42 @@
   {
     "id": "iss",
     "name": "ISS",
+    "image": "iss.png",
     "type": "SPACE_STATION",
+    "status": "ACTIVE",
+    "instruments": [
+      {
+      }
+    ]
+  },
+  {
+    "id": "calipso",
+    "name": "CALIPSO",
+    "image": "calipso.png",
+    "type": "SATELLITE",
+    "status": "ACTIVE",
+    "instruments": [
+      {
+      }
+    ]
+  },
+  {
+    "id": "jason2",
+    "name": "Jason-2",
+    "image": "jason2.png",
+    "type": "SATELLITE",
+    "status": "ACTIVE",
+    "instruments": [
+      {
+      }
+    ]
+  },
+  {
+    "id": "cloudsat",
+    "name": "CloudSat",
+    "image": "cloudsat.png",
+    "type": "SATELLITE",
+    "status": "ACTIVE",
     "instruments": [
       {
       }
