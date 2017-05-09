@@ -48,3 +48,6 @@ html, body, #main-container {
     border: 0;
     box-shadow:none;
 }
+.slick-arrow {
+    background: none !important;
+}
