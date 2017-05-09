@@ -24,13 +24,25 @@
      * @param dataSource
      */
     showSatelliteToolbar = function (entity) {
+        $('#satellite-info').empty();
         $('#satellite-instruments').empty();
         var satelliteToolbar = $('#satellite-toolbar');
         if (entity.properties == undefined) {
             satelliteToolbar.hide();
             return false;
         }
-        $('#satellite-name').html(entity.properties.name.getValue())
+        $('#satellite-name').html(entity.properties.name.getValue());
+        var orbitalDataContainer = document.createElement('div');
+        $.each(entity.properties.orbitalData.getValue(), function(key, value) {
+            var orbitalDataKey = document.createElement('div');
+            $(orbitalDataKey).append(key);
+            $(orbitalDataContainer).append(orbitalDataKey);
+
+            var orbitalDataValue = document.createElement('div');
+            $(orbitalDataValue).append(value);
+            $(orbitalDataContainer).append(orbitalDataValue);
+        });
+        $('#satellite-info').append(orbitalDataContainer);
         var instruments = entity.properties.instruments.getValue();
 
         if (instruments.length > 0) {

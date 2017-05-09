@@ -173,8 +173,15 @@
     "agency": "NASA",
     "program": "EOS",
     "status": "ACTIVE",
-    "perigee": "708.7",
-    "apogee": "710.6",
+    "orbitalData":  {
+      "perigee": "702",
+      "apogee": "703",
+      "inclination": "98.1987",
+      "eccentricity": "0.0000979",
+      "period": "98"
+    },
+    "mass": "2850",
+    "launchDate": "2002-05-04",
     "image": "aqua.png",
     "instruments": [
       {
@@ -1145,6 +1152,15 @@
     "id": "SAC-D",
     "image": "sacd.png",
     "status": "INACTIVE",
+    "orbitalData":  {
+      "perigee": "652.2",
+      "apogee": "654.7",
+      "inclination": "98",
+      "eccentricity": "0.0000181",
+      "period": "97.8"
+    },
+    "mass": "1600",
+    "launchDate": "2011-06-10",
     "instruments": [
       {
         "name": "Aquarius",
@@ -2771,6 +2787,15 @@
     "name": "Aura",
     "image": "aura.png",
     "status": "ACTIVE",
+    "orbitalData":  {
+      "perigee": "708",
+      "apogee": "710",
+      "inclination": "98.22",
+      "eccentricity": "0.0001111",
+      "period": "98.83"
+    },
+    "mass": "1765",
+    "launchDate": "2004-07-15",
     "instruments": [
       {
         "name": "MLS",
@@ -4390,6 +4415,14 @@
     "name": "Suomi NPP",
     "image": "suomi.png",
     "status": "ACTIVE",
+    "orbitalData":  {
+      "perigee": "833.7",
+      "apogee": "834.3",
+      "inclination": "98.7",
+      "period": "101.44"
+    },
+    "mass": "2128",
+    "launchDate": "2011-10-28",
     "instruments": [
       {
         "name": "VIIRS",
@@ -4562,6 +4595,14 @@
     "image": "iss.png",
     "type": "SPACE_STATION",
     "status": "ACTIVE",
+    "orbitalData":  {
+      "perigee": "400.2",
+      "apogee": "409.5",
+      "inclination": "51.64",
+      "period": "92.65"
+    },
+    "mass": "419,455",
+    "launchDate": "1998-11-20",
     "instruments": [
       {
       }
@@ -4573,6 +4614,14 @@
     "image": "calipso.png",
     "type": "SATELLITE",
     "status": "ACTIVE",
+    "orbitalData":  {
+      "perigee": "702",
+      "apogee": "703",
+      "inclination": "98.2",
+      "period": "98.8"
+    },
+    "mass": "587",
+    "launchDate": "2006-04-28",
     "instruments": [
       {
       }
@@ -4595,6 +4644,14 @@
     "image": "cloudsat.png",
     "type": "SATELLITE",
     "status": "ACTIVE",
+    "orbitalData":  {
+      "perigee": "702",
+      "apogee": "703",
+      "inclination": "98.2",
+      "period": "98.8"
+    },
+    "mass": "848",
+    "launchDate": "2006-04-28",
     "instruments": [
       {
       }
