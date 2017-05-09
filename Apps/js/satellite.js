@@ -48,7 +48,6 @@
                 $(instrument).data('instrument', instrumentName.name);
 
                 var layerButton = document.createElement("button");
-                $(layerButton).html("<>");
                 $(layerButton).click(showLayers);
                 $(instrument).append(layerButton);
 
@@ -106,7 +105,6 @@
             viewer.scene.imageryLayers.addImageryProvider(newProvider);
         });
 
-        $(toggleLayerButton).text("V");
         $(toggleLayerButton).addClass("view");
         $(instrumentLayer).append(toggleLayerButton);
 
