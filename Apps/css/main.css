@@ -42,7 +42,7 @@ html, body, #main-container {
 .earthtrek-toolbar button:not(:disabled):hover,
 .earthtrek-toolbar button.selected {
     color: white;
-    background-color: #2c69e9;
+    background-color: #1ea9e9;
 }
 .earthtrek-toolbar input {
     border: 0;
