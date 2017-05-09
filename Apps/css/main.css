@@ -29,3 +29,22 @@ html, body, #main-container {
     border-radius: 4px;
     z-index: 2;
 }
+
+.earthtrek-toolbar button {
+    background-color: #2c69b3;
+    border-radius: 4px;
+    border: 0;
+    box-shadow:none;
+    color: white;
+    padding: 3px;
+}
+
+.earthtrek-toolbar button:not(:disabled):hover,
+.earthtrek-toolbar button.selected {
+    color: white;
+    background-color: #2c69e9;
+}
+.earthtrek-toolbar input {
+    border: 0;
+    box-shadow:none;
+}

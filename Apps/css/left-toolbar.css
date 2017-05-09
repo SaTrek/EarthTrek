@@ -1,11 +1,13 @@
 #left-toolbar {
-    top: 10px;
+    top: 40px;
     left: 2%;
     width: 600px;
-    height: 100px;
+}
+#left-toolbar img {
+    height: 70px;
 }
 #left-toolbar .slick-slide {
-    width: 150px;
+    width: 100px;
 }
 #left-toolbar .slick-slide:hover {
     background: rgba(80, 150, 200, 0.7);
@@ -18,4 +20,16 @@
 }
 #left-toolbar .popover-title {
     background-color: rgba(3, 46, 67, 0.5);
+}
+#top-left-toolbar {
+    top: 1px;
+    left: 2%;
+    width: 600px;
+}
+
+#search-satellite {
+    text-align: right;
+    padding: 5px;
+    z-index: 1;
+    color: black;
 }

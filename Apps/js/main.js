@@ -143,6 +143,10 @@
     /**
      * LEFT TOOLBAR
      */
+    $("#main-container").append(earthTrekToolbar.create("top-left-toolbar", function(toolbarContainer) {
+
+        jQuery("#search-satellite").detach().appendTo(toolbarContainer);
+    }));
     $("#main-container").append(earthTrekToolbar.create("left-toolbar", function(toolbarContainer) {
         $.getJSON( "data/instrumentsFULL.json", function( satellites ) {
             satellites.forEach(function( sat ) {
