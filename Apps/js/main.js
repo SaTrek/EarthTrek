@@ -144,28 +144,31 @@
      * LEFT TOOLBAR
      */
     $("#main-container").append(earthTrekToolbar.create("left-toolbar", function(toolbarContainer) {
-        $.getJSON( "data/instruments.json", function( satellites ) {
+        $.getJSON( "data/instrumentsFULL.json", function( satellites ) {
             satellites.forEach(function( sat ) {
-                var satelliteContainer = document.createElement('div');
+                if (sat.status == "ACTIVE") {
 
-                var satelliteImage = document.createElement('img');
-                $(satelliteImage).attr("src", 'images/satellites/'+ sat.id + '.png');
-                $(satelliteContainer).append(satelliteImage);
-                $(satelliteContainer).click(function() {
-                    var selected = gotoSatellite(dataSource.entities.getById(sat.id.toLowerCase()));
-                    if (selected == true) {
-                        $(".satellite-selected").removeClass("satellite-selected");
-                        $(satelliteContainer).addClass("satellite-selected");
-                    }
-                });
-                $(satelliteContainer).popover({
-                    trigger: 'hover',
-                    title: sat.id,
-                    content: sat.id,
-                    placement: 'bottom',
-                    container: "#left-toolbar"
-                });
-                $(toolbarContainer).append(satelliteContainer);
+                    var satelliteContainer = document.createElement('div');
+
+                    var satelliteImage = document.createElement('img');
+                    $(satelliteImage).attr("src", 'images/satellites/'+ sat.image);
+                    $(satelliteContainer).append(satelliteImage);
+                    $(satelliteContainer).click(function() {
+                        var selected = gotoSatellite(dataSource.entities.getById(sat.id.toLowerCase()));
+                        if (selected == true) {
+                            $(".satellite-selected").removeClass("satellite-selected");
+                            $(satelliteContainer).addClass("satellite-selected");
+                        }
+                    });
+                    $(satelliteContainer).popover({
+                        trigger: 'hover',
+                        title: sat.id,
+                        content: sat.id,
+                        placement: 'bottom',
+                        container: "#left-toolbar"
+                    });
+                    $(toolbarContainer).append(satelliteContainer);
+                }
 
             });
 
