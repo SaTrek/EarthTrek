@@ -12,5 +12,6 @@ EarthTrek is an interactive 3D web application. It´s easy access for all kinds 
 
 It allows to visualize in real time the orbits of the different kinds of satellites around the Earth up to its launch until future predictions.
 
-NASA Space Apps Challenge 2017 - Buenos Aires  Nominee
+
+**NASA Space Apps Challenge 2017 - Buenos Aires Nominee**
 ![NASA Space Apps Challenge 2017 - Buenos Aires](https://sa-media-2017.s3.amazonaws.com/media/images/Space_Apps_2017_Logo_BsAs.width-500.png?AWSAccessKeyId=AKIAJQG3YOIUOOAQEQ4Q&Signature=LhqJbs9ULqNrzXKAGkaRgTWJ5cc%3D&Expires=1494428542)
