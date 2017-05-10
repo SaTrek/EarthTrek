@@ -51,3 +51,18 @@ html, body, #main-container {
 .slick-arrow {
     background: none !important;
 }
+
+/**/
+#select-date-container {
+    position: absolute;
+    z-index: 1;
+    bottom: 2.5em;
+    left: 12em;
+}
+#select-date-button {
+}
+#selected-date-modal {
+    position: absolute;
+    left: 50em;
+    top: 25em;
+}

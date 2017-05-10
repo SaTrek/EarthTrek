@@ -6,13 +6,15 @@
     var dataSource = new Cesium.CzmlDataSource();
     
 
-    var initialTime = Cesium.JulianDate.fromDate(
-        new Date(Date.now()));
-    var startTime = Cesium.JulianDate.fromDate(
-        new Date(Date.UTC(2011, 1, 1)));
-    var endTime = Cesium.JulianDate.fromDate(
-        new Date(Date.UTC(2017, 4, 18)));
+    var now =  new Date(Date.now());
+    var initialTime = Cesium.JulianDate.fromDate(now);
+    var startTime = Cesium.JulianDate.fromDate(new Date(Date.UTC(2011, 1, 1)));
+    var endTime = Cesium.JulianDate.fromDate(new Date(Date.UTC(2017, 4, 18)));
 
+    console.log(now.getMonth())
+    $("#spinner-day").val(now.getUTCDay());
+    $("#spinner-month").val(now.getMonth() + 1);
+    $("#spinner-year").val(now.getFullYear());
 
     var clock = new Cesium.Clock({
         startTime: startTime,
@@ -145,8 +147,12 @@
     }
 
     $('#select-date-button').click(function () {
-
+        $('#selected-date-modal').show();
     });
+    
+    $("#spinner-year").change(function (text) {
+        console.log(text)
+    })
 
 
     $('.datepicker').datepicker();

@@ -14,6 +14,8 @@
     <script src="../node_modules/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
     <script src="../node_modules/satellite.js/dist/satellite.min.js"></script>
     <script src="../node_modules/slick-carousel/slick/slick.min.js"></script>
+    <script src="../node_modules/jquery.spinner/dist/js/jquery.spinner.min.js"></script>
+    <script src="../node_modules/jquery.spinner/dist/js/jquery.spinner.min.js"></script>
 
     <style>
         @import url(../node_modules/cesium/Build/Cesium/Widgets/widgets.css);
@@ -21,6 +23,8 @@
         @import url(../node_modules/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css);
         @import url(../node_modules/slick-carousel/slick/slick.css);
         @import url(../node_modules/slick-carousel/slick/slick-theme.css);
+        @import url(../node_modules/jquery.spinner/dist/css/bootstrap-spinner.min.css);
+        @import url(../node_modules/font-awesome/css/font-awesome.min.css);
         @import url(css/main.css);
         @import url(css/satellite.css);
         @import url(css/left-toolbar.css);
@@ -35,6 +39,9 @@
         <legend>Seleccione una fecha a comparar</legend>
         <input id="compare-date" class="datepicker" data-date-format="yyyy-mm-dd">
         <button id="accept-date">OK</button>
+    </div>
+
+    <div id="selected-date-modal" class="earthtrek-toolbar" style="display: none;">
     </div>
 
     <div id="slider" style="display: none;"></div>
@@ -54,6 +61,34 @@
             <div id="satellite-instrument-layers" class="col-sm-12">
             </div>
         </div>
+    </div>
+
+    <div id="select-date-container">
+
+        <div class="input-group spinner" style="width: 30px; float: left" data-trigger="spinner">
+            <input  id="spinner-day" type="text" readonly style="width: 40px" class="form-control text-center" value="1" data-rule="day">
+            <span class="input-group-addon">
+                <a href="javascript:;" class="spin-up" data-spin="up"><i class="fa fa-caret-up"></i></a>
+                <a href="javascript:;" class="spin-down" data-spin="down"><i class="fa fa-caret-down"></i></a>
+              </span>
+        </div>
+
+        <div class="input-group spinner" style="width: 30px; float: left" data-trigger="spinner">
+            <input  id="spinner-month" type="text" readonly style="width: 40px" class="form-control text-center" value="1" data-rule="month">
+            <span class="input-group-addon">
+                <a href="javascript:;" class="spin-up" data-spin="up"><i class="fa fa-caret-up"></i></a>
+                <a href="javascript:;" class="spin-down" data-spin="down"><i class="fa fa-caret-down"></i></a>
+              </span>
+        </div>
+
+        <div class="input-group spinner" style="width: 30px; float: left" data-trigger="spinner">
+            <input id="spinner-year" readonly  type="text" style="width: 80px" class="form-control text-center" data-min="1998" data-max="2017" value="1" data-rule="quantity">
+            <span class="input-group-addon">
+                <a href="javascript:;" class="spin-up" data-spin="up"><i class="fa fa-caret-up"></i></a>
+                <a href="javascript:;" class="spin-down" data-spin="down"><i class="fa fa-caret-down"></i></a>
+              </span>
+        </div>
+        <!--<button id="select-date-button">DATE</button>!-->
     </div>
 </div>
 
