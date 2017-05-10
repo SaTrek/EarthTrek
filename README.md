@@ -19,6 +19,20 @@ Public engagement is key in the pursuit of aerospace exploration.
 
 Earth Trek - "Exploring our World"
 
+**HOW THE APP WORKS**
+
+The user will be able to visualize in real time the orbits of the satellites around the Earth, from launch to future projections. At the moment, there are some applications that allow to see the trajectories of present and future satellites. Earth Trek delivers the same functionality, but also allows to visualise satellite-driven data.
+It also offers a significant improvement regarding satellite orbits visualisation. Through AJAX, it provides access to data without needing to make multiple requests. This was one of many development aspects considered towards improving the user’s experience when learning about the different capabilities of EOS program satellites.
+
+When you open the application, it will be displayed a 3D image of the Earth and the satellite's orbits that are currently orbiting the area of the Earth we are observing.
+
+![AQUA](https://api-2017.spaceappschallenge.org/stream-images/OhR7F6ZmAWX6iajVIRVP-gJngWA=/2770/width-800/)
+
+Once a satellite is selected, two satellite images of the Earth can be compared.
+By determining a geographic location through the geolocation finder and selecting a date before the current one, the screen will be divided in two, being possible to observe the differences between the state of the zone in those moments. For example using MODIS, Terra´s instrument, deforestation or fire outbreaks can be compared
+
+![Mato Grosso deforestation](https://api-2017.spaceappschallenge.org/stream-images/dVorva_DJd4OK2eAf76sfFKuDuE=/3103/width-800/)
+
 **NASA Space Apps Challenge 2017 - Buenos Aires Nominee**
 ![NASA Space Apps Challenge 2017 - Buenos Aires](https://sa-media-2017.s3.amazonaws.com/media/images/Space_Apps_2017_Logo_BsAs.width-500.png?AWSAccessKeyId=AKIAJQG3YOIUOOAQEQ4Q&Signature=LhqJbs9ULqNrzXKAGkaRgTWJ5cc%3D&Expires=1494428542)
 
