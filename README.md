@@ -24,8 +24,8 @@ Earth Trek - "Exploring our World"
 
 **RESOURCES**
 
-SatelliteJS: TLE & orbital Data: https://github.com/shashwatak/satellite-js
-CesiumJs: https://cesiumjs.org/
-GIBS https://earthdata.nasa.gov/about/science-system-de...
-Celestrak http://www.celestrak.com/NORAD/elements/science.txt
-NASA 3D Resources: 3D Models
+* SatelliteJS: TLE & orbital Data: https://github.com/shashwatak/satellite-js
+* CesiumJs: https://cesiumjs.org/
+* GIBS https://earthdata.nasa.gov/about/science-system-de...
+* Celestrak http://www.celestrak.com/NORAD/elements/science.txt
+* NASA 3D Resources: 3D Models
