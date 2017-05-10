@@ -80,37 +80,45 @@
             viewer.dataSources.add(dataSource);
 
             previousTime = time;
-            for (var i = 0; i <= viewer.scene.imageryLayers.length - 1; i++) {
-                var layer = viewer.scene.imageryLayers.get(i);
-                if (layer.imageryProvider != backgroundLayerProvider) {
-                    viewer.scene.imageryLayers.remove(layer);
-                }
-            }
-            if (backgroundLayerProvider == undefined){
-                backgroundLayerProvider = provider.getProvider(
-                    "VIIRS_SNPP_CorrectedReflectance_TrueColor",
-                    '2016-11-19',
-                    "image/jpeg",
-                    "epsg4326",
-                    "250m"
-                );
-                viewer.scene.imageryLayers.addImageryProvider(backgroundLayerProvider);
-            }
+            updateLayers();
 
-             referenceLayerProvider = provider.getProvider(
-                 "Reference_Labels",
-                 '2016-11-19',
-                 "image/png",
-                 "epsg4326",
-                 "250m"
-             );
-             viewer.scene.imageryLayers.addImageryProvider(referenceLayerProvider);
+            if (viewer.selectedEntity != null) {
+                showSatelliteToolbar(viewer.selectedEntity );
+            }
         }
     });
 
+
+    updateLayers = function() {
+        for (var i = 0; i <= viewer.scene.imageryLayers.length - 1; i++) {
+            var layer = viewer.scene.imageryLayers.get(i);
+            if (layer.imageryProvider != backgroundLayerProvider) {
+                viewer.scene.imageryLayers.remove(layer);
+            }
+        }
+        if (backgroundLayerProvider == undefined){
+            backgroundLayerProvider = provider.getProvider(
+                "VIIRS_SNPP_CorrectedReflectance_TrueColor",
+                '2016-11-19',
+                "image/jpeg",
+                "epsg4326",
+                "250m"
+            );
+            viewer.scene.imageryLayers.addImageryProvider(backgroundLayerProvider);
+        }
+
+        referenceLayerProvider = provider.getProvider(
+            "Reference_Labels",
+            '2016-11-19',
+            "image/png",
+            "epsg4326",
+            "250m"
+        );
+        viewer.scene.imageryLayers.addImageryProvider(referenceLayerProvider);
+    }
+
     viewer.clock.onTick.addEventListener(onClockUpdate);
 
-    
     function setSatellitesProperties() {
         $.getJSON( "data/instrumentsFULL.json", function( satellites ) {
             satellites.forEach(function( sat ) {
@@ -135,6 +143,10 @@
             callbackOn();
         }
     }
+
+    $('#select-date-button').click(function () {
+
+    });
 
 
     $('.datepicker').datepicker();
