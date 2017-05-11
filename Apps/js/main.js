@@ -11,7 +11,6 @@
     var startTime = Cesium.JulianDate.fromDate(new Date(Date.UTC(2011, 1, 1)));
     var endTime = Cesium.JulianDate.fromDate(new Date(Date.UTC(2017, 4, 18)));
 
-    console.log(now.getMonth())
     $("#spinner-day").val(now.getUTCDay());
     $("#spinner-month").val(now.getMonth() + 1);
     $("#spinner-year").val(now.getFullYear());
