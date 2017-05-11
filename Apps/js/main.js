@@ -9,9 +9,10 @@
     var startTime = Cesium.JulianDate.fromDate(new Date(Date.UTC(2011, 1, 1)));
     var endTime = Cesium.JulianDate.fromDate(new Date(Date.UTC(2017, 4, 18)));
 
-    $("#spinner-day").val(now.getUTCDay());
-    $("#spinner-month").val(now.getMonth() + 1);
-    $("#spinner-year").val(now.getFullYear());
+    var gregorianDate = Cesium.JulianDate.toGregorianDate(initialTime);
+    $("#spinner-day").val(gregorianDate.day);
+    $("#spinner-month").val(gregorianDate.month);
+    $("#spinner-year").val(gregorianDate.year);
 
     var clock = new Cesium.Clock({
         startTime: startTime,
