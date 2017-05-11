@@ -31,10 +31,6 @@
 
 <div id="main-container">
 
-    <div id="search-satellite" >
-        <input id="search-satellite-text" type="text" placeholder="Satellite name"/> <button id="search-satellite-button">OK</button>
-    </div>
-
     <div id="compare-modal" style="display: none;">
         <legend>Seleccione una fecha a comparar</legend>
         <input id="compare-date" class="datepicker" data-date-format="yyyy-mm-dd">
@@ -43,23 +39,13 @@
 
     <div id="slider" style="display: none;"></div>
 
-    <div id="satellite-toolbar" class="container">
+    <div id="satellite-toolbar" class="container earthtrek-toolbar">
         <div class="row" style="font-size: 1.5em">
             <div class="col-sm-6"><strong id="satellite-name"></strong></div>
             <div class="col-sm-6">instruments</div>
         </div>
         <div class="row">
-            <div id="satelite-info" class="col-sm-6">
-                <div>
-                    perigee <br>
-                    apogee <br>
-                    inclination <br>
-                    period <br>
-                    eccentricity <br>
-                    mass <br>
-                    launch date
-                </div>
-                <div id="satelite-info-data"></div>
+            <div id="satellite-info" class="col-sm-6">
             </div>
             <div id="satellite-instruments" class="col-sm-6">
             </div>
@@ -69,6 +55,11 @@
             </div>
         </div>
     </div>
+</div>
+
+
+<div id="search-satellite" >
+    <input id="search-satellite-text" type="text" placeholder="Satellite name"/> <button></button>
 </div>
 
 <script src="js/tilling-scheme.js"></script>

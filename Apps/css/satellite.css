@@ -24,31 +24,20 @@
     position: absolute;
     right: 0; top: 0;
     width: 40px;
+    height: 30px;
     margin: 2px;
-    border-radius: 2px;
-    color: #000;
+}
+.satellite-instrument button {
+    background-image: url("../images/layers.png");
 }
 #satellite-toolbar button:disabled {
     background: rgb(105,105,105);
-}
-#satellite-toolbar button:not(:disabled):hover,
-#satellite-toolbar button.selected {
-    color: white;
-    background: rgba(50, 210, 215, 0.9);
 }
 
 #satellite-info > div {
     width: 50%;
 }
 
-#search-satellite {
-    position: absolute;
-    top: 115px;
-    left: 2%;
-    text-align: center;
-    z-index: 1;
-    color: black;
-}
 
 /** INSTRUMENT */
 .satellite-instrument {
@@ -86,6 +75,7 @@
 }
 .instrument-layer button.view {
     right: 45px !important;
+    background-image: url("../images/view.png");
 }
 
 .layer-available {

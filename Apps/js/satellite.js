@@ -24,13 +24,25 @@
      * @param dataSource
      */
     showSatelliteToolbar = function (entity) {
+        $('#satellite-info').empty();
         $('#satellite-instruments').empty();
         var satelliteToolbar = $('#satellite-toolbar');
         if (entity.properties == undefined) {
             satelliteToolbar.hide();
             return false;
         }
-        $('#satellite-name').html(entity.properties.name.getValue())
+        $('#satellite-name').html(entity.properties.name.getValue());
+        var orbitalDataContainer = document.createElement('div');
+        $.each(entity.properties.orbitalData.getValue(), function(key, value) {
+            var orbitalDataKey = document.createElement('div');
+            $(orbitalDataKey).append(key);
+            $(orbitalDataContainer).append(orbitalDataKey);
+
+            var orbitalDataValue = document.createElement('div');
+            $(orbitalDataValue).append(value);
+            $(orbitalDataContainer).append(orbitalDataValue);
+        });
+        $('#satellite-info').append(orbitalDataContainer);
         var instruments = entity.properties.instruments.getValue();
 
         if (instruments.length > 0) {
@@ -48,7 +60,6 @@
                 $(instrument).data('instrument', instrumentName.name);
 
                 var layerButton = document.createElement("button");
-                $(layerButton).html("<>");
                 $(layerButton).click(showLayers);
                 $(instrument).append(layerButton);
 
@@ -106,7 +117,6 @@
             viewer.scene.imageryLayers.addImageryProvider(newProvider);
         });
 
-        $(toggleLayerButton).text("V");
         $(toggleLayerButton).addClass("view");
         $(instrumentLayer).append(toggleLayerButton);
 
@@ -119,7 +129,7 @@
         });
         $(instrumentLayer).append(compareButton);
 
-        if (layer.endDate < isoDate(clock.currentTime.toString())) {
+        if (layer.endDate < isoDate(clock.currentTime.toString()) || layer.startDate > isoDate(clock.currentTime.toString())) {
             $(toggleLayerButton).attr('disabled', 'disabled');
             $(compareButton).attr('disabled', 'disabled');
         }
