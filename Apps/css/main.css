@@ -21,6 +21,20 @@ html, body, #main-container {
 #slider:hover {
     cursor: ew-resize;
 }
+.earthtrek-container button {
+    background-color: #2c69b3;
+    border-radius: 4px;
+    border: 0;
+    box-shadow:none;
+    color: white;
+    padding: 3px;
+}
+.earthtrek-container button:not(:disabled):hover,
+.earthtrek-container button.selected {
+    color: white;
+    background-color: #1ea9e9;
+}
+
 .earthtrek-toolbar {
     position: absolute;
     color: white;

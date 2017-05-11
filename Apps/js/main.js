@@ -2,11 +2,9 @@
     var referenceLayerProvider;
     var previousTime;
 
-
     var dataSource = new Cesium.CzmlDataSource();
-    
 
-    var now =  new Date(Date.now());
+    var now = new Date(Date.now());
     var initialTime = Cesium.JulianDate.fromDate(now);
     var startTime = Cesium.JulianDate.fromDate(new Date(Date.UTC(2011, 1, 1)));
     var endTime = Cesium.JulianDate.fromDate(new Date(Date.UTC(2017, 4, 18)));
@@ -26,7 +24,6 @@
         return isoDateTime.split("T")[0];
     };
 
-
     var viewer = new Cesium.Viewer("main-container", {
         clock: clock,
         baseLayerPicker: false, // Only showing one layer in this demo,
@@ -38,6 +35,21 @@
     viewer.timeline.zoomTo(startTime, endTime);
     viewer.scene.globe.baseColor = Cesium.Color.BLACK;
 
+    var animationViewModel = viewer.animation.viewModel;
+   // animationViewModel.dateFormatter = function() { return ''; };
+
+
+    animationViewModel.timeFormatter = function(date, viewModel) {
+        var gregorianDate = Cesium.JulianDate.toGregorianDate(date);
+        var localTime = new Date(
+            gregorianDate.year + '-' + gregorianDate.month + '-' + gregorianDate.day + ' ' +
+            gregorianDate.hour + ':' + gregorianDate.minute + ':' + gregorianDate.second + ' UTC'
+        );
+        return Cesium.sprintf(
+            "%02d:%02d:%02d",
+            localTime.getHours(), localTime.getMinutes(), localTime.getSeconds()
+        );
+    };
 
     /*
     polarBackgroundLayerProvider = provider.getProvider(
@@ -146,7 +158,13 @@
     }
 
     $('#select-date-button').click(function () {
-        $('#selected-date-modal').show();
+       // $('#selected-date-modal').show();
+
+        viewer.clock.currentTime = Cesium.JulianDate.fromDate(new Date(Date.UTC(
+            $("#spinner-year").val(),
+            $("#spinner-month").val() - 1,
+            $("#spinner-day").val()
+        )));
     });
     
     $("#spinner-year").change(function (text) {
