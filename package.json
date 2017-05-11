@@ -3,7 +3,6 @@
   "version": "0.17.5",
   "description": "NASA Satellite Challenge.",
   "homepage": "http://github.com/SATrek/EarthTrek",
-  "license": "Apache-2.0",
   "author": {
     "name": "SATrek",
     "url": "http://github.com/SATrek"
