@@ -2,10 +2,6 @@
     var referenceLayerProvider;
     var previousTime;
 
-
-    var dataSource = new Cesium.CzmlDataSource();
-    
-
     var initialTime = Cesium.JulianDate.fromDate(
         new Date(Date.now()));
     var startTime = Cesium.JulianDate.fromDate(
@@ -37,17 +33,6 @@
     viewer.timeline.zoomTo(startTime, endTime);
     viewer.scene.globe.baseColor = Cesium.Color.BLACK;
 
-
-    /*
-    polarBackgroundLayerProvider = provider.getProvider(
-        "VIIRS_SNPP_CorrectedReflectance_TrueColor",
-        '2016-11-30',
-        "image/jpeg",
-        "epsg3413",
-        "250m"
-    );
-    viewer.scene.imageryLayers.addImageryProvider(polarBackgroundLayerProvider);
-*/
     backgroundLayerProvider = provider.getProvider(
         "VIIRS_SNPP_CorrectedReflectance_TrueColor",
         '2016-11-21',
@@ -70,15 +55,8 @@
     var onClockUpdate = _.throttle(function() {
         var isoDateTime = clock.currentTime.toString();
         var time = isoDate(isoDateTime);
+        updateSatellites();
         if (time !== previousTime) {
-            viewer.dataSources.removeAll();
-            dataSource
-                .load('data/satellites-' + time +'.czml')
-                .then(function(){
-                    setSatellitesProperties()
-                });
-            viewer.dataSources.add(dataSource);
-
             previousTime = time;
             updateLayers();
 
