@@ -24,7 +24,6 @@
         return isoDateTime.split("T")[0];
     };
 
-
     var viewer = new Cesium.Viewer("main-container", {
         clock: clock,
         baseLayerPicker: false, // Only showing one layer in this demo,
