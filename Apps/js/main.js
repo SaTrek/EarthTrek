@@ -35,7 +35,7 @@
     });
     viewer.timeline.zoomTo(startTime, endTime);
     viewer.scene.globe.baseColor = Cesium.Color.BLACK;
-    viewer.camera.frustum.far = 10000000000.0; //15M KM
+    viewer.camera.frustum.far = 10000000000.0; //10M KM
 
     backgroundLayerProvider = provider.getProvider(
         "VIIRS_SNPP_CorrectedReflectance_TrueColor",
