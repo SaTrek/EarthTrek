@@ -4,7 +4,7 @@
     width: 600px;
 }
 #left-toolbar img {
-    height: 70px;
+    height: 80px;
 }
 #left-toolbar .slick-slide {
     width: 100px;
@@ -32,4 +32,10 @@
     padding: 5px;
     z-index: 1;
     color: black;
+}
+#search-satellite button {
+    width: 30px;
+    height: 23px;
+    background-image: url("../images/mini-search.png");
+    background-repeat: no-repeat;
 }

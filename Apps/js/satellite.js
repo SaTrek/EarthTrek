@@ -129,7 +129,7 @@
         });
         $(instrumentLayer).append(compareButton);
 
-        if (layer.endDate < isoDate(clock.currentTime.toString())) {
+        if (layer.endDate < isoDate(clock.currentTime.toString()) || layer.startDate > isoDate(clock.currentTime.toString())) {
             $(toggleLayerButton).attr('disabled', 'disabled');
             $(compareButton).attr('disabled', 'disabled');
         }

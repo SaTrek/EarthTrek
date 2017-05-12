@@ -4,7 +4,6 @@
 
 
     var dataSource = new Cesium.CzmlDataSource();
-    
 
     var initialTime = Cesium.JulianDate.fromDate(
         new Date(Date.now()));
@@ -12,7 +11,6 @@
         new Date(Date.UTC(2011, 1, 1)));
     var endTime = Cesium.JulianDate.fromDate(
         new Date(Date.UTC(2017, 4, 18)));
-
 
     var clock = new Cesium.Clock({
         startTime: startTime,
@@ -25,7 +23,6 @@
         return isoDateTime.split("T")[0];
     };
 
-
     var viewer = new Cesium.Viewer("main-container", {
         clock: clock,
         baseLayerPicker: false, // Only showing one layer in this demo,
@@ -36,18 +33,8 @@
     });
     viewer.timeline.zoomTo(startTime, endTime);
     viewer.scene.globe.baseColor = Cesium.Color.BLACK;
+    viewer.camera.frustum.far = 10000000000.0; //10M KM
 
-
-    /*
-    polarBackgroundLayerProvider = provider.getProvider(
-        "VIIRS_SNPP_CorrectedReflectance_TrueColor",
-        '2016-11-30',
-        "image/jpeg",
-        "epsg3413",
-        "250m"
-    );
-    viewer.scene.imageryLayers.addImageryProvider(polarBackgroundLayerProvider);
-*/
     backgroundLayerProvider = provider.getProvider(
         "VIIRS_SNPP_CorrectedReflectance_TrueColor",
         '2016-11-21',
@@ -80,37 +67,45 @@
             viewer.dataSources.add(dataSource);
 
             previousTime = time;
-            for (var i = 0; i <= viewer.scene.imageryLayers.length - 1; i++) {
-                var layer = viewer.scene.imageryLayers.get(i);
-                if (layer.imageryProvider != backgroundLayerProvider) {
-                    viewer.scene.imageryLayers.remove(layer);
-                }
-            }
-            if (backgroundLayerProvider == undefined){
-                backgroundLayerProvider = provider.getProvider(
-                    "VIIRS_SNPP_CorrectedReflectance_TrueColor",
-                    '2016-11-19',
-                    "image/jpeg",
-                    "epsg4326",
-                    "250m"
-                );
-                viewer.scene.imageryLayers.addImageryProvider(backgroundLayerProvider);
-            }
+            updateLayers();
 
-             referenceLayerProvider = provider.getProvider(
-                 "Reference_Labels",
-                 '2016-11-19',
-                 "image/png",
-                 "epsg4326",
-                 "250m"
-             );
-             viewer.scene.imageryLayers.addImageryProvider(referenceLayerProvider);
+            if (viewer.selectedEntity != null) {
+                showSatelliteToolbar(viewer.selectedEntity );
+            }
         }
     });
 
+
+    updateLayers = function() {
+        for (var i = 0; i <= viewer.scene.imageryLayers.length - 1; i++) {
+            var layer = viewer.scene.imageryLayers.get(i);
+            if (layer.imageryProvider != backgroundLayerProvider) {
+                viewer.scene.imageryLayers.remove(layer);
+            }
+        }
+        if (backgroundLayerProvider == undefined){
+            backgroundLayerProvider = provider.getProvider(
+                "VIIRS_SNPP_CorrectedReflectance_TrueColor",
+                '2016-11-19',
+                "image/jpeg",
+                "epsg4326",
+                "250m"
+            );
+            viewer.scene.imageryLayers.addImageryProvider(backgroundLayerProvider);
+        }
+
+        referenceLayerProvider = provider.getProvider(
+            "Reference_Labels",
+            '2016-11-19',
+            "image/png",
+            "epsg4326",
+            "250m"
+        );
+        viewer.scene.imageryLayers.addImageryProvider(referenceLayerProvider);
+    }
+
     viewer.clock.onTick.addEventListener(onClockUpdate);
 
-    
     function setSatellitesProperties() {
         $.getJSON( "data/instrumentsFULL.json", function( satellites ) {
             satellites.forEach(function( sat ) {
@@ -135,8 +130,6 @@
             callbackOn();
         }
     }
-
-
     $('.datepicker').datepicker();
 
 
