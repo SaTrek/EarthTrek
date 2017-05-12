@@ -1150,9 +1150,10 @@
     ]
   },
   {
-    "id": "SAC-D",
+    "id": "sacd",
+    "name": "SAC-D",
     "image": "sacd.png",
-    "status": "INACTIVE",
+    "status": "ACTIVE",
     "orbitalData":  {
       "perigee": "652.2",
       "apogee": "654.7",
@@ -1162,6 +1163,7 @@
     },
     "mass": "1600",
     "launchDate": "2011-06-10",
+    "endDate": "2015-06-17",
     "instruments": [
       {
         "name": "Aquarius",
@@ -1181,17 +1183,7 @@
             "resolution": "2km",
             "startDate": "2011-08-25",
             "endDate": "2011-08-25"
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "id": "Aquarius",
-    "instruments": [
-      {
-        "name": "SAC-D",
-        "layers": [
+          },
           {
             "id": "Aquarius_Sea_Surface_Salinity_L3_7Day_RunningMean",
             "title": "Sea Surface Salinity (L3, 7-Day Running Mean)",

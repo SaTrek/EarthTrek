@@ -34,6 +34,7 @@ getPosition = function(tleLine1, tleLine2, date) {
         now.getUTCMinutes(),
         now.getUTCSeconds()
     );
+
     // You can get ECF, Geodetic, Look Angles, and Doppler Factor.
     var positionEcf   = satellite.eciToEcf(positionEci, gmst);
        // observerEcf   = satellite.geodeticToEcf(observerGd),
@@ -50,19 +51,115 @@ getPosition = function(tleLine1, tleLine2, date) {
     positionGd.latitude = latitudeStr;
     positionGd.height = positionGd.height * 1000;
 
-    console.log(positionGd)
     var pos = Math.sqrt(Math.pow(positionEci.x, 2) + Math.pow(positionEci.y, 2) + Math.pow(positionEci.z, 2));
     var vel = Math.sqrt(Math.pow(velocityEci.x, 2) + Math.pow(velocityEci.y, 2) + Math.pow(velocityEci.z, 2));
     return positionGd;
 }
 
-
-
-
 var entities = [];
-createModel('models/iss.glb');
+var tleLine1 = '1 25544U 98067A   17132.15166687  .00016717  00000-0  10270-3 0  9023',
+    tleLine2 = '2 25544  51.6405 217.9287 0004884 149.5686 210.5751 15.54020107 16140';
+createModel('iss', 'ISS', 'models/iss.glb', tleLine1, tleLine2, Cesium.Color.RED);
 
-function calculatePositionSamples(point, endPoint, startTime, duration, intervalCount) {
+
+var tleLine1 = '1 27424U 02022A   17131.91562854  .00000110  00000-0  34384-4 0  9996',
+    tleLine2 = '2 27424  98.2026  73.7533 0000860 153.0401 299.1971 14.57109646798942';
+
+createModel('aqua', 'Aqua', 'models/aqua.glb', tleLine1, tleLine2, Cesium.Color.GREEN);
+
+var tleLine1 = '1 25994U 99068A   17131.81002569  .00000307  00000-0  78120-4 0  9997',
+    tleLine2 = '2 25994  98.2120 207.3714 0001359 116.9424 243.1898 14.57112580925377';
+
+createModel('terra', 'Terra', 'models/aqua.glb', tleLine1, tleLine2, Cesium.Color.BLUE);
+
+
+var tleLine1 = '1 37673U 11024A   11161.63936538 -.00000050  00000-0  00000+0 0    16',
+    tleLine2 = '2 37673  98.0125 168.6228 0002456 212.6674 147.5382 14.72830191    07';
+
+createModel('sacd', 'SAC-D', 'models/sacd.glb', tleLine1, tleLine2, Cesium.Color.YELLOW);
+
+setSatellitesProperties();
+
+function calculatePositionSamples(tleLine1, tleLine2, startTime, duration, intervalCount) {
+    var property = new Cesium.SampledPositionProperty();
+    var deltaStep = duration / (intervalCount > 0 ? intervalCount : 1);
+
+    var date = new Date();
+    for (var since = 0; since <= duration; since += deltaStep) {
+        date.setSeconds(date.getSeconds() + deltaStep)
+        var newPosition = getPosition(tleLine1, tleLine2, date);
+        property.addSample(
+            Cesium.JulianDate.addSeconds(startTime, since, new Cesium.JulianDate()),
+            Cesium.Cartesian3.fromDegrees(newPosition.longitude, newPosition.latitude, newPosition.height)
+
+        );
+    }
+    return property;
+}
+
+function createModel(id, name, url, tleLine1, tleLine2, color) {
+  //  viewer.entities.removeAll();
+
+    //var position = Cesium.Cartesian3.fromDegrees(307.56125, -47.846016, height);
+    //  var heading = Cesium.Math.toRadians(135);
+    var pitch = 0;
+    var roll = 0;
+    //  var hpr = new Cesium.HeadingPitchRoll(heading, pitch, roll);
+    // var orientation = Cesium.Transforms.headingPitchRollQuaternion(position, hpr);
+
+    var duration = 6400; //seconds
+    var frequency = 50; //hertz
+
+    var start = Cesium.JulianDate.fromDate(new Date());
+    var stop = Cesium.JulianDate.addSeconds(start, duration, new Cesium.JulianDate());
+    var positions = calculatePositionSamples(tleLine1, tleLine2, start, duration, frequency);
+
+ //   var point = getPosition(tleLine1, tleLine2, new Date())
+
+
+
+  //  lastDate =  new Date(2017, 4, 12, 14, 40, 0);
+//    var finalPoint = getPosition(tleLine1, tleLine2, lastDate)
+
+
+    //  var positions = calculatePositionSamplesOriginal(point, finalPoint, start, duration, frequency);
+
+     var entity = viewer.entities.add({
+        id: id,
+        name : name,
+        position : positions,
+        orientation: new Cesium.VelocityOrientationProperty(positions),
+        model : {
+            uri : url,
+            minimumPixelSize : 512,
+            maximumScale : 1
+        },
+        path: {
+            resolution: 2,
+            material: new Cesium.PolylineGlowMaterialProperty({
+                glowPower: 0.1,
+                color: color
+            }),
+            width: 7,
+            trailTime: duration,
+            leadTime: 0
+        },
+        label: {
+            show: true, text: name
+        }
+    });
+    entities.push(entity);
+ //  viewer.trackedEntity = entity;
+}
+
+updateSatellites = function () {
+    entities.forEach(function( entity ) {
+
+    });
+}
+
+
+function calculatePositionSamplesOriginal(point, endPoint, startTime, duration, intervalCount) {
     var property = new Cesium.SampledPositionProperty();
     var deltaStep = duration / (intervalCount > 0 ? intervalCount : 1);
 
@@ -78,66 +175,5 @@ function calculatePositionSamples(point, endPoint, startTime, duration, interval
             Cesium.Cartesian3.fromDegrees(point.longitude += delta.longitude, point.latitude += delta.latitude, point.height += delta.height)
         );
     }
-    console.log(property)
     return property;
-}
-function createModel(url) {
-  //  viewer.entities.removeAll();
-
-    //var position = Cesium.Cartesian3.fromDegrees(307.56125, -47.846016, height);
-    //  var heading = Cesium.Math.toRadians(135);
-    var pitch = 0;
-    var roll = 0;
-    //  var hpr = new Cesium.HeadingPitchRoll(heading, pitch, roll);
-    // var orientation = Cesium.Transforms.headingPitchRollQuaternion(position, hpr);
-
-    var duration = 5400; //seconds
-    var frequency = 10; //hertz
-
-    var tleLine1 = '1 25544U 98067A   17131.18705992  .00016717  00000-0  10270-3 0  9012',
-        tleLine2 = '2 25544  51.6417 222.7377 0004959 146.1861 213.9609 15.53995368 15998';
-
-    var point = getPosition(tleLine1, tleLine2, new Date())
-
-    var tleLine1 = '1 25544U 98067A   17132.15166687  .00016717  00000-0  10270-3 0  9023',
-        tleLine2 = '2 25544  51.6405 217.9287 0004884 149.5686 210.5751 15.54020107 16140';
-
-    lastDate =  new Date();
-    lastDate.setSeconds(lastDate.getSeconds() + duration);
-    console.log(lastDate.toISOString())
-    var finalPoint = getPosition(tleLine1, tleLine2, lastDate)
-
-    var start = Cesium.JulianDate.fromDate(new Date());
-    var stop = Cesium.JulianDate.addSeconds(start, duration, new Cesium.JulianDate());
-    var positions = calculatePositionSamples(point, finalPoint, start, duration, frequency);
-
-
-     var entity = viewer.entities.add({
-        name : 'ISS',
-        position : positions,
-        orientation: new Cesium.VelocityOrientationProperty(positions),
-        model : {
-            uri : url,
-            minimumPixelSize : 528,
-            maximumScale : 200
-        },
-        path: {
-            resolution: 2,
-            material: new Cesium.PolylineGlowMaterialProperty({
-                glowPower: 0.1,
-                color: Cesium.Color.RED
-            }),
-            width: 5,
-            trailTime: duration,
-            leadTime: 0
-        }
-    });
-    entities.push(entity);
-   viewer.trackedEntity = entity;
-}
-
-updateSatellites = function () {
-    entities.forEach(function( entity ) {
-
-    });
 }

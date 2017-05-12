@@ -8,7 +8,7 @@
         $("#satellite-instruments").empty();
 
         if (Cesium.defined(pick)) {
-            var entity = dataSource.entities.getById(pick.id._id);
+            var entity = viewer.entities.getById(pick.id._id);
             if (entity != undefined) {
                 // && Cesium.defined(pick.node) && Cesium.defined(pick.mesh)
                 showSatelliteToolbar(entity);
@@ -160,7 +160,7 @@
     }
 
     var searchSatellite = function() {
-        var entity = dataSource.entities.getById($('#search-satellite-text').val().toLowerCase());
+        var entity = viewer.entities.getById($('#search-satellite-text').val().toLowerCase());
         gotoSatellite(entity);
         $('#search-satellite-text').val("");
     }

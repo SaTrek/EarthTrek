@@ -10,6 +10,7 @@
         new Date(Date.UTC(2017, 4, 18)));
 
 
+    console.log(initialTime)
     var clock = new Cesium.Clock({
         startTime: startTime,
         endTime: endTime,
@@ -100,8 +101,9 @@
     function setSatellitesProperties() {
         $.getJSON( "data/instrumentsFULL.json", function( satellites ) {
             satellites.forEach(function( sat ) {
-                var entity = dataSource.entities.getById(sat.id.toLowerCase());
+                var entity = viewer.entities.getById(sat.id.toLowerCase());
                 if (entity != undefined) {
+                    console.log(entity)
                     entity.properties = sat;
                     if (sat.name != undefined) {
                         entity.label.text = sat.name
@@ -148,7 +150,7 @@
                     $(satelliteImage).attr("src", 'images/satellites/'+ sat.image);
                     $(satelliteContainer).append(satelliteImage);
                     $(satelliteContainer).click(function() {
-                        var selected = gotoSatellite(dataSource.entities.getById(sat.id.toLowerCase()));
+                        var selected = gotoSatellite(viewer.entities.getById(sat.id.toLowerCase()));
                         if (selected == true) {
                             $(".satellite-selected").removeClass("satellite-selected");
                             $(satelliteContainer).addClass("satellite-selected");
