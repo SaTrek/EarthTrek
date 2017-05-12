@@ -1,6 +1,6 @@
 {
-  "name": "earhtrek",
-  "version": "0.17.5",
+  "name": "EarthTrek",
+  "version": "0.175.12",
   "description": "NASA Space Apps Challenge 2017 - Buenos Aires - Nominee - 1D, 2D, 3D, Go! Challenge",
   "homepage": "http://github.com/SATrek/EarthTrek",
   "author": {
@@ -8,7 +8,8 @@
     "url": "http://github.com/SATrek"
   },
   "scripts": {
-    "start": "node server.js"
+    "start": "node server.js",
+    "test": "./node_modules/.bin/mocha"
   },  
   "repository": {
     "type": "git",
@@ -16,10 +17,6 @@
   },
   "bugs": {
     "url": "https://github.com/SATrek/EarthTrek/issues"
-  },
-  "author": {
-    "name": "SATrek",
-    "url": "http://github.com/SATrek"
   },
   "contributors": [
     {
@@ -43,6 +40,7 @@
     "request": "^2.81.0"
   },
   "devDependencies": {
-    "mocha": "^3.3.0"
+    "mocha": "^3.3.0",
+    "should": "^11.2.1"
   }
 }

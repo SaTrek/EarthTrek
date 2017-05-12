@@ -11,6 +11,7 @@
 
 
     console.log(initialTime)
+
     var clock = new Cesium.Clock({
         startTime: startTime,
         endTime: endTime,
@@ -22,7 +23,6 @@
         return isoDateTime.split("T")[0];
     };
 
-
     var viewer = new Cesium.Viewer("main-container", {
         clock: clock,
         baseLayerPicker: false, // Only showing one layer in this demo,
@@ -33,6 +33,7 @@
     });
     viewer.timeline.zoomTo(startTime, endTime);
     viewer.scene.globe.baseColor = Cesium.Color.BLACK;
+    viewer.camera.frustum.far = 10000000000.0; //10M KM
 
     backgroundLayerProvider = provider.getProvider(
         "VIIRS_SNPP_CorrectedReflectance_TrueColor",
@@ -123,12 +124,6 @@
             callbackOn();
         }
     }
-
-    $('#select-date-button').click(function () {
-
-    });
-
-
     $('.datepicker').datepicker();
 
 
