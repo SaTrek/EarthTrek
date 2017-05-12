@@ -4663,5 +4663,26 @@
       {
       }
     ]
+  },
+  {
+    "id": "dscovr",
+    "name": "DSCOVR",
+    "image": "dscovr.png",
+    "type": "SATELLITE",
+    "status": "ACTIVE",
+    "description": "The Deep Space Climate Observatory, or DSCOVR, will maintain the nation's real-time solar wind monitoring capabilitieswhich are critical to the accuracy and lead time of NOAA's space weather alerts and forecasts. Without timely and accurate warnings, space weather events like the geomagnetic storms caused by changes in solar wind have the potential to disrupt nearly every major public infrastructure system, including power grids, telecommunications, aviation and GPS.",
+    "orbitalData":  {
+      "perigee": "",
+      "apogee": "",
+      "inclination": "37",
+      "period": ""
+    },
+    "mass": "570",
+    "launchDate": "2015-02-11",
+    "instruments": [
+      {
+        "name": "EPIC"
+      }
+    ]
   }
 ]
