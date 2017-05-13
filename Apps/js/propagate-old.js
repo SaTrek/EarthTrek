@@ -95,7 +95,6 @@ function calculatePositionSamples(tleLine1, tleLine2, startTime, duration, inter
 }
 
 function createEntity(satelliteInfo, start) {
-  //  viewer.entities.removeAll();
 
     //var position = Cesium.Cartesian3.fromDegrees(307.56125, -47.846016, height);
     //  var heading = Cesium.Math.toRadians(135);
@@ -112,10 +111,12 @@ function createEntity(satelliteInfo, start) {
         minimumBlue : 0.45,
         alpha : 1.0
     });
-    if (satelliteInfo.orbitalData == undefined) {
+
+    if (satelliteInfo.tle == undefined) {
         return false;
     }
     var positions = calculatePositionSamples(satelliteInfo.tle.line1, satelliteInfo.tle.line2, start, duration, frequency);
+
 
     var url =  'models/' + satelliteInfo.id + '.glb';
      var entity = viewer.entities.add({
@@ -151,25 +152,77 @@ function createEntity(satelliteInfo, start) {
             style: Cesium.LabelStyle.FILL_AND_OUTLINE
         },
          billboard: {
-             image  : 'images/satellites/' + satelliteInfo.id + '.png',
+             image  : 'images/satellites/' + satelliteInfo.image,
              distanceDisplayCondition: new Cesium.DistanceDisplayCondition(50000.1, 150000000.0),
              scale: 0.3
          },
         properties: satelliteInfo
     });
+
+    var timeInterval = new Cesium.TimeInterval({
+        start : Cesium.JulianDate.fromIso8601(satelliteInfo.launchDate),
+     //   stop : satelliteInfo.endDate == null ? Cesium.JulianDate.fromIso8601(satelliteInfo.endDate) : null,
+        stop : Cesium.JulianDate.fromIso8601("2099-01-01"),
+        isStartIncluded : true,
+        isStopIncluded : false
+    });
+
+    if (satelliteInfo.endDate != null ) {
+        timeInterval.stop = Cesium.JulianDate.fromIso8601(satelliteInfo.endDate);
+        timeInterval.isStopIncluded = true;
+    }
+    var intervalCollection = new Cesium.TimeIntervalCollection();
+    intervalCollection.addInterval(timeInterval);
+    entity.availability = intervalCollection;
     entities.push(entity);
 }
 
-createEntities = function(time) {
+createEntities = function() {
     $.getJSON( "data/instrumentsFULL.json", function( satellites ) {
+        var toolbarContainer = $("#left-toolbar");
         satellites.forEach(function( satelliteInfo ) {
             var entity = viewer.entities.getById(satelliteInfo.id);
-            if (entity == null && satelliteInfo.status == 'ACTIVE' && time >= satelliteInfo.launchDate && (satelliteInfo.endDate == null || time < satelliteInfo.endDate) ) {
-                createEntity(satelliteInfo, start);
+            if (entity == null && satelliteInfo.status == 'ACTIVE' ) {
+                createEntity(satelliteInfo, clock.currentTime);
+                /**
+                 * TEMPORAL
+                 */
+                addSatelliteToToolbar(satelliteInfo, toolbarContainer);
             }
+        });
+
+        $(toolbarContainer).slick({
+            slidesToShow: 3,
+            slidesToScroll: 1,
+            variableWidth: true
         });
     });
 }
+
+addSatelliteToToolbar = function (sat, toolbarContainer) {
+    var satelliteContainer = document.createElement('div');
+
+    var satelliteImage = document.createElement('img');
+    $(satelliteImage).attr("src", 'images/satellites/' + sat.image)
+    $(satelliteContainer).append(satelliteImage);
+    $(satelliteContainer).click(function() {
+        var selected = gotoSatellite(viewer.entities.getById(sat.id.toLowerCase()));
+        if (selected == true) {
+            $(".satellite-selected").removeClass("satellite-selected");
+            $(satelliteContainer).addClass("satellite-selected");
+        }
+    });
+    $(satelliteContainer).popover({
+        trigger: 'hover',
+        title: sat.name,
+        content: sat.description,
+        placement: 'bottom',
+        container: "#left-toolbar"
+    });
+    $(toolbarContainer).append(satelliteContainer);
+}
+
+createEntities();
 
 updateSatellites = function () {
     var duration = 7200;
@@ -182,17 +235,18 @@ updateSatellites = function () {
         /**
          * CREATE
          */
-        createEntities(time);
+        //createEntities(time);
 
         /**
          * REMOVE
          */
-        entities.forEach(function( entity ) {
+      /*  entities.forEach(function( entity ) {
             if (time < entity.properties.launchDate || time >= entity.properties.endDate) {
                 console.log("Removió");
-                viewer.entities.remove(entity);
+                entity.
+            //    viewer.entities.remove(entity);
             }
-        });
+        });*/
     }
 
     if (Cesium.JulianDate.secondsDifference(clock.currentTime, start) > duration ||
