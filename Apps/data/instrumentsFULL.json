@@ -4634,13 +4634,19 @@
     "name": "CALIPSO",
     "image": "calipso.png",
     "type": "SATELLITE",
-    "status": "INACTIVE",
+    "status": "ACTIVE",
+    "agency": "NASA",
+    "program": "EOS",
     "description": "The Cloud-Aerosol Lidar and Infrared Pathfinder Satellite Observation (CALIPSO) satellite provides new insight into the role that clouds and atmospheric aerosols (airborne particles) play in regulating Earth's weather, climate, and air quality. CALIPSO combines an active lidar instrument with passive infrared and visible imagers to probe the vertical structure and properties of thin clouds and aerosols over the globe. CALIPSO was launched on April 28, 2006 with the cloud profiling radar system on the CloudSat satellite.",
     "orbitalData":  {
       "perigee": "702",
       "apogee": "703",
       "inclination": "98.2",
       "period": "98.8"
+    },
+    "tle":  {
+      "line1": "1 29108U 06016B   17132.92916337  .00000089  00000-0  29786-4 0  9990",
+      "line2": "2 29108  98.2018  76.9839 0001419  82.5969 277.5391 14.57109312587205"
     },
     "mass": "587",
     "launchDate": "2006-04-28",
@@ -4655,6 +4661,8 @@
     "name": "Jason-2",
     "image": "jason2.png",
     "type": "SATELLITE",
+    "agency": "NASA",
+    "program": "EOS",
     "status": "INACTIVE",
     "orbitalData":  {
       "perigee": "1,332",
@@ -4673,13 +4681,19 @@
     "name": "CloudSat",
     "image": "cloudsat.png",
     "type": "SATELLITE",
-    "status": "INACTIVE",
+    "status": "ACTIVE",
+    "agency": "NASA",
+    "program": "EOS",
     "description": "NASA launched the CloudSat and the Cloud-Aerosol Lidar and Infrared Pathfinder Satellite Observation (CALIPSO) spacecraft to study the role that clouds and aerosols play in regulating Earth's weather, climate and air quality. Launch occurred on April 28, 2006, from Vandenberg Air Force Base, Calif., aboard a Boeing Delta II launch vehicle. The satellites launched into a 705-kilometer (438-mile) circular sun-synchronous polar orbit, and fly in orbital formation as part of the 'A-Train' constellation of three other Earth Observing satellites including Aqua, Aura and Centre National d'Etudes Spatiales' (CNES) PARASOL.",
     "orbitalData":  {
       "perigee": "702",
       "apogee": "703",
       "inclination": "98.2",
       "period": "98.8"
+    },
+    "tle":  {
+      "line1": "1 29107U 06016A   17132.93034283  .00000030  00000-0  16625-4 0  9995",
+      "line2": "2 29107  98.2010  77.4323 0001634 110.7949 249.3425 14.57105626587132"
     },
     "mass": "848",
     "launchDate": "2006-04-28",
@@ -4695,6 +4709,8 @@
     "image": "dscovr.png",
     "type": "SATELLITE",
     "status": "INACTIVE",
+    "agency": "NASA",
+    "program": "EOS",
     "description": "The Deep Space Climate Observatory, or DSCOVR, will maintain the nation's real-time solar wind monitoring capabilitieswhich are critical to the accuracy and lead time of NOAA's space weather alerts and forecasts. Without timely and accurate warnings, space weather events like the geomagnetic storms caused by changes in solar wind have the potential to disrupt nearly every major public infrastructure system, including power grids, telecommunications, aviation and GPS.",
     "orbitalData":  {
       "perigee": "",
@@ -4714,9 +4730,9 @@
   {
     "id": "hubble",
     "name": "Hubble (HST)",
-    "image": "dscovr.png",
+    "image": "hubble.png",
     "type": "SPACE_TELESCOPE",
-    "status": "INACTIVE",
+    "status": "ACTIVE",
     "description": "",
     "orbitalData":  {
       "perigee": "",
