@@ -58,19 +58,6 @@ getPosition = function(tleLine1, tleLine2, date) {
 
 var entities = [];
 var start = clock.currentTime;
-/*
-$.getJSON( "data/instrumentsFULL.json", function( satellites ) {
-    satellites.forEach(function( satelliteInfo ) {
-        if (satelliteInfo.status == 'ACTIVE') {
-            createEntity(satelliteInfo, start);
-        }
-    });
-});*/
-/*
-var tleLine1 = '1 20580U 90037B   17131.72607639  .00000480  00000-0  18628-4 0  9998',
-    tleLine2 = '2 20580  28.4695 248.4464 0002839 136.5924  81.4422 15.08759509284683';
-
-createModel('hubble', 'Hubble', 'models/hubble.glb', tleLine1, tleLine2, Cesium.Color.GREY);*/
 
 function calculatePositionSamples(tleLine1, tleLine2, startTime, duration, intervalCount) {
     var property = new Cesium.SampledPositionProperty();
@@ -139,12 +126,13 @@ function createEntity(satelliteInfo, start) {
         model : {
             uri : url,
             minimumPixelSize : 512,
-            maximumScale : 1
+            maximumScale : 1,
+            distanceDisplayCondition: new Cesium.DistanceDisplayCondition(0.0, 50000.0)
         },
         path: {
-            resolution: 2,
+            resolution: 5,
             material: new Cesium.PolylineGlowMaterialProperty({
-                glowPower: 0.1,
+                glowPower: 0.2,
                 color: color
             }),
             width: 7,
@@ -152,8 +140,21 @@ function createEntity(satelliteInfo, start) {
             leadTime: 0
         },
         label: {
-            show: true, text: satelliteInfo.name
+            show: true,
+            text: satelliteInfo.name,
+            scale: 0.7,
+          //  scaleByDistance: new Cesium.NearFarScalar(0, 1.5, 8.0e6, 0.5),
+            fillColor : Cesium.Color.WHITE,
+            eyeOffset: new Cesium.Cartesian3(0.0, 5.0, 100.0),
+            outlineColor: color,
+            outlineWidth: 3,
+            style: Cesium.LabelStyle.FILL_AND_OUTLINE
         },
+         billboard: {
+             image  : 'images/satellites/' + satelliteInfo.id + '.png',
+             distanceDisplayCondition: new Cesium.DistanceDisplayCondition(50000.1, 150000000.0),
+             scale: 0.3
+         },
         properties: satelliteInfo
     });
     entities.push(entity);
