@@ -104,7 +104,6 @@
             satellites.forEach(function( sat ) {
                 var entity = viewer.entities.getById(sat.id.toLowerCase());
                 if (entity != undefined) {
-                    console.log(entity)
                     entity.properties = sat;
                     if (sat.name != undefined) {
                         entity.label.text = sat.name

@@ -57,38 +57,44 @@ getPosition = function(tleLine1, tleLine2, date) {
 }
 
 var entities = [];
-var tleLine1 = '1 25544U 98067A   17132.15166687  .00016717  00000-0  10270-3 0  9023',
-    tleLine2 = '2 25544  51.6405 217.9287 0004884 149.5686 210.5751 15.54020107 16140';
-createModel('iss', 'ISS', 'models/iss.glb', tleLine1, tleLine2, Cesium.Color.RED);
-
-
-var tleLine1 = '1 27424U 02022A   17131.91562854  .00000110  00000-0  34384-4 0  9996',
-    tleLine2 = '2 27424  98.2026  73.7533 0000860 153.0401 299.1971 14.57109646798942';
-
-createModel('aqua', 'Aqua', 'models/aqua.glb', tleLine1, tleLine2, Cesium.Color.GREEN);
-
-var tleLine1 = '1 25994U 99068A   17131.81002569  .00000307  00000-0  78120-4 0  9997',
-    tleLine2 = '2 25994  98.2120 207.3714 0001359 116.9424 243.1898 14.57112580925377';
-
-createModel('terra', 'Terra', 'models/aqua.glb', tleLine1, tleLine2, Cesium.Color.BLUE);
-
-
-var tleLine1 = '1 37673U 11024A   11161.63936538 -.00000050  00000-0  00000+0 0    16',
-    tleLine2 = '2 37673  98.0125 168.6228 0002456 212.6674 147.5382 14.72830191    07';
-
-createModel('sacd', 'SAC-D', 'models/sacd.glb', tleLine1, tleLine2, Cesium.Color.YELLOW);
-
+var start = clock.currentTime;
+/*
+$.getJSON( "data/instrumentsFULL.json", function( satellites ) {
+    satellites.forEach(function( satelliteInfo ) {
+        if (satelliteInfo.status == 'ACTIVE') {
+            createEntity(satelliteInfo, start);
+        }
+    });
+});*/
+/*
 var tleLine1 = '1 20580U 90037B   17131.72607639  .00000480  00000-0  18628-4 0  9998',
     tleLine2 = '2 20580  28.4695 248.4464 0002839 136.5924  81.4422 15.08759509284683';
 
-createModel('hubble', 'Hubble', 'models/hubble.glb', tleLine1, tleLine2, Cesium.Color.GREY);
-setSatellitesProperties();
+createModel('hubble', 'Hubble', 'models/hubble.glb', tleLine1, tleLine2, Cesium.Color.GREY);*/
 
 function calculatePositionSamples(tleLine1, tleLine2, startTime, duration, intervalCount) {
     var property = new Cesium.SampledPositionProperty();
-    var deltaStep = duration / (intervalCount > 0 ? intervalCount : 1);
 
-    var date = new Date();
+
+    var previousDuration = duration;
+    var deltaStep = previousDuration / (intervalCount > 0 ? intervalCount : 1);
+    var previousTime = new Date(Cesium.JulianDate.toIso8601(startTime));
+    previousTime.setSeconds(previousTime.getSeconds() - previousDuration);
+    var previousTimeJulian = Cesium.JulianDate.fromDate(previousTime);
+
+    for (var since = 0; since <= previousDuration; since += deltaStep) {
+        previousTime.setSeconds(previousTime.getSeconds() + deltaStep)
+        var newPosition = getPosition(tleLine1, tleLine2, previousTime);
+        property.addSample(
+            Cesium.JulianDate.addSeconds(previousTimeJulian, since, new Cesium.JulianDate()),
+            Cesium.Cartesian3.fromDegrees(newPosition.longitude, newPosition.latitude, newPosition.height)
+
+        );
+    }
+
+
+    var deltaStep = duration / (intervalCount > 0 ? intervalCount : 1);
+    var date = new Date(Cesium.JulianDate.toIso8601(startTime));
     for (var since = 0; since <= duration; since += deltaStep) {
         date.setSeconds(date.getSeconds() + deltaStep)
         var newPosition = getPosition(tleLine1, tleLine2, date);
@@ -101,7 +107,7 @@ function calculatePositionSamples(tleLine1, tleLine2, startTime, duration, inter
     return property;
 }
 
-function createModel(id, name, url, tleLine1, tleLine2, color) {
+function createEntity(satelliteInfo, start) {
   //  viewer.entities.removeAll();
 
     //var position = Cesium.Cartesian3.fromDegrees(307.56125, -47.846016, height);
@@ -111,26 +117,23 @@ function createModel(id, name, url, tleLine1, tleLine2, color) {
     //  var hpr = new Cesium.HeadingPitchRoll(heading, pitch, roll);
     // var orientation = Cesium.Transforms.headingPitchRollQuaternion(position, hpr);
 
-    var duration = 6400; //seconds
+    var duration = 7200; //seconds
     var frequency = 50; //hertz
+    var color = Cesium.Color.fromRandom({
+        minimumRed : 0.35,
+        minimumGreen : 0.15,
+        minimumBlue : 0.45,
+        alpha : 1.0
+    });
+    if (satelliteInfo.orbitalData == undefined) {
+        return false;
+    }
+    var positions = calculatePositionSamples(satelliteInfo.tle.line1, satelliteInfo.tle.line2, start, duration, frequency);
 
-    var start = Cesium.JulianDate.fromDate(new Date());
-    var stop = Cesium.JulianDate.addSeconds(start, duration, new Cesium.JulianDate());
-    var positions = calculatePositionSamples(tleLine1, tleLine2, start, duration, frequency);
-
- //   var point = getPosition(tleLine1, tleLine2, new Date())
-
-
-
-  //  lastDate =  new Date(2017, 4, 12, 14, 40, 0);
-//    var finalPoint = getPosition(tleLine1, tleLine2, lastDate)
-
-
-    //  var positions = calculatePositionSamplesOriginal(point, finalPoint, start, duration, frequency);
-
+    var url =  'models/' + satelliteInfo.id + '.glb';
      var entity = viewer.entities.add({
-        id: id,
-        name : name,
+        id: satelliteInfo.id,
+        name : satelliteInfo.name,
         position : positions,
         orientation: new Cesium.VelocityOrientationProperty(positions),
         model : {
@@ -149,17 +152,61 @@ function createModel(id, name, url, tleLine1, tleLine2, color) {
             leadTime: 0
         },
         label: {
-            show: true, text: name
-        }
+            show: true, text: satelliteInfo.name
+        },
+        properties: satelliteInfo
     });
     entities.push(entity);
- //  viewer.trackedEntity = entity;
+}
+
+createEntities = function(time) {
+    $.getJSON( "data/instrumentsFULL.json", function( satellites ) {
+        satellites.forEach(function( satelliteInfo ) {
+            var entity = viewer.entities.getById(satelliteInfo.id);
+            if (entity == null && satelliteInfo.status == 'ACTIVE' && time >= satelliteInfo.launchDate && (satelliteInfo.endDate == null || time < satelliteInfo.endDate) ) {
+                createEntity(satelliteInfo, start);
+            }
+        });
+    });
 }
 
 updateSatellites = function () {
-    entities.forEach(function( entity ) {
+    var duration = 7200;
 
-    });
+    var isoDateTime = clock.currentTime.toString();
+    var time = isoDate(isoDateTime);
+    if (time !== previousTime) {
+        previousTime = time;
+
+        /**
+         * CREATE
+         */
+        createEntities(time);
+
+        /**
+         * REMOVE
+         */
+        entities.forEach(function( entity ) {
+            if (time < entity.properties.launchDate || time >= entity.properties.endDate) {
+                console.log("Removió");
+                viewer.entities.remove(entity);
+            }
+        });
+    }
+
+    if (Cesium.JulianDate.secondsDifference(clock.currentTime, start) > duration ||
+        Cesium.JulianDate.secondsDifference(start, clock.currentTime) > duration ) {
+        start = clock.currentTime;
+        entities.forEach(function( entity ) {
+            var duration = 7200; //seconds
+            var frequency = 50; //hertz
+
+            var newStart = clock.currentTime;
+            var positions = calculatePositionSamples(entity.properties.getValue().tle.line1, entity.properties.getValue().tle.line2, newStart, duration, frequency);
+            entity.position = positions;
+            console.log("PROPAGO")
+        });
+    }
 }
 
 

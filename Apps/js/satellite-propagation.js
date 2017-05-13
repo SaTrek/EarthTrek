@@ -1,9 +1,9 @@
 /**
- * EarthTrek - NASA Space Apps 2017
- * @team SATrek
- * @author Alejandro Sanchez
- * @email alejandro.sanchez.trek@gmail.com)
- * @date 12 MAY 2017.
+ * @class Satellite Propagation
+ * @module EarthTrek
+ * @author SATrek
+ * @author Alejandro Sanchez <alejandro.sanchez.trek@gmail.com>
+ * @description EarthTrek - NASA Space Apps 2017 12 MAY 2017.
  */
 require("amd-loader");
 
@@ -16,9 +16,9 @@ define([
 
     /**
      * Propagate Satellite
-     * @param tleLine1
-     * @param tleLine2
-     * @param date
+     * @param string tleLine1
+     * @param string tleLine2
+     * @param Date date
      * @returns {*}
      */
     satellitePropagation.propagate = function(tleLine1, tleLine2, date) {
@@ -29,9 +29,9 @@ define([
 
     /**
      * Get Velocity in KM
-     * @param tleLine1
-     * @param tleLine2
-     * @param date
+     * @param string tleLine1
+     * @param stringtleLine2
+     * @param Date date
      * @returns {number}
      */
     satellitePropagation.getVelocity = function(tleLine1, tleLine2, date) {
@@ -43,9 +43,9 @@ define([
 
     /**
      * Get Position Degree Coordinates (longitude, latitude, height)
-     * @param tleLine1
-     * @param tleLine2
-     * @param date
+     * @param string tleLine1
+     * @param string tleLine2
+     * @param Date date
      * @returns {*}
      */
     satellitePropagation.getPosition = function(tleLine1, tleLine2, date) {
@@ -76,4 +76,4 @@ define([
     }
 
 });
-module.exports = satellitePropagation
+module.exports = satellitePropagation;
