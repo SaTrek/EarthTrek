@@ -17,14 +17,14 @@ describe('Propagate Satellite', function(){
 
         satellitePos.longitude.should.be.eql(-153.59059022371355);
         satellitePos.latitude.should.be.eql(-37.83622435319241);
-        satellitePos.height.should.be.eql(410141.2875273854);
+        satellitePos.height.should.be.eql(416649.42277589487);
 
         /** Check Date 2017-05-13 00:00:00*/
         var satellitePos = satellitePropagation.getPosition(tleLine1, tleLine2, new Date(Date.UTC(2017, 4, 13, 0, 0, 0)));
 
-        satellitePos.longitude.should.be.eql(-27.504535445577233);
-        satellitePos.latitude.should.be.eql(36.4127912869102);
-        satellitePos.height.should.be.eql(408469.7805441565);
+        satellitePos.longitude.should.be.eql(41.29259346532467);
+        satellitePos.latitude.should.be.eql(47.303016437321375);
+        satellitePos.height.should.be.eql(409636.11279614177);
         done();
     });
 
@@ -37,9 +37,9 @@ describe('Propagate Satellite', function(){
         /** Check Date 2017-05-12 00:00:00*/
         var satellitePos = satellitePropagation.getPosition(tleLine1, tleLine2, new Date(Date.UTC(2017, 4, 12, 0, 0, 0)));
 
-        satellitePos.longitude.should.be.eql(143.44707922326015);
-        satellitePos.latitude.should.be.eql(-23.954852955824443);
-        satellitePos.height.should.be.eql(409991.05169310863);
+        satellitePos.longitude.should.be.eql(-153.56277908628084);
+        satellitePos.latitude.should.be.eql(-37.8542342346344);
+        satellitePos.height.should.be.eql(416599.21455002675);
 
         /** Check Date 2017-05-13 00:00:00*/
         /** ISS TLE EPOCH: 17133.30919458*/
@@ -47,9 +47,9 @@ describe('Propagate Satellite', function(){
             tleLine2 = '2 25544  51.6386 212.1565 0005483 154.1122 206.0305 15.54010446 16327';
         var satellitePos = satellitePropagation.getPosition(tleLine1, tleLine2, new Date(Date.UTC(2017, 4, 13, 0, 0, 0)));
 
-        satellitePos.longitude.should.be.eql(-27.576061043476614);
-        satellitePos.latitude.should.be.eql(36.36310186670732);
-        satellitePos.height.should.be.eql(408652.2234890026);
+        satellitePos.longitude.should.be.eql(41.20648535868128);
+        satellitePos.latitude.should.be.eql(47.27483461674835);
+        satellitePos.height.should.be.eql(409675.6210569192);
         done();
     });
 
