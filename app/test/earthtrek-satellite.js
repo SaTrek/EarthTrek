@@ -26,7 +26,6 @@ describe('EarthTrek Satellite', function(){
         positions.times.should.have.size(intervals + 1);
         positions.values.should.have.size(intervals + 1);
 
-  //      console.log(positions.times)
     //    positions.times[0].dayNumber.should.not.be.eql(NaN);
         done();
     });

@@ -1,8 +1,13 @@
 /**
- * Created by Alex on 01/05/2017.
+ * @class GIBS Provider
+ * @module EarthTrek
+ * @author SATrek
+ * @author Alejandro Sanchez <alejandro.sanchez.trek@gmail.com>
+ * @description EarthTrek - NASA Space Apps 2017 01 MAY 2017.
  */
 
 var provider = provider || {};
+
 provider.getProvider = function(layer, time, format, tileMatrixSetID, resolution) {
     var isoTime = "TIME=" + isoDate(time);
     var provider = new Cesium.WebMapTileServiceImageryProvider({

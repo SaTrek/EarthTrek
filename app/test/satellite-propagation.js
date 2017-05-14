@@ -1,5 +1,9 @@
 /**
- * Created by AlexSnipes on 5/12/17.
+ * @class SatellitePropagatinTest
+ * @module EarthTrek
+ * @author SATrek
+ * @author Alejandro Sanchez <alejandro.sanchez.trek@gmail.com>
+ * @description EarthTrek - NASA Space Apps 2017 12 MAY 2017.
  */
 var assert = require('assert');
 var should = require('should');

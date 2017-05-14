@@ -95,20 +95,6 @@
 
     viewer.clock.onTick.addEventListener(onClockUpdate);
 
-    function setSatellitesProperties() {
-        $.getJSON( "data/instrumentsFULL.json", function( satellites ) {
-            satellites.forEach(function( sat ) {
-                var entity = viewer.entities.getById(sat.id.toLowerCase());
-                if (entity != undefined) {
-                    entity.properties = sat;
-                    if (sat.name != undefined) {
-                        entity.label.text = sat.name
-                    }
-                }
-            });
-        });
-    }
-
     function toggle(div, callbackOn, callbackOff) {
         if (div.is(":visible")) {
             div.hide();
@@ -129,44 +115,6 @@
 
     $("#main-container").append(earthTrekToolbar.create("left-toolbar", function(toolbarContainer) {
 
-        /*$.getJSON( "data/instrumentsFULL.json", function( satellites ) {
-            satellites.forEach(function( sat ) {
-                if (sat.status == "ACTIVE") {
-
-                    var satelliteContainer = document.createElement('div');
-
-                    var satelliteImage = document.createElement('img');
-                    $(satelliteImage).attr("src", 'images/satellites/' + sat.image)
-                   // console.log(time)
-                    if (sat.endDate) {
-                      //  $(satelliteImage).addClass('satellite-disabled');
-                    }
-                    $(satelliteContainer).append(satelliteImage);
-                    $(satelliteContainer).click(function() {
-                        var selected = gotoSatellite(viewer.entities.getById(sat.id.toLowerCase()));
-                        if (selected == true) {
-                            $(".satellite-selected").removeClass("satellite-selected");
-                            $(satelliteContainer).addClass("satellite-selected");
-                        }
-                    });
-                    $(satelliteContainer).popover({
-                        trigger: 'hover',
-                        title: sat.name,
-                        content: sat.description,
-                        placement: 'bottom',
-                        container: "#left-toolbar"
-                    });
-                    $(toolbarContainer).append(satelliteContainer);
-                }
-
-            });
-
-            $(toolbarContainer).slick({
-                slidesToShow: 3,
-                slidesToScroll: 1,
-                variableWidth: true
-            });
-        });*/
     }));
 
     /**

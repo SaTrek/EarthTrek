@@ -2798,13 +2798,17 @@
     "name": "Aura",
     "image": "aura.png",
     "description": "Aura is the third in the series of large Earth Observing System platforms to be flown by NASA with internationa contributions. Aura provides an unprecedented view of the global Earth system. The Aura mission consists of four instruments on a common spacecraft (the same bus design as for Aqua) designed to provide the essential services for the instruments.",
-    "status": "INACTIVE",
+    "status": "ACTIVE",
     "orbitalData":  {
       "perigee": "708",
       "apogee": "710",
       "inclination": "98.22",
       "eccentricity": "0.0001111",
       "period": "98.83"
+    },
+    "tle":  {
+      "line1": "1 28376U 04026A   17132.93367026  .00000107  00000-0  33854-4 0  9993",
+      "line2": "2 28376  98.2016  76.9304 0001302 106.4937 253.6405 14.57110359682141"
     },
     "mass": "1765",
     "launchDate": "2004-07-15",
@@ -4748,6 +4752,29 @@
     "launchDate": "1990-04-24",
     "endDate": null,
     "instruments": [
+    ]
+  },
+  {
+    "id": "oco2",
+    "name": "OCO-2",
+    "image": "oco2.png",
+    "type": "SATELLITE",
+    "status": "ACTIVE",
+    "agency": "NASA",
+    "program": "EOS",
+    "description": "Orbiting Carbon Observatory (OCO)-2 will be NASA’s first dedicated Earth remote sensing satellite to study atmospheric carbon dioxide from Space. OCO-2 will be collecting space-based global measurements of atmospheric CO2 with the precision, resolution, and coverage needed to characterize sources and sinks on regional scales. OCO-2 will also be able to quantify CO2 variability over the seasonal cycles year after year.",
+    "orbitalData":  {
+    },
+    "tle":  {
+      "line1": "1 40059U 14035A   17132.85453793  .00000034  00000-0  17621-4 0  9997",
+      "line2": "2 40059  98.2024  74.7782 0001800  87.9284 272.2121 14.57111883152258"
+    },
+    "mass": "409",
+    "launchDate": "2014-07-02",
+    "endDate": null,
+    "instruments": [
+      {
+      }
     ]
   }
 ]
