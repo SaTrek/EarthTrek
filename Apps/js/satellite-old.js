@@ -1,4 +1,3 @@
-_.templateSettings.interpolate = /\{\{(.+?)\}\}/g
 var orbitalDataTemplate = _.template($('#tmp-orbital-data').html())
 //var satellite = satellite || {};
 
