@@ -10,8 +10,13 @@ var earthTrekSatellite = earthTrekSatellite || {};
 
 define([
     'cesium', 'satellite-propagation'
-], function(Cesiuma, propagationa) {
+], function() {
 
+    /*
+    function EarthTrekSatellite(entity) {
+        this.entity = entity;
+    }
+*/
     earthTrekSatellite.calculatePosition = function(tleLine1, tleLine2, startTime, date, deltaStep, since) {
         date.setSeconds(date.getSeconds() + deltaStep)
         var newPosition = satellitePropagation.getPosition(tleLine1, tleLine2, date);
@@ -48,7 +53,7 @@ define([
         );
 
         var currentDate = new Date(Cesium.JulianDate.toIso8601(startTime));
-        var latestPositions  = this.calculatePositions(tleLine1, tleLine2, startTime, duration, frequency. currentDate);
+        var latestPositions  = this.calculatePositions(tleLine1, tleLine2, startTime, duration, frequency, currentDate);
         property.addSamples(
             latestPositions.times,
             latestPositions.values

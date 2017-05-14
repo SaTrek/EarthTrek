@@ -5,27 +5,72 @@
  * @author Alejandro Sanchez <alejandro.sanchez.trek@gmail.com>
  * @description EarthTrek - NASA Space Apps 2017 23 APR 2017.
  */
+
+
 define([
     'cesium',
-    'earthtrek-satellite'
-], function (Cesiuma, earthTrekSatellitea) {
+    'earthtrek-satellite',
+    'view/satellite-toolbar-view',
+    'view/satellite-panel-view'
+], function (ce, sat, SatelliteToolbarView, SatellitePanelView) {
+    'use strict';
 
     /**
-     * @param startTime
-     * @param endTime
-     * @param initialTime
+     * @param options
      * @constructor
      */
-    function EarthTrek(startTime, endTime, initialTime) {
+    function EarthTrek(options) {
+        options = options || {};
+        this.options = options;
+
+        if (!options.mainContainer) {
+            throw new Error('Invalid Main Container');
+        }
+
+        if (!options.startTime) {
+            throw new Error('Invalid Start Time');
+        }
+
+        if (!options.endTime) {
+            throw new Error('Invalid End Time');
+        }
+        if (!options.initialTime) {
+            this.initialTime = Cesium.JulianDate.fromDate(
+                new Date(options.endTime));
+        }
+
+        if (!options.orbitDuration) {
+            options.orbitDuration = 7200; //seconds
+        }
+
+        if (!options.frequency) {
+            options.frequency = 50; //intervals
+        }
+
+        if (!options.multiplier) {
+            options.multiplier = 10; //intervals
+        }
+
+        if (!options.maxDistanceCamera) {
+            options.maxDistanceCamera = 10000000000; //10,000,000,000 meters
+        }
+
         this.startTime = Cesium.JulianDate.fromDate(
-            new Date(startTime));
+            new Date(options.startTime));
         this.endTime = Cesium.JulianDate.fromDate(
-            new Date(endTime));
+            new Date(options.endTime));
         this.initialTime = Cesium.JulianDate.fromDate(
-            new Date(initialTime));
+            new Date(options.initialTime));
 
         this.previousTime = this.initialTime;
-        this.defaultOrbitDuration = 7200;
+        this.lastPropagationTime = this.initialTime;
+
+        this.mainContainerId = options.mainContainer;
+        this.orbitDuration = options.orbitDuration;
+        this.frequency = options.frequency;
+        this.multiplier = options.multiplier;
+        this.maxDistanceCamera = options.maxDistanceCamera;
+        this.entities = [];
     }
 
     /**
@@ -38,7 +83,7 @@ define([
                 startTime: this.startTime,
                 endTime: this.endTime,
                 currentTime: this.initialTime,
-                multiplier: 10,
+                multiplier: this.multiplier,
                 clockStep: Cesium.ClockStep.SYSTEM_CLOCK_MULTIPLIER
             });
         }
@@ -49,11 +94,11 @@ define([
      * @param mainContainer
      * @returns {Cesium.Viewer|*}
      */
-    EarthTrek.prototype.createViewer = function (mainContainer, maxDistanceCamera) {
+    EarthTrek.prototype.createViewer = function () {
         if (this.viewer === undefined) {
-            this.viewer = new Cesium.Viewer(mainContainer, {
+            this.viewer = new Cesium.Viewer(this.mainContainerId, {
                 clock: this.getClock(),
-                baseLayerPicker: false, // Only showing one layer in this demo,
+                baseLayerPicker: false,
                 requestWaterMask: true,
                 automaticallyTrackDataSourceClocks: false,
                 navigationHelpButton: false,
@@ -61,53 +106,74 @@ define([
             });
 
             this.getClock().onTick.addEventListener(this.onClockUpdate, this);
+            this.viewer.timeline.zoomTo(this.startTime, this.endTime);
+            this.viewer.camera.frustum.far = this.maxDistanceCamera;
         }
-        this.viewer.camera.frustum.far = maxDistanceCamera;
         return this.viewer;
     }
 
-    EarthTrek.prototype.isoDate = function(isoDateTime) {
+
+    /*EarthTrek.prototype.updateEntities = function () {
+
+    }*/
+
+    EarthTrek.prototype.init = function () {
+
+        var that = this;
+
+        var satellitePanel = new SatellitePanelView(this.viewer, 'satellite-panel');
+        var handler = new Cesium.ScreenSpaceEventHandler(this.viewer.scene.canvas);
+        handler.setInputAction(function (movement) {
+            var pick = that.viewer.scene.pick(movement.position);
+            if (Cesium.defined(pick)) {
+                var entity = that.viewer.entities.getById(pick.id._id);
+                if (entity != undefined) {
+                    satellitePanel.show(entity);
+                }
+            } else  {
+                that.viewer.trackedEntity = undefined;
+                satellitePanel.hide();
+            }
+        }, Cesium.ScreenSpaceEventType.LEFT_CLICK);
+
+        var satelliteToolbar = new SatelliteToolbarView(this.viewer, 'left-toolbar', satellitePanel);
+        $.getJSON("data/instrumentsFULL.json", function (satellites) {
+            satellites.forEach(function (satelliteData) {
+                var entity = that.viewer.entities.getById(satelliteData.id);
+                if (entity == null && satelliteData.status == 'ACTIVE') {
+                    entity = that.createEntity(satelliteData, that.clock.currentTime);
+                    that.entities.push(entity);
+                    satelliteToolbar.addSatellite(satelliteData, that.goToEntity);
+                }
+            })
+            satelliteToolbar.render();
+        });
+    }
+
+    EarthTrek.prototype.isoDate = function (isoDateTime) {
         return isoDateTime.split("T")[0];
     };
 
     EarthTrek.prototype.onClockUpdate = function (clock) {
         var isoDateTime = clock.currentTime.toString();
         var time = this.isoDate(isoDateTime);
-         //updateSatellites();
-         if (time !== this.previousTime) {
+        this.updateEntities();
+        if (time !== this.previousTime) {
             this.previousTime = time;
-             //   updateLayers();
+            //   updateLayers();
 
-             if (this.viewer.selectedEntity != null) {
-             //     showSatelliteToolbar(this.viewer.selectedEntity);
-             }
-         }
+            if (this.viewer.selectedEntity != null) {
+                //     showSatelliteToolbar(this.viewer.selectedEntity);
+            }
+        }
     };
 
     /**
      *
-     * @param callback
+     * @param satelliteInfo
+     * @param startTime
+     * @returns {Cesium.Entity}
      */
-    EarthTrek.prototype.createEntities = function (satellites, callback) {
-        // var toolbarContainer = $("#left-toolbar");
-        var that = this;
-        satellites.forEach(function (satelliteInfo) {
-            var entity = that.viewer.entities.getById(satelliteInfo.id);
-            if (entity == null && satelliteInfo.status == 'ACTIVE') {
-                entity = that.createEntity(satelliteInfo, that.clock.currentTime);
-               // callback(satelliteInfo, entity);
-
-                // addSatelliteToToolbar(satelliteInfo, toolbarContainer);
-            }
-        });
-
-      /*  $(toolbarContainer).slick({
-            slidesToShow: 3,
-            slidesToScroll: 1,
-            variableWidth: true
-        });*/
-    }
-
     EarthTrek.prototype.createEntity = function (satelliteInfo, startTime) {
 
         //var position = Cesium.Cartesian3.fromDegrees(307.56125, -47.846016, height);
@@ -117,8 +183,6 @@ define([
         //  var hpr = new Cesium.HeadingPitchRoll(heading, pitch, roll);
         // var orientation = Cesium.Transforms.headingPitchRollQuaternion(position, hpr);
 
-        var duration = 7200; //seconds
-        var frequency = 50; //hertz
         var color = Cesium.Color.fromRandom({
             minimumRed: 0.35,
             minimumGreen: 0.15,
@@ -130,19 +194,18 @@ define([
             return false;
         }
 
-        var positions = earthTrekSatellite.getSamples(satelliteInfo.tle.line1, satelliteInfo.tle.line2, startTime, duration, frequency);
+        var positions = earthTrekSatellite.getSamples(satelliteInfo.tle.line1, satelliteInfo.tle.line2, startTime, this.orbitDuration, this.frequency);
 
-        var url = 'models/' + satelliteInfo.id + '.glb';
         var entity = this.viewer.entities.add({
             id: satelliteInfo.id,
             name: satelliteInfo.name,
             position: positions,
             orientation: new Cesium.VelocityOrientationProperty(positions),
             model: {
-                uri: url,
+                uri: 'models/' + satelliteInfo.id + '.glb',
                 minimumPixelSize: 512,
                 maximumScale: 1,
-                distanceDisplayCondition: new Cesium.DistanceDisplayCondition(0.0, 50000.0)
+                distanceDisplayCondition: new Cesium.DistanceDisplayCondition(0.0, 40000.0)
             },
             path: {
                 resolution: 5,
@@ -151,7 +214,7 @@ define([
                     color: color
                 }),
                 width: 7,
-                trailTime: duration,
+                trailTime: this.orbitDuration,
                 leadTime: 0
             },
             label: {
@@ -167,27 +230,67 @@ define([
             },
             billboard: {
                 image: 'images/satellites/' + satelliteInfo.image,
-                distanceDisplayCondition: new Cesium.DistanceDisplayCondition(50000.1, 150000000.0),
+                distanceDisplayCondition: new Cesium.DistanceDisplayCondition(40000.1, 150000000.0),
                 scale: 0.3
             },
             properties: satelliteInfo
         });
 
+        entity.availability = this.generateInterval(satelliteInfo.launchDate, satelliteInfo.endDate);
+        return entity;
+    }
+
+    /**
+     *
+     * @param launchDate
+     * @param endDate
+     * @returns {Cesium.TimeIntervalCollection}
+     */
+    EarthTrek.prototype.generateInterval = function (launchDate, endDate) {
         var timeInterval = new Cesium.TimeInterval({
-            start: Cesium.JulianDate.fromIso8601(satelliteInfo.launchDate),
-            stop: Cesium.JulianDate.fromIso8601("2099-01-01"),
+            start: Cesium.JulianDate.fromIso8601(launchDate),
+            stop: (endDate == null) ? Cesium.JulianDate.fromIso8601("2099-01-01") : Cesium.JulianDate.fromIso8601(endDate),
             isStartIncluded: true,
-            isStopIncluded: false
+            isStopIncluded: (endDate === null) ? false : true
         });
 
-        if (satelliteInfo.endDate != null) {
-            timeInterval.stop = Cesium.JulianDate.fromIso8601(satelliteInfo.endDate);
-            timeInterval.isStopIncluded = true;
-        }
         var intervalCollection = new Cesium.TimeIntervalCollection();
         intervalCollection.addInterval(timeInterval);
-        entity.availability = intervalCollection;
-        return entity;
+        return intervalCollection;
+    }
+
+    /**
+     *
+     */
+    EarthTrek.prototype.updateEntities = function () {
+        if (Cesium.JulianDate.secondsDifference(this.clock.currentTime, this.lastPropagationTime) > this.orbitDuration ||
+            Cesium.JulianDate.secondsDifference(this.lastPropagationTime, this.clock.currentTime) > this.orbitDuration) {
+            this.lastPropagationTime = this.clock.currentTime;
+            var that = this;
+            this.entities.forEach(function (entity) {
+                var newStart = that.clock.currentTime;
+                var tle1 = entity.properties.getValue(newStart).tle.line1;
+                var tle2 = entity.properties.getValue(newStart).tle.line2;
+                entity.position = earthTrekSatellite.getSamples(tle1, tle2, newStart, that.orbitDuration, that.frequency);
+            });
+            console.log("PROPAGO");
+        }
+    }
+
+    EarthTrek.prototype.goToEntity = function (entity, panel, viewer) {
+        if (entity == undefined) {
+            return false;
+        }
+        /**
+         * TODO FIX THIS
+         */
+        if (this != undefined) {
+            viewer = this.viewer;
+        }
+        panel.show(entity);
+        viewer.trackedEntity = entity;
+        viewer.selectedEntity = entity;
+        return true;
     }
 
     return EarthTrek;
