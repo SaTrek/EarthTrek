@@ -4,7 +4,6 @@
 
 
     var dataSource = new Cesium.CzmlDataSource();
-    
 
     var initialTime = Cesium.JulianDate.fromDate(
         new Date(Date.now()));
@@ -12,7 +11,6 @@
         new Date(Date.UTC(2011, 1, 1)));
     var endTime = Cesium.JulianDate.fromDate(
         new Date(Date.UTC(2017, 4, 18)));
-
 
     var clock = new Cesium.Clock({
         startTime: startTime,
@@ -25,7 +23,6 @@
         return isoDateTime.split("T")[0];
     };
 
-
     var viewer = new Cesium.Viewer("main-container", {
         clock: clock,
         baseLayerPicker: false, // Only showing one layer in this demo,
@@ -36,18 +33,8 @@
     });
     viewer.timeline.zoomTo(startTime, endTime);
     viewer.scene.globe.baseColor = Cesium.Color.BLACK;
+    viewer.camera.frustum.far = 10000000000.0; //10M KM
 
-
-    /*
-    polarBackgroundLayerProvider = provider.getProvider(
-        "VIIRS_SNPP_CorrectedReflectance_TrueColor",
-        '2016-11-30',
-        "image/jpeg",
-        "epsg3413",
-        "250m"
-    );
-    viewer.scene.imageryLayers.addImageryProvider(polarBackgroundLayerProvider);
-*/
     backgroundLayerProvider = provider.getProvider(
         "VIIRS_SNPP_CorrectedReflectance_TrueColor",
         '2016-11-21',
@@ -143,12 +130,6 @@
             callbackOn();
         }
     }
-
-    $('#select-date-button').click(function () {
-
-    });
-
-
     $('.datepicker').datepicker();
 
 
