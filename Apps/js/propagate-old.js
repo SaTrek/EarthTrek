@@ -178,7 +178,7 @@ function createEntity(satelliteInfo, start) {
 }
 
 createEntities = function() {
-    $.getJSON( "data/instrumentsFULL.json", function( satellites ) {
+    $.getJSON( "data/satellitesFULL.json", function( satellites ) {
         var toolbarContainer = $("#left-toolbar");
         satellites.forEach(function( satelliteInfo ) {
             var entity = viewer.entities.getById(satelliteInfo.id);

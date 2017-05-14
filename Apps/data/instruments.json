@@ -1,102 +1,4753 @@
 [
-    {
-      "id": "terra",
-      "type": "SATELLITE",
-      "instruments": [
-        { "name" : "ASTER"},
-        { "name" : "CERES"},
-        { "name" : "MISR"},
-        { "name" : "MODIS", "full-name": "Moderate-Resolution Imaging Spectroradiometer",
-          "layers": [
-            { "title": "Corrected Reflectance-True Color)",
-              "name": "MODIS_Terra_CorrectedReflectance_TrueColor",
-              "resolution": "250m",
-              "format": "image/jpeg",
-              "startDate": "",
-              "endDate": ""
-            },
-            {
-              "title": "Corrected Reflectance-Bands 7-2-1",
-              "name":  "MODIS_Terra_CorrectedReflectance_Bands721",
-              "resolution": "250m",
-              "format": "image/jpeg",
-              "startDate": "",
-              "endDate": ""
-            }
-          ]
-        },
-        { "name" : "MOPITT "}
-      ]
+  {
+    "id": "gcomw1",
+    "name": "GCOM-W1",
+    "type": "SATELLITE",
+    "status": "INACTIVE",
+    "agency": "NASA",
+    "program": "EOS",
+    "instruments": [
+      {
+        "name": "AMSR2",
+        "layers": [
+          {
+            "id": "AMSR2_Snow_Water_Equivalent",
+            "title": "Snow Water Equivalent",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2015-07-30",
+            "endDate": null
+          },
+          {
+            "id": "AMSR2_Soil_Moisture_NPD_Day",
+            "title": "Soil Moisture (Normalized Polarization Difference, Day)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2012-07-24",
+            "endDate": null
+          },
+          {
+            "id": "AMSR2_Soil_Moisture_NPD_Night",
+            "title": "Soil Moisture (Normalized Polarization Difference, Night)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2012-07-23",
+            "endDate": null
+          },
+          {
+            "id": "AMSR2_Soil_Moisture_SCA_Day",
+            "title": "Soil Moisture (Single Channel Algorithm, Day)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2012-07-24",
+            "endDate": null
+          },
+          {
+            "id": "AMSR2_Soil_Moisture_SCA_Night",
+            "title": "Soil Moisture (Single Channel Algorithm, Night)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2012-07-23",
+            "endDate": null
+          },
+          {
+            "id": "AMSR2_Cloud_Liquid_Water_Day",
+            "title": "Columnar Cloud Liquid Water (Day)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2015-06-07",
+            "endDate": null
+          },
+          {
+            "id": "AMSR2_Cloud_Liquid_Water_Night",
+            "title": "Columnar Cloud Liquid Water (Night)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2015-06-07",
+            "endDate": null
+          },
+          {
+            "id": "AMSR2_Surface_Precipitation_Rate_Day",
+            "title": "Surface Precipitation Rate (Day)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2015-06-07",
+            "endDate": null
+          },
+          {
+            "id": "AMSR2_Surface_Precipitation_Rate_Night",
+            "title": "Surface Precipitation Rate (Night)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2015-06-07",
+            "endDate": null
+          },
+          {
+            "id": "AMSR2_Surface_Rain_Rate_Day",
+            "title": "Surface Rain Rate (Day)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2015-06-07",
+            "endDate": null
+          },
+          {
+            "id": "AMSR2_Surface_Rain_Rate_Night",
+            "title": "Surface Rain Rate (Night)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2015-06-07",
+            "endDate": null
+          },
+          {
+            "id": "AMSR2_Wind_Speed_Day",
+            "title": "Wind Speed (Day)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2015-06-07",
+            "endDate": null
+          },
+          {
+            "id": "AMSR2_Wind_Speed_Night",
+            "title": "Wind Speed (Night)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2015-06-07",
+            "endDate": null
+          },
+          {
+            "id": "AMSR2_Columnar_Water_Vapor_Day",
+            "title": "Columnar Water Vapor (Day)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2015-06-07",
+            "endDate": null
+          },
+          {
+            "id": "AMSR2_Columnar_Water_Vapor_Night",
+            "title": "Columnar Water Vapor (Night)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2015-06-07",
+            "endDate": null
+          },
+          {
+            "id": "AMSR2_Sea_Ice_Concentration_12km",
+            "title": "Sea Ice Concentration (12 km)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2016-01-13",
+            "endDate": null
+          },
+          {
+            "id": "AMSR2_Sea_Ice_Concentration_25km",
+            "title": "Sea Ice Concentration (25 km)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2016-01-13",
+            "endDate": null
+          },
+          {
+            "id": "AMSR2_Sea_Ice_Brightness_Temp_6km_89H",
+            "title": "Brightness Temperature for Sea Ice (89H Ghz)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2016-01-13",
+            "endDate": null
+          },
+          {
+            "id": "AMSR2_Sea_Ice_Brightness_Temp_6km_89V",
+            "title": "Brightness Temperature for Sea Ice (89V Ghz)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2016-01-13",
+            "endDate": null
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "aqua",
+    "name": "Aqua",
+    "type": "SATELLITE",
+    "agency": "NASA",
+    "program": "EOS",
+    "status": "ACTIVE",
+    "description": "Aqua, Latin for water, is a NASA Earth Science satellite mission named for the large amount of information that the mission is collecting about the Earth's water cycle, including evaporation from the oceans, water vapor in the atmosphere, clouds, precipitation, soil moisture, sea ice, land ice, and snow cover on the land and ice. Additional variables also being measured by Aqua include radiative energy fluxes, aerosols, vegetation cover on the land, phytoplankton and dissolved organic matter in the oceans, and air, land, and water temperatures.",
+    "orbitalData":  {
+      "perigee": "702",
+      "apogee": "703",
+      "inclination": "98.1987",
+      "eccentricity": "0.0000979",
+      "period": "98"
     },
-    {
-      "id": "aqua",
-      "type": "SATELLITE",
-      "instruments": [
-        { "name" : "AIRS", "full-name": "Atmospheric Infrared Sounder"},
-        { "name" : "AMSU-A", "full-name": "Advanced Microwave Sounding Unit"},
-        { "name" : "CERES", "full-name": "Clouds and the Earth's Radiant Energy System"},
-        { "name" : "HSB", "full-name": "Humidity Sounder for Brazil "},
-        { "name" : "MODIS", "full-name": "Moderate-Resolution Imaging Spectroradiometer",
-          "layers": [
-            {
-              "title": "Corrected Reflectance-True Color)",
-              "name": "MODIS_Terra_CorrectedReflectance_TrueColor",
-              "resolution": "250m",
-              "format": "image/jpeg",
-              "startDate": "2012-05-08",
-              "endDate": "2017-04-29"
-            },
-            {
-              "title": "Corrected Reflectance-Bands 7-2-1",
-              "name":  "MODIS_Aqua_CorrectedReflectance_Bands721",
-              "resolution": "250m",
-              "format": "image/jpeg",
-              "startDate": "2012-05-08",
-              "endDate": "2017-04-29"
-            },
-            {
-              "title": "Sea Surface Temperature (L4 MUR)",
-              "name":  "GHRSST_L4_MUR_Sea_Surface_Temperature",
-              "resolution": "1km",
-              "format": "image/png",
-              "startDate": "2002-06-01",
-              "endDate": "2017-04-29"
-            }
-          ]
-        },
-        { "name" : "AMSR-E",  "full-name": "Advanced Microwave Scanning Radiometer for EOS",
-          "layers": [
-            {
-              "title": "Brightness Temperature 89Ghz Horizontal (Day)",
-              "name": "AMSRE_Brightness_Temp_89H_Day",
-              "resolution": "2km",
-              "format": "image/png",
-              "startDate": "2002-06-01",
-              "endDate": "2011-10-04"
-            }
-          ]
-        }
-      ]
+    "tle":  {
+      "line1": "1 27424U 02022A   17131.91562854  .00000110  00000-0  34384-4 0  9996",
+      "line2": "2 27424  98.2026  73.7533 0000860 153.0401 299.1971 14.57109646798942"
     },
-    {
-      "id": "iss",
-      "name": "ISS",
-      "type": "SPACE_STATION"
+    "mass": "2850",
+    "launchDate": "2002-05-04",
+    "endDate": null,
+    "image": "aqua.png",
+    "instruments": [
+      {
+        "name": "AMSR-E",
+        "layers": [
+          {
+            "id": "AMSRE_Brightness_Temp_89H_Day",
+            "title": "Brightness Temperature (89H Ghz B Scan, Day)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2002-06-01",
+            "endDate": "2011-10-04"
+          },
+          {
+            "id": "AMSRE_Brightness_Temp_89H_Night",
+            "title": "Brightness Temperature (89H Ghz B Scan, Night)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2002-06-01",
+            "endDate": "2011-10-04"
+          },
+          {
+            "id": "AMSRE_Brightness_Temp_89V_Day",
+            "title": "Brightness Temperature (89V Ghz B Scan, Day)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2002-06-01",
+            "endDate": "2011-10-04"
+          },
+          {
+            "id": "AMSRE_Brightness_Temp_89V_Night",
+            "title": "Brightness Temperature (89V Ghz B Scan, Night)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2002-06-01",
+            "endDate": "2011-10-04"
+          },
+          {
+            "id": "AMSRE_Surface_Precipitation_Rate_Day",
+            "title": "Surface Precipitation Rate (Day)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2002-06-01",
+            "endDate": "2011-10-04"
+          },
+          {
+            "id": "AMSRE_Surface_Precipitation_Rate_Night",
+            "title": "Surface Precipitation Rate (Night)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2002-06-01",
+            "endDate": "2011-10-04"
+          },
+          {
+            "id": "AMSRE_Surface_Rain_Rate_Day",
+            "title": "Surface Rain Rate (Day)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2002-06-01",
+            "endDate": "2011-10-04"
+          },
+          {
+            "id": "AMSRE_Surface_Rain_Rate_Night",
+            "title": "Surface Rain Rate (Night)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2002-06-01",
+            "endDate": "2011-10-04"
+          },
+          {
+            "id": "AMSRE_Sea_Ice_Concentration_12km",
+            "title": "Sea Ice Concentration (12 km)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2002-06-01",
+            "endDate": "2011-10-04"
+          },
+          {
+            "id": "AMSRE_Snow_Depth_Over_Ice",
+            "title": "Snow Depth Over Ice (12 km)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2002-06-01",
+            "endDate": "2011-10-04"
+          },
+          {
+            "id": "AMSRE_Sea_Ice_Concentration_25km",
+            "title": "Sea Ice Concentration (25 km)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2002-06-01",
+            "endDate": "2011-10-04"
+          },
+          {
+            "id": "AMSRE_Sea_Ice_Brightness_Temp_89H",
+            "title": "Brightness Temperature for Sea Ice (89H Ghz)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2002-06-01",
+            "endDate": "2011-10-04"
+          },
+          {
+            "id": "AMSRE_Sea_Ice_Brightness_Temp_89V",
+            "title": "Brightness Temperature for Sea Ice (89V Ghz)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2002-06-01",
+            "endDate": "2011-10-04"
+          }
+        ]
+      },
+      {
+        "name": "AIRS",
+        "layers": [
+          {
+            "id": "AIRS_CO_Total_Column_Day",
+            "title": "Carbon Monoxide (Total Column, Day)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2013-11-18",
+            "endDate": null
+          },
+          {
+            "id": "AIRS_CO_Total_Column_Night",
+            "title": "Carbon Monoxide (Total Column, Night)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2013-11-18",
+            "endDate": null
+          },
+          {
+            "id": "AIRS_Dust_Score_Ocean_Day",
+            "title": "Dust Score Ocean (Day)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2016-01-28",
+            "endDate": null
+          },
+          {
+            "id": "AIRS_Dust_Score_Ocean_Night",
+            "title": "Dust Score Ocean (Night)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2016-02-09",
+            "endDate": null
+          },
+          {
+            "id": "AIRS_Prata_SO2_Index_Day",
+            "title": "Sulfur Dioxide (Prata, Day)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2012-05-08",
+            "endDate": null
+          },
+          {
+            "id": "AIRS_Prata_SO2_Index_Night",
+            "title": "Sulfur Dioxide (Prata, Night)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2012-05-08",
+            "endDate": null
+          },
+          {
+            "id": "AIRS_Precipitation_Day",
+            "title": "Precipitation (Day)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2012-05-08",
+            "endDate": null
+          },
+          {
+            "id": "AIRS_Precipitation_Night",
+            "title": "Precipitation (Night)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2012-05-08",
+            "endDate": null
+          },
+          {
+            "id": "AIRS_RelativeHumidity_400hPa_Day",
+            "title": "Relative Humidity (400 hPa, Day)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2013-07-16",
+            "endDate": null
+          },
+          {
+            "id": "AIRS_RelativeHumidity_400hPa_Night",
+            "title": "Relative Humidity (400 hPa, Night)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2013-07-16",
+            "endDate": null
+          },
+          {
+            "id": "AIRS_RelativeHumidity_500hPa_Day",
+            "title": "Relative Humidity (500 hPa, Day)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2013-07-16",
+            "endDate": null
+          },
+          {
+            "id": "AIRS_RelativeHumidity_500hPa_Night",
+            "title": "Relative Humidity (500 hPa, Night)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2013-07-16",
+            "endDate": null
+          },
+          {
+            "id": "AIRS_RelativeHumidity_600hPa_Day",
+            "title": "Relative Humidity (600 hPa, Day)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2013-07-16",
+            "endDate": null
+          },
+          {
+            "id": "AIRS_RelativeHumidity_600hPa_Night",
+            "title": "Relative Humidity (600 hPa, Night)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2013-07-16",
+            "endDate": null
+          },
+          {
+            "id": "AIRS_RelativeHumidity_700hPa_Day",
+            "title": "Relative Humidity (700 hPa, Day)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2013-07-16",
+            "endDate": null
+          },
+          {
+            "id": "AIRS_RelativeHumidity_700hPa_Night",
+            "title": "Relative Humidity (700 hPa, Night)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2013-07-16",
+            "endDate": null
+          },
+          {
+            "id": "AIRS_RelativeHumidity_850hPa_Day",
+            "title": "Relative Humidity (850 hPa, Day)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2013-07-16",
+            "endDate": null
+          },
+          {
+            "id": "AIRS_RelativeHumidity_850hPa_Night",
+            "title": "Relative Humidity (850 hPa, Night)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2013-07-16",
+            "endDate": null
+          },
+          {
+            "id": "AIRS_Temperature_400hPa_Day",
+            "title": "Air Temperature (400 hPa, Day)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2013-07-16",
+            "endDate": null
+          },
+          {
+            "id": "AIRS_Temperature_400hPa_Night",
+            "title": "Air Temperature (400 hPa, Night)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2013-07-16",
+            "endDate": null
+          },
+          {
+            "id": "AIRS_Temperature_500hPa_Day",
+            "title": "Air Temperature (500 hPa, Day)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2013-07-16",
+            "endDate": null
+          },
+          {
+            "id": "AIRS_Temperature_500hPa_Night",
+            "title": "Air Temperature (500 hPa, Night)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2013-07-16",
+            "endDate": null
+          },
+          {
+            "id": "AIRS_Temperature_600hPa_Day",
+            "title": "Air Temperature (600 hPa, Day)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2013-07-16",
+            "endDate": null
+          },
+          {
+            "id": "AIRS_Temperature_600hPa_Night",
+            "title": "Air Temperature (600 hPa, Night)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2013-07-16",
+            "endDate": null
+          },
+          {
+            "id": "AIRS_Temperature_700hPa_Day",
+            "title": "Air Temperature (700 hPa, Day)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2013-07-16",
+            "endDate": null
+          },
+          {
+            "id": "AIRS_Temperature_700hPa_Night",
+            "title": "Air Temperature (700 hPa, Night)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2013-07-16",
+            "endDate": null
+          },
+          {
+            "id": "AIRS_Temperature_850hPa_Day",
+            "title": "Air Temperature (850 hPa, Day)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2013-07-16",
+            "endDate": null
+          },
+          {
+            "id": "AIRS_Temperature_850hPa_Night",
+            "title": "Air Temperature (850 hPa, Night)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2013-07-16",
+            "endDate": null
+          }
+        ]
+      },
+      {
+        "name": "CERES/Terra",
+        "description": "Combined Terra/Aqua CERES",
+        "layers": [
+          {
+            "id": "CERES_Combined_TOA_Longwave_Flux_All_Sky_Monthly",
+            "title": "TOA Longwave Flux All-Sky (Monthly, All-Sky)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2002-07-01",
+            "endDate": "2016-02-01"
+          },
+          {
+            "id": "CERES_Combined_TOA_Longwave_Flux_Clear_Sky_Monthly",
+            "title": "TOA Longwave Flux Clear-Sky (Monthly, Clear-Sky)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2002-07-01",
+            "endDate": "2016-02-01"
+          },
+          {
+            "id": "CERES_Combined_TOA_Shortwave_Flux_All_Sky_Monthly",
+            "title": "TOA Shortwave Flux All-Sky (Monthly, All-Sky)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2002-07-01",
+            "endDate": "2016-02-01"
+          },
+          {
+            "id": "CERES_Combined_TOA_Shortwave_Flux_Clear_Sky_Monthly",
+            "title": "TOA Shortwave Flux Clear-Sky (Monthly, Clear-Sky)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2002-07-01",
+            "endDate": "2016-02-01"
+          },
+          {
+            "id": "CERES_Combined_TOA_Window_Region_Flux_All_Sky_Monthly",
+            "title": "TOA Window-Region Flux All-Sky (Monthly, All-Sky)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2002-07-01",
+            "endDate": "2016-02-01"
+          },
+          {
+            "id": "CERES_Combined_TOA_Window_Region_Flux_Clear_Sky_Monthly",
+            "title": "TOA Window-Region Flux Clear-Sky (Monthly, Clear-Sky)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2002-07-01",
+            "endDate": "2016-02-01"
+          }
+        ]
+      },
+      {
+        "name": "GHRSST",
+        "layers": [
+          {
+            "id": "GHRSST_L4_G1SST_Sea_Surface_Temperature",
+            "title": "Sea Surface Temperature (L4)",
+            "format": "image/png",
+            "resolution": "1km",
+            "startDate": "2010-06-21",
+            "endDate": "2017-05-03"
+          },
+          {
+            "id": "GHRSST_L4_MUR_Sea_Surface_Temperature",
+            "title": "Sea Surface Temperature (L4)",
+            "format": "image/png",
+            "resolution": "1km",
+            "startDate": "2002-06-01",
+            "endDate": "2017-05-03"
+          }
+        ]
+      },
+      {
+        "name": "MODIS",
+        "layers": [
+          {
+            "id": "MODIS_Aqua_Chlorophyll_A",
+            "title": "Chlorophyll",
+            "format": "image/png",
+            "resolution": "1km",
+            "startDate": "2013-07-02",
+            "endDate": null
+          },
+          {
+            "id": "MODIS_Aqua_Brightness_Temp_Band31_Day",
+            "title": "Brightness Temperature (Band31, Day)",
+            "format": "image/png",
+            "resolution": "1km",
+            "startDate": "2010-01-01",
+            "endDate": null
+          },
+          {
+            "id": "MODIS_Aqua_Brightness_Temp_Band31_Night",
+            "title": "Brightness Temperature (Band31, Night)",
+            "format": "image/png",
+            "resolution": "1km",
+            "startDate": "2010-01-01",
+            "endDate": null
+          },
+          {
+            "id": "MODIS_Aqua_Aerosol_Optical_Depth_3km",
+            "title": "Aerosol Optical Depth (3km)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2002-07-03",
+            "endDate": null
+          },
+          {
+            "id": "MODIS_Aqua_Angstrom_Exponent_Land",
+            "title": "Deep Blue Aerosol Angstrom Exponent (Land)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2002-07-03",
+            "endDate": null
+          },
+          {
+            "id": "MODIS_Aqua_Angstrom_Exponent_Ocean",
+            "title": "Dark Target Aerosol Angstrom Exponent (Ocean)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2002-07-03",
+            "endDate": null
+          },
+          {
+            "id": "MODIS_Aqua_AOD_Deep_Blue_Land",
+            "title": "Deep Blue Aerosol Optical Depth (Land)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2002-07-03",
+            "endDate": null
+          },
+          {
+            "id": "MODIS_Aqua_AOD_Deep_Blue_Combined",
+            "title": "Merged Aerosol Optical Depth (Deep Blue, Land and Ocean)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2002-07-03",
+            "endDate": null
+          },
+          {
+            "id": "MODIS_Aqua_Aerosol",
+            "title": "Dark Target Aerosol Optical Depth (Land and Ocean)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2002-07-03",
+            "endDate": null
+          },
+          {
+            "id": "MODIS_Aqua_Water_Vapor_5km_Day",
+            "title": "Water Vapor Infrared (Day)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2002-07-03",
+            "endDate": null
+          },
+          {
+            "id": "MODIS_Aqua_Water_Vapor_5km_Night",
+            "title": "Water Vapor Infrared (Night)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2002-07-03",
+            "endDate": null
+          },
+          {
+            "id": "MODIS_Aqua_Cloud_Effective_Radius_37_PCL",
+            "title": "Cloud Effective Radius (3.7 micron PCL)",
+            "format": "image/png",
+            "resolution": "1km",
+            "startDate": "2002-07-03",
+            "endDate": null
+          },
+          {
+            "id": "MODIS_Aqua_Cloud_Effective_Radius_37",
+            "title": "Cloud Effective Radius (3.7 micron)",
+            "format": "image/png",
+            "resolution": "1km",
+            "startDate": "2002-07-03",
+            "endDate": null
+          },
+          {
+            "id": "MODIS_Aqua_Cloud_Effective_Radius",
+            "title": "Cloud Effective Radius",
+            "format": "image/png",
+            "resolution": "1km",
+            "startDate": "2002-07-03",
+            "endDate": null
+          },
+          {
+            "id": "MODIS_Aqua_Cloud_Effective_Radius_PCL",
+            "title": "Cloud Effective Radius (PCL)",
+            "format": "image/png",
+            "resolution": "1km",
+            "startDate": "2002-07-03",
+            "endDate": null
+          },
+          {
+            "id": "MODIS_Aqua_Cloud_Multi_Layer_Flag",
+            "title": "Cloud Multi Layer Flag",
+            "format": "image/png",
+            "resolution": "1km",
+            "startDate": "2002-07-03",
+            "endDate": null
+          },
+          {
+            "id": "MODIS_Aqua_Cloud_Optical_Thickness",
+            "title": "Cloud Optical Thickness",
+            "format": "image/png",
+            "resolution": "1km",
+            "startDate": "2002-07-03",
+            "endDate": null
+          },
+          {
+            "id": "MODIS_Aqua_Cloud_Optical_Thickness_PCL",
+            "title": "Cloud Optical Thickness (PCL)",
+            "format": "image/png",
+            "resolution": "1km",
+            "startDate": "2002-07-03",
+            "endDate": null
+          },
+          {
+            "id": "MODIS_Aqua_Cloud_Phase_Optical_Properties",
+            "title": "Cloud Phase Optical Properties",
+            "format": "image/png",
+            "resolution": "1km",
+            "startDate": "2002-07-03",
+            "endDate": null
+          },
+          {
+            "id": "MODIS_Aqua_Cloud_Water_Path",
+            "title": "Cloud Water Path",
+            "format": "image/png",
+            "resolution": "1km",
+            "startDate": "2002-07-03",
+            "endDate": null
+          },
+          {
+            "id": "MODIS_Aqua_Cloud_Water_Path_PCL",
+            "title": "Cloud Water Path (PCL)",
+            "format": "image/png",
+            "resolution": "1km",
+            "startDate": "2002-07-03",
+            "endDate": null
+          },
+          {
+            "id": "MODIS_Aqua_Cloud_Fraction_Day",
+            "title": "Cloud Fraction (Day)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2002-07-03",
+            "endDate": null
+          },
+          {
+            "id": "MODIS_Aqua_Cloud_Phase_Infrared_Day",
+            "title": "Cloud Phase (Infrared, Day)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2002-07-03",
+            "endDate": null
+          },
+          {
+            "id": "MODIS_Aqua_Cloud_Top_Height_Day",
+            "title": "Cloud Top Height (Day)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2002-07-03",
+            "endDate": null
+          },
+          {
+            "id": "MODIS_Aqua_Cloud_Top_Pressure_Day",
+            "title": "Cloud Top Pressure (Day)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2002-07-03",
+            "endDate": null
+          },
+          {
+            "id": "MODIS_Aqua_Cloud_Top_Temp_Day",
+            "title": "Cloud Top Temperature (Day)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2002-07-03",
+            "endDate": null
+          },
+          {
+            "id": "MODIS_Aqua_Cloud_Fraction_Night",
+            "title": "Cloud Fraction (Night)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2002-07-03",
+            "endDate": null
+          },
+          {
+            "id": "MODIS_Aqua_Cloud_Phase_Infrared_Night",
+            "title": "Cloud Phase (Infrared, Night)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2002-07-03",
+            "endDate": null
+          },
+          {
+            "id": "MODIS_Aqua_Cloud_Top_Height_Night",
+            "title": "Cloud Top Height (Night)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2002-07-03",
+            "endDate": null
+          },
+          {
+            "id": "MODIS_Aqua_Cloud_Top_Pressure_Night",
+            "title": "Cloud Top Pressure (Night)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2002-07-03",
+            "endDate": null
+          },
+          {
+            "id": "MODIS_Aqua_Cloud_Top_Temp_Night",
+            "title": "Cloud Top Temperature (Night)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2002-07-03",
+            "endDate": null
+          },
+          {
+            "id": "MODIS_Aqua_SurfaceReflectance_Bands143",
+            "title": "Land Surface Reflectance (True Color)",
+            "format": "image/jpeg",
+            "resolution": "500m",
+            "startDate": "2010-01-01",
+            "endDate": null
+          },
+          {
+            "id": "MODIS_Aqua_SurfaceReflectance_Bands721",
+            "title": "Land Surface Reflectance (Bands 7-2-1)",
+            "format": "image/jpeg",
+            "resolution": "500m",
+            "startDate": "2010-01-01",
+            "endDate": null
+          },
+          {
+            "id": "MODIS_Aqua_SurfaceReflectance_Bands121",
+            "title": "Land Surface Reflectance (Bands 1-2-1)",
+            "format": "image/jpeg",
+            "resolution": "250m",
+            "startDate": "2010-01-01",
+            "endDate": null
+          },
+          {
+            "id": "MODIS_Aqua_Snow_Cover",
+            "title": "Snow Cover",
+            "format": "image/png",
+            "resolution": "500m",
+            "startDate": "2012-05-01",
+            "endDate": "2017-03-23"
+          },
+          {
+            "id": "MODIS_Aqua_NDSI_Snow_Cover",
+            "title": "Snow Cover (Normalized Difference Snow Index, Best Available)",
+            "format": "image/png",
+            "resolution": "500m",
+            "startDate": "2010-01-01",
+            "endDate": null
+          },
+          {
+            "id": "MODIS_Aqua_Land_Surface_Temp_Day",
+            "title": "Land Surface Temperature (Day)",
+            "format": "image/png",
+            "resolution": "1km",
+            "startDate": "2010-01-01",
+            "endDate": null
+          },
+          {
+            "id": "MODIS_Aqua_Land_Surface_Temp_Night",
+            "title": "Land Surface Temperature (Night)",
+            "format": "image/png",
+            "resolution": "1km",
+            "startDate": "2010-01-01",
+            "endDate": null
+          },
+          {
+            "id": "MODIS_Aqua_Ice_Surface_Temp_Day",
+            "title": "Ice Surface Temperature (Day, Best Available)",
+            "format": "image/png",
+            "resolution": "1km",
+            "startDate": "2010-01-01",
+            "endDate": null
+          },
+          {
+            "id": "MODIS_Aqua_Sea_Ice",
+            "title": "Sea Ice Extent",
+            "format": "image/png",
+            "resolution": "1km",
+            "startDate": "2010-01-01",
+            "endDate": null
+          },
+          {
+            "id": "MODIS_Aqua_Ice_Surface_Temp_Night",
+            "title": "Ice Surface Temperature (Night, Best Available)",
+            "format": "image/png",
+            "resolution": "1km",
+            "startDate": "2010-01-01",
+            "endDate": null
+          },
+          {
+            "id": "MODIS_Aqua_CorrectedReflectance_TrueColor",
+            "title": "Corrected Reflectance (True Color)",
+            "format": "image/jpeg",
+            "resolution": "250m",
+            "startDate": "2012-01-01",
+            "endDate": null
+          },
+          {
+            "id": "MODIS_Aqua_CorrectedReflectance_Bands721",
+            "title": "Corrected Reflectance (Bands 7-2-1)",
+            "format": "image/jpeg",
+            "resolution": "250m",
+            "startDate": "2012-01-01",
+            "endDate": null
+          },
+          {
+            "id": "MODIS_Aqua_Data_No_Data",
+            "title": "Data/No Data Mask (Day)",
+            "format": "image/png",
+            "resolution": "250m",
+            "startDate": "2012-01-01",
+            "endDate": null
+          },
+          {
+            "id": "MODIS_Aqua_L3_SST_Thermal_4km_Day_8Day",
+            "title": "Sea Surface Temperature (L3, Day, 8 Day, Thermal, 4km, v2014.0, Standard)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2000-02-26",
+            "endDate": "2000-12-26"
+          },
+          {
+            "id": "MODIS_Aqua_L3_SST_MidIR_4km_Night_8Day",
+            "title": "Sea Surface Temperature (L3, Night, 8 Day, Mid Infrared, 4km, v2014.0, Standard)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2000-02-26",
+            "endDate": "2000-12-26"
+          },
+          {
+            "id": "MODIS_Aqua_L3_SST_Thermal_4km_Night_8Day",
+            "title": "Sea Surface Temperature (L3, Night, 8 Day, Thermal, 4km, v2014.0, Standard)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2000-02-26",
+            "endDate": "2000-12-26"
+          },
+          {
+            "id": "MODIS_Aqua_L3_SST_Thermal_4km_Day_Annual",
+            "title": "Sea Surface Temperature (L3, Day, Annual, Thermal, 4km, v2014.0, Standard)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2000-01-01",
+            "endDate": "2016-01-01"
+          },
+          {
+            "id": "MODIS_Aqua_L3_SST_MidIR_4km_Night_Annual",
+            "title": "Sea Surface Temperature (L3, Night, Annual, Mid Infrared, 4km, v2014.0, Standard)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2000-01-01",
+            "endDate": "2016-01-01"
+          },
+          {
+            "id": "MODIS_Aqua_L3_SST_Thermal_4km_Night_Annual",
+            "title": "Sea Surface Temperature (L3, Night, Annual, Thermal, 4km, v2014.0, Standard)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2000-01-01",
+            "endDate": "2016-01-01"
+          },
+          {
+            "id": "MODIS_Aqua_L3_SST_Thermal_4km_Day_Daily",
+            "title": "Sea Surface Temperature (L3, Day, Daily, Thermal, 4km, v2014.0, Standard)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2002-07-04",
+            "endDate": "2002-07-29"
+          },
+          {
+            "id": "MODIS_Aqua_L3_SST_MidIR_4km_Night_Daily",
+            "title": "Sea Surface Temperature (L3, Night, Daily, Mid Infrared, 4km, v2014.0, Standard)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2002-07-04",
+            "endDate": "2002-07-30"
+          },
+          {
+            "id": "MODIS_Aqua_L3_SST_Thermal_4km_Night_Daily",
+            "title": "Sea Surface Temperature (L3, Night, Daily, Thermal, 4km, v2014.0, Standard)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2002-07-04",
+            "endDate": "2002-07-30"
+          },
+          {
+            "id": "MODIS_Aqua_L3_SST_Thermal_4km_Day_Monthly",
+            "title": "Sea Surface Temperature (L3, Day, Monthly, Thermal, 4km, v2014.0, Standard)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2000-08-01",
+            "endDate": "2017-03-01"
+          },
+          {
+            "id": "MODIS_Aqua_L3_SST_MidIR_4km_Night_Monthly",
+            "title": "Sea Surface Temperature (L3, Night, Monthly, Mid Infrared, 4km, v2014.0, Standard)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2000-08-01",
+            "endDate": "2017-02-01"
+          },
+          {
+            "id": "MODIS_Aqua_L3_SST_Thermal_4km_Night_Monthly",
+            "title": "Sea Surface Temperature (L3, Night, Monthly, Thermal, 4km, v2014.0, Standard)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2000-08-01",
+            "endDate": "2017-03-01"
+          },
+          {
+            "id": "MODIS_Aqua_L3_SST_Thermal_9km_Day_8Day",
+            "title": "Sea Surface Temperature (L3, Day, 8 Day, Thermal, 9km, v2014.0, Standard)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2000-02-26",
+            "endDate": "2000-12-26"
+          },
+          {
+            "id": "MODIS_Aqua_L3_SST_MidIR_9km_Night_8Day",
+            "title": "Sea Surface Temperature (L3, Night, 8 Day, Mid Infrared, 9km, v2014.0, Standard)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2000-02-26",
+            "endDate": "2000-12-26"
+          },
+          {
+            "id": "MODIS_Aqua_L3_SST_Thermal_9km_Night_8Day",
+            "title": "Sea Surface Temperature (L3, Night, 8 Day, Thermal, 9km, v2014.0, Standard)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2000-02-26",
+            "endDate": "2000-12-26"
+          },
+          {
+            "id": "MODIS_Aqua_L3_SST_Thermal_9km_Day_Annual",
+            "title": "Sea Surface Temperature (L3, Day, Annual, Thermal, 9km, v2014.0, Standard)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2000-01-01",
+            "endDate": "2016-01-01"
+          },
+          {
+            "id": "MODIS_Aqua_L3_SST_MidIR_9km_Night_Annual",
+            "title": "Sea Surface Temperature (L3, Night, Annual, Mid Infrared, 9km, v2014.0, Standard)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2000-01-01",
+            "endDate": "2016-01-01"
+          },
+          {
+            "id": "MODIS_Aqua_L3_SST_Thermal_9km_Night_Annual",
+            "title": "Sea Surface Temperature (L3, Night, Annual, Thermal, 9km, v2014.0, Standard)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2000-01-01",
+            "endDate": "2016-01-01"
+          },
+          {
+            "id": "MODIS_Aqua_L3_SST_Thermal_9km_Day_Daily",
+            "title": "Sea Surface Temperature (L3, Day, Daily, Thermal, 9km, v2014.0, Standard)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2002-07-04",
+            "endDate": "2002-07-29"
+          },
+          {
+            "id": "MODIS_Aqua_L3_SST_MidIR_9km_Night_Daily",
+            "title": "Sea Surface Temperature (L3, Night, Daily, Mid Infrared, 9km, v2014.0, Standard)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2002-07-04",
+            "endDate": "2002-07-30"
+          },
+          {
+            "id": "MODIS_Aqua_L3_SST_Thermal_9km_Night_Daily",
+            "title": "Sea Surface Temperature (L3, Night, Daily, Thermal, 9km, v2014.0, Standard)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2002-07-04",
+            "endDate": "2002-07-30"
+          },
+          {
+            "id": "MODIS_Aqua_L3_SST_Thermal_9km_Day_Monthly",
+            "title": "Sea Surface Temperature (L3, Day, Monthly, Thermal, 9km, v2014.0, Standard)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2000-08-01",
+            "endDate": "2017-03-01"
+          },
+          {
+            "id": "MODIS_Aqua_L3_SST_MidIR_9km_Night_Monthly",
+            "title": "Sea Surface Temperature (L3, Night, Monthly, Mid Infrared, 9km, v2014.0, Standard)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2000-08-01",
+            "endDate": "2017-02-01"
+          },
+          {
+            "id": "MODIS_Aqua_L3_SST_Thermal_9km_Night_Monthly",
+            "title": "Sea Surface Temperature (L3, Night, Monthly, Thermal, 9km, v2014.0, Standard)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2000-08-01",
+            "endDate": "2017-03-01"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "sacd",
+    "name": "SAC-D",
+    "image": "sacd.png",
+    "status": "ACTIVE",
+    "orbitalData":  {
+      "perigee": "652.2",
+      "apogee": "654.7",
+      "inclination": "98",
+      "eccentricity": "0.0000181",
+      "period": "97.8"
     },
+    "tle":  {
+      "line1": "1 37673U 11024A   11161.63936538 -.00000050  00000-0  00000+0 0    16",
+      "line2": "2 37673  98.0125 168.6228 0002456 212.6674 147.5382 14.72830191    07"
+    },
+    "mass": "1600",
+    "launchDate": "2011-06-10",
+    "endDate": "2015-06-17",
+    "instruments": [
+      {
+        "name": "Aquarius",
+        "layers": [
+          {
+            "id": "Aquarius_Soil_Moisture_Daily",
+            "title": "Soil Moisture (Daily, Radiometer)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2011-08-25",
+            "endDate": "2015-06-07"
+          },
+          {
+            "id": "Aquarius_Soil_Moisture_Weekly",
+            "title": "Soil Moisture (Weekly, Radiometer)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2011-08-25",
+            "endDate": "2011-08-25"
+          },
+          {
+            "id": "Aquarius_Sea_Surface_Salinity_L3_7Day_RunningMean",
+            "title": "Sea Surface Salinity (L3, 7-Day Running Mean)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2011-08-25",
+            "endDate": "2015-06-07"
+          },
+          {
+            "id": "Aquarius_Sea_Surface_Salinity_L3_7Day_Snapshot",
+            "title": "Sea Surface Salinity (L3, 7-Day Snapshot)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2011-08-27",
+            "endDate": "2011-12-31"
+          },
+          {
+            "id": "Aquarius_Sea_Surface_Salinity_L3_Daily",
+            "title": "Sea Surface Salinity (L3, Daily)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2011-08-25",
+            "endDate": "2015-06-07"
+          },
+          {
+            "id": "Aquarius_Sea_Surface_Salinity_L3_Monthly",
+            "title": "Sea Surface Salinity (L3, Monthly)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2011-08-25",
+            "endDate": "2011-08-25"
+          },
+          {
+            "id": "Aquarius_Sea_Surface_Salinity_L3_3Month",
+            "title": "Sea Surface Salinity (L3, 3-Month)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2011-08-25",
+            "endDate": "2011-08-25"
+          },
+          {
+            "id": "Aquarius_Wind_Speed_L3_7Day_Snapshot",
+            "title": "Wind Speed (L3, 7-Day Snapshot)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2011-08-27",
+            "endDate": "2011-12-31"
+          },
+          {
+            "id": "Aquarius_Wind_Speed_L3_Daily",
+            "title": "Wind Speed (L3, Daily)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2011-08-25",
+            "endDate": "2015-06-07"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "ASTER",
+    "instruments": [
+      {
+        "name": "Precision Terrain Corrected",
+        "layers": [
+          {
+            "id": "ASTER_L1T_Radiance_Terrain_Corrected",
+            "title": "Registered Radiance at the Sensor",
+            "format": "image/png",
+            "resolution": "15.625m",
+            "startDate": "2016-01-01T10:13:24Z",
+            "endDate": "2016-12-31T23:18:30Z"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "terra",
+    "name": "Terra",
+    "type": "SATELLITE",
+    "agency": "NASA",
+    "program": "EOS",
+    "image": "terra.png",
+    "launchDate": "1999-12-18",
+    "endDate": null,
+    "orbitalData":  {
+    },
+    "tle":  {
+      "line1": "1 25994U 99068A   17131.81002569  .00000307  00000-0  78120-4 0  9997",
+      "line2": "2 25994  98.2120 207.3714 0001359 116.9424 243.1898 14.57112580925377"
+    },
+    "status": "ACTIVE",
+    "instruments": [
+      {
+        "name": "ASTER",
+        "layers": [
+          {
+            "id": "ASTER_GDEM_Color_Index",
+            "title": "Digital Elevation Model (Color Index)",
+            "format": "image/png",
+            "resolution": "31.25m"
+          },
+          {
+            "id": "ASTER_GDEM_Color_Shaded_Relief",
+            "title": "Digital Elevation Model (Color Shaded Relief)",
+            "format": "image/jpeg",
+            "resolution": "31.25m"
+          },
+          {
+            "id": "ASTER_GDEM_Greyscale_Shaded_Relief",
+            "title": "Digital Elevation Model (Greyscale Shaded Relief)",
+            "format": "image/jpeg",
+            "resolution": "31.25m"
+          }
+        ]
+      },
+      {
+        "name": "CERES/Aqua",
+        "description": "Combined Terra/Aqua CERES",
+        "layers": [
+          {
+            "id": "CERES_Combined_TOA_Longwave_Flux_All_Sky_Monthly",
+            "title": "TOA Longwave Flux All-Sky (Monthly, All-Sky)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2002-07-01",
+            "endDate": "2016-02-01"
+          },
+          {
+            "id": "CERES_Combined_TOA_Longwave_Flux_Clear_Sky_Monthly",
+            "title": "TOA Longwave Flux Clear-Sky (Monthly, Clear-Sky)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2002-07-01",
+            "endDate": "2016-02-01"
+          },
+          {
+            "id": "CERES_Combined_TOA_Shortwave_Flux_All_Sky_Monthly",
+            "title": "TOA Shortwave Flux All-Sky (Monthly, All-Sky)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2002-07-01",
+            "endDate": "2016-02-01"
+          },
+          {
+            "id": "CERES_Combined_TOA_Shortwave_Flux_Clear_Sky_Monthly",
+            "title": "TOA Shortwave Flux Clear-Sky (Monthly, Clear-Sky)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2002-07-01",
+            "endDate": "2016-02-01"
+          },
+          {
+            "id": "CERES_Combined_TOA_Window_Region_Flux_All_Sky_Monthly",
+            "title": "TOA Window-Region Flux All-Sky (Monthly, All-Sky)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2002-07-01",
+            "endDate": "2016-02-01"
+          },
+          {
+            "id": "CERES_Combined_TOA_Window_Region_Flux_Clear_Sky_Monthly",
+            "title": "TOA Window-Region Flux Clear-Sky (Monthly, Clear-Sky)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2002-07-01",
+            "endDate": "2016-02-01"
+          }
+        ]
+      },
+      {
+        "name": "CERES",
+        "layers": [
+          {
+            "id": "CERES_EBAF_Surface_CRE_Net_Longwave_Flux_Monthly",
+            "title": "Surface CRE Net Longwave Flux (Monthly, Energy Balanced and Filled)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2000-03-01",
+            "endDate": "2015-11-01"
+          },
+          {
+            "id": "CERES_EBAF_Surface_CRE_Net_Shortwave_Flux_Monthly",
+            "title": "Surface CRE Net Shortwave Flux (Monthly, Energy Balanced and Filled)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2000-03-01",
+            "endDate": "2015-11-01"
+          },
+          {
+            "id": "CERES_EBAF_Surface_CRE_Net_Total_Flux_Monthly",
+            "title": "Surface CRE Net Total Flux (Monthly, Energy Balanced and Filled)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2000-03-01",
+            "endDate": "2015-11-01"
+          },
+          {
+            "id": "CERES_EBAF_Surface_Longwave_Flux_Down_All_Sky_Monthly",
+            "title": "Surface Longwave Flux (Monthly, Energy Balanced and Filled, Down, All-Sky)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2000-03-01",
+            "endDate": "2015-11-01"
+          },
+          {
+            "id": "CERES_EBAF_Surface_Longwave_Flux_Up_All_Sky_Monthly",
+            "title": "Surface Longwave Flux (Monthly, Energy Balanced and Filled, Up, All-Sky)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2000-03-01",
+            "endDate": "2015-11-01"
+          },
+          {
+            "id": "CERES_EBAF_Surface_Longwave_Flux_Down_Clear_Sky_Monthly",
+            "title": "Surface Longwave Flux (Monthly, Energy Balanced and Filled, Down, Clear-Sky)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2000-03-01",
+            "endDate": "2015-11-01"
+          },
+          {
+            "id": "CERES_EBAF_Surface_Longwave_Flux_Up_Clear_Sky_Monthly",
+            "title": "Surface Longwave Flux (Monthly, Energy Balanced and Filled, Up, Clear-Sky)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2000-03-01",
+            "endDate": "2015-11-01"
+          },
+          {
+            "id": "CERES_EBAF_Surface_Net_Longwave_Flux_All_Sky_Monthly",
+            "title": "Surface Net Longwave Flux (Monthly, Energy Balanced and Filled, All-Sky)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2000-03-01",
+            "endDate": "2015-11-01"
+          },
+          {
+            "id": "CERES_EBAF_Surface_Net_Longwave_Flux_Clear_Sky_Monthly",
+            "title": "Surface Net Longwave Flux (Monthly, Energy Balanced and Filled, Clear-Sky)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2000-03-01",
+            "endDate": "2015-11-01"
+          },
+          {
+            "id": "CERES_EBAF_Surface_Net_Shortwave_Flux_All_Sky_Monthly",
+            "title": "Surface Net Shortwave Flux (Monthly, Energy Balanced and Filled, All-Sky)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2000-03-01",
+            "endDate": "2015-11-01"
+          },
+          {
+            "id": "CERES_EBAF_Surface_Net_Shortwave_Flux_Clear_Sky_Monthly",
+            "title": "Surface Net Shortwave Flux (Monthly, Energy Balanced and Filled, Clear-Sky)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2000-03-01",
+            "endDate": "2015-11-01"
+          },
+          {
+            "id": "CERES_EBAF_Surface_Net_Total_Flux_All_Sky_Monthly",
+            "title": "Surface Net Total Flux (Monthly, Energy Balanced and Filled, All-Sky)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2000-03-01",
+            "endDate": "2015-11-01"
+          },
+          {
+            "id": "CERES_EBAF_Surface_Net_Total_Flux_Clear_Sky_Monthly",
+            "title": "Surface Net Total Flux (Monthly, Energy Balanced and Filled, Clear-Sky)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2000-03-01",
+            "endDate": "2015-11-01"
+          },
+          {
+            "id": "CERES_EBAF_Surface_Shortwave_Flux_Down_All_Sky_Monthly",
+            "title": "Surface Shortwave Flux (Monthly, Energy Balanced and Filled, Down, All-Sky)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2000-03-01",
+            "endDate": "2015-11-01"
+          },
+          {
+            "id": "CERES_EBAF_Surface_Shortwave_Flux_Up_All_Sky_Monthly",
+            "title": "Surface Shortwave Flux (Monthly, Energy Balanced and Filled, Up, All-Sky)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2000-03-01",
+            "endDate": "2015-11-01"
+          },
+          {
+            "id": "CERES_EBAF_Surface_Shortwave_Flux_Down_Clear_Sky_Monthly",
+            "title": "Surface Shortwave Flux (Monthly, Energy Balanced and Filled, Down, Clear-Sky)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2000-03-01",
+            "endDate": "2015-11-01"
+          },
+          {
+            "id": "CERES_EBAF_Surface_Shortwave_Flux_Up_Clear_Sky_Monthly",
+            "title": "Surface Shortwave Flux (Monthly, Energy Balanced and Filled, Up, Clear-Sky)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2000-03-01",
+            "endDate": "2015-11-01"
+          },
+          {
+            "id": "CERES_EBAF_TOA_CRE_Longwave_Flux_Monthly",
+            "title": "TOA CRE Longwave Flux (Monthly, Energy Balanced and Filled)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2000-03-01",
+            "endDate": "2015-11-01"
+          },
+          {
+            "id": "CERES_EBAF_TOA_CRE_Net_Flux_Monthly",
+            "title": "TOA CRE Net Flux (Monthly, Energy Balanced and Filled)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2000-03-01",
+            "endDate": "2015-11-01"
+          },
+          {
+            "id": "CERES_EBAF_TOA_CRE_Shortwave_Flux_Monthly",
+            "title": "TOA CRE Shortwave Flux (Monthly, Energy Balanced and Filled)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2000-03-01",
+            "endDate": "2015-11-01"
+          },
+          {
+            "id": "CERES_EBAF_TOA_Longwave_Flux_All_Sky_Monthly",
+            "title": "TOA Longwave Flux (Monthly, Energy Balanced and Filled, All-Sky)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2000-03-01",
+            "endDate": "2015-11-01"
+          },
+          {
+            "id": "CERES_EBAF_TOA_Longwave_Flux_Clear_Sky_Monthly",
+            "title": "TOA Longwave Flux (Monthly, Energy Balanced and Filled, Clear-Sky)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2000-03-01",
+            "endDate": "2015-11-01"
+          },
+          {
+            "id": "CERES_EBAF_TOA_Net_Flux_All_Sky_Monthly",
+            "title": "TOA Net Flux (Monthly, Energy Balanced and Filled, All-Sky)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2000-03-01",
+            "endDate": "2015-11-01"
+          },
+          {
+            "id": "CERES_EBAF_TOA_Net_Flux_Clear_Sky_Monthly",
+            "title": "TOA Net Flux (Monthly, Energy Balanced and Filled, Clear-Sky)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2000-03-01",
+            "endDate": "2015-11-01"
+          },
+          {
+            "id": "CERES_EBAF_TOA_Incoming_Solar_Flux_Monthly",
+            "title": "Incoming Solar Flux (Monthly, Energy Balanced and Filled)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2000-03-01",
+            "endDate": "2015-11-01"
+          },
+          {
+            "id": "CERES_EBAF_TOA_Shortwave_Flux_All_Sky_Monthly",
+            "title": "TOA Shortwave Flux (Monthly, Energy Balanced and Filled, All-Sky)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2000-03-01",
+            "endDate": "2015-11-01"
+          },
+          {
+            "id": "CERES_EBAF_TOA_Shortwave_Flux_Clear_Sky_Monthly",
+            "title": "TOA Shortwave Flux (Monthly, Energy Balanced and Filled, Clear-Sky)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2000-03-01",
+            "endDate": "2015-11-01"
+          },
+          {
+            "id": "CERES_Terra_TOA_Longwave_Flux_All_Sky_Monthly",
+            "title": "TOA Longwave Flux All-Sky (Monthly)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2000-03-01",
+            "endDate": "2002-06-01"
+          },
+          {
+            "id": "CERES_Terra_TOA_Longwave_Flux_Clear_Sky_Monthly",
+            "title": "TOA Longwave Flux Clear-Sky (Monthly)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2000-03-01",
+            "endDate": "2002-06-01"
+          },
+          {
+            "id": "CERES_Terra_TOA_Shortwave_Flux_All_Sky_Monthly",
+            "title": "TOA Shortwave Flux All-Sky (Monthly)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2000-03-01",
+            "endDate": "2002-06-01"
+          },
+          {
+            "id": "CERES_Terra_TOA_Shortwave_Flux_Clear_Sky_Monthly",
+            "title": "TOA Shortwave Flux Clear-Sky (Monthly)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2000-03-01",
+            "endDate": "2002-06-01"
+          },
+          {
+            "id": "CERES_Terra_TOA_Window_Region_Flux_All_Sky_Monthly",
+            "title": "TOA Window-Region Flux All-Sky (Monthly)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2000-03-01",
+            "endDate": "2002-06-01"
+          },
+          {
+            "id": "CERES_Terra_TOA_Window_Region_Flux_Clear_Sky_Monthly",
+            "title": "TOA Window-Region Flux Clear-Sky (Monthly)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2000-03-01",
+            "endDate": "2002-06-01"
+          }
+        ]
+      },
+      {
+        "name": "MISR",
+        "layers": [
+          {
+            "id": "MISR_Directional_Hemispherical_Reflectance_Average_Natural_Color_Monthly",
+            "title": "DHR Average (Monthly, Natural Color)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2000-02-01",
+            "endDate": "2016-02-01"
+          },
+          {
+            "id": "MISR_Radiance_Average_Infrared_Color_Monthly",
+            "title": "Radiance Average (AN, Infrared Color, Monthly)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2000-02-01",
+            "endDate": "2016-02-01"
+          },
+          {
+            "id": "MISR_Radiance_Average_Natural_Color_Monthly",
+            "title": "Radiance Average (AN, Natural Color, Monthly)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2000-02-01",
+            "endDate": "2016-02-01"
+          }
+        ]
+      },
+      {
+        "name": "MODIS",
+        "layers": [
+          {
+            "id": "MODIS_Terra_Chlorophyll_A",
+            "title": "Chlorophyll",
+            "format": "image/png",
+            "resolution": "1km",
+            "startDate": "2013-07-02",
+            "endDate": null
+          },
+          {
+            "id": "MODIS_Terra_Brightness_Temp_Band31_Day",
+            "title": "Brightness Temperature (Band31, Day)",
+            "format": "image/png",
+            "resolution": "1km",
+            "startDate": "2010-01-01",
+            "endDate": null
+          },
+          {
+            "id": "MODIS_Terra_Brightness_Temp_Band31_Night",
+            "title": "Brightness Temperature (Band31, Night)",
+            "format": "image/png",
+            "resolution": "1km",
+            "startDate": "2010-01-01",
+            "endDate": null
+          },
+          {
+            "id": "MODIS_Terra_Aerosol_Optical_Depth_3km",
+            "title": "Aerosol Optical Depth (3km)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2000-02-24",
+            "endDate": null
+          },
+          {
+            "id": "MODIS_Terra_Angstrom_Exponent_Land",
+            "title": "Deep Blue Aerosol Angstrom Exponent (Land)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2000-02-24",
+            "endDate": null
+          },
+          {
+            "id": "MODIS_Terra_Angstrom_Exponent_Ocean",
+            "title": "Dark Target Aerosol Angstrom Exponent (Ocean)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2000-02-24",
+            "endDate": null
+          },
+          {
+            "id": "MODIS_Terra_AOD_Deep_Blue_Land",
+            "title": "Deep Blue Aerosol Optical Depth (Land)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2000-02-24",
+            "endDate": null
+          },
+          {
+            "id": "MODIS_Terra_AOD_Deep_Blue_Combined",
+            "title": "Merged Aerosol Optical Depth (Deep Blue, Land and Ocean)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2000-02-24",
+            "endDate": null
+          },
+          {
+            "id": "MODIS_Terra_Aerosol",
+            "title": "Dark Target Aerosol Optical Depth (Land and Ocean)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2000-02-24",
+            "endDate": null
+          },
+          {
+            "id": "MODIS_Terra_Water_Vapor_5km_Day",
+            "title": "Water Vapor Infrared (Day)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2000-02-24",
+            "endDate": null
+          },
+          {
+            "id": "MODIS_Terra_Water_Vapor_5km_Night",
+            "title": "Water Vapor Infrared (Night)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2000-02-24",
+            "endDate": null
+          },
+          {
+            "id": "MODIS_Terra_Cloud_Effective_Radius_37_PCL",
+            "title": "Cloud Effective Radius (3.7 micron PCL)",
+            "format": "image/png",
+            "resolution": "1km",
+            "startDate": "2000-02-24",
+            "endDate": null
+          },
+          {
+            "id": "MODIS_Terra_Cloud_Effective_Radius_37",
+            "title": "Cloud Effective Radius (3.7 micron)",
+            "format": "image/png",
+            "resolution": "1km",
+            "startDate": "2000-02-24",
+            "endDate": null
+          },
+          {
+            "id": "MODIS_Terra_Cloud_Effective_Radius",
+            "title": "Cloud Effective Radius",
+            "format": "image/png",
+            "resolution": "1km",
+            "startDate": "2000-02-24",
+            "endDate": null
+          },
+          {
+            "id": "MODIS_Terra_Cloud_Effective_Radius_PCL",
+            "title": "Cloud Effective Radius (PCL)",
+            "format": "image/png",
+            "resolution": "1km",
+            "startDate": "2000-02-24",
+            "endDate": null
+          },
+          {
+            "id": "MODIS_Terra_Cloud_Multi_Layer_Flag",
+            "title": "Cloud Multi Layer Flag",
+            "format": "image/png",
+            "resolution": "1km",
+            "startDate": "2000-02-24",
+            "endDate": null
+          },
+          {
+            "id": "MODIS_Terra_Cloud_Optical_Thickness",
+            "title": "Cloud Optical Thickness",
+            "format": "image/png",
+            "resolution": "1km",
+            "startDate": "2000-02-24",
+            "endDate": null
+          },
+          {
+            "id": "MODIS_Terra_Cloud_Optical_Thickness_PCL",
+            "title": "Cloud Optical Thickness (PCL)",
+            "format": "image/png",
+            "resolution": "1km",
+            "startDate": "2000-02-24",
+            "endDate": null
+          },
+          {
+            "id": "MODIS_Terra_Cloud_Phase_Optical_Properties",
+            "title": "Cloud Phase Optical Properties",
+            "format": "image/png",
+            "resolution": "1km",
+            "startDate": "2000-02-24",
+            "endDate": null
+          },
+          {
+            "id": "MODIS_Terra_Cloud_Water_Path",
+            "title": "Cloud Water Path",
+            "format": "image/png",
+            "resolution": "1km",
+            "startDate": "2000-02-24",
+            "endDate": null
+          },
+          {
+            "id": "MODIS_Terra_Cloud_Water_Path_PCL",
+            "title": "Cloud Water Path (PCL)",
+            "format": "image/png",
+            "resolution": "1km",
+            "startDate": "2000-02-24",
+            "endDate": null
+          },
+          {
+            "id": "MODIS_Terra_Cloud_Fraction_Day",
+            "title": "Cloud Fraction (Day)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2000-02-24",
+            "endDate": null
+          },
+          {
+            "id": "MODIS_Terra_Cloud_Phase_Infrared_Day",
+            "title": "Cloud Phase (Infrared, Day)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2000-02-24",
+            "endDate": null
+          },
+          {
+            "id": "MODIS_Terra_Cloud_Top_Height_Day",
+            "title": "Cloud Top Height (Day)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2000-02-24",
+            "endDate": null
+          },
+          {
+            "id": "MODIS_Terra_Cloud_Top_Pressure_Day",
+            "title": "Cloud Top Pressure (Day)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2000-02-24",
+            "endDate": null
+          },
+          {
+            "id": "MODIS_Terra_Cloud_Top_Temp_Day",
+            "title": "Cloud Top Temperature (Day)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2000-02-24",
+            "endDate": null
+          },
+          {
+            "id": "MODIS_Terra_Cloud_Fraction_Night",
+            "title": "Cloud Fraction (Night)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2000-02-24",
+            "endDate": null
+          },
+          {
+            "id": "MODIS_Terra_Cloud_Phase_Infrared_Night",
+            "title": "Cloud Phase (Infrared, Night)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2000-02-24",
+            "endDate": null
+          },
+          {
+            "id": "MODIS_Terra_Cloud_Top_Height_Night",
+            "title": "Cloud Top Height (Night)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2000-02-24",
+            "endDate": null
+          },
+          {
+            "id": "MODIS_Terra_Cloud_Top_Pressure_Night",
+            "title": "Cloud Top Pressure (Night)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2000-02-24",
+            "endDate": null
+          },
+          {
+            "id": "MODIS_Terra_Cloud_Top_Temp_Night",
+            "title": "Cloud Top Temperature (Night)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2000-02-24",
+            "endDate": null
+          },
+          {
+            "id": "MODIS_Terra_SurfaceReflectance_Bands143",
+            "title": "Land Surface Reflectance (True Color)",
+            "format": "image/jpeg",
+            "resolution": "500m",
+            "startDate": "2010-01-01",
+            "endDate": null
+          },
+          {
+            "id": "MODIS_Terra_SurfaceReflectance_Bands721",
+            "title": "Land Surface Reflectance (Bands 7-2-1)",
+            "format": "image/jpeg",
+            "resolution": "500m",
+            "startDate": "2010-01-01",
+            "endDate": null
+          },
+          {
+            "id": "MODIS_Terra_SurfaceReflectance_Bands121",
+            "title": "Land Surface Reflectance (Bands 1-2-1)",
+            "format": "image/jpeg",
+            "resolution": "250m",
+            "startDate": "2010-01-01",
+            "endDate": null
+          },
+          {
+            "id": "MODIS_Terra_Snow_Cover",
+            "title": "Snow Cover",
+            "format": "image/png",
+            "resolution": "500m",
+            "startDate": "2012-05-01",
+            "endDate": "2017-03-23"
+          },
+          {
+            "id": "MODIS_Terra_NDSI_Snow_Cover",
+            "title": "Snow Cover (Normalized Difference Snow Index, Best Available)",
+            "format": "image/png",
+            "resolution": "500m",
+            "startDate": "2010-01-01",
+            "endDate": null
+          },
+          {
+            "id": "MODIS_Terra_Land_Surface_Temp_Day",
+            "title": "Land Surface Temperature (Day)",
+            "format": "image/png",
+            "resolution": "1km",
+            "startDate": "2010-01-01",
+            "endDate": null
+          },
+          {
+            "id": "MODIS_Terra_Land_Surface_Temp_Night",
+            "title": "Land Surface Temperature (Night)",
+            "format": "image/png",
+            "resolution": "1km",
+            "startDate": "2010-01-01",
+            "endDate": null
+          },
+          {
+            "id": "MODIS_Terra_EVI_8Day",
+            "title": "Enhanced Vegetation Index (8-Day)",
+            "format": "image/png",
+            "resolution": "250m",
+            "startDate": "2016-07-30",
+            "endDate": "2017-05-03"
+          },
+          {
+            "id": "MODIS_Terra_NDVI_8Day",
+            "title": "Vegetation Index (8-Day)",
+            "format": "image/png",
+            "resolution": "250m",
+            "startDate": "2016-07-30",
+            "endDate": "2017-05-03"
+          },
+          {
+            "id": "MODIS_Terra_Ice_Surface_Temp_Day",
+            "title": "Ice Surface Temperature (Day, Best Available)",
+            "format": "image/png",
+            "resolution": "1km",
+            "startDate": "2010-01-01",
+            "endDate": null
+          },
+          {
+            "id": "MODIS_Terra_Sea_Ice",
+            "title": "Sea Ice Extent",
+            "format": "image/png",
+            "resolution": "1km",
+            "startDate": "2010-01-01",
+            "endDate": null
+          },
+          {
+            "id": "MODIS_Terra_Ice_Surface_Temp_Night",
+            "title": "Ice Surface Temperature (Night, Best Available)",
+            "format": "image/png",
+            "resolution": "1km",
+            "startDate": "2010-01-01",
+            "endDate": null
+          },
+          {
+            "id": "MODIS_Terra_CorrectedReflectance_TrueColor",
+            "title": "Corrected Reflectance (True Color)",
+            "format": "image/jpeg",
+            "resolution": "250m",
+            "startDate": "2012-01-01",
+            "endDate": null
+          },
+          {
+            "id": "MODIS_Terra_CorrectedReflectance_Bands367",
+            "title": "Corrected Reflectance (Bands 3-6-7)",
+            "format": "image/jpeg",
+            "resolution": "250m",
+            "startDate": "2012-01-01",
+            "endDate": null
+          },
+          {
+            "id": "MODIS_Terra_CorrectedReflectance_Bands721",
+            "title": "Corrected Reflectance (Bands 7-2-1)",
+            "format": "image/jpeg",
+            "resolution": "250m",
+            "startDate": "2012-01-01",
+            "endDate": null
+          },
+          {
+            "id": "MODIS_Terra_Data_No_Data",
+            "title": "Data/No Data Mask (Day)",
+            "format": "image/png",
+            "resolution": "250m",
+            "startDate": "2012-01-01",
+            "endDate": null
+          },
+          {
+            "id": "MODIS_Terra_L3_SST_Thermal_4km_Day_8Day",
+            "title": "Sea Surface Temperature (L3, Day, 8 Day, Thermal, 4km, v2014.0, Standard)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2000-02-26",
+            "endDate": "2000-12-26"
+          },
+          {
+            "id": "MODIS_Terra_L3_SST_MidIR_4km_Night_8Day",
+            "title": "Sea Surface Temperature (L3, Night, 8 Day, Mid Infrared, 4km, v2014.0, Standard)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2000-02-26",
+            "endDate": "2000-12-26"
+          },
+          {
+            "id": "MODIS_Terra_L3_SST_Thermal_4km_Night_8Day",
+            "title": "Sea Surface Temperature (L3, Night, 8 Day, Thermal, 4km, v2014.0, Standard)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2000-02-26",
+            "endDate": "2000-12-26"
+          },
+          {
+            "id": "MODIS_Terra_L3_SST_Thermal_4km_Day_Annual",
+            "title": "Sea Surface Temperature (L3, Day, Annual, Thermal, 4km, v2014.0, Standard)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2000-01-01",
+            "endDate": "2016-01-01"
+          },
+          {
+            "id": "MODIS_Terra_L3_SST_MidIR_4km_Night_Annual",
+            "title": "Sea Surface Temperature (L3, Night, Annual, Mid Infrared, 4km, v2014.0, Standard)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2000-01-01",
+            "endDate": "2016-01-01"
+          },
+          {
+            "id": "MODIS_Terra_L3_SST_Thermal_4km_Night_Annual",
+            "title": "Sea Surface Temperature (L3, Night, Annual, Thermal, 4km, v2014.0, Standard)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2000-01-01",
+            "endDate": "2016-01-01"
+          },
+          {
+            "id": "MODIS_Terra_L3_SST_Thermal_4km_Day_Daily",
+            "title": "Sea Surface Temperature (L3, Day, Daily, Thermal, 4km, v2014.0, Standard)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2000-02-24",
+            "endDate": "2000-04-25"
+          },
+          {
+            "id": "MODIS_Terra_L3_SST_MidIR_4km_Night_Daily",
+            "title": "Sea Surface Temperature (L3, Night, Daily, Mid Infrared, 4km, v2014.0, Standard)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2000-02-25",
+            "endDate": "2000-04-26"
+          },
+          {
+            "id": "MODIS_Terra_L3_SST_Thermal_4km_Night_Daily",
+            "title": "Sea Surface Temperature (L3, Night, Daily, Thermal, 4km, v2014.0, Standard)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2000-02-25",
+            "endDate": "2000-03-18"
+          },
+          {
+            "id": "MODIS_Terra_L3_SST_Thermal_4km_Day_Monthly",
+            "title": "Sea Surface Temperature (L3, Day, Monthly, Thermal, 4km, v2014.0, Standard)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2000-08-01",
+            "endDate": "2017-03-01"
+          },
+          {
+            "id": "MODIS_Terra_L3_SST_MidIR_4km_Night_Monthly",
+            "title": "Sea Surface Temperature (L3, Night, Monthly, Mid Infrared, 4km, v2014.0, Standard)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2000-08-01",
+            "endDate": "2017-02-01"
+          },
+          {
+            "id": "MODIS_Terra_L3_SST_Thermal_4km_Night_Monthly",
+            "title": "Sea Surface Temperature (L3, Night, Monthly, Thermal, 4km, v2014.0, Standard)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2000-08-01",
+            "endDate": "2017-03-01"
+          },
+          {
+            "id": "MODIS_Terra_L3_SST_Thermal_9km_Day_8Day",
+            "title": "Sea Surface Temperature (L3, Day, 8 Day, Thermal, 9km, v2014.0, Standard)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2000-02-26",
+            "endDate": "2000-12-26"
+          },
+          {
+            "id": "MODIS_Terra_L3_SST_MidIR_9km_Night_8Day",
+            "title": "Sea Surface Temperature (L3, Night, 8 Day, Mid Infrared, 9km, v2014.0, Standard)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2000-02-26",
+            "endDate": "2000-12-26"
+          },
+          {
+            "id": "MODIS_Terra_L3_SST_Thermal_9km_Night_8Day",
+            "title": "Sea Surface Temperature (L3, Night, 8 Day, Thermal, 9km, v2014.0, Standard)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2000-02-26",
+            "endDate": "2000-12-26"
+          },
+          {
+            "id": "MODIS_Terra_L3_SST_Thermal_9km_Day_Annual",
+            "title": "Sea Surface Temperature (L3, Day, Annual, Thermal, 9km, v2014.0, Standard)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2000-01-01",
+            "endDate": "2016-01-01"
+          },
+          {
+            "id": "MODIS_Terra_L3_SST_MidIR_9km_Night_Annual",
+            "title": "Sea Surface Temperature (L3, Night, Annual, Mid Infrared, 9km, v2014.0, Standard)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2000-01-01",
+            "endDate": "2016-01-01"
+          },
+          {
+            "id": "MODIS_Terra_L3_SST_Thermal_9km_Night_Annual",
+            "title": "Sea Surface Temperature (L3, Night, Annual, Thermal, 9km, v2014.0, Standard)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2000-01-01",
+            "endDate": "2016-01-01"
+          },
+          {
+            "id": "MODIS_Terra_L3_SST_Thermal_9km_Day_Daily",
+            "title": "Sea Surface Temperature (L3, Day, Daily, Thermal, 9km, v2014.0, Standard)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2000-02-24",
+            "endDate": "2000-04-25"
+          },
+          {
+            "id": "MODIS_Terra_L3_SST_MidIR_9km_Night_Daily",
+            "title": "Sea Surface Temperature (L3, Night, Daily, Mid Infrared, 9km, v2014.0, Standard)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2000-02-25",
+            "endDate": "2000-04-26"
+          },
+          {
+            "id": "MODIS_Terra_L3_SST_Thermal_9km_Night_Daily",
+            "title": "Sea Surface Temperature (L3, Night, Daily, Thermal, 9km, v2014.0, Standard)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2000-02-25",
+            "endDate": "2000-04-26"
+          },
+          {
+            "id": "MODIS_Terra_L3_SST_Thermal_9km_Day_Monthly",
+            "title": "Sea Surface Temperature (L3, Day, Monthly, Thermal, 9km, v2014.0, Standard)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2000-08-01",
+            "endDate": "2017-03-01"
+          },
+          {
+            "id": "MODIS_Terra_L3_SST_MidIR_9km_Night_Monthly",
+            "title": "Sea Surface Temperature (L3, Night, Monthly, Mid Infrared, 9km, v2014.0, Standard)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2000-08-01",
+            "endDate": "2017-02-01"
+          },
+          {
+            "id": "MODIS_Terra_L3_SST_Thermal_9km_Night_Monthly",
+            "title": "Sea Surface Temperature (L3, Night, Monthly, Thermal, 9km, v2014.0, Standard)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2000-08-01",
+            "endDate": "2017-03-01"
+          }
+        ]
+      },
+      {
+        "name": "MOPITT",
+        "layers": [
+          {
+            "id": "MOPITT_CO_Daily_Surface_Mixing_Ratio_Night",
+            "title": "Carbon Monoxide (Daily, Night, Surface Mixing Ratio)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2000-03-01",
+            "endDate": "2016-05-24"
+          },
+          {
+            "id": "MOPITT_CO_Daily_Surface_Mixing_Ratio_Day",
+            "title": "Carbon Monoxide (Daily, Day, Surface Mixing Ratio, v6, Standard)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2000-03-01",
+            "endDate": "2016-05-24"
+          },
+          {
+            "id": "MOPITT_CO_Daily_Total_Column_Night",
+            "title": "Carbon Monoxide (Daily, Night, Total Column)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2000-03-01",
+            "endDate": "2016-05-24"
+          },
+          {
+            "id": "MOPITT_CO_Daily_Total_Column_Day",
+            "title": "Carbon Monoxide (Daily, Day, Total Column, v6, Standard)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2000-03-01",
+            "endDate": "2016-05-24"
+          },
+          {
+            "id": "MOPITT_CO_Monthly_Surface_Mixing_Ratio_Night",
+            "title": "Carbon Monoxide (Monthly, Night, Surface Mixing Ratio)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2000-03-03",
+            "endDate": "2000-03-03"
+          },
+          {
+            "id": "MOPITT_CO_Monthly_Surface_Mixing_Ratio_Day",
+            "title": "Carbon Monoxide (Monthly, Day, Surface Mixing Ratio, v6, Standard)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2000-03-03",
+            "endDate": "2000-03-03"
+          },
+          {
+            "id": "MOPITT_CO_Monthly_Total_Column_Night",
+            "title": "Carbon Monoxide (Monthly, Night, Total Column)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2000-03-03",
+            "endDate": "2000-03-03"
+          },
+          {
+            "id": "MOPITT_CO_Monthly_Total_Column_Day",
+            "title": "Carbon Monoxide (Monthly, Day, Total Column, v6, Standard)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2000-03-03",
+            "endDate": "2000-03-03"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "Reverb",
+    "instruments": [
+      {
+        "layers": [
+          {
+            "id": "Blue_Marble",
+            "title": "Blue Marble (Reverb)",
+            "format": "image/jpeg",
+            "resolution": "500m"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "MODIS",
+    "instruments": [
+      {
+        "layers": [
+          {
+            "id": "BlueMarble_NextGeneration",
+            "title": "Blue Marble (MODIS)",
+            "format": "image/jpeg",
+            "resolution": "500m"
+          },
+          {
+            "id": "BlueMarble_ShadedRelief",
+            "title": "Blue Marble Shaded Relief (MODIS)",
+            "format": "image/jpeg",
+            "resolution": "500m"
+          },
+          {
+            "id": "BlueMarble_ShadedRelief_Bathymetry",
+            "title": "Blue Marble Shaded Relief and Bathymetry (MODIS)",
+            "format": "image/jpeg",
+            "resolution": "500m"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "CCMP",
+    "instruments": [
+      {
+        "name": "Best Available",
+        "layers": [
+          {
+            "id": "CCMP_REMSS_Scalar_Wind_Speed_Monthly",
+            "title": "Wind Speed (Scalar, REMSS, Monthly)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "1987-07-02",
+            "endDate": "2011-12-01"
+          },
+          {
+            "id": "CCMP_REMSS_Zonal_Wind_Speed_Monthly",
+            "title": "Wind Speed (Zonal, REMSS, Monthly)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "1987-07-02",
+            "endDate": "2011-12-01"
+          },
+          {
+            "id": "CCMP_REMSS_Meridional_Wind_Speed_Monthly",
+            "title": "Wind Speed (Meridional, REMSS, Monthly)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "1987-07-02",
+            "endDate": "2011-12-01"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "OSM",
+    "instruments": [
+      {
+        "layers": [
+          {
+            "id": "Coastlines",
+            "title": "Coastlines (OSM)",
+            "format": "image/png",
+            "resolution": "250m"
+          },
+          {
+            "id": "OSM_Land_Mask",
+            "title": "Land Mask (OSM)",
+            "format": "image/png",
+            "resolution": "250m"
+          },
+          {
+            "id": "OSM_Land_Water_Map",
+            "title": "Land Water Map (OSM)",
+            "format": "image/png",
+            "resolution": "250m"
+          },
+          {
+            "id": "Reference_Features",
+            "title": "Reference Features (OSM)",
+            "format": "image/png",
+            "resolution": "250m"
+          },
+          {
+            "id": "Reference_Labels",
+            "title": "Reference Labels (OSM)",
+            "format": "image/png",
+            "resolution": "250m"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "Daymet",
+    "instruments": [
+      {
+        "name": "Daily",
+        "layers": [
+          {
+            "id": "Daymet_Maximum_Air_Temp_Daily",
+            "title": "Maximum Air Temperature",
+            "format": "image/png",
+            "resolution": "1km",
+            "startDate": "1980-01-01",
+            "endDate": "2015-12-31"
+          },
+          {
+            "id": "Daymet_Minimum_Air_Temp_Daily",
+            "title": "Minimum Air Temperature",
+            "format": "image/png",
+            "resolution": "1km",
+            "startDate": "1980-01-01",
+            "endDate": "2015-12-31"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "GLDAS",
+    "instruments": [
+      {
+        "name": "Best Available",
+        "layers": [
+          {
+            "id": "GLDAS_Near_Surface_Air_Temperature_Monthly",
+            "title": "Air Temperature (Monthly, Near Surface, Noah LSM)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "1948-01-01",
+            "endDate": "2010-12-01"
+          },
+          {
+            "id": "GLDAS_Surface_Total_Precipitation_Rate_Monthly",
+            "title": "Total Precipitation Rate (Monthly, Surface, Noah LSM)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "1948-01-01",
+            "endDate": "2010-12-01"
+          },
+          {
+            "id": "GLDAS_Underground_Soil_Moisture_Monthly",
+            "title": "Soil Moisture (Monthly, Underground, Noah LSM)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "1948-01-01",
+            "endDate": "2010-12-01"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "GPM",
+    "image": "gpm.png",
+    "status": "INACTIVE",
+    "instruments": [
+      {
+        "name": "GMI",
+        "layers": [
+          {
+            "id": "GMI_Rain_Rate_Asc",
+            "title": "Rain Rate (Ascending)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2014-03-04",
+            "endDate": "2016-02-29"
+          },
+          {
+            "id": "GMI_Rain_Rate_Dsc",
+            "title": "Rain Rate (Descending)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2014-03-04",
+            "endDate": "2016-02-29"
+          },
+          {
+            "id": "GMI_Brightness_Temp_Asc",
+            "title": "Brightness Temperature (Ascending)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2014-03-04",
+            "endDate": "2017-04-30"
+          },
+          {
+            "id": "GMI_Brightness_Temp_Dsc",
+            "title": "Brightness Temperature (Descending)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2014-03-04",
+            "endDate": "2017-04-30"
+          },
+          {
+            "id": "GMI_Snow_Rate_Asc",
+            "title": "Snow Rate (Ascending)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2014-03-04",
+            "endDate": "2016-02-29"
+          },
+          {
+            "id": "GMI_Snow_Rate_Dsc",
+            "title": "Snow Rate (Descending)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2014-03-04",
+            "endDate": "2016-02-29"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "OrbView-1 / OTD",
+    "instruments": [
+      {
+        "name": "TRMM / LIS",
+        "layers": [
+          {
+            "id": "LIS_High_Resolution_Full_Climatology_Combined_Flash_Rate_Climatology",
+            "title": "Lightning Flash Rate (Combined)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "1995-05-04",
+            "endDate": "1995-05-04"
+          }
+        ]
+      },
+      {
+        "name": "",
+        "layers": [
+          {
+            "id": "OTD_High_Resolution_Full_Climatology_OTD_Flash_Rate_Climatology",
+            "title": "Lightning Flash Rate",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "1995-05-04",
+            "endDate": "1995-05-04"
+          }
+        ]
+      },
+      {
+        "name": "Raw",
+        "layers": [
+          {
+            "id": "OTD_High_Resolution_Full_Climatology_OTD_Raw_Flashes",
+            "title": "Lightning Flashes",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "1995-05-04",
+            "endDate": "1995-05-04"
+          }
+        ]
+      },
+      {
+        "name": "Scaled",
+        "layers": [
+          {
+            "id": "OTD_High_Resolution_Full_Climatology_OTD_Scaled_Flashes",
+            "title": "Lightning Flashes",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "1995-05-04",
+            "endDate": "1995-05-04"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "TRMM / LIS",
+    "instruments": [
+      {
+        "layers": [
+          {
+            "id": "LIS_High_Resolution_Full_Climatology_LIS_Flash_Rate_Climatology",
+            "title": "Lightning Flash Rate (TRMM / LIS)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "1995-05-04",
+            "endDate": "1995-05-04"
+          }
+        ]
+      },
+      {
+        "name": "Raw",
+        "layers": [
+          {
+            "id": "LIS_High_Resolution_Full_Climatology_LIS_Raw_Flashes",
+            "title": "Lightning Flashes",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "1995-05-04",
+            "endDate": "1995-05-04"
+          }
+        ]
+      },
+      {
+        "name": "Scaled",
+        "layers": [
+          {
+            "id": "LIS_High_Resolution_Full_Climatology_LIS_Scaled_Flashes",
+            "title": "Lightning Flashes",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "1995-05-04",
+            "endDate": "1995-05-04"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "Combined Aqua and Terra",
+    "instruments": [
+      {
+        "name": "MODIS",
+        "layers": [
+          {
+            "id": "MODIS_Combined_Value_Added_AOD",
+            "title": "Aerosol Optical Depth (Value Added)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2013-01-31",
+            "endDate": null
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "MEaSUREs",
+    "instruments": [
+      {
+        "name": "AMSR-E",
+        "layers": [
+          {
+            "id": "MEaSUREs_Daily_Landscape_Freeze_Thaw_AMSRE",
+            "title": "Freeze Thaw (Daily Landscape)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2002-06-09",
+            "endDate": "2011-09-27"
+          }
+        ]
+      },
+      {
+        "name": "SSMI",
+        "layers": [
+          {
+            "id": "MEaSUREs_Daily_Landscape_Freeze_Thaw_SSMI",
+            "title": "Freeze Thaw (Daily Landscape)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "1979-01-01",
+            "endDate": "2010-12-31"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "MERRA2",
+    "instruments": [
+      {
+        "name": "Monthly",
+        "layers": [
+          {
+            "id": "MERRA2_Surface_Pressure_Monthly",
+            "title": "Surface Pressure",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "1980-01-01",
+            "endDate": "2017-01-01"
+          },
+          {
+            "id": "MERRA2_Surface_Skin_Temperature_Monthly",
+            "title": "Surface Skin Temperature",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "1980-01-01",
+            "endDate": "2016-11-01"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "MERRA",
+    "instruments": [
+      {
+        "name": "Monthly",
+        "layers": [
+          {
+            "id": "MERRA_Surface_Pressure_Monthly",
+            "title": "Surface Pressure",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "1979-01-01",
+            "endDate": "2016-02-01"
+          },
+          {
+            "id": "MERRA_Surface_Skin_Temperature_Monthly",
+            "title": "Surface Skin Temperature (Monthly,  MERRA)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "1979-01-01",
+            "endDate": "2016-02-01"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "MISR",
+    "instruments": [
+      {
+        "name": "Monthly",
+        "layers": [
+          {
+            "id": "MISR_Aerosol_Optical_Depth_Avg_Green_Monthly",
+            "title": "Aerosol Optical Depth Average (Green)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2000-02-01",
+            "endDate": "2016-08-01"
+          },
+          {
+            "id": "MISR_Cloud_Stereo_Height_Histogram_Bin_0.5km_Monthly",
+            "title": "Cloud Stereo Height (No Wind Correction, < 0.5 km)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2000-02-01",
+            "endDate": "2016-08-01"
+          },
+          {
+            "id": "MISR_Cloud_Stereo_Height_Histogram_Bin_1.5-2.0km_Monthly",
+            "title": "Cloud Stereo Height (No Wind Correction, 1.5 - 2.0 km)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2000-02-01",
+            "endDate": "2016-08-01"
+          },
+          {
+            "id": "MISR_Land_NDVI_Average_Monthly",
+            "title": "Land NDVI Average",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2000-02-01",
+            "endDate": "2016-08-01"
+          },
+          {
+            "id": "MISR_TOA_Albedo_Average_Red_Monthly",
+            "title": "TOA Albedo Average (Red)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2000-02-01",
+            "endDate": "2016-08-01"
+          }
+        ]
+      }
+    ]
+  },
   {
     "id": "aura",
     "name": "Aura",
-    "type": "SATELLITE",
+    "image": "aura.png",
+    "description": "Aura is the third in the series of large Earth Observing System platforms to be flown by NASA with internationa contributions. Aura provides an unprecedented view of the global Earth system. The Aura mission consists of four instruments on a common spacecraft (the same bus design as for Aqua) designed to provide the essential services for the instruments.",
+    "status": "INACTIVE",
+    "orbitalData":  {
+      "perigee": "708",
+      "apogee": "710",
+      "inclination": "98.22",
+      "eccentricity": "0.0001111",
+      "period": "98.83"
+    },
+    "mass": "1765",
+    "launchDate": "2004-07-15",
+    "endDate": null,
     "instruments": [
-      { "name" : "HIRDLS", "full-name": "High Resolution Dynamics Limb Sounder"},
-      { "name" : "MLS", "full-name": "Microwave Limb Sounder"},
-      { "name" : "OMI", "full-name": "Ozone Monitoring Instrument"},
-      { "name" : "TES", "full-name": "Tropospheric Emission Spectrometer"}
+      {
+        "name": "MLS",
+        "layers": [
+          {
+            "id": "MLS_CO_215hPa_Day",
+            "title": "Carbon Monoxide (215 hPa, Day)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2013-05-09",
+            "endDate": null
+          },
+          {
+            "id": "MLS_CO_215hPa_Night",
+            "title": "Carbon Monoxide (215 hPa, Night)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2013-05-09",
+            "endDate": null
+          },
+          {
+            "id": "MLS_H2O_46hPa_Day",
+            "title": "Water Vapor (46 hPa, Day)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2013-05-09",
+            "endDate": null
+          },
+          {
+            "id": "MLS_H2O_46hPa_Night",
+            "title": "Water Vapor (46 hPa, Night)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2013-05-09",
+            "endDate": null
+          },
+          {
+            "id": "MLS_HNO3_46hPa_Day",
+            "title": "Nitric Acid (46 hPa, Day)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2013-05-09",
+            "endDate": null
+          },
+          {
+            "id": "MLS_HNO3_46hPa_Night",
+            "title": "Nitric Acid (46 hPa, Night)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2013-05-09",
+            "endDate": null
+          },
+          {
+            "id": "MLS_N2O_46hPa_Day",
+            "title": "Nitrous Oxide (46 hPa, Day)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2013-05-09",
+            "endDate": null
+          },
+          {
+            "id": "MLS_N2O_46hPa_Night",
+            "title": "Nitrous Oxide (46 hPa, Night)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2013-05-09",
+            "endDate": null
+          },
+          {
+            "id": "MLS_O3_46hPa_Day",
+            "title": "Ozone (46 hPa, Day)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2013-05-09",
+            "endDate": null
+          },
+          {
+            "id": "MLS_O3_46hPa_Night",
+            "title": "Ozone (46 hPa, Night)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2013-05-09",
+            "endDate": null
+          },
+          {
+            "id": "MLS_SO2_147hPa_Day",
+            "title": "Sulfur Dioxide (147 hPa, Day)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2013-05-09",
+            "endDate": null
+          },
+          {
+            "id": "MLS_SO2_147hPa_Night",
+            "title": "Sulfur Dioxide (147 hPa, Night)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2013-05-09",
+            "endDate": null
+          },
+          {
+            "id": "MLS_Temperature_46hPa_Day",
+            "title": "Air Temperature (46 hPa, Day)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2013-05-09",
+            "endDate": null
+          },
+          {
+            "id": "MLS_Temperature_46hPa_Night",
+            "title": "Air Temperature (46 hPa, Night)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2013-05-09",
+            "endDate": null
+          }
+        ]
+      },
+      {
+        "name": "OMI",
+        "layers": [
+          {
+            "id": "OMI_Absorbing_Aerosol_Optical_Depth",
+            "title": "Aerosol Optical Depth, Absorbing",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2004-10-01",
+            "endDate": null
+          },
+          {
+            "id": "OMI_Absorbing_Aerosol_Optical_Thickness_MW_388",
+            "title": "Aerosol Optical Depth (Absorbing, Multi-Wavelength, 388.0 nm)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2004-10-01",
+            "endDate": "2016-10-01"
+          },
+          {
+            "id": "OMI_Aerosol_Index",
+            "title": "Aerosol Index",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2004-10-01",
+            "endDate": null
+          },
+          {
+            "id": "OMI_Aerosol_Optical_Depth",
+            "title": "Aerosol Optical Depth",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2004-10-01",
+            "endDate": null
+          },
+          {
+            "id": "OMI_Cloud_Pressure",
+            "title": "Cloud Pressure",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2005-01-01",
+            "endDate": null
+          },
+          {
+            "id": "OMI_Nitric_Oxide_Tropo_Column",
+            "title": "Nitric Oxide (Tropospheric Column)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2004-10-01",
+            "endDate": "2016-10-01"
+          },
+          {
+            "id": "OMI_Ozone_DOAS_Total_Column",
+            "title": "Ozone (DOAS, v3, Standard)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2004-10-01",
+            "endDate": "2016-10-01"
+          },
+          {
+            "id": "OMI_Ozone_TOMS_Total_Column",
+            "title": "Ozone (TOMS-Like, v3, Standard)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2004-10-01",
+            "endDate": "2016-10-01"
+          },
+          {
+            "id": "OMI_SO2_Upper_Troposphere_and_Stratosphere",
+            "title": "Sulfur Dioxide (Upper Troposphere and Stratosphere)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2005-01-01",
+            "endDate": null
+          },
+          {
+            "id": "OMI_SO2_Planetary_Boundary_Layer",
+            "title": "Sulfur Dioxide (Planetary Boundary Layer)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2004-10-01",
+            "endDate": null
+          },
+          {
+            "id": "OMI_SO2_Lower_Troposphere",
+            "title": "Sulfur Dioxide (Lower Troposphere)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2005-01-01",
+            "endDate": null
+          },
+          {
+            "id": "OMI_SO2_Middle_Troposphere",
+            "title": "Sulfur Dioxide (Middle Troposphere)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2005-01-01",
+            "endDate": null
+          },
+          {
+            "id": "OMI_Single_Scattering_Albedo",
+            "title": "Aerosol Single Scattering Albedo (Near-UV, 388.0nm)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2004-10-01",
+            "endDate": null
+          },
+          {
+            "id": "OMI_UV_Erythemal_Daily_Dose",
+            "title": "Erythemal Daily Dose (Local Noon)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2004-10-01",
+            "endDate": "2016-12-30"
+          },
+          {
+            "id": "OMI_UV_Erythemal_Dose_Rate",
+            "title": "Erythemal Dose Rate (Local Noon)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2004-10-01",
+            "endDate": "2016-12-30"
+          },
+          {
+            "id": "OMI_UV_Index",
+            "title": "UV Index (Local Noon)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2004-10-01",
+            "endDate": "2016-12-30"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "MODIS/SRTM",
+    "instruments": [
+      {
+        "layers": [
+          {
+            "id": "MODIS_Water_Mask",
+            "title": "Water Mask (MODIS/SRTM)",
+            "format": "image/png",
+            "resolution": "250m"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "NLDAS",
+    "instruments": [
+      {
+        "name": "Best Available",
+        "layers": [
+          {
+            "id": "NLDAS_Near_Surface_Air_Temperature_Primary_Monthly",
+            "title": "Air Temperature (Monthly, Near Surface, Primary Forcing Data)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "1979-01-01",
+            "endDate": "2016-11-01"
+          },
+          {
+            "id": "NLDAS_Surface_Total_Precipitation_Primary_Monthly",
+            "title": "Precipitation Total (Monthly, Surface, Primary Forcing Data)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "1979-01-01",
+            "endDate": "2016-11-01"
+          },
+          {
+            "id": "NLDAS_Surface_Total_Precipitation_Secondary_Monthly",
+            "title": "Precipitation Total (Monthly, Surface, Secondary Forcing Data)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "1979-01-01",
+            "endDate": "2016-11-01"
+          },
+          {
+            "id": "NLDAS_Underground_Soil_Moisture_Mosaic_Monthly",
+            "title": "Soil Moisture (Monthly, Underground, Mosaic LSM)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "1979-01-01",
+            "endDate": "2016-11-01"
+          },
+          {
+            "id": "NLDAS_Underground_Soil_Moisture_Noah_Monthly",
+            "title": "Soil Moisture (Monthly, Underground, Noah LSM)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "1979-01-01",
+            "endDate": "2016-11-01"
+          },
+          {
+            "id": "NLDAS_Underground_Soil_Moisture_VIC_Monthly",
+            "title": "Soil Moisture (Monthly, Underground, VIC LSM)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "1979-01-01",
+            "endDate": "2016-11-01"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "Merged Microwave Radiometers",
+    "instruments": [
+      {
+        "name": "Average",
+        "layers": [
+          {
+            "id": "RSS_Total_Precipitable_Water_Climatology_Monthly",
+            "title": "Precipitable Water over Ice-Free Oceans (Monthly)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "1988-01-01",
+            "endDate": "2016-08-01"
+          },
+          {
+            "id": "RSS_Merged_Wind_Climatology_Monthly",
+            "title": "Wind Speed over Ice-Free Oceans (Monthly)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "1988-01-01",
+            "endDate": "2016-08-01"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "SMAP",
+    "instruments": [
+      {
+        "name": "Radiometer",
+        "layers": [
+          {
+            "id": "SMAP_L1_Passive_Faraday_Rotation_Aft",
+            "title": "Faraday Rotation Angle (L1, Passive, Aft)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2015-03-31",
+            "endDate": "2017-04-24"
+          },
+          {
+            "id": "SMAP_L1_Passive_Faraday_Rotation_Fore",
+            "title": "Faraday Rotation Angle (L1, Passive, Fore)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2015-03-31",
+            "endDate": "2017-04-24"
+          },
+          {
+            "id": "SMAP_L1_Passive_Brightness_Temp_Aft_H",
+            "title": "Uncorrected Brightness Temperature (L1, Passive, Aft, H Polarization)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2015-03-31",
+            "endDate": "2017-04-24"
+          },
+          {
+            "id": "SMAP_L1_Passive_Brightness_Temp_Aft_H_QA",
+            "title": "Uncorrected Brightness Temperature QA (L1, Passive, Aft, H Polarization)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2015-03-31",
+            "endDate": "2017-04-24"
+          },
+          {
+            "id": "SMAP_L1_Passive_Brightness_Temp_Aft_H_RFI",
+            "title": "Uncorrected Brightness Temperature RFI (L1, Passive, Aft, H Polarization)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2015-03-31",
+            "endDate": "2017-04-24"
+          },
+          {
+            "id": "SMAP_L1_Passive_Brightness_Temp_Fore_H",
+            "title": "Uncorrected Brightness Temperature (L1, Passive, Fore, H Polarization)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2015-03-31",
+            "endDate": "2017-04-24"
+          },
+          {
+            "id": "SMAP_L1_Passive_Brightness_Temp_Fore_H_QA",
+            "title": "Uncorrected Brightness Temperature QA (L1, Passive, Fore, H Polarization)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2015-03-31",
+            "endDate": "2017-04-24"
+          },
+          {
+            "id": "SMAP_L1_Passive_Brightness_Temp_Fore_H_RFI",
+            "title": "Uncorrected Brightness Temperature RFI (L1, Passive, Fore, H Polarization)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2015-03-31",
+            "endDate": "2017-04-24"
+          },
+          {
+            "id": "SMAP_L1_Passive_Brightness_Temp_Aft_V",
+            "title": "Uncorrected Brightness Temperature (L1, Passive, Aft, V Polarization)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2015-03-31",
+            "endDate": "2017-04-24"
+          },
+          {
+            "id": "SMAP_L1_Passive_Brightness_Temp_Aft_V_QA",
+            "title": "Uncorrected Brightness Temperature QA (L1, Passive, Aft, V Polarization)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2015-03-31",
+            "endDate": "2017-04-24"
+          },
+          {
+            "id": "SMAP_L1_Passive_Brightness_Temp_Aft_V_RFI",
+            "title": "Uncorrected Brightness Temperature RFI (L1, Passive, Aft, V Polarization)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2015-03-31",
+            "endDate": "2017-04-24"
+          },
+          {
+            "id": "SMAP_L1_Passive_Brightness_Temp_Fore_V",
+            "title": "Uncorrected Brightness Temperature (L1, Passive, Fore, V Polarization)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2015-03-31",
+            "endDate": "2017-04-24"
+          },
+          {
+            "id": "SMAP_L1_Passive_Brightness_Temp_Fore_V_QA",
+            "title": "Uncorrected Brightness Temperature QA (L1, Passive, Fore, V Polarization)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2015-03-31",
+            "endDate": "2017-04-24"
+          },
+          {
+            "id": "SMAP_L1_Passive_Brightness_Temp_Fore_V_RFI",
+            "title": "Uncorrected Brightness Temperature RFI (L1, Passive, Fore, V Polarization)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2015-03-31",
+            "endDate": "2017-04-24"
+          },
+          {
+            "id": "SMAP_L2_Passive_Soil_Moisture_Option1",
+            "title": "Soil Moisture (L2, Passive, Single Channel Algorithm, H Polarization)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2015-03-31",
+            "endDate": "2017-04-23"
+          },
+          {
+            "id": "SMAP_L2_Passive_Soil_Moisture_Option2",
+            "title": "Soil Moisture (L2, Passive, Single Channel Algorithm, V Polarization)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2015-03-31",
+            "endDate": "2017-04-23"
+          },
+          {
+            "id": "SMAP_L2_Passive_Soil_Moisture_Option3",
+            "title": "Soil Moisture (L2, Passive, Dual Channel Algorithm)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2015-03-31",
+            "endDate": "2017-03-22"
+          },
+          {
+            "id": "SMAP_L3_Passive_Soil_Moisture",
+            "title": "Soil Moisture (L3, Passive)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2015-03-31",
+            "endDate": "2017-04-23"
+          },
+          {
+            "id": "SMAP_L3_Passive_Brightness_Temp_H",
+            "title": "Corrected Brightness Temperature (L3, Passive, H Polarization)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2015-03-31",
+            "endDate": "2017-04-23"
+          },
+          {
+            "id": "SMAP_L3_Passive_Brightness_Temp_V",
+            "title": "Corrected Brightness Temperature (L3, Passive, V Polarization)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2015-03-31",
+            "endDate": "2017-04-23"
+          }
+        ]
+      },
+      {
+        "name": "Best Available",
+        "layers": [
+          {
+            "id": "SMAP_L1_Passive_Enhanced_Brightness_Temp_Aft_H",
+            "title": "Uncorrected Brightness Temperature (L1, Passive Enhanced, Aft, H Polarization, Radiometer)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2015-03-31",
+            "endDate": "2017-04-24"
+          },
+          {
+            "id": "SMAP_L1_Passive_Enhanced_Brightness_Temp_Aft_H_QA",
+            "title": "Uncorrected Brightness Temperature QA (L1, Passive Enhanced, Aft, H Polarization, Radiometer)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2015-03-31",
+            "endDate": "2017-04-24"
+          },
+          {
+            "id": "SMAP_L1_Passive_Enhanced_Brightness_Temp_Aft_H_RFI",
+            "title": "Uncorrected Brightness Temperature RFI (L1, Passive Enhanced, Aft, H Polarization, Radiometer)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2015-03-31",
+            "endDate": "2017-04-24"
+          },
+          {
+            "id": "SMAP_L1_Passive_Enhanced_Brightness_Temp_Fore_H",
+            "title": "Uncorrected Brightness Temperature (L1, Passive Enhanced, Fore, H Polarization, Radiometer)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2015-03-31",
+            "endDate": "2017-04-24"
+          },
+          {
+            "id": "SMAP_L1_Passive_Enhanced_Brightness_Temp_Fore_H_QA",
+            "title": "Uncorrected Brightness Temperature QA (L1, Passive Enhanced, Fore, H Polarization, Radiometer)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2015-03-31",
+            "endDate": "2017-04-24"
+          },
+          {
+            "id": "SMAP_L1_Passive_Enhanced_Brightness_Temp_Fore_H_RFI",
+            "title": "Uncorrected Brightness Temperature RFI (L1, Passive Enhanced, Fore, H Polarization, Radiometer)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2015-03-31",
+            "endDate": "2017-04-24"
+          },
+          {
+            "id": "SMAP_L1_Passive_Enhanced_Brightness_Temp_Aft_V",
+            "title": "Uncorrected Brightness Temperature (L1, Passive Enhanced, Aft, V Polarization, Radiometer)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2015-03-31",
+            "endDate": "2017-04-24"
+          },
+          {
+            "id": "SMAP_L1_Passive_Enhanced_Brightness_Temp_Aft_V_QA",
+            "title": "Uncorrected Brightness Temperature QA (L1, Passive Enhanced, Aft, V Polarization, Radiometer)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2015-03-31",
+            "endDate": "2017-04-24"
+          },
+          {
+            "id": "SMAP_L1_Passive_Enhanced_Brightness_Temp_Aft_V_RFI",
+            "title": "Uncorrected Brightness Temperature RFI (L1, Passive Enhanced, Aft, V Polarization, Radiometer)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2015-03-31",
+            "endDate": "2017-04-24"
+          },
+          {
+            "id": "SMAP_L1_Passive_Enhanced_Brightness_Temp_Fore_V",
+            "title": "Uncorrected Brightness Temperature (L1, Passive Enhanced, Fore, V Polarization, Radiometer)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2015-03-31",
+            "endDate": "2017-04-24"
+          },
+          {
+            "id": "SMAP_L1_Passive_Enhanced_Brightness_Temp_Fore_V_QA",
+            "title": "Uncorrected Brightness Temperature QA (L1, Passive Enhanced, Fore, V Polarization, Radiometer)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2015-03-31",
+            "endDate": "2017-04-24"
+          },
+          {
+            "id": "SMAP_L1_Passive_Enhanced_Brightness_Temp_Fore_V_RFI",
+            "title": "Uncorrected Brightness Temperature RFI (L1, Passive Enhanced, Fore, V Polarization, Radiometer)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2015-03-31",
+            "endDate": "2017-04-24"
+          },
+          {
+            "id": "SMAP_L2_Passive_Day_Soil_Moisture_Option1",
+            "title": "Soil Moisture (L2, Passive, Day, Single Channel Algorithm, H Polarization, Radiometer)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2015-03-31",
+            "endDate": "2017-04-23"
+          },
+          {
+            "id": "SMAP_L2_Passive_Enhanced_Day_Soil_Moisture_Option1",
+            "title": "Soil Moisture (L2, Passive Enhanced, Day, Single Channel Algorithm, H Polarization, Radiometer)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2015-03-31",
+            "endDate": "2017-04-22"
+          },
+          {
+            "id": "SMAP_L2_Passive_Enhanced_Night_Soil_Moisture_Option1",
+            "title": "Soil Moisture (L2, Passive Enhanced, Night, Single Channel Algorithm, H Polarization, Radiometer)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2015-03-31",
+            "endDate": "2017-04-22"
+          },
+          {
+            "id": "SMAP_L2_Passive_Night_Soil_Moisture_Option1",
+            "title": "Soil Moisture (L2, Passive, Night, Single Channel Algorithm, H Polarization, Radiometer)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2015-03-31",
+            "endDate": "2017-04-23"
+          },
+          {
+            "id": "SMAP_L2_Passive_Day_Soil_Moisture_Option2",
+            "title": "Soil Moisture (L2, Passive, Day, Single Channel Algorithm, V Polarization, Radiometer)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2015-03-31",
+            "endDate": "2017-04-23"
+          },
+          {
+            "id": "SMAP_L2_Passive_Enhanced_Day_Soil_Moisture_Option2",
+            "title": "Soil Moisture (L2, Passive Enhanced, Day, Single Channel Algorithm, V Polarization, Radiometer)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2015-03-31",
+            "endDate": "2017-04-22"
+          },
+          {
+            "id": "SMAP_L2_Passive_Enhanced_Night_Soil_Moisture_Option2",
+            "title": "Soil Moisture (L2, Passive Enhanced, Night, Single Channel Algorithm, V Polarization, Radiometer)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2015-03-31",
+            "endDate": "2017-04-22"
+          },
+          {
+            "id": "SMAP_L2_Passive_Night_Soil_Moisture_Option2",
+            "title": "Soil Moisture (L2, Passive, Night, Single Channel Algorithm, V Polarization, Radiometer)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2015-03-31",
+            "endDate": "2017-04-23"
+          },
+          {
+            "id": "SMAP_L2_Passive_Day_Soil_Moisture_Option3",
+            "title": "Soil Moisture (L2, Passive, Day, Dual Channel Algorithm, Radiometer)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2015-03-31",
+            "endDate": "2017-04-23"
+          },
+          {
+            "id": "SMAP_L2_Passive_Enhanced_Day_Soil_Moisture_Option3",
+            "title": "Soil Moisture (L2, Passive Enhanced, Day, Dual Channel Algorithm, Radiometer)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2015-03-31",
+            "endDate": "2017-04-22"
+          },
+          {
+            "id": "SMAP_L2_Passive_Enhanced_Night_Soil_Moisture_Option3",
+            "title": "Soil Moisture (L2, Passive Enhanced, Night, Dual Channel Algorithm, Radiometer)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2015-03-31",
+            "endDate": "2017-04-22"
+          },
+          {
+            "id": "SMAP_L2_Passive_Night_Soil_Moisture_Option3",
+            "title": "Soil Moisture (L2, Passive, Night, Dual Channel Algorithm, Radiometer)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2015-03-31",
+            "endDate": "2017-04-23"
+          },
+          {
+            "id": "SMAP_L3_Passive_Day_Soil_Moisture",
+            "title": "Soil Moisture (L3, Passive, Day, Radiometer)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2015-03-31",
+            "endDate": "2017-04-23"
+          },
+          {
+            "id": "SMAP_L3_Passive_Enhanced_Day_Soil_Moisture",
+            "title": "Soil Moisture (L3, Passive Enhanced, Day, Radiometer)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2015-03-31",
+            "endDate": "2017-04-23"
+          },
+          {
+            "id": "SMAP_L3_Passive_Enhanced_Night_Soil_Moisture",
+            "title": "Soil Moisture (L3, Passive Enhanced, Night, Radiometer)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2015-03-31",
+            "endDate": "2017-04-23"
+          },
+          {
+            "id": "SMAP_L3_Passive_Night_Soil_Moisture",
+            "title": "Soil Moisture (L3, Passive, Night, Radiometer)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2015-03-31",
+            "endDate": "2017-04-23"
+          }
+        ]
+      },
+      {
+        "name": "Radar",
+        "layers": [
+          {
+            "id": "SMAP_L3_Active_Sigma0_HH",
+            "title": "Sigma0 (L3, Active, HH Polarization)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2015-04-13",
+            "endDate": "2015-07-07"
+          },
+          {
+            "id": "SMAP_L3_Active_Sigma0_HH_QA",
+            "title": "Sigma0 QA (L3, Active, HH Polarization)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2015-04-13",
+            "endDate": "2015-07-07"
+          },
+          {
+            "id": "SMAP_L3_Active_Sigma0_HH_RFI",
+            "title": "Sigma0 RFI (L3, Active, HH Polarization)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2015-04-13",
+            "endDate": "2015-07-07"
+          },
+          {
+            "id": "SMAP_L3_Active_Sigma0_VV",
+            "title": "Sigma0 (L3, Active, VV Polarization)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2015-04-13",
+            "endDate": "2015-07-07"
+          },
+          {
+            "id": "SMAP_L3_Active_Sigma0_VV_QA",
+            "title": "Sigma0 QA (L3, Active, VV Polarization)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2015-04-13",
+            "endDate": "2015-07-07"
+          },
+          {
+            "id": "SMAP_L3_Active_Sigma0_VV_RFI",
+            "title": "Sigma0 RFI (L3, Active, VV Polarization)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2015-04-13",
+            "endDate": "2015-07-07"
+          },
+          {
+            "id": "SMAP_L3_Active_Sigma0_XPOL",
+            "title": "Sigma0 (L3, Active, XPOL Polarization)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2015-04-13",
+            "endDate": "2015-07-07"
+          },
+          {
+            "id": "SMAP_L3_Active_Sigma0_XPOL_QA",
+            "title": "Sigma0 QA (L3, Active, XPOL Polarization)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2015-04-13",
+            "endDate": "2015-07-07"
+          },
+          {
+            "id": "SMAP_L3_Active_Sigma0_XPOL_RFI",
+            "title": "Sigma0 RFI (L3, Active, XPOL Polarization)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2015-04-13",
+            "endDate": "2015-07-07"
+          },
+          {
+            "id": "SMAP_L3_Active_Soil_Moisture",
+            "title": "Soil Moisture (L3, Active)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2015-04-13",
+            "endDate": "2015-07-07"
+          }
+        ]
+      },
+      {
+        "name": "Radar/Radiometer",
+        "layers": [
+          {
+            "id": "SMAP_L3_Active_Passive_Soil_Moisture",
+            "title": "Soil Moisture (L3, Active/Passive)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2015-04-13",
+            "endDate": "2015-07-07"
+          },
+          {
+            "id": "SMAP_L3_Active_Passive_Brightness_Temp_H",
+            "title": "Disaggregated Brightness Temperature (L3, Active/Passive, H Polarization)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2015-04-13",
+            "endDate": "2015-07-07"
+          },
+          {
+            "id": "SMAP_L3_Active_Passive_Brightness_Temp_V",
+            "title": "Disaggregated Brightness Temperature (L3, Active/Passive, V Polarization)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2015-04-13",
+            "endDate": "2015-07-07"
+          }
+        ]
+      },
+      {
+        "name": "Model Value-Added",
+        "layers": [
+          {
+            "id": "SMAP_L4_Analyzed_Root_Zone_Soil_Moisture",
+            "title": "Root Zone Soil Moisture (L4, 12z Instantaneous)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2015-03-31",
+            "endDate": "2017-04-30"
+          },
+          {
+            "id": "SMAP_L4_Analyzed_Surface_Soil_Moisture",
+            "title": "Surface Soil Moisture (L4, 12z Instantaneous)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2015-03-31",
+            "endDate": "2017-04-30"
+          },
+          {
+            "id": "SMAP_L4_Emult_Average",
+            "title": "Percent of Potential Vegetation Light Use Efficiency (L4, 9 km Grid Cell Mean)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2015-04-13",
+            "endDate": "2016-07-02"
+          },
+          {
+            "id": "SMAP_L4_Frozen_Area",
+            "title": "Percent Frozen Area (L4, 9 km Grid Cell Coverage)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2015-04-13",
+            "endDate": "2017-04-22"
+          },
+          {
+            "id": "SMAP_L4_Mean_Gross_Primary_Productivity",
+            "title": "Gross Primary Production (L4, 9 km Grid Cell Mean)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2015-04-13",
+            "endDate": "2017-04-22"
+          },
+          {
+            "id": "SMAP_L4_Mean_Net_Ecosystem_Exchange",
+            "title": "Net Ecosystem CO2 Exchange (L4, 9 km Grid Cell Mean)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2015-04-13",
+            "endDate": "2017-04-22"
+          },
+          {
+            "id": "SMAP_L4_Mean_Heterotrophic_Respiration",
+            "title": "Heterotrophic Respiration (L4, 9 km Grid Cell Mean)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2015-04-13",
+            "endDate": "2017-04-22"
+          },
+          {
+            "id": "SMAP_L4_Snow_Mass",
+            "title": "Snow Mass (L4, 12z-3z Average)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2015-03-31",
+            "endDate": "2017-04-30"
+          },
+          {
+            "id": "SMAP_L4_Soil_Temperature_Layer_1",
+            "title": "Surface Soil Temperature (L4, 12z Instantaneous)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2015-03-31",
+            "endDate": "2017-04-30"
+          },
+          {
+            "id": "SMAP_L4_Uncertainty_Analyzed_Root_Zone_Soil_Moisture",
+            "title": "Root Zone Soil Moisture Uncertainty (L4, 12z Instantaneous)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2015-03-31",
+            "endDate": "2017-04-30"
+          },
+          {
+            "id": "SMAP_L4_Uncertainty_Analyzed_Surface_Soil_Moisture",
+            "title": "Surface Soil Moisture Uncertainty (L4, 12z Instantaneous)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2015-03-31",
+            "endDate": "2017-04-30"
+          },
+          {
+            "id": "SMAP_L4_Uncertainty_Mean_Net_Ecosystem_Exchange",
+            "title": "Net Ecosystem CO2 Exchange Uncertainty (L4, 9 km Grid Cell Mean)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2015-03-31",
+            "endDate": "2017-04-22"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "SRTM",
+    "instruments": [
+      {
+        "name": "Color Index",
+        "layers": [
+          {
+            "id": "SRTM_Color_Index",
+            "title": "Digital Elevation Model",
+            "format": "image/png",
+            "resolution": "31.25m"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "DMSP-F10 / SSMI",
+    "instruments": [
+      {
+        "name": "Local PM",
+        "layers": [
+          {
+            "id": "SSMI_DMSP_F10_Cloud_Liquid_Water_Over_Oceans_Ascending",
+            "title": "Cloud Liquid Water (Ascending)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "1990-12-08",
+            "endDate": "1997-11-14"
+          },
+          {
+            "id": "SSMI_DMSP_F10_Rain_Rate_Over_Oceans_Ascending",
+            "title": "Rain Rate (Ascending)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "1990-12-08",
+            "endDate": "1997-11-14"
+          },
+          {
+            "id": "SSMI_DMSP_F10_Wind_Speed_Over_Oceans_Ascending",
+            "title": "Surface Wind Speed (Ascending)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "1990-12-08",
+            "endDate": "1997-11-14"
+          },
+          {
+            "id": "SSMI_DMSP_F10_Water_Vapor_Over_Oceans_Ascending",
+            "title": "Water Vapor (Ascending)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "1990-12-08",
+            "endDate": "1997-11-14"
+          }
+        ]
+      },
+      {
+        "name": "Local AM",
+        "layers": [
+          {
+            "id": "SSMI_DMSP_F10_Cloud_Liquid_Water_Over_Oceans_Descending",
+            "title": "Cloud Liquid Water (Descending)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "1990-12-08",
+            "endDate": "1997-11-14"
+          },
+          {
+            "id": "SSMI_DMSP_F10_Rain_Rate_Over_Oceans_Descending",
+            "title": "Rain Rate (Descending)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "1990-12-08",
+            "endDate": "1997-11-14"
+          },
+          {
+            "id": "SSMI_DMSP_F10_Wind_Speed_Over_Oceans_Descending",
+            "title": "Surface Wind Speed (Descending)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "1990-12-08",
+            "endDate": "1997-11-14"
+          },
+          {
+            "id": "SSMI_DMSP_F10_Water_Vapor_Over_Oceans_Descending",
+            "title": "Water Vapor (Descending)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "1990-12-08",
+            "endDate": "1997-11-14"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "DMSP-F11 / SSMI",
+    "instruments": [
+      {
+        "name": "Local PM",
+        "layers": [
+          {
+            "id": "SSMI_DMSP_F11_Cloud_Liquid_Water_Over_Oceans_Ascending",
+            "title": "Cloud Liquid Water (Ascending)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "1991-12-03",
+            "endDate": "2000-05-16"
+          },
+          {
+            "id": "SSMI_DMSP_F11_Rain_Rate_Over_Oceans_Ascending",
+            "title": "Rain Rate (Ascending)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "1991-12-03",
+            "endDate": "2000-05-16"
+          },
+          {
+            "id": "SSMI_DMSP_F11_Wind_Speed_Over_Oceans_Ascending",
+            "title": "Surface Wind Speed (Ascending)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "1991-12-03",
+            "endDate": "2000-05-16"
+          },
+          {
+            "id": "SSMI_DMSP_F11_Water_Vapor_Over_Oceans_Ascending",
+            "title": "Water Vapor (Ascending)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "1991-12-03",
+            "endDate": "2000-05-16"
+          }
+        ]
+      },
+      {
+        "name": "Local AM",
+        "layers": [
+          {
+            "id": "SSMI_DMSP_F11_Cloud_Liquid_Water_Over_Oceans_Descending",
+            "title": "Cloud Liquid Water (Descending)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "1991-12-03",
+            "endDate": "2000-05-16"
+          },
+          {
+            "id": "SSMI_DMSP_F11_Rain_Rate_Over_Oceans_Descending",
+            "title": "Rain Rate (Descending)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "1991-12-03",
+            "endDate": "2000-05-16"
+          },
+          {
+            "id": "SSMI_DMSP_F11_Wind_Speed_Over_Oceans_Descending",
+            "title": "Surface Wind Speed (Descending)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "1991-12-03",
+            "endDate": "2000-05-16"
+          },
+          {
+            "id": "SSMI_DMSP_F11_Water_Vapor_Over_Oceans_Descending",
+            "title": "Water Vapor (Descending)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "1991-12-03",
+            "endDate": "2000-05-16"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "DMSP-F13 / SSMI",
+    "instruments": [
+      {
+        "name": "Local PM",
+        "layers": [
+          {
+            "id": "SSMI_DMSP_F13_Cloud_Liquid_Water_Over_Oceans_Ascending",
+            "title": "Cloud Liquid Water (Ascending)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "1995-05-03",
+            "endDate": "2009-11-04"
+          },
+          {
+            "id": "SSMI_DMSP_F13_Rain_Rate_Over_Oceans_Ascending",
+            "title": "Rain Rate (Ascending)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "1995-05-03",
+            "endDate": "2009-11-04"
+          },
+          {
+            "id": "SSMI_DMSP_F13_Wind_Speed_Over_Oceans_Ascending",
+            "title": "Surface Wind Speed (Ascending)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "1995-05-03",
+            "endDate": "2009-11-04"
+          },
+          {
+            "id": "SSMI_DMSP_F13_Water_Vapor_Over_Oceans_Ascending",
+            "title": "Water Vapor (Ascending)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "1995-05-03",
+            "endDate": "2009-11-04"
+          }
+        ]
+      },
+      {
+        "name": "Local AM",
+        "layers": [
+          {
+            "id": "SSMI_DMSP_F13_Cloud_Liquid_Water_Over_Oceans_Descending",
+            "title": "Cloud Liquid Water (Descending)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "1995-05-03",
+            "endDate": "2009-11-04"
+          },
+          {
+            "id": "SSMI_DMSP_F13_Rain_Rate_Over_Oceans_Descending",
+            "title": "Rain Rate (Descending)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "1995-05-03",
+            "endDate": "2009-11-04"
+          },
+          {
+            "id": "SSMI_DMSP_F13_Wind_Speed_Over_Oceans_Descending",
+            "title": "Surface Wind Speed (Descending)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "1995-05-03",
+            "endDate": "2009-11-04"
+          },
+          {
+            "id": "SSMI_DMSP_F13_Water_Vapor_Over_Oceans_Descending",
+            "title": "Water Vapor (Descending)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "1995-05-03",
+            "endDate": "2009-11-04"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "DMSP-F14 / SSMI",
+    "instruments": [
+      {
+        "name": "Local PM",
+        "layers": [
+          {
+            "id": "SSMI_DMSP_F14_Cloud_Liquid_Water_Over_Oceans_Ascending",
+            "title": "Cloud Liquid Water (Ascending)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "1997-05-08",
+            "endDate": "2008-08-08"
+          },
+          {
+            "id": "SSMI_DMSP_F14_Rain_Rate_Over_Oceans_Ascending",
+            "title": "Rain Rate (Ascending)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "1997-05-08",
+            "endDate": "2008-08-08"
+          },
+          {
+            "id": "SSMI_DMSP_F14_Wind_Speed_Over_Oceans_Ascending",
+            "title": "Surface Wind Speed (Ascending)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "1997-05-08",
+            "endDate": "2008-08-08"
+          },
+          {
+            "id": "SSMI_DMSP_F14_Water_Vapor_Over_Oceans_Ascending",
+            "title": "Water Vapor (Ascending)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "1997-05-08",
+            "endDate": "2008-08-08"
+          }
+        ]
+      },
+      {
+        "name": "Local AM",
+        "layers": [
+          {
+            "id": "SSMI_DMSP_F14_Cloud_Liquid_Water_Over_Oceans_Descending",
+            "title": "Cloud Liquid Water (Descending)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "1997-05-08",
+            "endDate": "2008-08-08"
+          },
+          {
+            "id": "SSMI_DMSP_F14_Rain_Rate_Over_Oceans_Descending",
+            "title": "Rain Rate (Descending)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "1997-05-08",
+            "endDate": "2008-08-08"
+          },
+          {
+            "id": "SSMI_DMSP_F14_Wind_Speed_Over_Oceans_Descending",
+            "title": "Surface Wind Speed (Descending)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "1997-05-08",
+            "endDate": "2008-08-08"
+          },
+          {
+            "id": "SSMI_DMSP_F14_Water_Vapor_Over_Oceans_Descending",
+            "title": "Water Vapor (Descending)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "1997-05-08",
+            "endDate": "2008-08-08"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "DMSP-F15 / SSMI",
+    "instruments": [
+      {
+        "name": "Local PM",
+        "layers": [
+          {
+            "id": "SSMI_DMSP_F15_Cloud_Liquid_Water_Over_Oceans_Ascending",
+            "title": "Cloud Liquid Water (Ascending)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "1999-12-18",
+            "endDate": "2011-12-31"
+          },
+          {
+            "id": "SSMI_DMSP_F15_Rain_Rate_Over_Oceans_Ascending",
+            "title": "Rain Rate (Ascending)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "1999-12-18",
+            "endDate": "2011-12-31"
+          },
+          {
+            "id": "SSMI_DMSP_F15_Wind_Speed_Over_Oceans_Ascending",
+            "title": "Surface Wind Speed (Ascending)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "1999-12-18",
+            "endDate": "2011-12-31"
+          },
+          {
+            "id": "SSMI_DMSP_F15_Water_Vapor_Over_Oceans_Ascending",
+            "title": "Water Vapor (Ascending)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "1999-12-18",
+            "endDate": "2011-12-31"
+          }
+        ]
+      },
+      {
+        "name": "Local AM",
+        "layers": [
+          {
+            "id": "SSMI_DMSP_F15_Cloud_Liquid_Water_Over_Oceans_Descending",
+            "title": "Cloud Liquid Water (Descending)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "1999-12-18",
+            "endDate": "2011-12-31"
+          },
+          {
+            "id": "SSMI_DMSP_F15_Rain_Rate_Over_Oceans_Descending",
+            "title": "Rain Rate (Descending)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "1999-12-18",
+            "endDate": "2011-12-31"
+          },
+          {
+            "id": "SSMI_DMSP_F15_Wind_Speed_Over_Oceans_Descending",
+            "title": "Surface Wind Speed (Descending)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "1999-12-18",
+            "endDate": "2011-12-31"
+          },
+          {
+            "id": "SSMI_DMSP_F15_Water_Vapor_Over_Oceans_Descending",
+            "title": "Water Vapor (Descending)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "1999-12-18",
+            "endDate": "2011-12-31"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "DMSP-F16 / SSMIS",
+    "instruments": [
+      {
+        "name": "Local PM",
+        "layers": [
+          {
+            "id": "SSMI_DMSP_F16_Cloud_Liquid_Water_Over_Oceans_Ascending",
+            "title": "Cloud Liquid Water (Ascending)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2003-10-26",
+            "endDate": "2017-05-02"
+          },
+          {
+            "id": "SSMI_DMSP_F16_Rain_Rate_Over_Oceans_Ascending",
+            "title": "Rain Rate (Ascending)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2003-10-26",
+            "endDate": "2017-05-02"
+          },
+          {
+            "id": "SSMI_DMSP_F16_Wind_Speed_Over_Oceans_Ascending",
+            "title": "Surface Wind Speed (Ascending)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2003-10-26",
+            "endDate": "2017-05-02"
+          },
+          {
+            "id": "SSMI_DMSP_F16_Water_Vapor_Over_Oceans_Ascending",
+            "title": "Water Vapor (Ascending)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2003-10-26",
+            "endDate": "2017-05-02"
+          }
+        ]
+      },
+      {
+        "name": "Local AM",
+        "layers": [
+          {
+            "id": "SSMI_DMSP_F16_Cloud_Liquid_Water_Over_Oceans_Descending",
+            "title": "Cloud Liquid Water (Descending)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2003-10-26",
+            "endDate": "2017-05-02"
+          },
+          {
+            "id": "SSMI_DMSP_F16_Rain_Rate_Over_Oceans_Descending",
+            "title": "Rain Rate (Descending)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2003-10-26",
+            "endDate": "2017-05-02"
+          },
+          {
+            "id": "SSMI_DMSP_F16_Wind_Speed_Over_Oceans_Descending",
+            "title": "Surface Wind Speed (Descending)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2003-10-26",
+            "endDate": "2017-05-02"
+          },
+          {
+            "id": "SSMI_DMSP_F16_Water_Vapor_Over_Oceans_Descending",
+            "title": "Water Vapor (Descending)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2003-10-26",
+            "endDate": "2017-05-02"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "DMSP-F17 / SSMIS",
+    "instruments": [
+      {
+        "name": "Local PM",
+        "layers": [
+          {
+            "id": "SSMI_DMSP_F17_Cloud_Liquid_Water_Over_Oceans_Ascending",
+            "title": "Cloud Liquid Water (Ascending)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2006-12-14",
+            "endDate": "2017-05-02"
+          },
+          {
+            "id": "SSMI_DMSP_F17_Rain_Rate_Over_Oceans_Ascending",
+            "title": "Rain Rate (Ascending)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2006-12-14",
+            "endDate": "2017-05-02"
+          },
+          {
+            "id": "SSMI_DMSP_F17_Wind_Speed_Over_Oceans_Ascending",
+            "title": "Surface Wind Speed (Ascending)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2006-12-14",
+            "endDate": "2017-05-02"
+          },
+          {
+            "id": "SSMI_DMSP_F17_Water_Vapor_Over_Oceans_Ascending",
+            "title": "Water Vapor (Ascending)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2006-12-14",
+            "endDate": "2017-05-02"
+          }
+        ]
+      },
+      {
+        "name": "Local AM",
+        "layers": [
+          {
+            "id": "SSMI_DMSP_F17_Cloud_Liquid_Water_Over_Oceans_Descending",
+            "title": "Cloud Liquid Water (Descending)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2006-12-14",
+            "endDate": "2017-05-02"
+          },
+          {
+            "id": "SSMI_DMSP_F17_Rain_Rate_Over_Oceans_Descending",
+            "title": "Rain Rate (Descending)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2006-12-14",
+            "endDate": "2017-05-02"
+          },
+          {
+            "id": "SSMI_DMSP_F17_Wind_Speed_Over_Oceans_Descending",
+            "title": "Surface Wind Speed (Descending)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2006-12-14",
+            "endDate": "2017-05-02"
+          },
+          {
+            "id": "SSMI_DMSP_F17_Water_Vapor_Over_Oceans_Descending",
+            "title": "Water Vapor (Descending)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "2006-12-14",
+            "endDate": "2017-05-02"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "DMSP-F8 / SSMI",
+    "instruments": [
+      {
+        "name": "Local AM",
+        "layers": [
+          {
+            "id": "SSMI_DMSP_F8_Cloud_Liquid_Water_Over_Oceans_Ascending",
+            "title": "Cloud Liquid Water (Ascending)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "1987-07-09",
+            "endDate": "1991-12-31"
+          },
+          {
+            "id": "SSMI_DMSP_F8_Rain_Rate_Over_Oceans_Ascending",
+            "title": "Rain Rate (Ascending)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "1987-07-09",
+            "endDate": "1991-12-31"
+          },
+          {
+            "id": "SSMI_DMSP_F8_Wind_Speed_Over_Oceans_Ascending",
+            "title": "Surface Wind Speed (Ascending)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "1987-07-09",
+            "endDate": "1991-12-31"
+          },
+          {
+            "id": "SSMI_DMSP_F8_Water_Vapor_Over_Oceans_Ascending",
+            "title": "Water Vapor (Ascending)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "1987-07-09",
+            "endDate": "1991-12-31"
+          }
+        ]
+      },
+      {
+        "name": "Local PM",
+        "layers": [
+          {
+            "id": "SSMI_DMSP_F8_Cloud_Liquid_Water_Over_Oceans_Descending",
+            "title": "Cloud Liquid Water (Descending)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "1987-07-09",
+            "endDate": "1991-12-31"
+          },
+          {
+            "id": "SSMI_DMSP_F8_Rain_Rate_Over_Oceans_Descending",
+            "title": "Rain Rate (Descending)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "1987-07-09",
+            "endDate": "1991-12-31"
+          },
+          {
+            "id": "SSMI_DMSP_F8_Wind_Speed_Over_Oceans_Descending",
+            "title": "Surface Wind Speed (Descending)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "1987-07-09",
+            "endDate": "1991-12-31"
+          },
+          {
+            "id": "SSMI_DMSP_F8_Water_Vapor_Over_Oceans_Descending",
+            "title": "Water Vapor (Descending)",
+            "format": "image/png",
+            "resolution": "2km",
+            "startDate": "1987-07-09",
+            "endDate": "1991-12-31"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "suomi",
+    "name": "Suomi NPP",
+    "image": "suomi.png",
+    "status": "INACTIVE",
+    "description": "Suomi National Polar-orbiting Partnership, formerly known as the NPOESS Preparatory Project, will serve as a bridge between the EOS satellites and the forthcoming series of Joint Polar Satellite System (JPSS) satellites. Suomi NPP represents a critical first step in building this next-generation satellite system. The JPSS satellites, previously called the National Polar-orbiting Operational Environmental Satellite System (NPOESS), will be developed by NASA for the National Oceanic and Atmospheric Administration (NOAA). Suomi NPP will carry five science instruments and test key technologies for the JPSS missions. Suomi NPP is the first satellite mission to address the challenge of acquiring a wide range of land, ocean, and atmospheric measurements for Earth system science while simultaneously preparing to address operational requirements for weather forecasting.",
+    "orbitalData":  {
+      "perigee": "833.7",
+      "apogee": "834.3",
+      "inclination": "98.7",
+      "period": "101.44"
+    },
+    "mass": "2128",
+    "launchDate": "2011-10-28",
+    "endDate": null,
+    "instruments": [
+      {
+        "name": "VIIRS",
+        "layers": [
+          {
+            "id": "VIIRS_Black_Marble",
+            "title": "Black Marble",
+            "format": "image/png",
+            "resolution": "500m",
+            "startDate": "2012-01-01",
+            "endDate": "2012-01-01"
+          },
+          {
+            "id": "VIIRS_CityLights_2012",
+            "title": "Earth at Night (2012)",
+            "format": "image/jpeg",
+            "resolution": "500m"
+          },
+          {
+            "id": "VIIRS_Night_Lights",
+            "title": "Night Lights",
+            "format": "image/png",
+            "resolution": "500m",
+            "startDate": "2012-01-01",
+            "endDate": "2012-01-01"
+          },
+          {
+            "id": "VIIRS_SNPP_CorrectedReflectance_TrueColor",
+            "title": "Corrected Reflectance (True Color)",
+            "format": "image/jpeg",
+            "resolution": "250m",
+            "startDate": "2015-11-24",
+            "endDate": null
+          },
+          {
+            "id": "VIIRS_SNPP_CorrectedReflectance_BandsM11-I2-I1",
+            "title": "Corrected Reflectance (M11-I2-I1)",
+            "format": "image/jpeg",
+            "resolution": "250m",
+            "startDate": "2015-11-24",
+            "endDate": null
+          },
+          {
+            "id": "VIIRS_SNPP_CorrectedReflectance_BandsM3-I3-M11",
+            "title": "Corrected Reflectance (M3-I3-M11)",
+            "format": "image/jpeg",
+            "resolution": "250m",
+            "startDate": "2015-11-24",
+            "endDate": null
+          },
+          {
+            "id": "VIIRS_SNPP_DayNightBand_ENCC",
+            "title": "Nighttime Imagery (Day/Night Band, Enhanced Near Constant Contrast)",
+            "format": "image/png",
+            "resolution": "500m",
+            "startDate": "2016-11-30",
+            "endDate": null
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "Landsat / WELD",
+    "instruments": [
+      {
+        "name": "v1.5",
+        "layers": [
+          {
+            "id": "Landsat_WELD_CorrectedReflectance_TrueColor_Alaska_Annual",
+            "title": "TOA Reflectance (True Color, Alaska, Annual)",
+            "format": "image/jpeg",
+            "resolution": "250m",
+            "startDate": "2002-12-01",
+            "endDate": "2011-12-01"
+          },
+          {
+            "id": "Landsat_WELD_CorrectedReflectance_TrueColor_Alaska_Monthly",
+            "title": "TOA Reflectance (True Color, Alaska, Monthly)",
+            "format": "image/jpeg",
+            "resolution": "250m",
+            "startDate": "2002-12-01",
+            "endDate": "2012-11-01"
+          },
+          {
+            "id": "Landsat_WELD_CorrectedReflectance_TrueColor_Alaska_Seasonal",
+            "title": "TOA Reflectance (True Color, Alaska, Seasonal)",
+            "format": "image/jpeg",
+            "resolution": "250m",
+            "startDate": "2002-12-01",
+            "endDate": "2012-09-01"
+          },
+          {
+            "id": "Landsat_WELD_CorrectedReflectance_TrueColor_CONUS_Annual",
+            "title": "TOA Reflectance (True Color, CONUS, Annual)",
+            "format": "image/jpeg",
+            "resolution": "250m",
+            "startDate": "2002-12-01",
+            "endDate": "2011-12-01"
+          },
+          {
+            "id": "Landsat_WELD_CorrectedReflectance_TrueColor_CONUS_Monthly",
+            "title": "TOA Reflectance (True Color, CONUS, Monthly)",
+            "format": "image/jpeg",
+            "resolution": "250m",
+            "startDate": "2002-12-01",
+            "endDate": "2012-11-01"
+          },
+          {
+            "id": "Landsat_WELD_CorrectedReflectance_TrueColor_CONUS_Seasonal",
+            "title": "TOA Reflectance (True Color, CONUS, Seasonal)",
+            "format": "image/jpeg",
+            "resolution": "250m",
+            "startDate": "2002-12-01",
+            "endDate": "2012-09-01"
+          }
+        ]
+      },
+      {
+        "name": "v3.0",
+        "layers": [
+          {
+            "id": "Landsat_WELD_CorrectedReflectance_TrueColor_Global_Annual",
+            "title": "Surface Reflectance (NBAR, True Color, Global, Annual)",
+            "format": "image/jpeg",
+            "resolution": "31.25m",
+            "startDate": "2008-12-01",
+            "endDate": "2010-12-01"
+          },
+          {
+            "id": "Landsat_WELD_CorrectedReflectance_TrueColor_Global_Monthly",
+            "title": "Surface Reflectance (NBAR, True Color, Global, Monthly)",
+            "format": "image/jpeg",
+            "resolution": "31.25m",
+            "startDate": "2008-12-01",
+            "endDate": "2011-11-01"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "NDVI)",
+    "instruments": [
+      {
+        "layers": [
+          {
+            "id": "Landsat_WELD_NDVI_Global_Annual",
+            "title": "Surface Normalized Difference Vegetation Index (NDVI) (NBAR, Global, Annual, v3.0, Landsat / WELD)",
+            "format": "image/jpeg",
+            "resolution": "31.25m",
+            "startDate": "2008-12-01",
+            "endDate": "2010-12-01"
+          },
+          {
+            "id": "Landsat_WELD_NDVI_Global_Monthly",
+            "title": "Surface Normalized Difference Vegetation Index (NDVI) (NBAR, Global, Monthly, v3.0, Landsat / WELD)",
+            "format": "image/jpeg",
+            "resolution": "31.25m",
+            "startDate": "2008-12-01",
+            "endDate": "2011-11-01"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "iss",
+    "name": "ISS",
+    "image": "iss.png",
+    "type": "SPACE_STATION",
+    "status": "ACTIVE",
+    "description": "The International Space Station is a global observation and diagnosis station. It promotes international Earth observations aimed at understanding and resolving the environmental issues of our home planet. The space station offers a unique vantage for observing the Earth's ecosystems with hands-on and automated equipment. These options enable astronauts to observe and explain what they witness in real time. Station crews can observe and collect camera images of events as they unfold and may also provide input to ground personnel programming the station's automated Earth-sensing systems. This flexibility is an advantage over sensors on unmanned spacecraft, especially when unexpected natural events, such as volcanic eruptions and earthquakes, occur.",
+    "orbitalData":  {
+      "perigee": "400.2",
+      "apogee": "409.5",
+      "inclination": "51.64",
+      "period": "92.65"
+    },
+    "tle":  {
+      "line1": "1 25544U 98067A   17132.15166687  .00016717  00000-0  10270-3 0  9023",
+      "line2": "2 25544  51.6405 217.9287 0004884 149.5686 210.5751 15.54020107 16140"
+    },
+    "mass": "419,455",
+    "launchDate": "1998-11-20",
+    "endDate": null,
+    "instruments": [
+      {
+      }
+    ]
+  },
+  {
+    "id": "calipso",
+    "name": "CALIPSO",
+    "image": "calipso.png",
+    "type": "SATELLITE",
+    "status": "ACTIVE",
+    "agency": "NASA",
+    "program": "EOS",
+    "description": "The Cloud-Aerosol Lidar and Infrared Pathfinder Satellite Observation (CALIPSO) satellite provides new insight into the role that clouds and atmospheric aerosols (airborne particles) play in regulating Earth's weather, climate, and air quality. CALIPSO combines an active lidar instrument with passive infrared and visible imagers to probe the vertical structure and properties of thin clouds and aerosols over the globe. CALIPSO was launched on April 28, 2006 with the cloud profiling radar system on the CloudSat satellite.",
+    "orbitalData":  {
+      "perigee": "702",
+      "apogee": "703",
+      "inclination": "98.2",
+      "period": "98.8"
+    },
+    "tle":  {
+      "line1": "1 29108U 06016B   17132.92916337  .00000089  00000-0  29786-4 0  9990",
+      "line2": "2 29108  98.2018  76.9839 0001419  82.5969 277.5391 14.57109312587205"
+    },
+    "mass": "587",
+    "launchDate": "2006-04-28",
+    "endDate": null,
+    "instruments": [
+      {
+      }
     ]
   },
   {
     "id": "jason2",
     "name": "Jason-2",
-    "type": "SATELLITE"
+    "image": "jason2.png",
+    "type": "SATELLITE",
+    "agency": "NASA",
+    "program": "EOS",
+    "status": "INACTIVE",
+    "orbitalData":  {
+      "perigee": "1,332",
+      "apogee": "1,343",
+      "inclination": "66.03",
+      "period": "112.5667"
+    },
+    "description": "The Ocean Surface Topography Mission (OSTM)/Jason-2 is an international satellite mission that will extend into the next decade the continuous climate record of sea surface height measurements begun in 1992 by the joint NASA/Centre National d'Etudes Spatiales (CNES) Topex/Poseidon mission and continued in 2001 by the NASA/CNES Jason-1 mission. This multi-decadal record has already helped scientists study global sea level rise and better understand how ocean circulation and climate change are related.",
+    "instruments": [
+      {
+      }
+    ]
+  },
+  {
+    "id": "cloudsat",
+    "name": "CloudSat",
+    "image": "cloudsat.png",
+    "type": "SATELLITE",
+    "status": "ACTIVE",
+    "agency": "NASA",
+    "program": "EOS",
+    "description": "NASA launched the CloudSat and the Cloud-Aerosol Lidar and Infrared Pathfinder Satellite Observation (CALIPSO) spacecraft to study the role that clouds and aerosols play in regulating Earth's weather, climate and air quality. Launch occurred on April 28, 2006, from Vandenberg Air Force Base, Calif., aboard a Boeing Delta II launch vehicle. The satellites launched into a 705-kilometer (438-mile) circular sun-synchronous polar orbit, and fly in orbital formation as part of the 'A-Train' constellation of three other Earth Observing satellites including Aqua, Aura and Centre National d'Etudes Spatiales' (CNES) PARASOL.",
+    "orbitalData":  {
+      "perigee": "702",
+      "apogee": "703",
+      "inclination": "98.2",
+      "period": "98.8"
+    },
+    "tle":  {
+      "line1": "1 29107U 06016A   17132.93034283  .00000030  00000-0  16625-4 0  9995",
+      "line2": "2 29107  98.2010  77.4323 0001634 110.7949 249.3425 14.57105626587132"
+    },
+    "mass": "848",
+    "launchDate": "2006-04-28",
+    "endDate": null,
+    "instruments": [
+      {
+      }
+    ]
+  },
+  {
+    "id": "dscovr",
+    "name": "DSCOVR",
+    "image": "dscovr.png",
+    "type": "SATELLITE",
+    "status": "INACTIVE",
+    "agency": "NASA",
+    "program": "EOS",
+    "description": "The Deep Space Climate Observatory, or DSCOVR, will maintain the nation's real-time solar wind monitoring capabilitieswhich are critical to the accuracy and lead time of NOAA's space weather alerts and forecasts. Without timely and accurate warnings, space weather events like the geomagnetic storms caused by changes in solar wind have the potential to disrupt nearly every major public infrastructure system, including power grids, telecommunications, aviation and GPS.",
+    "orbitalData":  {
+      "perigee": "",
+      "apogee": "",
+      "inclination": "37",
+      "period": ""
+    },
+    "mass": "570",
+    "launchDate": "2015-02-11",
+    "endDate": null,
+    "instruments": [
+      {
+        "name": "EPIC"
+      }
+    ]
+  },
+  {
+    "id": "hubble",
+    "name": "Hubble (HST)",
+    "image": "hubble.png",
+    "type": "SPACE_TELESCOPE",
+    "status": "ACTIVE",
+    "description": "",
+    "orbitalData":  {
+      "perigee": "",
+      "apogee": "",
+      "inclination": "28.47",
+      "period": ""
+    },
+    "tle":  {
+      "line1": "1 20580U 90037B   17131.72607639  .00000480  00000-0  18628-4 0  9998",
+      "line2": "2 20580  28.4695 248.4464 0002839 136.5924  81.4422 15.08759509284683"
+    },
+    "mass": "",
+    "launchDate": "1990-04-24",
+    "endDate": null,
+    "instruments": [
+    ]
   }
-  ]
+]

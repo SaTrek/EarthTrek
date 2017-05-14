@@ -1,12 +1,13 @@
-var sats2 = ["aqua", "aura", "calipso", "cloudsat", "dscovr", 'iss', "jason2", "kepler", "suomi", "terra", "trmm", "landsat", "grace", "icesat", "sorce", "calipso", "quikscat", "smap", "gpm", "sac-d"]
-
 var parser = new ol.format.WMTSCapabilities();
 
+say('Getting capabilities xml...')
 fetch('https://gibs.earthdata.nasa.gov/wmts/epsg4326/best/1.0.0/WMTSCapabilities.xml')
     .then(function(response) {
+        say('Converting to json...')
         return response.text()
     })
     .then(function(text) {
+        say('Parsing instruments data...')
         var data = parser.read(text),
             sats = [],
             satellite, instrument, sat, ins, layer, _temp
@@ -48,8 +49,22 @@ fetch('https://gibs.earthdata.nasa.gov/wmts/epsg4326/best/1.0.0/WMTSCapabilities
 
         })
 
-        document.querySelector('.test').value = JSON.stringify(sats, null, 2)
+        json = JSON.stringify(sats, null, 2)
 
+        $('#json').val(json)
+
+        say('Sending instruments data for merging...')
+        $.ajax({
+            type: "POST",
+            url: location.origin + '/api/merge',
+            data: json,
+            success: function(data, status){
+                say('Data merged!')
+            },
+            error: function(err){
+                say(err)
+            },
+        })
         
     })
 
@@ -59,4 +74,9 @@ function getSat(sats, sat) {
 
 function getIns(sat, ins) {
     return sat.instruments.find(function(el){return el.name === ins})
+}
+
+function say(msg) {
+    if ($('#msg').html()) $('#msg').append(' done<br/>')
+    $('#msg').append(msg)
 }
