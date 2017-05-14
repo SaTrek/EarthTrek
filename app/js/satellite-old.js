@@ -32,6 +32,7 @@
             return false;
         }
         $('#satellite-name').html(entity.properties.name.getValue());
+
         var orbitalDataContainer = document.createElement('div');
         $.each(entity.properties.orbitalData.getValue(), function(key, value) {
             var orbitalDataKey = document.createElement('div');
@@ -43,6 +44,7 @@
             $(orbitalDataContainer).append(orbitalDataValue);
         });
         $('#satellite-info').append(orbitalDataContainer);
+
         var instruments = entity.properties.instruments.getValue();
 
         if (instruments.length > 0) {

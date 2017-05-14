@@ -11,6 +11,8 @@ requirejs.config({
         cesium: '../node_modules/cesium/Build/CesiumUnminified/Cesium',
         underscore: '../node_modules/underscore/underscore',
         satellitejs: '../node_modules/satellite.js/dist/satellite.min',
+        bootstrap: '../node_modules/bootstrap/dist/js/bootstrap.min',
+        slick: '../node_modules/slick-carousel/slick/slick.min',
     }
 });
 

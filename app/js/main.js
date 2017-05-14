@@ -6,17 +6,18 @@
  * @description EarthTrek - NASA Space Apps 2017 23 APR 2017.
  */
 define([
+    'jquery',
     'EarthTrek',
-    'jquery'
-], function(EarthTrek, $) {
-    var maxDistanceCamera = 10000000000;
-    var earthTrek = new EarthTrek(Date.UTC(1998, 1, 1), Date.now(), Date.now());
-    earthTrek.createViewer('main-container', maxDistanceCamera);
+    'earthtrek-toolbar'
+], function ($, EarthTrek, earthTrekToolbara, SatelliteToolbarView) {
 
-    $.getJSON( "data/instrumentsFULL.json", function( satellites ) {
-        earthTrek.createEntities(satellites);
+    var earthTrek = new EarthTrek({
+        startTime: Date.UTC(1999, 1, 1),
+        endTime: Date.now(),
+        initialTime: Date.now(),
+        mainContainer: 'main-container',
+        maxDistanceCamera: 10000000000 //10,000,000,000 meters
     });
-    //var satelliteView = new SatelliteView();
-        // $(toolbarContainer).append(satelliteContainer);
-        //  this.createEntities(satelliteView.addSatelliteToToolbar);
+    earthTrek.createViewer();
+    earthTrek.init();
 });

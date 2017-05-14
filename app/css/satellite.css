@@ -1,4 +1,4 @@
-#satellite-toolbar {
+#satellite-panel {
     display: none;
     position: absolute;
     top: 10%;
@@ -12,15 +12,15 @@
     z-index: 2;
 }
 /** SATELLITE TOOLBAR */
-#satellite-toolbar span {
+#satellite-panel span {
     font-weight: bold;
     font-size: 1rem;
     padding: 5px;
 }
-#satellite-toolbar > .row:not(:last-child) {
+#satellite-panel > .row:not(:last-child) {
     border-bottom: 1px solid rgba(255, 255, 255, 0.2);
 }
-#satellite-toolbar button {
+#satellite-panel button {
     position: absolute;
     right: 0; top: 0;
     width: 40px;
@@ -30,10 +30,9 @@
 .satellite-instrument button {
     background-image: url("../images/layers.png");
 }
-#satellite-toolbar button:disabled {
+#satellite-panel button:disabled {
     background: rgb(105,105,105);
 }
-
 #satellite-info > div {
     width: 50%;
 }
