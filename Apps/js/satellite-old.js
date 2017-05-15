@@ -33,24 +33,26 @@
 
         var data = entity.properties.orbitalData.getValue() || {};
 
-        var orbitalDataContainer = document.createElement('div');
-
         var orbitalDataKeys = document.createElement('div');
+        $(orbitalDataKeys).addClass("orbital-data-keys");
+        var orbitalDataValues = document.createElement('div');
         $.each(data, function(key, value) {
             var orbitalDataKey = document.createElement('div');
             $(orbitalDataKey).append(key);
             $(orbitalDataKeys).append(orbitalDataKey);
-        });
-        $(orbitalDataContainer).append(orbitalDataKeys);
-/*
-        $.each(data, function(key, value) {
+
             var orbitalDataValue = document.createElement('div');
-            $(orbitalDataValue).append(value);
-            $(orbitalDataContainer).append(orbitalDataValue);
-        });*/
 
-        $('#satellite-info').append(orbitalDataContainer);
+            $(orbitalDataValue).append(magnitudesToOrbitalData(key, value));
+            $(orbitalDataValues).append(orbitalDataValue);
+        });
 
+        $('#satellite-info').append(orbitalDataKeys);
+        $('#satellite-info').append(orbitalDataValues);
+
+        if (entity.properties.instruments == undefined) {
+            return false;
+        }
         var instruments = entity.properties.instruments.getValue();
 
         if (instruments.length > 0) {
@@ -72,6 +74,19 @@
         } else {
             satelliteToolbar.hide();
         }
+    }
+
+    magnitudesToOrbitalData = function(key, value) {
+        var data = {
+            perigee: 'KM',
+            apogee: 'KM',
+            inclination: '°',
+            period: 'mins'
+        }
+        if (data[key] == undefined) {
+            return value;
+        }
+        return value + ' ' + data[key];
     }
 
     showLayers = function (event) {

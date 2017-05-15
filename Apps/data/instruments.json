@@ -4666,11 +4666,7 @@
     },
     "mass": "419,455",
     "launchDate": "1998-11-20",
-    "endDate": null,
-    "instruments": [
-      {
-      }
-    ]
+    "endDate": null
   },
   {
     "id": "calipso",
@@ -4693,11 +4689,7 @@
     },
     "mass": "587",
     "launchDate": "2006-04-28",
-    "endDate": null,
-    "instruments": [
-      {
-      }
-    ]
+    "endDate": null
   },
   {
     "id": "jason2",

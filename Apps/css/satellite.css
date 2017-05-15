@@ -3,9 +3,9 @@
     position: absolute;
     top: 10%;
     right: 2%;
-    width: 400px;
+    width: 430px;
     color: white;
-    background: rgba(0, 0, 0, 0.5);
+    background-color: rgba(18, 20, 24, 0.5);
     border: 1px solid rgba(255, 255, 255, 0.5);
     border-radius: 4px;
     text-transform: uppercase;
@@ -33,13 +33,14 @@
 #satellite-toolbar button:disabled {
     background: rgb(105,105,105);
 }
-
+#satellite-info .orbital-data-keys {
+    margin-right: 5px;
+    font-weight: bold;
+}
 #satellite-info > div {
     display: inline-block;
-    width: 48%;
     vertical-align: top;
 }
-
 
 /** INSTRUMENT */
 .satellite-instrument {
