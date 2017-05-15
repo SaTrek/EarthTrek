@@ -21,7 +21,9 @@ Public engagement is key in the pursuit of aerospace exploration.
 
 Earth Trek - "Exploring our World"
 
-### Get Started ###
+**GET STARTED**
+
+### INSTALLATION ###
 Clone this repository
 ```
 npm install
