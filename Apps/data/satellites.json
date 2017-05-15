@@ -1,0 +1,250 @@
+[
+  {
+    "id": "gcomw1",
+    "name": "GCOM-W1",
+    "image": "",
+    "type": "SATELLITE",
+    "status": "INACTIVE",
+    "agency": "NASA",
+    "program": "EOS",
+    "description": "TBD",
+    "mass": "",
+    "launchDate": "",
+    "endDate": null,
+    "orbitalData": {},
+    "tle": {}
+  },
+  {
+    "id": "aqua",
+    "name": "Aqua",
+    "image": "aqua.png",
+    "type": "SATELLITE",
+    "status": "ACTIVE",
+    "agency": "NASA",
+    "program": "EOS",
+    "description": "Aqua, Latin for water, is a NASA Earth Science satellite mission named for the large amount of information that the mission is collecting about the Earth's water cycle, including evaporation from the oceans, water vapor in the atmosphere, clouds, precipitation, soil moisture, sea ice, land ice, and snow cover on the land and ice. Additional variables also being measured by Aqua include radiative energy fluxes, aerosols, vegetation cover on the land, phytoplankton and dissolved organic matter in the oceans, and air, land, and water temperatures.",
+    "mass": "2850",
+    "launchDate": "2002-05-04",
+    "endDate": null,
+    "orbitalData":  {
+      "perigee": "702",
+      "apogee": "703",
+      "inclination": "98.1987",
+      "eccentricity": "0.0000979",
+      "period": "98"
+    },
+    "tle":  {
+      "line1": "1 27424U 02022A   17131.91562854  .00000110  00000-0  34384-4 0  9996",
+      "line2": "2 27424  98.2026  73.7533 0000860 153.0401 299.1971 14.57109646798942"
+    }
+  },
+  {
+    "id": "sacd",
+    "name": "SAC-D",
+    "image": "sacd.png",
+    "type": "SATELLITE",
+    "status": "ACTIVE",
+    "agency": "CONAE",
+    "program": "EOS",
+    "description": "SAC-D (Satélite de Aplicaciones Científicas - D) también conocido como Aquarius por su principal instrumento, fue un satélite argentino de observación climática y oceanográfica, construido por INVAP y lanzado el 10 de junio de 2011 por un cohete Delta II, que lo colocó en una órbita alrededor de la Tierra a una altitud de 670 km. Contiene 7 instrumentos para estudiar el medioambiente, y un paquete de demostración tecnológica.1 Su instrumento primario, Aquarius destinado a medir la salinidad de los océanos, es operado por la NASA de Estados Unidos. El SAC-D es operado por la CONAE, la agencia espacial Argentina.",
+    "mass": "1600",
+    "launchDate": "2011-06-10",
+    "endDate": "2015-06-17",
+    "orbitalData":  {
+      "perigee": "652.2",
+      "apogee": "654.7",
+      "inclination": "98",
+      "eccentricity": "0.0000181",
+      "period": "97.8"
+    },
+    "tle":  {
+      "line1": "1 37673U 11024A   11161.63936538 -.00000050  00000-0  00000+0 0    16",
+      "line2": "2 37673  98.0125 168.6228 0002456 212.6674 147.5382 14.72830191    07"
+    }
+  },
+  {
+    "id": "terra",
+    "name": "Terra",
+    "image": "terra.png",
+    "type": "SATELLITE",
+    "status": "ACTIVE",
+    "description": "TBD",
+    "agency": "NASA",
+    "program": "EOS",
+    "launchDate": "1999-12-18",
+    "endDate": null,
+    "orbitalData":  {
+    },
+    "tle":  {
+      "line1": "1 25994U 99068A   17131.81002569  .00000307  00000-0  78120-4 0  9997",
+      "line2": "2 25994  98.2120 207.3714 0001359 116.9424 243.1898 14.57112580925377"
+    }
+  },
+  {
+    "id": "GPM",
+    "image": "gpm.png",
+    "status": "INACTIVE"
+  },
+  {
+    "id": "aura",
+    "name": "Aura",
+    "image": "aura.png",
+    "type": "SATELLITE",
+    "status": "INACTIVE",
+    "description": "Aura is the third in the series of large Earth Observing System platforms to be flown by NASA with internationa contributions. Aura provides an unprecedented view of the global Earth system. The Aura mission consists of four instruments on a common spacecraft (the same bus design as for Aqua) designed to provide the essential services for the instruments.",
+    "mass": "1765",
+    "launchDate": "2004-07-15",
+    "endDate": null,
+    "orbitalData":  {
+      "perigee": "708",
+      "apogee": "710",
+      "inclination": "98.22",
+      "eccentricity": "0.0001111",
+      "period": "98.83"
+    }
+  },
+  {
+    "id": "suomi",
+    "name": "Suomi NPP",
+    "image": "suomi.png",
+    "status": "INACTIVE",
+    "description": "Suomi National Polar-orbiting Partnership, formerly known as the NPOESS Preparatory Project, will serve as a bridge between the EOS satellites and the forthcoming series of Joint Polar Satellite System (JPSS) satellites. Suomi NPP represents a critical first step in building this next-generation satellite system. The JPSS satellites, previously called the National Polar-orbiting Operational Environmental Satellite System (NPOESS), will be developed by NASA for the National Oceanic and Atmospheric Administration (NOAA). Suomi NPP will carry five science instruments and test key technologies for the JPSS missions. Suomi NPP is the first satellite mission to address the challenge of acquiring a wide range of land, ocean, and atmospheric measurements for Earth system science while simultaneously preparing to address operational requirements for weather forecasting.",
+    "mass": "2128",
+    "launchDate": "2011-10-28",
+    "endDate": null,
+    "orbitalData":  {
+      "perigee": "833.7",
+      "apogee": "834.3",
+      "inclination": "98.7",
+      "period": "101.44"
+    }
+  },
+  {
+    "id": "iss",
+    "name": "ISS",
+    "image": "iss.png",
+    "type": "SPACE_STATION",
+    "status": "ACTIVE",
+    "description": "The International Space Station is a global observation and diagnosis station. It promotes international Earth observations aimed at understanding and resolving the environmental issues of our home planet. The space station offers a unique vantage for observing the Earth's ecosystems with hands-on and automated equipment. These options enable astronauts to observe and explain what they witness in real time. Station crews can observe and collect camera images of events as they unfold and may also provide input to ground personnel programming the station's automated Earth-sensing systems. This flexibility is an advantage over sensors on unmanned spacecraft, especially when unexpected natural events, such as volcanic eruptions and earthquakes, occur.",
+    "mass": "419,455",
+    "launchDate": "1998-11-20",
+    "endDate": null,
+    "orbitalData":  {
+      "perigee": "400.2",
+      "apogee": "409.5",
+      "inclination": "51.64",
+      "period": "92.65"
+    },
+    "tle":  {
+      "line1": "1 25544U 98067A   17132.15166687  .00016717  00000-0  10270-3 0  9023",
+      "line2": "2 25544  51.6405 217.9287 0004884 149.5686 210.5751 15.54020107 16140"
+    }
+  },
+  {
+    "id": "calipso",
+    "name": "CALIPSO",
+    "image": "calipso.png",
+    "type": "SATELLITE",
+    "status": "ACTIVE",
+    "agency": "NASA",
+    "program": "EOS",
+    "description": "The Cloud-Aerosol Lidar and Infrared Pathfinder Satellite Observation (CALIPSO) satellite provides new insight into the role that clouds and atmospheric aerosols (airborne particles) play in regulating Earth's weather, climate, and air quality. CALIPSO combines an active lidar instrument with passive infrared and visible imagers to probe the vertical structure and properties of thin clouds and aerosols over the globe. CALIPSO was launched on April 28, 2006 with the cloud profiling radar system on the CloudSat satellite.",
+    "mass": "587",
+    "launchDate": "2006-04-28",
+    "endDate": null,
+    "orbitalData":  {
+      "perigee": "702",
+      "apogee": "703",
+      "inclination": "98.2",
+      "period": "98.8"
+    },
+    "tle":  {
+      "line1": "1 29108U 06016B   17132.92916337  .00000089  00000-0  29786-4 0  9990",
+      "line2": "2 29108  98.2018  76.9839 0001419  82.5969 277.5391 14.57109312587205"
+    }
+  },
+  {
+    "id": "jason2",
+    "name": "Jason-2",
+    "image": "jason2.png",
+    "type": "SATELLITE",
+    "status": "INACTIVE",
+    "agency": "NASA",
+    "program": "EOS",
+    "orbitalData":  {
+      "perigee": "1,332",
+      "apogee": "1,343",
+      "inclination": "66.03",
+      "period": "112.5667"
+    },
+    "description": "The Ocean Surface Topography Mission (OSTM)/Jason-2 is an international satellite mission that will extend into the next decade the continuous climate record of sea surface height measurements begun in 1992 by the joint NASA/Centre National d'Etudes Spatiales (CNES) Topex/Poseidon mission and continued in 2001 by the NASA/CNES Jason-1 mission. This multi-decadal record has already helped scientists study global sea level rise and better understand how ocean circulation and climate change are related."
+  },
+  {
+    "id": "cloudsat",
+    "name": "CloudSat",
+    "image": "cloudsat.png",
+    "type": "SATELLITE",
+    "status": "ACTIVE",
+    "agency": "NASA",
+    "program": "EOS",
+    "description": "NASA launched the CloudSat and the Cloud-Aerosol Lidar and Infrared Pathfinder Satellite Observation (CALIPSO) spacecraft to study the role that clouds and aerosols play in regulating Earth's weather, climate and air quality. Launch occurred on April 28, 2006, from Vandenberg Air Force Base, Calif., aboard a Boeing Delta II launch vehicle. The satellites launched into a 705-kilometer (438-mile) circular sun-synchronous polar orbit, and fly in orbital formation as part of the 'A-Train' constellation of three other Earth Observing satellites including Aqua, Aura and Centre National d'Etudes Spatiales' (CNES) PARASOL.",
+    "mass": "848",
+    "launchDate": "2006-04-28",
+    "endDate": null,
+    "orbitalData":  {
+      "perigee": "702",
+      "apogee": "703",
+      "inclination": "98.2",
+      "period": "98.8"
+    },
+    "tle":  {
+      "line1": "1 29107U 06016A   17132.93034283  .00000030  00000-0  16625-4 0  9995",
+      "line2": "2 29107  98.2010  77.4323 0001634 110.7949 249.3425 14.57105626587132"
+    }
+  },
+  {
+    "id": "dscovr",
+    "name": "DSCOVR",
+    "image": "dscovr.png",
+    "type": "SATELLITE",
+    "status": "INACTIVE",
+    "agency": "NASA",
+    "program": "EOS",
+    "description": "The Deep Space Climate Observatory, or DSCOVR, will maintain the nation's real-time solar wind monitoring capabilitieswhich are critical to the accuracy and lead time of NOAA's space weather alerts and forecasts. Without timely and accurate warnings, space weather events like the geomagnetic storms caused by changes in solar wind have the potential to disrupt nearly every major public infrastructure system, including power grids, telecommunications, aviation and GPS.",
+    "mass": "570",
+    "launchDate": "2015-02-11",
+    "endDate": null,
+    "orbitalData":  {
+      "perigee": "",
+      "apogee": "",
+      "inclination": "37",
+      "period": ""
+    },
+    "instruments": [
+      {
+        "name": "EPIC"
+      }
+    ]
+  },
+  {
+    "id": "hubble",
+    "name": "Hubble (HST)",
+    "image": "hubble.png",
+    "type": "SPACE_TELESCOPE",
+    "status": "ACTIVE",
+    "description": "",
+    "mass": "",
+    "launchDate": "1990-04-24",
+    "endDate": null,
+    "orbitalData":  {
+      "perigee": "",
+      "apogee": "",
+      "inclination": "28.47",
+      "period": ""
+    },
+    "tle":  {
+      "line1": "1 20580U 90037B   17131.72607639  .00000480  00000-0  18628-4 0  9998",
+      "line2": "2 20580  28.4695 248.4464 0002839 136.5924  81.4422 15.08759509284683"
+    }
+  }
+]

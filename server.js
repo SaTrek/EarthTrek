@@ -1,8 +1,10 @@
-var express = require('express')
+const express = require('express')
 
-var port = process.env.PORT || 9080
+const merger = require('./API/data-merger')
 
-var app = express()
+const port = process.env.PORT || 9080
+
+const app = express()
 
 app.use(express.static(__dirname))
 app.use(express.static(__dirname + '/Apps'))
@@ -12,8 +14,28 @@ app.get('/', function(req, res) {
     res.sendFile(__dirname + '/Apps/index.html')
 })
 
-app.get('/cap-parser', function(req, res) {
+app.get('/api/cap-parser', function(req, res) {
     res.sendFile(__dirname + '/API/cap-parser.html')
+})
+
+app.get('/api/merge', function(req, res) {
+    try {
+        merger.mergeData()
+        res.end()
+    }
+    catch(err){
+        res.status(500).end(err)
+    }
+})
+
+app.post('/api/merge', function(req, res) {
+    try {
+        merger.mergeData(req.body)
+        res.end()
+    }
+    catch(err){
+        res.status(500).end(err)
+    }
 })
 
 app.listen(port, function() {

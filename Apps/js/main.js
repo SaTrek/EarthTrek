@@ -95,7 +95,7 @@
     viewer.clock.onTick.addEventListener(onClockUpdate);
 
     function setSatellitesProperties() {
-        $.getJSON( "data/instrumentsFULL.json", function( satellites ) {
+        $.getJSON( "data/satellitesFULL.json", function( satellites ) {
             satellites.forEach(function( sat ) {
                 var entity = viewer.entities.getById(sat.id.toLowerCase());
                 if (entity != undefined) {
@@ -128,7 +128,7 @@
 
     $("#main-container").append(earthTrekToolbar.create("left-toolbar", function(toolbarContainer) {
 
-        /*$.getJSON( "data/instrumentsFULL.json", function( satellites ) {
+        /*$.getJSON( "data/satellitesFULL.json", function( satellites ) {
             satellites.forEach(function( sat ) {
                 if (sat.status == "ACTIVE") {
 
