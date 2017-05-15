@@ -46,19 +46,5 @@ define([
         );
         return property;
     }
-    /*earthTrekSatellite.addSamples = function(tleLine1, tleLine2, startTime, duration, intervalCount) {
-        var property = new Cesium.SampledPositionProperty();
-
-        var date = new Date();
-        for (var since = 0; since <= duration; since += deltaStep) {
-            date.setSeconds(date.getSeconds() + deltaStep)
-            var newPosition = propagation.getPosition(tleLine1, tleLine2, date);
-            property.addSample(
-                Cesium.JulianDate.addSeconds(startTime, since, new Cesium.JulianDate()),
-                Cesium.Cartesian3.fromDegrees(newPosition.longitude, newPosition.latitude, newPosition.height)
-            );
-        }
-        return property;
-    }*/
 });
 module.exports = earthTrekSatellite;
