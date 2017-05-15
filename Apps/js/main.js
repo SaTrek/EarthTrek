@@ -1,7 +1,6 @@
     var backgroundLayerProvider;
     var referenceLayerProvider;
     var previousTime;
-
     var initialTime = Cesium.JulianDate.fromDate(
         new Date(Date.now()));
     var startTime = Cesium.JulianDate.fromDate(
