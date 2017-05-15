@@ -1,12 +1,13 @@
     var backgroundLayerProvider;
     var referenceLayerProvider;
     var previousTime;
+
     var initialTime = Cesium.JulianDate.fromDate(
         new Date(Date.now()));
     var startTime = Cesium.JulianDate.fromDate(
         new Date(Date.UTC(1998, 1, 1)));
     var endTime = Cesium.JulianDate.fromDate(
-        new Date(Date.UTC(2017, 4, 18)));
+        new Date(Date.now()));
 
     var clock = new Cesium.Clock({
         startTime: startTime,
@@ -49,6 +50,8 @@
     );
     viewer.scene.imageryLayers.addImageryProvider(referenceLayerProvider);
 
+    viewer.scene.debugShowFramesPerSecond = true;
+
     var onClockUpdate = _.throttle(function() {
         var isoDateTime = clock.currentTime.toString();
         var time = isoDate(isoDateTime);
@@ -58,7 +61,7 @@
             updateLayers();
 
             if (viewer.selectedEntity != null) {
-                showSatelliteToolbar(viewer.selectedEntity);
+                showSatelliteToolbar(viewer.selectedEntity );
             }
         }
     });
@@ -95,7 +98,7 @@
     viewer.clock.onTick.addEventListener(onClockUpdate);
 
     function setSatellitesProperties() {
-        $.getJSON( "data/instrumentsFULL.json", function( satellites ) {
+        $.getJSON( "data/instruments.json", function( satellites ) {
             satellites.forEach(function( sat ) {
                 var entity = viewer.entities.getById(sat.id.toLowerCase());
                 if (entity != undefined) {
@@ -108,6 +111,7 @@
         });
     }
 
+
     function toggle(div, callbackOn, callbackOff) {
         if (div.is(":visible")) {
             div.hide();
@@ -119,54 +123,15 @@
     }
     $('.datepicker').datepicker();
 
+
     /**
      * LEFT TOOLBAR
      */
     $("#main-container").append(earthTrekToolbar.create("top-left-toolbar", function(toolbarContainer) {
+
         jQuery("#search-satellite").detach().appendTo(toolbarContainer);
     }));
-
-    $("#main-container").append(earthTrekToolbar.create("left-toolbar", function(toolbarContainer) {
-
-        /*$.getJSON( "data/instrumentsFULL.json", function( satellites ) {
-            satellites.forEach(function( sat ) {
-                if (sat.status == "ACTIVE") {
-
-                    var satelliteContainer = document.createElement('div');
-
-                    var satelliteImage = document.createElement('img');
-                    $(satelliteImage).attr("src", 'images/satellites/' + sat.image)
-                   // console.log(time)
-                    if (sat.endDate) {
-                      //  $(satelliteImage).addClass('satellite-disabled');
-                    }
-                    $(satelliteContainer).append(satelliteImage);
-                    $(satelliteContainer).click(function() {
-                        var selected = gotoSatellite(viewer.entities.getById(sat.id.toLowerCase()));
-                        if (selected == true) {
-                            $(".satellite-selected").removeClass("satellite-selected");
-                            $(satelliteContainer).addClass("satellite-selected");
-                        }
-                    });
-                    $(satelliteContainer).popover({
-                        trigger: 'hover',
-                        title: sat.name,
-                        content: sat.description,
-                        placement: 'bottom',
-                        container: "#left-toolbar"
-                    });
-                    $(toolbarContainer).append(satelliteContainer);
-                }
-
-            });
-
-            $(toolbarContainer).slick({
-                slidesToShow: 3,
-                slidesToScroll: 1,
-                variableWidth: true
-            });
-        });*/
-    }));
+    $("#main-container").append(earthTrekToolbar.create("left-toolbar"));
 
     /**
      * SLIDER
