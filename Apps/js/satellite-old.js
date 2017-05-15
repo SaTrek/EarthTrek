@@ -1,6 +1,3 @@
-var orbitalDataTemplate = _.template($('#tmp-orbital-data').html())
-//var satellite = satellite || {};
-
     var handler = new Cesium.ScreenSpaceEventHandler(viewer.scene.canvas);
     handler.setInputAction(function (movement) {
         var pick = viewer.scene.pick(movement.position);
@@ -10,7 +7,6 @@ var orbitalDataTemplate = _.template($('#tmp-orbital-data').html())
         if (Cesium.defined(pick)) {
             var entity = viewer.entities.getById(pick.id._id);
             if (entity != undefined) {
-                // && Cesium.defined(pick.node) && Cesium.defined(pick.mesh)
                 showSatelliteToolbar(entity);
             }
         } else  {
@@ -35,20 +31,30 @@ var orbitalDataTemplate = _.template($('#tmp-orbital-data').html())
 
         $('#satellite-name').html(entity.properties.name.getValue());
 
-        var data = entity.properties.orbitalData.getValue() || {}
-        data.mass = entity.properties.mass.getValue()
-        data.launch = entity.properties.launchDate.getValue()
+        var data = entity.properties.orbitalData.getValue() || {};
 
-        $('#satellite-info').append(orbitalDataTemplate(data));
+        var orbitalDataContainer = document.createElement('div');
+
+        var orbitalDataKeys = document.createElement('div');
+        $.each(data, function(key, value) {
+            var orbitalDataKey = document.createElement('div');
+            $(orbitalDataKey).append(key);
+            $(orbitalDataKeys).append(orbitalDataKey);
+        });
+        $(orbitalDataContainer).append(orbitalDataKeys);
+/*
+        $.each(data, function(key, value) {
+            var orbitalDataValue = document.createElement('div');
+            $(orbitalDataValue).append(value);
+            $(orbitalDataContainer).append(orbitalDataValue);
+        });*/
+
+        $('#satellite-info').append(orbitalDataContainer);
 
         var instruments = entity.properties.instruments.getValue();
 
         if (instruments.length > 0) {
             satelliteToolbar.show();
-            var instrumentText = document.createElement('div')
-            $(instrumentText).html = "<span>INSTRUMENTOS</span>";
-            $("#satellite-instruments").append(instrumentText);
-
             for (var i = 0; i <= instruments.length - 1; i++) {
                 var instrumentName = instruments[i];
                 var instrument = document.createElement('div');
