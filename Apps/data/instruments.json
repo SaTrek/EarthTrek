@@ -1296,7 +1296,7 @@
       "line1": "1 25994U 99068A   17131.81002569  .00000307  00000-0  78120-4 0  9997",
       "line2": "2 25994  98.2120 207.3714 0001359 116.9424 243.1898 14.57112580925377"
     },
-    "status": "INACTIVE",
+    "status": "ACTIVE",
     "instruments": [
       {
         "name": "ASTER",
@@ -3181,7 +3181,7 @@
     "type": "SATELLITE",
     "agency": "NASA",
     "program": "EOS",
-    "status": "INACTIVE",
+    "status": "ACTIVE",
     "description": "",
     "orbitalData":  {
     },
@@ -4677,7 +4677,7 @@
     "name": "CALIPSO",
     "image": "calipso.png",
     "type": "SATELLITE",
-    "status": "INACTIVE",
+    "status": "ACTIVE",
     "agency": "NASA",
     "program": "EOS",
     "description": "The Cloud-Aerosol Lidar and Infrared Pathfinder Satellite Observation (CALIPSO) satellite provides new insight into the role that clouds and atmospheric aerosols (airborne particles) play in regulating Earth's weather, climate, and air quality. CALIPSO combines an INACTIVE lidar instrument with passive infrared and visible imagers to probe the vertical structure and properties of thin clouds and aerosols over the globe. CALIPSO was launched on April 28, 2006 with the cloud profiling radar system on the CloudSat satellite.",
@@ -4720,7 +4720,7 @@
     "name": "CloudSat",
     "image": "cloudsat.png",
     "type": "SATELLITE",
-    "status": "INACTIVE",
+    "status": "ACTIVE",
     "agency": "NASA",
     "program": "EOS",
     "description": "NASA launched the CloudSat and the Cloud-Aerosol Lidar and Infrared Pathfinder Satellite Observation (CALIPSO) spacecraft to study the role that clouds and aerosols play in regulating Earth's weather, climate and air quality. Launch occurred on April 28, 2006, from Vandenberg Air Force Base, Calif., aboard a Boeing Delta II launch vehicle. The satellites launched into a 705-kilometer (438-mile) circular sun-synchronous polar orbit, and fly in orbital formation as part of the 'A-Train' constellation of three other Earth Observing satellites including Aqua, Aura and Centre National d'Etudes Spatiales' (CNES) PARASOL.",
@@ -4788,7 +4788,7 @@
     "name": "OCO-2",
     "image": "oco2.png",
     "type": "SATELLITE",
-    "status": "INACTIVE",
+    "status": "ACTIVE",
     "agency": "NASA",
     "program": "EOS",
     "description": "Orbiting Carbon Observatory (OCO)-2 will be NASA’s first dedicated Earth remote sensing satellite to study atmospheric carbon dioxide from Space. OCO-2 will be collecting space-based global measurements of atmospheric CO2 with the precision, resolution, and coverage needed to characterize sources and sinks on regional scales. OCO-2 will also be able to quantify CO2 variability over the seasonal cycles year after year.",
@@ -4807,7 +4807,7 @@
     "name": "EO-1",
     "image": "eo1.png",
     "type": "SATELLITE",
-    "status": "INACTIVE",
+    "status": "ACTIVE",
     "agency": "NASA",
     "program": "EOS",
     "description": "",
