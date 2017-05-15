@@ -1,5 +1,8 @@
 
-# EarthTrek  [![Build Status](https://secure.travis-ci.org/SaTrek/EarthTrek.png)](http://travis-ci.org/SaTrek/EarthTrek)
+# :earth_americas: EarthTrek  [![Build Status](https://secure.travis-ci.org/SaTrek/EarthTrek.png)](http://travis-ci.org/SaTrek/EarthTrek)
+
+**NASA Space Apps Challenge 2017 - Buenos Aires Nominee**
+![NASA Space Apps Challenge 2017 - Buenos Aires](https://sa-media-2017.s3.amazonaws.com/media/images/Space_Apps_2017_Logo_BsAs.width-500.png)
 
 EarthTrek is an interactive 3D web application. It´s easy access for all kinds of users encourages the use of data that NASA`S EOS program compiles and collect with satellites´s instruments.
 
@@ -21,6 +24,18 @@ Public engagement is key in the pursuit of aerospace exploration.
 
 Earth Trek - "Exploring our World"
 
+### GET STARTED ###
+
+**INSTALLATION**
+
+Clone this repository
+```
+npm install
+
+node server.js
+```
+That's it!
+
 **HOW THE APP WORKS**
 
 The user will be able to visualize in real time the orbits of the satellites around the Earth, from launch to future projections. At the moment, there are some applications that allow to see the trajectories of present and future satellites. Earth Trek delivers the same functionality, but also allows to visualise satellite-driven data.
@@ -35,13 +50,11 @@ By determining a geographic location through the geolocation finder and selectin
 
 ![Mato Grosso deforestation](https://api-2017.spaceappschallenge.org/stream-images/dVorva_DJd4OK2eAf76sfFKuDuE=/3103/width-800/)
 
-**NASA Space Apps Challenge 2017 - Buenos Aires Nominee**
-![NASA Space Apps Challenge 2017 - Buenos Aires](https://sa-media-2017.s3.amazonaws.com/media/images/Space_Apps_2017_Logo_BsAs.width-500.png?AWSAccessKeyId=AKIAJQG3YOIUOOAQEQ4Q&Signature=LhqJbs9ULqNrzXKAGkaRgTWJ5cc%3D&Expires=1494428542)
 
 **RESOURCES**
 
-* SatelliteJS: TLE & orbital Data: https://github.com/shashwatak/satellite-js
+* SatelliteJS (Satellite propagation): https://github.com/shashwatak/satellite-js
 * CesiumJs: https://cesiumjs.org/
-* GIBS https://earthdata.nasa.gov/about/science-system-de...
-* Celestrak http://www.celestrak.com/NORAD/elements/science.txt
-* NASA 3D Resources: 3D Models
+* GIB (Imagery) https://earthdata.nasa.gov/about/science-system-de...
+* Celestrak (TLE & orbital Data): http://www.celestrak.com/NORAD/elements/science.txt
+* NASA 3D Resources: https://nasa3d.arc.nasa.gov/
