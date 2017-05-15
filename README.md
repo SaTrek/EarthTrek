@@ -21,9 +21,10 @@ Public engagement is key in the pursuit of aerospace exploration.
 
 Earth Trek - "Exploring our World"
 
-**GET STARTED**
+### GET STARTED ###
 
-### INSTALLATION ###
+**INSTALLATION**
+
 Clone this repository
 ```
 npm install
@@ -47,7 +48,7 @@ By determining a geographic location through the geolocation finder and selectin
 ![Mato Grosso deforestation](https://api-2017.spaceappschallenge.org/stream-images/dVorva_DJd4OK2eAf76sfFKuDuE=/3103/width-800/)
 
 **NASA Space Apps Challenge 2017 - Buenos Aires Nominee**
-![NASA Space Apps Challenge 2017 - Buenos Aires](https://sa-media-2017.s3.amazonaws.com/media/images/Space_Apps_2017_Logo_BsAs.width-500.png?AWSAccessKeyId=AKIAJQG3YOIUOOAQEQ4Q&Signature=LhqJbs9ULqNrzXKAGkaRgTWJ5cc%3D&Expires=1494428542)
+![NASA Space Apps Challenge 2017 - Buenos Aires](https://sa-media-2017.s3.amazonaws.com/media/images/Space_Apps_2017_Logo_BsAs.width-500.png)
 
 **RESOURCES**
 
