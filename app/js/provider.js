@@ -7,19 +7,23 @@
  */
 
 var provider = provider || {};
+define([
+    'cesium'
+], function() {
 
-provider.getProvider = function(layer, time, format, tileMatrixSetID, resolution) {
-    var isoTime = "TIME=" + isoDate(time);
-    var provider = new Cesium.WebMapTileServiceImageryProvider({
-        url: "//gibs-c.earthdata.nasa.gov/wmts/" + tileMatrixSetID + "/best/wmts.cgi?" + isoTime,
-        layer: layer,
-        style: "",
-        format: format,
-        tileMatrixSetID: tileMatrixSetID.toUpperCase() + "_" + resolution,
-        maximumLevel: 8,
-        tileWidth: 256,
-        tileHeight: 256,
-        tilingScheme: gibs.GeographicTilingScheme()
-    });
-    return provider;
-}
+    provider.getProvider = function(layer, time, format, tileMatrixSetID, resolution) {
+        var isoTime = "TIME=" +  EarthTrek.isoDate(time);
+        var provider = new Cesium.WebMapTileServiceImageryProvider({
+            url: "//gibs-c.earthdata.nasa.gov/wmts/" + tileMatrixSetID + "/best/wmts.cgi?" + isoTime,
+            layer: layer,
+            style: "",
+            format: format,
+            tileMatrixSetID: tileMatrixSetID.toUpperCase() + "_" + resolution,
+            maximumLevel: 8,
+            tileWidth: 256,
+            tileHeight: 256,
+            tilingScheme: gibs.GeographicTilingScheme()
+        });
+        return provider;
+    }
+});

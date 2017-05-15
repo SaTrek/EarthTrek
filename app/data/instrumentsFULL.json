@@ -3,9 +3,19 @@
     "id": "gcomw1",
     "name": "GCOM-W1",
     "type": "SATELLITE",
-    "status": "INACTIVE",
-    "agency": "NASA",
+    "status": "ACTIVE",
+    "agency": "JAXA",
     "program": "EOS",
+    "image": "gcomw1.png",
+    "description": "The “Global Change Observation Mission” (GCOM) aims to construct, use, and verify systems that enable continuous global-scale observations (for 10 to 15 years) of effective geophysical parameters for elucidating global climate change and water circulation mechanisms.",
+    "launchDate": "2012-05-18",
+    "endDate": null,
+    "orbitalData":  {
+    },
+    "tle":  {
+      "line1": "1 38337U 12025A   17134.32728513  .00000052  00000-0  21683-4 0  9992",
+      "line2": "2 38337  98.2029  75.0473 0001845 101.5842  51.0897 14.57101494265437"
+    },
     "instruments": [
       {
         "name": "AMSR2",
@@ -3166,7 +3176,23 @@
     ]
   },
   {
-    "id": "SMAP",
+    "id": "smap",
+    "name": "SMAP",
+    "type": "SATELLITE",
+    "agency": "NASA",
+    "program": "EOS",
+    "status": "ACTIVE",
+    "description": "",
+    "orbitalData":  {
+    },
+    "tle":  {
+      "line1": "1 40376U 15003A   17134.47409620  .00000015  00000-0  11930-4 0  9991",
+      "line2": "2 40376  98.1231 142.6778 0000728  54.4507 305.6776 14.63393447121960"
+    },
+    "mass": "",
+    "launchDate": "2015-01-31",
+    "endDate": null,
+    "image": "smap.png",
     "instruments": [
       {
         "name": "Radiometer",

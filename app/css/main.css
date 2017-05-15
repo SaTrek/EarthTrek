@@ -51,3 +51,18 @@ html, body, #main-container {
 .slick-arrow {
     background: none !important;
 }
+::-webkit-scrollbar
+{
+    width: 12px;  /* for vertical scrollbars */
+    height: 12px; /* for horizontal scrollbars */
+}
+
+::-webkit-scrollbar-track
+{
+    background-color: rgba(3, 46, 67, 0.5);
+}
+
+::-webkit-scrollbar-thumb
+{
+    background: rgba(80, 150, 200, 0.5);
+}

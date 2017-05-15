@@ -8,7 +8,7 @@ requirejs.config({
     paths: {
         app: '../app/js',
         jquery: '../node_modules/jquery/dist/jquery.min',
-        cesium: '../node_modules/cesium/Build/CesiumUnminified/Cesium',
+        cesium: '../node_modules/cesium/Build/Cesium/Cesium',
         underscore: '../node_modules/underscore/underscore',
         satellitejs: '../node_modules/satellite.js/dist/satellite.min',
         bootstrap: '../node_modules/bootstrap/dist/js/bootstrap.min',
