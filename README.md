@@ -21,6 +21,15 @@ Public engagement is key in the pursuit of aerospace exploration.
 
 Earth Trek - "Exploring our World"
 
+### Get Started ###
+Clone this repository
+```
+npm install
+
+node server.js
+```
+That's it!
+
 **HOW THE APP WORKS**
 
 The user will be able to visualize in real time the orbits of the satellites around the Earth, from launch to future projections. At the moment, there are some applications that allow to see the trajectories of present and future satellites. Earth Trek delivers the same functionality, but also allows to visualise satellite-driven data.
