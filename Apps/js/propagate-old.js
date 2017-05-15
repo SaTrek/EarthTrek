@@ -1,58 +1,31 @@
-/**
- * Created by Alex on 01/05/2017.
- */
-
 var propagate = propagate || {};
 
 getPosition = function(tleLine1, tleLine2, date) {
-    // Initialize a satellite record
     var satrec = satellite.twoline2satrec(tleLine1, tleLine2);
 
     var positionAndVelocity = satellite.propagate(satrec, date);
-    // The position_velocity result is a key-value pair of ECI coordinates.
-    // These are the base results from which all other coordinates are derived.
-    var positionEci = positionAndVelocity.position,
-        velocityEci = positionAndVelocity.velocity;
+    var positionEci = positionAndVelocity.position;
 
-    var deg2rad = 0.0174533 ;
-    // Set the Observer at 122.03 West by 36.96 North, in RADIANS
-    /*var observerGd = {
-        longitude: -122.0308 * deg2rad,
-        latitude: 36.9613422 * deg2rad,
-        height: 0.370
-    };*/
     var now = date;
-    // You will need GMST for some of the coordinate transforms.
-    // http://en.wikipedia.org/wiki/Sidereal_time#Definition
-    // NOTE: GMST, though a measure of time, is defined as an angle in radians.
-    // Also, be aware that the month range is 1-12, not 0-11.
     var gmst = satellite.gstimeFromDate(
         now.getUTCFullYear(),
-        now.getUTCMonth() + 1, // Note, this function requires months in range 1-12.
+        now.getUTCMonth() + 1,
         now.getUTCDate(),
         now.getUTCHours(),
         now.getUTCMinutes(),
         now.getUTCSeconds()
     );
 
-    // You can get ECF, Geodetic, Look Angles, and Doppler Factor.
-    var positionEcf   = satellite.eciToEcf(positionEci, gmst);
-       // observerEcf   = satellite.geodeticToEcf(observerGd),
-    var   positionGd    = satellite.eciToGeodetic(positionEci, gmst);
-       // lookAngles    = satellite.ecfToLookAngles(observerGd, positionEcf) ;
-    // Geodetic coords are accessed via `longitude`, `latitude`, `height`.
+    var positionGd    = satellite.eciToGeodetic(positionEci, gmst);
     var longitude = positionGd.longitude,
-        latitude  = positionGd.latitude,
-        height    = positionGd.height;
-    //  Convert the RADIANS to DEGREES for pretty printing (appends "N", "S", "E", "W". etc).
-    var longitudeStr = satellite.degreesLong(longitude),
-        latitudeStr  = satellite.degreesLat(latitude);
+        latitude  = positionGd.latitude;
+
+    var longitudeStr = satellite.degreesLong(longitude);
+    var latitudeStr  = satellite.degreesLat(latitude);
+
     positionGd.longitude = longitudeStr;
     positionGd.latitude = latitudeStr;
     positionGd.height = positionGd.height * 1000;
-
-    var pos = Math.sqrt(Math.pow(positionEci.x, 2) + Math.pow(positionEci.y, 2) + Math.pow(positionEci.z, 2));
-    var vel = Math.sqrt(Math.pow(velocityEci.x, 2) + Math.pow(velocityEci.y, 2) + Math.pow(velocityEci.z, 2));
     return positionGd;
 }
 
@@ -95,14 +68,6 @@ function calculatePositionSamples(tleLine1, tleLine2, startTime, duration, inter
 }
 
 function createEntity(satelliteInfo, start) {
-
-    //var position = Cesium.Cartesian3.fromDegrees(307.56125, -47.846016, height);
-    //  var heading = Cesium.Math.toRadians(135);
-    var pitch = 0;
-    var roll = 0;
-    //  var hpr = new Cesium.HeadingPitchRoll(heading, pitch, roll);
-    // var orientation = Cesium.Transforms.headingPitchRollQuaternion(position, hpr);
-
     var duration = 7200; //seconds
     var frequency = 50; //hertz
     var color = Cesium.Color.fromRandom({
@@ -118,15 +83,14 @@ function createEntity(satelliteInfo, start) {
     var positions = calculatePositionSamples(satelliteInfo.tle.line1, satelliteInfo.tle.line2, start, duration, frequency);
 
 
-    var url =  'models/' + satelliteInfo.id + '.glb';
      var entity = viewer.entities.add({
         id: satelliteInfo.id,
         name : satelliteInfo.name,
         position : positions,
         orientation: new Cesium.VelocityOrientationProperty(positions),
         model : {
-            uri : url,
-            minimumPixelSize : 512,
+            uri : 'models/' + satelliteInfo.id + '.glb',
+            minimumPixelSize : 50,
             maximumScale : 1,
             distanceDisplayCondition: new Cesium.DistanceDisplayCondition(0.0, 50000.0)
         },
@@ -143,25 +107,25 @@ function createEntity(satelliteInfo, start) {
         label: {
             show: true,
             text: satelliteInfo.name,
-            scale: 0.7,
-          //  scaleByDistance: new Cesium.NearFarScalar(0, 1.5, 8.0e6, 0.5),
+            scale: 0.5,
+            scaleByDistance: new Cesium.NearFarScalar(0, 1.5, 15.0e6, 0.85),
             fillColor : Cesium.Color.WHITE,
             eyeOffset: new Cesium.Cartesian3(0.0, 5.0, 100.0),
             outlineColor: color,
             outlineWidth: 3,
-            style: Cesium.LabelStyle.FILL_AND_OUTLINE
+            style: Cesium.LabelStyle.FILL_AND_OUTLINE,
+            pixelOffset:  new Cesium.Cartesian2(0, -15)
         },
          billboard: {
              image  : 'images/satellites/' + satelliteInfo.image,
              distanceDisplayCondition: new Cesium.DistanceDisplayCondition(50000.1, 150000000.0),
-             scale: 0.3
+             scale: 0.35
          },
         properties: satelliteInfo
     });
 
     var timeInterval = new Cesium.TimeInterval({
         start : Cesium.JulianDate.fromIso8601(satelliteInfo.launchDate),
-     //   stop : satelliteInfo.endDate == null ? Cesium.JulianDate.fromIso8601(satelliteInfo.endDate) : null,
         stop : Cesium.JulianDate.fromIso8601("2099-01-01"),
         isStartIncluded : true,
         isStopIncluded : false
@@ -178,15 +142,12 @@ function createEntity(satelliteInfo, start) {
 }
 
 createEntities = function() {
-    $.getJSON( "data/instrumentsFULL.json", function( satellites ) {
+    $.getJSON( "data/instruments.json", function( satellites ) {
         var toolbarContainer = $("#left-toolbar");
         satellites.forEach(function( satelliteInfo ) {
             var entity = viewer.entities.getById(satelliteInfo.id);
             if (entity == null && satelliteInfo.status == 'ACTIVE' ) {
                 createEntity(satelliteInfo, clock.currentTime);
-                /**
-                 * TEMPORAL
-                 */
                 addSatelliteToToolbar(satelliteInfo, toolbarContainer);
             }
         });
@@ -225,61 +186,16 @@ addSatelliteToToolbar = function (sat, toolbarContainer) {
 createEntities();
 
 updateSatellites = function () {
-    var duration = 7200;
-
-    var isoDateTime = clock.currentTime.toString();
-    var time = isoDate(isoDateTime);
-    if (time !== previousTime) {
-        previousTime = time;
-
-        /**
-         * CREATE
-         */
-        //createEntities(time);
-
-        /**
-         * REMOVE
-         */
-      /*  entities.forEach(function( entity ) {
-            if (time < entity.properties.launchDate || time >= entity.properties.endDate) {
-                console.log("Removió");
-                entity.
-            //    viewer.entities.remove(entity);
-            }
-        });*/
-    }
+    var duration = 7200; //seconds
+    var frequency = 50; //hertz
 
     if (Cesium.JulianDate.secondsDifference(clock.currentTime, start) > duration ||
         Cesium.JulianDate.secondsDifference(start, clock.currentTime) > duration ) {
         start = clock.currentTime;
         entities.forEach(function( entity ) {
-            var duration = 7200; //seconds
-            var frequency = 50; //hertz
-
             var newStart = clock.currentTime;
             var positions = calculatePositionSamples(entity.properties.getValue().tle.line1, entity.properties.getValue().tle.line2, newStart, duration, frequency);
             entity.position = positions;
-            console.log("PROPAGO")
         });
     }
-}
-
-
-function calculatePositionSamplesOriginal(point, endPoint, startTime, duration, intervalCount) {
-    var property = new Cesium.SampledPositionProperty();
-    var deltaStep = duration / (intervalCount > 0 ? intervalCount : 1);
-
-    var delta = {
-        longitude: (endPoint.longitude - point.longitude) / intervalCount,
-        latitude: (endPoint.latitude - point.latitude) / intervalCount,
-        height: (endPoint.height - point.height) / intervalCount
-    };
-
-    for (var since = 0; since <= duration; since += deltaStep) {
-        property.addSample(
-            Cesium.JulianDate.addSeconds(startTime, since, new Cesium.JulianDate()),
-            Cesium.Cartesian3.fromDegrees(point.longitude += delta.longitude, point.latitude += delta.latitude, point.height += delta.height)
-        );
-    }
-    return property;
 }

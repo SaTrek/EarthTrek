@@ -1296,7 +1296,7 @@
       "line1": "1 25994U 99068A   17131.81002569  .00000307  00000-0  78120-4 0  9997",
       "line2": "2 25994  98.2120 207.3714 0001359 116.9424 243.1898 14.57112580925377"
     },
-    "status": "ACTIVE",
+    "status": "INACTIVE",
     "instruments": [
       {
         "name": "ASTER",
@@ -3181,7 +3181,7 @@
     "type": "SATELLITE",
     "agency": "NASA",
     "program": "EOS",
-    "status": "ACTIVE",
+    "status": "INACTIVE",
     "description": "",
     "orbitalData":  {
     },
@@ -3592,80 +3592,80 @@
         "name": "Radar",
         "layers": [
           {
-            "id": "SMAP_L3_Active_Sigma0_HH",
-            "title": "Sigma0 (L3, Active, HH Polarization)",
+            "id": "SMAP_L3_ACTIVE_Sigma0_HH",
+            "title": "Sigma0 (L3, INACTIVE, HH Polarization)",
             "format": "image/png",
             "resolution": "2km",
             "startDate": "2015-04-13",
             "endDate": "2015-07-07"
           },
           {
-            "id": "SMAP_L3_Active_Sigma0_HH_QA",
-            "title": "Sigma0 QA (L3, Active, HH Polarization)",
+            "id": "SMAP_L3_INACTIVE_Sigma0_HH_QA",
+            "title": "Sigma0 QA (L3, INACTIVE, HH Polarization)",
             "format": "image/png",
             "resolution": "2km",
             "startDate": "2015-04-13",
             "endDate": "2015-07-07"
           },
           {
-            "id": "SMAP_L3_Active_Sigma0_HH_RFI",
-            "title": "Sigma0 RFI (L3, Active, HH Polarization)",
+            "id": "SMAP_L3_INACTIVE_Sigma0_HH_RFI",
+            "title": "Sigma0 RFI (L3, INACTIVE, HH Polarization)",
             "format": "image/png",
             "resolution": "2km",
             "startDate": "2015-04-13",
             "endDate": "2015-07-07"
           },
           {
-            "id": "SMAP_L3_Active_Sigma0_VV",
-            "title": "Sigma0 (L3, Active, VV Polarization)",
+            "id": "SMAP_L3_INACTIVE_Sigma0_VV",
+            "title": "Sigma0 (L3, INACTIVE, VV Polarization)",
             "format": "image/png",
             "resolution": "2km",
             "startDate": "2015-04-13",
             "endDate": "2015-07-07"
           },
           {
-            "id": "SMAP_L3_Active_Sigma0_VV_QA",
-            "title": "Sigma0 QA (L3, Active, VV Polarization)",
+            "id": "SMAP_L3_INACTIVE_Sigma0_VV_QA",
+            "title": "Sigma0 QA (L3, INACTIVE, VV Polarization)",
             "format": "image/png",
             "resolution": "2km",
             "startDate": "2015-04-13",
             "endDate": "2015-07-07"
           },
           {
-            "id": "SMAP_L3_Active_Sigma0_VV_RFI",
-            "title": "Sigma0 RFI (L3, Active, VV Polarization)",
+            "id": "SMAP_L3_INACTIVE_Sigma0_VV_RFI",
+            "title": "Sigma0 RFI (L3, INACTIVE, VV Polarization)",
             "format": "image/png",
             "resolution": "2km",
             "startDate": "2015-04-13",
             "endDate": "2015-07-07"
           },
           {
-            "id": "SMAP_L3_Active_Sigma0_XPOL",
-            "title": "Sigma0 (L3, Active, XPOL Polarization)",
+            "id": "SMAP_L3_INACTIVE_Sigma0_XPOL",
+            "title": "Sigma0 (L3, INACTIVE, XPOL Polarization)",
             "format": "image/png",
             "resolution": "2km",
             "startDate": "2015-04-13",
             "endDate": "2015-07-07"
           },
           {
-            "id": "SMAP_L3_Active_Sigma0_XPOL_QA",
-            "title": "Sigma0 QA (L3, Active, XPOL Polarization)",
+            "id": "SMAP_L3_INACTIVE_Sigma0_XPOL_QA",
+            "title": "Sigma0 QA (L3, INACTIVE, XPOL Polarization)",
             "format": "image/png",
             "resolution": "2km",
             "startDate": "2015-04-13",
             "endDate": "2015-07-07"
           },
           {
-            "id": "SMAP_L3_Active_Sigma0_XPOL_RFI",
-            "title": "Sigma0 RFI (L3, Active, XPOL Polarization)",
+            "id": "SMAP_L3_INACTIVE_Sigma0_XPOL_RFI",
+            "title": "Sigma0 RFI (L3, INACTIVE, XPOL Polarization)",
             "format": "image/png",
             "resolution": "2km",
             "startDate": "2015-04-13",
             "endDate": "2015-07-07"
           },
           {
-            "id": "SMAP_L3_Active_Soil_Moisture",
-            "title": "Soil Moisture (L3, Active)",
+            "id": "SMAP_L3_INACTIVE_Soil_Moisture",
+            "title": "Soil Moisture (L3, INACTIVE)",
             "format": "image/png",
             "resolution": "2km",
             "startDate": "2015-04-13",
@@ -3677,24 +3677,24 @@
         "name": "Radar/Radiometer",
         "layers": [
           {
-            "id": "SMAP_L3_Active_Passive_Soil_Moisture",
-            "title": "Soil Moisture (L3, Active/Passive)",
+            "id": "SMAP_L3_INACTIVE_Passive_Soil_Moisture",
+            "title": "Soil Moisture (L3, INACTIVE/Passive)",
             "format": "image/png",
             "resolution": "2km",
             "startDate": "2015-04-13",
             "endDate": "2015-07-07"
           },
           {
-            "id": "SMAP_L3_Active_Passive_Brightness_Temp_H",
-            "title": "Disaggregated Brightness Temperature (L3, Active/Passive, H Polarization)",
+            "id": "SMAP_L3_INACTIVE_Passive_Brightness_Temp_H",
+            "title": "Disaggregated Brightness Temperature (L3, INACTIVE/Passive, H Polarization)",
             "format": "image/png",
             "resolution": "2km",
             "startDate": "2015-04-13",
             "endDate": "2015-07-07"
           },
           {
-            "id": "SMAP_L3_Active_Passive_Brightness_Temp_V",
-            "title": "Disaggregated Brightness Temperature (L3, Active/Passive, V Polarization)",
+            "id": "SMAP_L3_INACTIVE_Passive_Brightness_Temp_V",
+            "title": "Disaggregated Brightness Temperature (L3, INACTIVE/Passive, V Polarization)",
             "format": "image/png",
             "resolution": "2km",
             "startDate": "2015-04-13",
@@ -4677,10 +4677,10 @@
     "name": "CALIPSO",
     "image": "calipso.png",
     "type": "SATELLITE",
-    "status": "ACTIVE",
+    "status": "INACTIVE",
     "agency": "NASA",
     "program": "EOS",
-    "description": "The Cloud-Aerosol Lidar and Infrared Pathfinder Satellite Observation (CALIPSO) satellite provides new insight into the role that clouds and atmospheric aerosols (airborne particles) play in regulating Earth's weather, climate, and air quality. CALIPSO combines an active lidar instrument with passive infrared and visible imagers to probe the vertical structure and properties of thin clouds and aerosols over the globe. CALIPSO was launched on April 28, 2006 with the cloud profiling radar system on the CloudSat satellite.",
+    "description": "The Cloud-Aerosol Lidar and Infrared Pathfinder Satellite Observation (CALIPSO) satellite provides new insight into the role that clouds and atmospheric aerosols (airborne particles) play in regulating Earth's weather, climate, and air quality. CALIPSO combines an INACTIVE lidar instrument with passive infrared and visible imagers to probe the vertical structure and properties of thin clouds and aerosols over the globe. CALIPSO was launched on April 28, 2006 with the cloud profiling radar system on the CloudSat satellite.",
     "orbitalData":  {
       "perigee": "702",
       "apogee": "703",
@@ -4706,7 +4706,7 @@
     "type": "SATELLITE",
     "agency": "NASA",
     "program": "EOS",
-    "status": "INACTIVE",
+    "status": "ININACTIVE",
     "orbitalData":  {
       "perigee": "1,332",
       "apogee": "1,343",
@@ -4720,7 +4720,7 @@
     "name": "CloudSat",
     "image": "cloudsat.png",
     "type": "SATELLITE",
-    "status": "ACTIVE",
+    "status": "INACTIVE",
     "agency": "NASA",
     "program": "EOS",
     "description": "NASA launched the CloudSat and the Cloud-Aerosol Lidar and Infrared Pathfinder Satellite Observation (CALIPSO) spacecraft to study the role that clouds and aerosols play in regulating Earth's weather, climate and air quality. Launch occurred on April 28, 2006, from Vandenberg Air Force Base, Calif., aboard a Boeing Delta II launch vehicle. The satellites launched into a 705-kilometer (438-mile) circular sun-synchronous polar orbit, and fly in orbital formation as part of the 'A-Train' constellation of three other Earth Observing satellites including Aqua, Aura and Centre National d'Etudes Spatiales' (CNES) PARASOL.",
@@ -4743,7 +4743,7 @@
     "name": "DSCOVR",
     "image": "dscovr.png",
     "type": "SATELLITE",
-    "status": "INACTIVE",
+    "status": "ININACTIVE",
     "agency": "NASA",
     "program": "EOS",
     "description": "The Deep Space Climate Observatory, or DSCOVR, will maintain the nation's real-time solar wind monitoring capabilitieswhich are critical to the accuracy and lead time of NOAA's space weather alerts and forecasts. Without timely and accurate warnings, space weather events like the geomagnetic storms caused by changes in solar wind have the potential to disrupt nearly every major public infrastructure system, including power grids, telecommunications, aviation and GPS.",
@@ -4767,7 +4767,7 @@
     "name": "Hubble (HST)",
     "image": "hubble.png",
     "type": "SPACE_TELESCOPE",
-    "status": "ACTIVE",
+    "status": "INACTIVE",
     "description": "",
     "orbitalData":  {
       "perigee": "",
@@ -4788,7 +4788,7 @@
     "name": "OCO-2",
     "image": "oco2.png",
     "type": "SATELLITE",
-    "status": "ACTIVE",
+    "status": "INACTIVE",
     "agency": "NASA",
     "program": "EOS",
     "description": "Orbiting Carbon Observatory (OCO)-2 will be NASA’s first dedicated Earth remote sensing satellite to study atmospheric carbon dioxide from Space. OCO-2 will be collecting space-based global measurements of atmospheric CO2 with the precision, resolution, and coverage needed to characterize sources and sinks on regional scales. OCO-2 will also be able to quantify CO2 variability over the seasonal cycles year after year.",
@@ -4807,7 +4807,7 @@
     "name": "EO-1",
     "image": "eo1.png",
     "type": "SATELLITE",
-    "status": "ACTIVE",
+    "status": "INACTIVE",
     "agency": "NASA",
     "program": "EOS",
     "description": "",
