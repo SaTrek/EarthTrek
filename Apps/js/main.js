@@ -26,7 +26,8 @@
         requestWaterMask: true,
         automaticallyTrackDataSourceClocks: false,
         navigationHelpButton: false,
-        infoBox: false
+        infoBox: false,
+        creditContainer: "credit"
     });
     viewer.timeline.zoomTo(startTime, endTime);
     viewer.scene.globe.baseColor = Cesium.Color.BLACK;
