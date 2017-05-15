@@ -8,7 +8,8 @@
 //require("amd-loader");
 define([
     'bootstrap',
-    'slick'
+    'slick',
+    'earthtrek-toolbar'
 ], function() {
 
     function SatelliteToolbarView (viewer, toolbarContainerId, satellitePanel) {

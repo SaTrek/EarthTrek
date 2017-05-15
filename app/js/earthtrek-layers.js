@@ -1,5 +1,5 @@
 /**
- * @class EarthTrekLayer
+ * @class EarthTrekLayers
  * @module EarthTrek
  * @author SATrek
  * @author Alejandro Sanchez <alejandro.sanchez.trek@gmail.com>
@@ -10,9 +10,10 @@ define([
 ], function() {
 
 
-    function EarthTrekLayer () {
+    function EarthTrekLayers () {
 
     }
+
     return EarthTrekLayer;
     module.exports = EarthTrekLayer;
 });

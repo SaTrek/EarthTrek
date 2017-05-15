@@ -112,15 +112,9 @@ define([
         return this.viewer;
     }
 
-
-    /*EarthTrek.prototype.updateEntities = function () {
-
-    }*/
-
     EarthTrek.prototype.init = function () {
 
         var that = this;
-
         var satellitePanel = new SatellitePanelView(this.viewer, 'satellite-panel');
         var handler = new Cesium.ScreenSpaceEventHandler(this.viewer.scene.canvas);
         handler.setInputAction(function (movement) {
@@ -160,11 +154,7 @@ define([
         this.updateEntities();
         if (time !== this.previousTime) {
             this.previousTime = time;
-            //   updateLayers();
-
-            if (this.viewer.selectedEntity != null) {
-                //     showSatelliteToolbar(this.viewer.selectedEntity);
-            }
+          //  updateLayers();
         }
     };
 
@@ -220,18 +210,20 @@ define([
             label: {
                 show: true,
                 text: satelliteInfo.name,
-                scale: 0.7,
-                //  scaleByDistance: new Cesium.NearFarScalar(0, 1.5, 8.0e6, 0.5),
+                scale: 0.6,
+                scaleByDistance: new Cesium.NearFarScalar(0, 1.5, 15.0e6, 0.85),
                 fillColor: Cesium.Color.WHITE,
-                eyeOffset: new Cesium.Cartesian3(0.0, 5.0, 100.0),
+               // eyeOffset: new Cesium.Cartesian3(0.0, 300.0, 200.0),
                 outlineColor: color,
                 outlineWidth: 3,
-                style: Cesium.LabelStyle.FILL_AND_OUTLINE
+                style: Cesium.LabelStyle.FILL_AND_OUTLINE,
+                pixelOffset:  new Cesium.Cartesian2(0, -15)
+            //    heightReference: Cesium.HeightReference.RELATIVE_TO_GROUND
             },
             billboard: {
                 image: 'images/satellites/' + satelliteInfo.image,
                 distanceDisplayCondition: new Cesium.DistanceDisplayCondition(40000.1, 150000000.0),
-                scale: 0.3
+                scale: 0.35
             },
             properties: satelliteInfo
         });
