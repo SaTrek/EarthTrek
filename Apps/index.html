@@ -10,6 +10,9 @@
     <script src="../node_modules/jquery/dist/jquery.js"></script>
     <script src="../node_modules/cesium/Build/Cesium/Cesium.js"></script>
     <script src="../node_modules/underscore/underscore-min.js"></script>
+    <script>
+        _.templateSettings.interpolate = /\{\{(.+?)\}\}/g
+    </script>
     <script src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="../node_modules/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
     <script src="../node_modules/satellite.js/dist/satellite.min.js"></script>
@@ -32,7 +35,7 @@
 <div id="main-container">
 
     <div id="compare-modal" style="display: none;">
-        <legend>Seleccione una fecha a comparar</legend>
+        <legend>Select a date to compare</legend>
         <input id="compare-date" class="datepicker" data-date-format="yyyy-mm-dd">
         <button id="accept-date">OK</button>
     </div>
@@ -55,6 +58,8 @@
             </div>
         </div>
     </div>
+
+
 </div>
 
 
@@ -62,12 +67,35 @@
     <input id="search-satellite-text" type="text" placeholder="Satellite name"/> <button></button>
 </div>
 
+
+<script id="tmp-orbital-data" type="text/template">
+    <div>
+        perigee <br>
+        apogee <br>
+        incl. <br>
+        period <br>
+        ecc. <br>
+        mass <br>
+        launch
+    </div>
+    <div>
+        {{perigee}} <br>
+        {{apogee}} <br>
+        {{inclination}} <br>
+        {{period}} <br>
+        {{eccentricity}} <br>
+        {{mass}} <br>
+        {{launch}}
+    </div>
+</script>
+
+
 <script src="js/tilling-scheme.js"></script>
 <script src="js/provider.js"></script>
 <script src="js/earthtrek-toolbar.js"></script>
 <script src="js/main.js"></script>
-<script src="js/satellite.js"></script>
-<script src="js/propagate.js"></script>
+<script src="js/satellite-old.js"></script>
+<script src="js/propagate-old.js"></script>
 
 </body>
 </html>

@@ -3,7 +3,7 @@
     position: absolute;
     top: 10%;
     right: 2%;
-    width: 380px;
+    width: 400px;
     color: white;
     background: rgba(0, 0, 0, 0.5);
     border: 1px solid rgba(255, 255, 255, 0.5);
@@ -35,7 +35,9 @@
 }
 
 #satellite-info > div {
-    width: 50%;
+    display: inline-block;
+    width: 48%;
+    vertical-align: top;
 }
 
 

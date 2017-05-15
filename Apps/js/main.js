@@ -1,14 +1,10 @@
     var backgroundLayerProvider;
     var referenceLayerProvider;
     var previousTime;
-
-
-    var dataSource = new Cesium.CzmlDataSource();
-
     var initialTime = Cesium.JulianDate.fromDate(
         new Date(Date.now()));
     var startTime = Cesium.JulianDate.fromDate(
-        new Date(Date.UTC(2011, 1, 1)));
+        new Date(Date.UTC(1998, 1, 1)));
     var endTime = Cesium.JulianDate.fromDate(
         new Date(Date.UTC(2017, 4, 18)));
 
@@ -53,24 +49,16 @@
     );
     viewer.scene.imageryLayers.addImageryProvider(referenceLayerProvider);
 
-
     var onClockUpdate = _.throttle(function() {
         var isoDateTime = clock.currentTime.toString();
         var time = isoDate(isoDateTime);
+        updateSatellites();
         if (time !== previousTime) {
-            viewer.dataSources.removeAll();
-            dataSource
-                .load('data/satellites-' + time +'.czml')
-                .then(function(){
-                    setSatellitesProperties()
-                });
-            viewer.dataSources.add(dataSource);
-
             previousTime = time;
             updateLayers();
 
             if (viewer.selectedEntity != null) {
-                showSatelliteToolbar(viewer.selectedEntity );
+                showSatelliteToolbar(viewer.selectedEntity);
             }
         }
     });
@@ -109,7 +97,7 @@
     function setSatellitesProperties() {
         $.getJSON( "data/instrumentsFULL.json", function( satellites ) {
             satellites.forEach(function( sat ) {
-                var entity = dataSource.entities.getById(sat.id.toLowerCase());
+                var entity = viewer.entities.getById(sat.id.toLowerCase());
                 if (entity != undefined) {
                     entity.properties = sat;
                     if (sat.name != undefined) {
@@ -119,7 +107,6 @@
             });
         });
     }
-
 
     function toggle(div, callbackOn, callbackOff) {
         if (div.is(":visible")) {
@@ -132,26 +119,30 @@
     }
     $('.datepicker').datepicker();
 
-
     /**
      * LEFT TOOLBAR
      */
     $("#main-container").append(earthTrekToolbar.create("top-left-toolbar", function(toolbarContainer) {
-
         jQuery("#search-satellite").detach().appendTo(toolbarContainer);
     }));
+
     $("#main-container").append(earthTrekToolbar.create("left-toolbar", function(toolbarContainer) {
-        $.getJSON( "data/instrumentsFULL.json", function( satellites ) {
+
+        /*$.getJSON( "data/instrumentsFULL.json", function( satellites ) {
             satellites.forEach(function( sat ) {
                 if (sat.status == "ACTIVE") {
 
                     var satelliteContainer = document.createElement('div');
 
                     var satelliteImage = document.createElement('img');
-                    $(satelliteImage).attr("src", 'images/satellites/'+ sat.image);
+                    $(satelliteImage).attr("src", 'images/satellites/' + sat.image)
+                   // console.log(time)
+                    if (sat.endDate) {
+                      //  $(satelliteImage).addClass('satellite-disabled');
+                    }
                     $(satelliteContainer).append(satelliteImage);
                     $(satelliteContainer).click(function() {
-                        var selected = gotoSatellite(dataSource.entities.getById(sat.id.toLowerCase()));
+                        var selected = gotoSatellite(viewer.entities.getById(sat.id.toLowerCase()));
                         if (selected == true) {
                             $(".satellite-selected").removeClass("satellite-selected");
                             $(satelliteContainer).addClass("satellite-selected");
@@ -174,7 +165,7 @@
                 slidesToScroll: 1,
                 variableWidth: true
             });
-        });
+        });*/
     }));
 
     /**

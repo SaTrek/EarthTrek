@@ -1,0 +1,15 @@
+language: node_js
+node_js:
+  - "6"
+
+install:
+  - git clone https://github.com/SaTrek/EarthTrek
+
+before_script:
+  - npm install
+
+script:
+  - npm test Apps/test
+
+after_success:
+  #- test $TRAVIS_PULL_REQUEST == "false" && test $TRAVIS_BRANCH == "master" && /bin/bash infrastructure/jenkins-build.sh

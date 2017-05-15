@@ -1,4 +1,4 @@
-
+var orbitalDataTemplate = _.template($('#tmp-orbital-data').html())
 //var satellite = satellite || {};
 
     var handler = new Cesium.ScreenSpaceEventHandler(viewer.scene.canvas);
@@ -8,7 +8,7 @@
         $("#satellite-instruments").empty();
 
         if (Cesium.defined(pick)) {
-            var entity = dataSource.entities.getById(pick.id._id);
+            var entity = viewer.entities.getById(pick.id._id);
             if (entity != undefined) {
                 // && Cesium.defined(pick.node) && Cesium.defined(pick.mesh)
                 showSatelliteToolbar(entity);
@@ -26,23 +26,21 @@
     showSatelliteToolbar = function (entity) {
         $('#satellite-info').empty();
         $('#satellite-instruments').empty();
+
         var satelliteToolbar = $('#satellite-toolbar');
         if (entity.properties == undefined) {
             satelliteToolbar.hide();
             return false;
         }
-        $('#satellite-name').html(entity.properties.name.getValue());
-        var orbitalDataContainer = document.createElement('div');
-        $.each(entity.properties.orbitalData.getValue(), function(key, value) {
-            var orbitalDataKey = document.createElement('div');
-            $(orbitalDataKey).append(key);
-            $(orbitalDataContainer).append(orbitalDataKey);
 
-            var orbitalDataValue = document.createElement('div');
-            $(orbitalDataValue).append(value);
-            $(orbitalDataContainer).append(orbitalDataValue);
-        });
-        $('#satellite-info').append(orbitalDataContainer);
+        $('#satellite-name').html(entity.properties.name.getValue());
+
+        var data = entity.properties.orbitalData.getValue() || {}
+        data.mass = entity.properties.mass.getValue()
+        data.launch = entity.properties.launchDate.getValue()
+
+        $('#satellite-info').append(orbitalDataTemplate(data));
+
         var instruments = entity.properties.instruments.getValue();
 
         if (instruments.length > 0) {
@@ -160,7 +158,7 @@
     }
 
     var searchSatellite = function() {
-        var entity = dataSource.entities.getById($('#search-satellite-text').val().toLowerCase());
+        var entity = viewer.entities.getById($('#search-satellite-text').val().toLowerCase());
         gotoSatellite(entity);
         $('#search-satellite-text').val("");
     }

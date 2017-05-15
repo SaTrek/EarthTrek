@@ -181,8 +181,13 @@
       "eccentricity": "0.0000979",
       "period": "98"
     },
+    "tle":  {
+      "line1": "1 27424U 02022A   17131.91562854  .00000110  00000-0  34384-4 0  9996",
+      "line2": "2 27424  98.2026  73.7533 0000860 153.0401 299.1971 14.57109646798942"
+    },
     "mass": "2850",
     "launchDate": "2002-05-04",
+    "endDate": null,
     "image": "aqua.png",
     "instruments": [
       {
@@ -1150,9 +1155,10 @@
     ]
   },
   {
-    "id": "SAC-D",
+    "id": "sacd",
+    "name": "SAC-D",
     "image": "sacd.png",
-    "status": "INACTIVE",
+    "status": "ACTIVE",
     "orbitalData":  {
       "perigee": "652.2",
       "apogee": "654.7",
@@ -1160,8 +1166,13 @@
       "eccentricity": "0.0000181",
       "period": "97.8"
     },
+    "tle":  {
+      "line1": "1 37673U 11024A   11161.63936538 -.00000050  00000-0  00000+0 0    16",
+      "line2": "2 37673  98.0125 168.6228 0002456 212.6674 147.5382 14.72830191    07"
+    },
     "mass": "1600",
     "launchDate": "2011-06-10",
+    "endDate": "2015-06-17",
     "instruments": [
       {
         "name": "Aquarius",
@@ -1181,17 +1192,7 @@
             "resolution": "2km",
             "startDate": "2011-08-25",
             "endDate": "2011-08-25"
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "id": "Aquarius",
-    "instruments": [
-      {
-        "name": "SAC-D",
-        "layers": [
+          },
           {
             "id": "Aquarius_Sea_Surface_Salinity_L3_7Day_RunningMean",
             "title": "Sea Surface Salinity (L3, 7-Day Running Mean)",
@@ -1271,12 +1272,21 @@
     ]
   },
   {
-    "id": "Terra",
+    "id": "terra",
+    "name": "Terra",
     "type": "SATELLITE",
     "agency": "NASA",
     "program": "EOS",
     "image": "terra.png",
-    "status": "INACTIVE",
+    "launchDate": "1999-12-18",
+    "endDate": null,
+    "orbitalData":  {
+    },
+    "tle":  {
+      "line1": "1 25994U 99068A   17131.81002569  .00000307  00000-0  78120-4 0  9997",
+      "line2": "2 25994  98.2120 207.3714 0001359 116.9424 243.1898 14.57112580925377"
+    },
+    "status": "ACTIVE",
     "instruments": [
       {
         "name": "ASTER",
@@ -2788,7 +2798,7 @@
     "name": "Aura",
     "image": "aura.png",
     "description": "Aura is the third in the series of large Earth Observing System platforms to be flown by NASA with internationa contributions. Aura provides an unprecedented view of the global Earth system. The Aura mission consists of four instruments on a common spacecraft (the same bus design as for Aqua) designed to provide the essential services for the instruments.",
-    "status": "ACTIVE",
+    "status": "INACTIVE",
     "orbitalData":  {
       "perigee": "708",
       "apogee": "710",
@@ -2798,6 +2808,7 @@
     },
     "mass": "1765",
     "launchDate": "2004-07-15",
+    "endDate": null,
     "instruments": [
       {
         "name": "MLS",
@@ -4416,7 +4427,7 @@
     "id": "suomi",
     "name": "Suomi NPP",
     "image": "suomi.png",
-    "status": "ACTIVE",
+    "status": "INACTIVE",
     "description": "Suomi National Polar-orbiting Partnership, formerly known as the NPOESS Preparatory Project, will serve as a bridge between the EOS satellites and the forthcoming series of Joint Polar Satellite System (JPSS) satellites. Suomi NPP represents a critical first step in building this next-generation satellite system. The JPSS satellites, previously called the National Polar-orbiting Operational Environmental Satellite System (NPOESS), will be developed by NASA for the National Oceanic and Atmospheric Administration (NOAA). Suomi NPP will carry five science instruments and test key technologies for the JPSS missions. Suomi NPP is the first satellite mission to address the challenge of acquiring a wide range of land, ocean, and atmospheric measurements for Earth system science while simultaneously preparing to address operational requirements for weather forecasting.",
     "orbitalData":  {
       "perigee": "833.7",
@@ -4426,6 +4437,7 @@
     },
     "mass": "2128",
     "launchDate": "2011-10-28",
+    "endDate": null,
     "instruments": [
       {
         "name": "VIIRS",
@@ -4605,8 +4617,13 @@
       "inclination": "51.64",
       "period": "92.65"
     },
+    "tle":  {
+      "line1": "1 25544U 98067A   17132.15166687  .00016717  00000-0  10270-3 0  9023",
+      "line2": "2 25544  51.6405 217.9287 0004884 149.5686 210.5751 15.54020107 16140"
+    },
     "mass": "419,455",
     "launchDate": "1998-11-20",
+    "endDate": null,
     "instruments": [
       {
       }
@@ -4618,6 +4635,8 @@
     "image": "calipso.png",
     "type": "SATELLITE",
     "status": "ACTIVE",
+    "agency": "NASA",
+    "program": "EOS",
     "description": "The Cloud-Aerosol Lidar and Infrared Pathfinder Satellite Observation (CALIPSO) satellite provides new insight into the role that clouds and atmospheric aerosols (airborne particles) play in regulating Earth's weather, climate, and air quality. CALIPSO combines an active lidar instrument with passive infrared and visible imagers to probe the vertical structure and properties of thin clouds and aerosols over the globe. CALIPSO was launched on April 28, 2006 with the cloud profiling radar system on the CloudSat satellite.",
     "orbitalData":  {
       "perigee": "702",
@@ -4625,8 +4644,13 @@
       "inclination": "98.2",
       "period": "98.8"
     },
+    "tle":  {
+      "line1": "1 29108U 06016B   17132.92916337  .00000089  00000-0  29786-4 0  9990",
+      "line2": "2 29108  98.2018  76.9839 0001419  82.5969 277.5391 14.57109312587205"
+    },
     "mass": "587",
     "launchDate": "2006-04-28",
+    "endDate": null,
     "instruments": [
       {
       }
@@ -4637,7 +4661,9 @@
     "name": "Jason-2",
     "image": "jason2.png",
     "type": "SATELLITE",
-    "status": "ACTIVE",
+    "agency": "NASA",
+    "program": "EOS",
+    "status": "INACTIVE",
     "orbitalData":  {
       "perigee": "1,332",
       "apogee": "1,343",
@@ -4656,6 +4682,8 @@
     "image": "cloudsat.png",
     "type": "SATELLITE",
     "status": "ACTIVE",
+    "agency": "NASA",
+    "program": "EOS",
     "description": "NASA launched the CloudSat and the Cloud-Aerosol Lidar and Infrared Pathfinder Satellite Observation (CALIPSO) spacecraft to study the role that clouds and aerosols play in regulating Earth's weather, climate and air quality. Launch occurred on April 28, 2006, from Vandenberg Air Force Base, Calif., aboard a Boeing Delta II launch vehicle. The satellites launched into a 705-kilometer (438-mile) circular sun-synchronous polar orbit, and fly in orbital formation as part of the 'A-Train' constellation of three other Earth Observing satellites including Aqua, Aura and Centre National d'Etudes Spatiales' (CNES) PARASOL.",
     "orbitalData":  {
       "perigee": "702",
@@ -4663,8 +4691,13 @@
       "inclination": "98.2",
       "period": "98.8"
     },
+    "tle":  {
+      "line1": "1 29107U 06016A   17132.93034283  .00000030  00000-0  16625-4 0  9995",
+      "line2": "2 29107  98.2010  77.4323 0001634 110.7949 249.3425 14.57105626587132"
+    },
     "mass": "848",
     "launchDate": "2006-04-28",
+    "endDate": null,
     "instruments": [
       {
       }
@@ -4675,7 +4708,9 @@
     "name": "DSCOVR",
     "image": "dscovr.png",
     "type": "SATELLITE",
-    "status": "ACTIVE",
+    "status": "INACTIVE",
+    "agency": "NASA",
+    "program": "EOS",
     "description": "The Deep Space Climate Observatory, or DSCOVR, will maintain the nation's real-time solar wind monitoring capabilitieswhich are critical to the accuracy and lead time of NOAA's space weather alerts and forecasts. Without timely and accurate warnings, space weather events like the geomagnetic storms caused by changes in solar wind have the potential to disrupt nearly every major public infrastructure system, including power grids, telecommunications, aviation and GPS.",
     "orbitalData":  {
       "perigee": "",
@@ -4685,10 +4720,34 @@
     },
     "mass": "570",
     "launchDate": "2015-02-11",
+    "endDate": null,
     "instruments": [
       {
         "name": "EPIC"
       }
+    ]
+  },
+  {
+    "id": "hubble",
+    "name": "Hubble (HST)",
+    "image": "hubble.png",
+    "type": "SPACE_TELESCOPE",
+    "status": "ACTIVE",
+    "description": "",
+    "orbitalData":  {
+      "perigee": "",
+      "apogee": "",
+      "inclination": "28.47",
+      "period": ""
+    },
+    "tle":  {
+      "line1": "1 20580U 90037B   17131.72607639  .00000480  00000-0  18628-4 0  9998",
+      "line2": "2 20580  28.4695 248.4464 0002839 136.5924  81.4422 15.08759509284683"
+    },
+    "mass": "",
+    "launchDate": "1990-04-24",
+    "endDate": null,
+    "instruments": [
     ]
   }
 ]

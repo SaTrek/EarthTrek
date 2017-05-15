@@ -1,4 +1,6 @@
-# EarthTrek
+
+# EarthTrek  [![Build Status](https://secure.travis-ci.org/SaTrek/EarthTrek.png?branch=nx-propagate)](http://travis-ci.org/SaTrek/EarthTrek)
+
 EarthTrek is an interactive 3D web application. It´s easy access for all kinds of users encourages the use of data that NASA`S EOS program compiles and collect with satellites´s instruments.
 
 Our app allows to:
