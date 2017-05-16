@@ -5,18 +5,16 @@
  * @author Alejandro Sanchez <alejandro.sanchez.trek@gmail.com>
  * @description EarthTrek - NASA Space Apps 2017 12 MAY 2017.
  */
-//require("amd-loader");
-var earthTrekSatellite = earthTrekSatellite || {};
+
 
 define([
-    'cesium', 'satellite-propagation'
-], function() {
+    'cesium', '../js/satellite-propagation'
+], function(cesiuma, satellitePropagation) {
 
-    /*
-    function EarthTrekSatellite(entity) {
-        this.entity = entity;
-    }
-*/
+    function EarthTrekSatellite() {
+
+    };
+
     earthTrekSatellite.calculatePosition = function(tleLine1, tleLine2, startTime, date, deltaStep, since) {
         date.setSeconds(date.getSeconds() + deltaStep)
         var newPosition = satellitePropagation.getPosition(tleLine1, tleLine2, date);
@@ -69,5 +67,4 @@ define([
         );
         return property;
     }
-  //  module.exports = earthTrekSatellite;
 });
