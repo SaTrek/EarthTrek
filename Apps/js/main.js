@@ -51,7 +51,7 @@
     );
     viewer.scene.imageryLayers.addImageryProvider(referenceLayerProvider);
 
-    viewer.scene.debugShowFramesPerSecond = true;
+   // viewer.scene.debugShowFramesPerSecond = true;
 
     var onClockUpdate = _.throttle(function() {
         var isoDateTime = clock.currentTime.toString();

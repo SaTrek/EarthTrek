@@ -108,10 +108,10 @@ function createEntity(satelliteInfo, start) {
             show: true,
             text: satelliteInfo.name,
             scale: 0.5,
-            scaleByDistance: new Cesium.NearFarScalar(0, 1.5, 15.0e6, 0.85),
-            fillColor : Cesium.Color.WHITE,
+            scaleByDistance: new Cesium.NearFarScalar(0, 1.5, 15.0e6, 0.95),
+            fillColor : color,
             eyeOffset: new Cesium.Cartesian3(0.0, 5.0, 100.0),
-            outlineColor: color,
+            outlineColor: Cesium.Color.BLACK,
             outlineWidth: 3,
             style: Cesium.LabelStyle.FILL_AND_OUTLINE,
             pixelOffset:  new Cesium.Cartesian2(0, -15)
