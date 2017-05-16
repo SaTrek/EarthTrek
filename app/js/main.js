@@ -7,7 +7,7 @@
  */
 define([
     'jquery',
-    'EarthTrek'
+    'earthtrek'
 ], function ($, EarthTrek) {
 
     var earthTrek = new EarthTrek({

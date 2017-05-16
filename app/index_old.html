@@ -5,9 +5,16 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
 
-    <title>EarthTrek - ALPHA v0.175.16</title>
+    <title>EarthTrek</title>
 
-    <script data-main="app" src="../node_modules/requirejs/require.js"></script>
+
+    <script src="../node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="../node_modules/cesium/Build/Cesium/Cesium.js"></script>
+    <script src="../node_modules/underscore/underscore-min.js"></script>
+    <script src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="../node_modules/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
+    <script src="../node_modules/satellite.js/dist/satellite.min.js"></script>
+    <script src="../node_modules/slick-carousel/slick/slick.min.js"></script>
 
     <style>
         @import url(../node_modules/cesium/Build/Cesium/Widgets/widgets.css);
@@ -49,11 +56,21 @@
             </div>
         </div>
     </div>
+
+
 </div>
+
 
 <div id="search-satellite" >
     <input id="search-satellite-text" type="text" placeholder="Satellite name"/> <button></button>
 </div>
+
+<script src="js/tilling-scheme.js"></script>
+<script src="js/provider.js"></script>
+<script src="js/earthtrek-toolbar.js"></script>
+<script src="js/main-old.js"></script>
+<script src="js/satellite-old.js"></script>
+<script src="js/propagate-old.js"></script>
 
 </body>
 </html>
