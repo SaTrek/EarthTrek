@@ -60,7 +60,7 @@
             for (var i = 0; i <= instruments.length - 1; i++) {
                 var instrumentName = instruments[i];
                 var instrument = document.createElement('div');
-                instrument.id = "satellite-instrument-" + satellite.id + "-" + instrumentName.name;
+                instrument.id = "satellite-instrument-" + entity.id + "-" + instrumentName.name;
                 $(instrument).addClass("satellite-instrument");
                 $(instrument).html("<div>" + instrumentName.name + "</div>");
                 $(instrument).data('instrument', instrumentName.name);
@@ -153,6 +153,14 @@
             $(compareButton).attr('disabled', 'disabled');
         }
         return instrumentLayer;
+    }
+
+    updateLayersView = function (entity) {
+/*
+        if (layer.endDate < isoDate(clock.currentTime.toString()) || layer.startDate > isoDate(clock.currentTime.toString())) {
+            $(toggleLayerButton).attr('disabled', 'disabled');
+            $(compareButton).attr('disabled', 'disabled');
+        }*/
     }
 
     /**

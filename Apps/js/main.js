@@ -62,7 +62,8 @@
             updateLayers();
 
             if (viewer.selectedEntity != null) {
-                showSatelliteToolbar(viewer.selectedEntity );
+                showSatelliteToolbar(viewer.selectedEntity);
+                updateLayersView(viewer.selectedEntity);
             }
         }
     });
