@@ -12,7 +12,7 @@ define([
     'earthtrek-satellite',
     'view/satellite-toolbar-view',
     'view/satellite-panel-view'
-], function (ce, sat, SatelliteToolbarView, SatellitePanelView) {
+], function (ce, earthTrekSatellitez, SatelliteToolbarView, SatellitePanelView) {
     'use strict';
 
     /**
@@ -102,7 +102,8 @@ define([
                 requestWaterMask: true,
                 automaticallyTrackDataSourceClocks: false,
                 navigationHelpButton: false,
-                infoBox: false
+                infoBox: false,
+                creditContainer: "credit"
             });
 
             this.getClock().onTick.addEventListener(this.onClockUpdate, this);
@@ -130,17 +131,17 @@ define([
             }
         }, Cesium.ScreenSpaceEventType.LEFT_CLICK);
 
-        var satelliteToolbar = new SatelliteToolbarView(this.viewer, 'left-toolbar', satellitePanel);
-        $.getJSON("data/instrumentsFULL.json", function (satellites) {
+        this.satelliteToolbar = new SatelliteToolbarView(this.viewer, 'left-toolbar', satellitePanel);
+        $.getJSON("data/instruments.json", function (satellites) {
             satellites.forEach(function (satelliteData) {
                 var entity = that.viewer.entities.getById(satelliteData.id);
                 if (entity == null && satelliteData.status == 'ACTIVE') {
                     entity = that.createEntity(satelliteData, that.clock.currentTime);
                     that.entities.push(entity);
-                    satelliteToolbar.addSatellite(satelliteData, that.goToEntity);
+                    that.satelliteToolbar.addSatellite(satelliteData, that.goToEntity);
                 }
             })
-            satelliteToolbar.render();
+            that.satelliteToolbar.render();
         });
     }
 
@@ -151,7 +152,7 @@ define([
     EarthTrek.prototype.onClockUpdate = function (clock) {
         var isoDateTime = clock.currentTime.toString();
         var time = this.isoDate(isoDateTime);
-        this.updateEntities();
+        this.updateEntities(time);
         if (time !== this.previousTime) {
             this.previousTime = time;
           //  updateLayers();
@@ -254,7 +255,7 @@ define([
     /**
      *
      */
-    EarthTrek.prototype.updateEntities = function () {
+    EarthTrek.prototype.updateEntities = function (time) {
         if (Cesium.JulianDate.secondsDifference(this.clock.currentTime, this.lastPropagationTime) > this.orbitDuration ||
             Cesium.JulianDate.secondsDifference(this.lastPropagationTime, this.clock.currentTime) > this.orbitDuration) {
             this.lastPropagationTime = this.clock.currentTime;
@@ -264,6 +265,8 @@ define([
                 var tle1 = entity.properties.getValue(newStart).tle.line1;
                 var tle2 = entity.properties.getValue(newStart).tle.line2;
                 entity.position = earthTrekSatellite.getSamples(tle1, tle2, newStart, that.orbitDuration, that.frequency);
+
+                SatelliteToolbarView.prototype.updateSatellite(entity, that.goToEntity, time);
             });
             console.log("PROPAGO");
         }

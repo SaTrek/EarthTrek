@@ -6,14 +6,12 @@
  * @description EarthTrek - NASA Space Apps 2017 12 MAY 2017.
  */
 
+var earthTrekSatellite = earthTrekSatellite || {};
 
 define([
     'cesium', '../js/satellite-propagation'
-], function(cesiuma, satellitePropagation) {
+], function(cesiuma, satellitePropagationa) {
 
-    function EarthTrekSatellite() {
-
-    };
 
     earthTrekSatellite.calculatePosition = function(tleLine1, tleLine2, startTime, date, deltaStep, since) {
         date.setSeconds(date.getSeconds() + deltaStep)
