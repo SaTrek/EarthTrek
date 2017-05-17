@@ -20,9 +20,16 @@ define([
         this.satellitePanel = satellitePanel;
     }
 
+    SatelliteToolbarView.prototype.updateSatellite = function (entity, goToCallback, time) {
+        (time >= entity.properties.getValue().endDate) ?
+            $("." + entity.id + "-toolbar").addClass("satellite-disabled")
+            : $("." + entity.id + "-toolbar").removeClass("satellite-disabled");
+    }
+
     SatelliteToolbarView.prototype.addSatellite = function (satelliteData, goToCallback) {
         var that = this;
         var satelliteContainer = document.createElement('div');
+        $(satelliteContainer).addClass(satelliteData.id + '-toolbar');
 
         var satelliteImage = document.createElement('img');
         $(satelliteImage).attr("src", 'images/satellites/' + satelliteData.image)
