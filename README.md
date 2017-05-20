@@ -1,5 +1,5 @@
 
-# :earth_americas: EarthTrek  [![Build Status](https://secure.travis-ci.org/SaTrek/EarthTrek.png)](http://travis-ci.org/SaTrek/EarthTrek)
+# :earth_americas: EarthTrek  [![Build Status](https://travis-ci.org/SaTrek/EarthTrek.svg?branch=master)](http://travis-ci.org/SaTrek/EarthTrek)
 
 **NASA Space Apps Challenge 2017 - Buenos Aires Nominee**
 ![NASA Space Apps Challenge 2017 - Buenos Aires](https://sa-media-2017.s3.amazonaws.com/media/images/Space_Apps_2017_Logo_BsAs.width-500.png)
