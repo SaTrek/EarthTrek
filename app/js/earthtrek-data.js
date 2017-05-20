@@ -9,22 +9,36 @@
 
 var earthTrekData = earthTrekData || {};
 define([
+    'underscore',
     'earthtrek-satellite'
-], function (earthTrekSatellitez) {
+], function (_, earthTrekSatellitez) {
     'use strict';
+
+    var satelliteIds = [];
 
     /**
      *
      */
-    earthTrekData.getSatellites = function () {
-        $.getJSON("http://localhost:9081/satellites", function (satellites) {
+    earthTrekData.getSatelliteIds = function () {
+        if (satelliteIds != null) {
+            return satelliteIds;
+        }
+        earthTrekData.getSatellites().then(function(satellites) {
             var satIds = [];
             satellites.data.forEach(function (satellite) {
                 satIds.push(satellite.satId);
             })
+            satelliteIds = satIds;
             return satIds;
         });
     }
+    /**
+     *
+     */
+    earthTrekData.getSatellites = function () {
+        return $.ajax("http://localhost:9081/satellites");
+    }
+
     /**
      *
      */
@@ -32,16 +46,49 @@ define([
         var params = [];
         params.push('ids=' + ids.join(','));
         if (options.startDate) {
-            params.push('startDate=' + options.startDate);
+            var startDate = options.startDate;
+            if (startDate instanceof Date) {
+                startDate = startDate.getUTCFullYear() + '-' + (startDate.getUTCMonth() + 1) + '-' +  startDate.getUTCDate();
+            }
+            params.push('startDate=' + startDate);
             if (options.endDate) {
-                params.push('endDate=' + options.endDate);
+                var endDate = options.endDate;
+                if (endDate instanceof Date) {
+                    endDate = endDate.getUTCFullYear() + '-' + (endDate.getUTCMonth() + 1) + '-' +  endDate.getUTCDate();
+                }
+                params.push('endDate=' + endDate);
             }
         }
-        $.getJSON("http://localhost:9081/tles?" + params.join('&'), function (satellites) {
+        return $.ajax("http://localhost:9081/tles?" + params.join('&'));
+    }
+
+    /**
+     *
+     */
+    earthTrekData.getFullData = function (options, callback) {
+        var promise = earthTrekData.getSatellites();
+
+        var tlePromise = promise.then(function(satellites) {
+            var satIds = [];
             satellites.data.forEach(function (satellite) {
-                console.log(satellite)
+                satIds.push(satellite.satId);
             })
+            satelliteIds = satIds;
+            return earthTrekData.getTLEs(satIds, options);
+        });
+        Promise.all([promise, tlePromise]).then(function(tles) {
+            /**
+             * @TODO -TEMPORAL
+             */
+            var finalJson = [];
+            tles[0].data.forEach(function (satellite) {
+                tles[1].data.forEach(function(satTle) {
+                    if (satellite.satId == satTle.satId) {
+                        finalJson.push(_.extend(satTle, satellite));
+                    }
+                });
+            });
+            callback(finalJson);
         });
     }
-  //  module.exports = EarthTrekData;
 });

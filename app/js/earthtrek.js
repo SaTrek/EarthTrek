@@ -63,7 +63,7 @@ define([
         this.initialTime = Cesium.JulianDate.fromDate(
             new Date(options.initialTime));
 
-        this.previousTime = this.initialTime;
+        this.previousTime = this.isoDate(this.initialTime.toString());
         this.lastPropagationTime = this.initialTime;
 
         this.mainContainerId = options.mainContainer;
@@ -126,6 +126,7 @@ define([
             if (Cesium.defined(pick)) {
                 var entity = that.viewer.entities.getById(pick.id._id);
                 if (entity != undefined) {
+                    console.log(that.clock.currentTime.toString())
                     satellitePanel.show(entity);
                 }
             } else  {
@@ -136,13 +137,9 @@ define([
 
         this.satelliteToolbar = new SatelliteToolbarView(this.viewer, 'left-toolbar', satellitePanel);
 
-        //{startDate: this.isoDate(this.getClock().currentTime.toString())}
-
-        $.getJSON("data/instruments.json", function (satellites) {
-            earthTrekData.getTLEs
-            var satsId = earthTrekData.getSatellites();
+        earthTrekData.getFullData({startDate: that.isoDate(that.getClock().currentTime.toString())}, function (satellites) {
             satellites.forEach(function (satelliteData) {
-                var entity = that.viewer.entities.getById(satelliteData.id);
+                var entity = that.viewer.entities.getById(satelliteData.satId);
                 if (entity == null && satelliteData.status == 'ACTIVE') {
                     entity = that.createEntity(satelliteData, that.clock.currentTime);
                     that.entities.push(entity);
@@ -156,12 +153,14 @@ define([
     EarthTrek.prototype.isoDate = function (isoDateTime) {
         return isoDateTime.split("T")[0];
     };
+
     EarthTrek.prototype.onClockUpdate = function (clock) {
         var isoDateTime = clock.currentTime.toString();
         var time = this.isoDate(isoDateTime);
         this.updateEntities(time);
         if (time !== this.previousTime) {
-            this.previousTime = time;
+        //    this.previousTime = time;
+
           //  updateLayers();
         }
     };
@@ -192,10 +191,10 @@ define([
             return false;
         }
 
-        var positions = earthTrekSatellite.getSamples(satelliteInfo.tle.line1, satelliteInfo.tle.line2, startTime, this.orbitDuration, this.frequency);
+        var positions = earthTrekSatellite.getSamples(satelliteInfo.tle[0], satelliteInfo.tle[1], startTime, this.orbitDuration, this.frequency);
 
         var entity = this.viewer.entities.add({
-            id: satelliteInfo.id,
+            id: satelliteInfo.satId,
             name: satelliteInfo.name,
             position: positions,
             orientation: new Cesium.VelocityOrientationProperty(positions),
@@ -263,14 +262,33 @@ define([
      *
      */
     EarthTrek.prototype.updateEntities = function (time) {
+        var that = this;
         if (Cesium.JulianDate.secondsDifference(this.clock.currentTime, this.lastPropagationTime) > this.orbitDuration ||
             Cesium.JulianDate.secondsDifference(this.lastPropagationTime, this.clock.currentTime) > this.orbitDuration) {
+            if (time !== this.previousTime) {
+                var startDate = new Date(time);
+                startDate.setDate(startDate.getDate() - 1);
+                var endDate = new Date(time);
+                endDate.setDate(endDate.getDate() + 1);
+                earthTrekData.getTLEs(earthTrekData.getSatelliteIds(), {startDate: startDate, endDate: endDate}).then(function(tles) {
+                    tles.data.forEach(function (tle) {
+                        var entity = that.viewer.entities.getById(tle.satId);
+                        if (entity != null) {
+                            entity.properties.tle.setValue(tle.tle);
+                        }
+                    });
+                })
+                this.previousTime = time;
+            }
+
             this.lastPropagationTime = this.clock.currentTime;
             var that = this;
+
             this.entities.forEach(function (entity) {
                 var newStart = that.clock.currentTime;
-                var tle1 = entity.properties.getValue(newStart).tle.line1;
-                var tle2 = entity.properties.getValue(newStart).tle.line2;
+                var tle1 = entity.properties.getValue(newStart).tle[0];
+                var tle2 = entity.properties.getValue(newStart).tle[1];
+                console.log(tle1, tle2)
                 entity.position = earthTrekSatellite.getSamples(tle1, tle2, newStart, that.orbitDuration, that.frequency);
 
                 SatelliteToolbarView.prototype.updateSatellite(entity, that.goToEntity, time);
@@ -284,7 +302,7 @@ define([
             return false;
         }
         /**
-         * TODO FIX THIS
+         * @TODO FIX THIS
          */
         if (this != undefined) {
             viewer = this.viewer;
@@ -294,6 +312,40 @@ define([
         viewer.selectedEntity = entity;
         return true;
     }
+
+    /**
+     *
+
+     var promise = $.getJSON("http://localhost:9081/satellites", function (satellites) {
+            var satIds = [];
+            satellites.data.forEach(function (satellite) {
+                satIds.push(satellite.satId);
+            })
+            return satIds;
+        });;
+
+     promise.then(function(satellites) {
+            var satIds = [];
+            satellites.data.forEach(function (satellite) {
+                satIds.push(satellite.satId);
+            })
+            var tles = earthTrekData.getTLEs(satIds, {startDate: that.isoDate(that.getClock().currentTime.toString())});
+
+        }).then(function(tleData) {
+            console.log(tleData)
+            $.getJSON("data/instruments.json", function (satellites) {
+                satellites.forEach(function (satelliteData) {
+                    var entity = that.viewer.entities.getById(satelliteData.id);
+                    if (entity == null && satelliteData.status == 'ACTIVE') {
+                        entity = that.createEntity(satelliteData, that.clock.currentTime);
+                        that.entities.push(entity);
+                        that.satelliteToolbar.addSatellite(satelliteData, that.goToEntity);
+                    }
+                })
+                that.satelliteToolbar.render();
+            });
+        });
+     */
 
     return EarthTrek;
     module.exports = EarthTrek;

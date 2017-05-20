@@ -9,7 +9,8 @@
 define([
     'jquery',
     'bootstrap',
-    'slick'
+    'slick',
+    'tle'
 ], function () {
 
     function SatellitePanelView(viewer, options) {
@@ -39,9 +40,10 @@ define([
         this.entity = entity;
         $('#satellite-name').html(entity.properties.name.getValue());
 
-        if (entity.properties.orbitalData !== undefined) {
-            this.showOrbitalData(entity.properties.orbitalData.getValue());
-        }
+        var tle = this.entity.properties.getValue().tle.join("\n");
+     //   var parsedTLE = TLE.parse( tle );
+      //  console.log(parsedTLE);
+    //    this.showOrbitalData(entity.properties.orbitalData.getValue());
 
         if (entity.properties.instruments !== undefined) {
             this.addInstruments(entity)
