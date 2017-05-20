@@ -10,9 +10,10 @@
 define([
     'cesium',
     'earthtrek-satellite',
+    'earthtrek-data',
     'view/satellite-toolbar-view',
     'view/satellite-panel-view'
-], function (ce, earthTrekSatellitez, SatelliteToolbarView, SatellitePanelView) {
+], function (ce, earthTrekSatellitez, earthTrekDatas, SatelliteToolbarView, SatellitePanelView) {
     'use strict';
 
     /**
@@ -116,7 +117,9 @@ define([
     EarthTrek.prototype.init = function () {
 
         var that = this;
-        var satellitePanel = new SatellitePanelView(this.viewer, 'satellite-panel');
+        var satellitePanel = new SatellitePanelView(this.viewer, {
+            container: 'satellite-panel'
+        });
         var handler = new Cesium.ScreenSpaceEventHandler(this.viewer.scene.canvas);
         handler.setInputAction(function (movement) {
             var pick = that.viewer.scene.pick(movement.position);
@@ -132,7 +135,12 @@ define([
         }, Cesium.ScreenSpaceEventType.LEFT_CLICK);
 
         this.satelliteToolbar = new SatelliteToolbarView(this.viewer, 'left-toolbar', satellitePanel);
+
+        //{startDate: this.isoDate(this.getClock().currentTime.toString())}
+
         $.getJSON("data/instruments.json", function (satellites) {
+            earthTrekData.getTLEs
+            var satsId = earthTrekData.getSatellites();
             satellites.forEach(function (satelliteData) {
                 var entity = that.viewer.entities.getById(satelliteData.id);
                 if (entity == null && satelliteData.status == 'ACTIVE') {
@@ -148,7 +156,6 @@ define([
     EarthTrek.prototype.isoDate = function (isoDateTime) {
         return isoDateTime.split("T")[0];
     };
-
     EarthTrek.prototype.onClockUpdate = function (clock) {
         var isoDateTime = clock.currentTime.toString();
         var time = this.isoDate(isoDateTime);
