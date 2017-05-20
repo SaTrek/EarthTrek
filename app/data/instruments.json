@@ -1,6 +1,7 @@
 [
   {
     "id": "gcomw1",
+    "number": "38337",
     "name": "GCOM-W1",
     "type": "SATELLITE",
     "status": "ACTIVE",
@@ -179,6 +180,7 @@
   {
     "id": "aqua",
     "name": "Aqua",
+    "number": "27424",
     "type": "SATELLITE",
     "agency": "NASA",
     "program": "EOS",
@@ -1166,6 +1168,7 @@
   },
   {
     "id": "sacd",
+    "number": "37673",
     "name": "SAC-D",
     "image": "sacd.png",
     "status": "ACTIVE",
@@ -1284,6 +1287,7 @@
   {
     "id": "terra",
     "name": "Terra",
+    "number": "25994",
     "type": "SATELLITE",
     "agency": "NASA",
     "program": "EOS",
@@ -2494,6 +2498,8 @@
   },
   {
     "id": "GPM",
+    "name": "GPM",
+    "number": "39574",
     "image": "gpm.png",
     "status": "INACTIVE",
     "instruments": [
@@ -2806,6 +2812,8 @@
   {
     "id": "aura",
     "name": "Aura",
+    "number": "28376",
+    "type": "SATELLITE",
     "image": "aura.png",
     "description": "Aura is the third in the series of large Earth Observing System platforms to be flown by NASA with internationa contributions. Aura provides an unprecedented view of the global Earth system. The Aura mission consists of four instruments on a common spacecraft (the same bus design as for Aqua) designed to provide the essential services for the instruments.",
     "status": "ACTIVE",
@@ -3178,6 +3186,7 @@
   {
     "id": "smap",
     "name": "SMAP",
+    "number": "40376",
     "type": "SATELLITE",
     "agency": "NASA",
     "program": "EOS",
@@ -4456,6 +4465,7 @@
   {
     "id": "suomi",
     "name": "Suomi NPP",
+    "number": "37849",
     "image": "suomi.png",
     "status": "ACTIVE",
     "description": "Suomi National Polar-orbiting Partnership, formerly known as the NPOESS Preparatory Project, will serve as a bridge between the EOS satellites and the forthcoming series of Joint Polar Satellite System (JPSS) satellites. Suomi NPP represents a critical first step in building this next-generation satellite system. The JPSS satellites, previously called the National Polar-orbiting Operational Environmental Satellite System (NPOESS), will be developed by NASA for the National Oceanic and Atmospheric Administration (NOAA). Suomi NPP will carry five science instruments and test key technologies for the JPSS missions. Suomi NPP is the first satellite mission to address the challenge of acquiring a wide range of land, ocean, and atmospheric measurements for Earth system science while simultaneously preparing to address operational requirements for weather forecasting.",
@@ -4537,6 +4547,7 @@
   {
     "id": "landsat7",
     "name": "Landsat 7",
+    "number": "25682",
     "image": "landsat7.png",
     "status": "ACTIVE",
     "description": "",
@@ -4675,6 +4686,7 @@
   {
     "id": "calipso",
     "name": "CALIPSO",
+    "number": "29108",
     "image": "calipso.png",
     "type": "SATELLITE",
     "status": "ACTIVE",
@@ -4702,6 +4714,7 @@
   {
     "id": "jason2",
     "name": "Jason-2",
+    "number": "33105",
     "image": "jason2.png",
     "type": "SATELLITE",
     "agency": "NASA",
@@ -4718,6 +4731,7 @@
   {
     "id": "cloudsat",
     "name": "CloudSat",
+    "number": "29107",
     "image": "cloudsat.png",
     "type": "SATELLITE",
     "status": "ACTIVE",
@@ -4765,6 +4779,7 @@
   {
     "id": "hubble",
     "name": "Hubble (HST)",
+    "number": "20580",
     "image": "hubble.png",
     "type": "SPACE_TELESCOPE",
     "status": "ACTIVE",
@@ -4786,6 +4801,7 @@
   {
     "id": "oco2",
     "name": "OCO-2",
+    "number": "40059",
     "image": "oco2.png",
     "type": "SATELLITE",
     "status": "ACTIVE",
@@ -4805,6 +4821,7 @@
   {
     "id": "eo1",
     "name": "EO-1",
+    "number": "26619",
     "image": "eo1.png",
     "type": "SATELLITE",
     "status": "ACTIVE",
@@ -4843,6 +4860,7 @@
   {
     "id": "landsat8",
     "name": "Landsat 8",
+    "number": "39084",
     "image": "landsat8.png",
     "type": "SATELLITE",
     "status": "INACTIVE",

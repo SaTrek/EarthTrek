@@ -12,15 +12,24 @@ define([
     'slick'
 ], function () {
 
-    function SatellitePanelView(viewer, containerId) {
+    function SatellitePanelView(viewer, options) {
         this.viewer = viewer;
         this.mainContainerId = this.viewer.container.id;
-        this.satellitePanel = $('#' + containerId);
+        if (!options.container) {
+            throw new Error('Invalid  Container');
+        }
+        if (options.satelliteInfoContainer) {
+            this.satelliteInfoContainer = '#' + options.satelliteInfoContainer;
+        } else {
+            this.satelliteInfoContainer = '#satellite-info';
+        }
+        this.satellitePanel = $('#' + options.container);
         this.instrumentsContainer = $("#satellite-instruments");
     }
 
     SatellitePanelView.prototype.show = function (entity) {
         this.instrumentsContainer.empty();
+        $(this.satelliteInfoContainer).empty();
         $('#satellite-instrument-layers').empty();
         if (entity.properties == undefined) {
             this.satellitePanel.hide();
@@ -30,10 +39,34 @@ define([
         this.entity = entity;
         $('#satellite-name').html(entity.properties.name.getValue());
 
+        if (entity.properties.orbitalData !== undefined) {
+            this.showOrbitalData(entity.properties.orbitalData.getValue());
+        }
+
         if (entity.properties.instruments !== undefined) {
             this.addInstruments(entity)
         }
         this.satellitePanel.show();
+    }
+
+    SatellitePanelView.prototype.showOrbitalData = function (data) {
+        var that = this;
+        var orbitalDataKeys = document.createElement('div');
+        $(orbitalDataKeys).addClass("orbital-data-keys");
+        var orbitalDataValues = document.createElement('div');
+        $.each(data, function(key, value) {
+            var orbitalDataKey = document.createElement('div');
+            $(orbitalDataKey).append(key);
+            $(orbitalDataKeys).append(orbitalDataKey);
+
+            var orbitalDataValue = document.createElement('div');
+
+            $(orbitalDataValue).append(that.magnitudesToOrbitalData(key, value));
+            $(orbitalDataValues).append(orbitalDataValue);
+        });
+
+        $(this.satelliteInfoContainer).append(orbitalDataKeys);
+        $(this.satelliteInfoContainer).append(orbitalDataValues);
     }
 
     SatellitePanelView.prototype.hide = function () {
@@ -129,6 +162,20 @@ define([
             $(compareButton).attr('disabled', 'disabled');
         }*/
         return instrumentLayer;
+    }
+
+    SatellitePanelView.prototype.magnitudesToOrbitalData = function (key, value) {
+
+        var data = {
+            perigee: 'KM',
+            apogee: 'KM',
+            inclination: '°',
+            period: 'mins'
+        }
+        if (data[key] == undefined) {
+            return value;
+        }
+        return value + ' ' + data[key];
     }
 
     SatellitePanelView.prototype.render = function () {

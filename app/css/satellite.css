@@ -1,9 +1,10 @@
+/** SATELLITE PANEL */
 #satellite-panel {
     display: none;
     position: absolute;
     top: 10%;
     right: 2%;
-    width: 380px;
+    width: 430px;
     color: white;
     background: rgba(0, 0, 0, 0.5);
     border: 1px solid rgba(255, 255, 255, 0.5);
@@ -11,7 +12,6 @@
     text-transform: uppercase;
     z-index: 2;
 }
-/** SATELLITE TOOLBAR */
 #satellite-panel span {
     font-weight: bold;
     font-size: 1rem;
@@ -33,10 +33,14 @@
 #satellite-panel button:disabled {
     background: rgb(105,105,105);
 }
-#satellite-info > div {
-    width: 50%;
+#satellite-info .orbital-data-keys {
+    margin-right: 5px;
+    font-weight: bold;
 }
-
+#satellite-info > div {
+    display: inline-block;
+    vertical-align: top;
+}
 
 /** INSTRUMENT */
 .satellite-instrument {

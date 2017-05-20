@@ -13,7 +13,7 @@ define([
     var earthTrek = new EarthTrek({
         startTime: Date.UTC(1999, 1, 1),
         endTime: Date.now(),
-        initialTime: Date.now(),
+        initialTime: Date.UTC(2017, 4, 19),
         mainContainer: 'main-container',
         frequency: 50,
         maxDistanceCamera: 10000000000 //10,000,000,000 meters
