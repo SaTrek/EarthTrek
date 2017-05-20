@@ -13,6 +13,7 @@ requirejs.config({
         satellitejs: '../node_modules/satellite.js/dist/satellite.min',
         bootstrap: '../node_modules/bootstrap/dist/js/bootstrap.min',
         slick: '../node_modules/slick-carousel/slick/slick.min',
+        tle: '../node_modules/tle/lib/tle',
     }
 });
 

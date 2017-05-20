@@ -21,7 +21,11 @@ define([
     }
 
     SatelliteToolbarView.prototype.updateSatellite = function (entity, goToCallback, time) {
+
         (time >= entity.properties.getValue().endDate) ?
+            $("." + entity.id + "-toolbar").addClass("satellite-disabled")
+            : $("." + entity.id + "-toolbar").removeClass("satellite-disabled");
+        (time < entity.properties.getValue().launchDate) ?
             $("." + entity.id + "-toolbar").addClass("satellite-disabled")
             : $("." + entity.id + "-toolbar").removeClass("satellite-disabled");
     }
@@ -29,7 +33,7 @@ define([
     SatelliteToolbarView.prototype.addSatellite = function (satelliteData, goToCallback) {
         var that = this;
         var satelliteContainer = document.createElement('div');
-        $(satelliteContainer).addClass(satelliteData.id + '-toolbar');
+        $(satelliteContainer).addClass(satelliteData.satId + '-toolbar');
 
         var satelliteImage = document.createElement('img');
         $(satelliteImage).attr("src", 'images/satellites/' + satelliteData.image)
@@ -41,7 +45,7 @@ define([
             if ($(this).hasClass("satellite-disabled")) {
                 return false;
             }
-            var entity = that.viewer.entities.getById(satelliteData.id.toLowerCase());
+            var entity = that.viewer.entities.getById(satelliteData.satId);
             if (entity) {
                 var selected = goToCallback(entity, that.satellitePanel, that.viewer);
                 if (selected == true) {
