@@ -10,7 +10,8 @@ define([
     'jquery',
     'bootstrap',
     'slick',
-    'provider'
+    '../provider',
+    '../earthtrek-layer'
 ], function () {
 
     function SatellitePanelView(viewer, options) {
@@ -139,9 +140,6 @@ define([
         $(instrumentLayer).data("format", layer.format);
         $(instrumentLayer).data("resolution", layer.resolution);
 
-        /**
-         * FIX TODAY
-         */
 
         var endDate = (layer.endDate == null) ? 'Present' : layer.endDate;
 
@@ -170,7 +168,6 @@ define([
         $(instrumentLayer).html("<div>" + layer.title + "</div>");
         $(instrumentLayer).append(layerAvailable);
 
-
         var instrumentButtons = document.createElement("div");
         $(instrumentButtons).addClass('fixed-buttons');
         $(instrumentLayer).append(instrumentButtons);
@@ -178,18 +175,39 @@ define([
          * SHOW LAYER
          * @type {Element}
          */
+        var objToday = new Date(today);
+        objToday.setDate(objToday.getDate());
         var toggleLayerButton = document.createElement("button");
         $(toggleLayerButton).on('click', function () {
-            $(this).toggleClass('selected');
-            var newProvider = provider.getProvider({
+            if ($(this).hasClass('selected')) {
+                $(this).removeClass('selected');
+                for (var i = 0; i <= that.viewer.scene.imageryLayers.length - 1; i++) {
+                    var imageryLayer = that.viewer.scene.imageryLayers.get(i);
+                    if (imageryLayer.imageryProvider._layer == layer.id) {
+                        that.viewer.scene.imageryLayers.remove(imageryLayer);
+                    }
+                }
+            } else {
+                $(this).toggleClass('selected');
+
+                for (var i = 0; i <= that.viewer.scene.imageryLayers.length - 1; i++) {
+                    var imageryLayer = that.viewer.scene.imageryLayers.get(i);
+                    if (layer.format == 'image/jpeg' && imageryLayer.imageryProvider.format == 'image/jpeg') {
+                        imageryLayer.show = false;
+                    }
+                }
+                var maximumLevel = (layer.format == 'image/png') ? 2 : 12;
+                var newLayer = provider.getProvider({
                     layer: layer.id,
-                    time: layer.startDate,
+                    time: that.isoDate(objToday.toISOString()),
                     format: layer.format,
                     tileMatrixSetID: "epsg4326",
                     resolution: layer.resolution,
-                    maximumLevel: 5
-            });
-            that.viewer.scene.imageryLayers.addImageryProvider(newProvider);
+                    maximumLevel: maximumLevel
+                });
+                //  earthTrekLayer.addLayer(newLayer);
+                that.viewer.scene.imageryLayers.addImageryProvider(newLayer);
+            }
         });
 
         $(toggleLayerButton).addClass("view");
