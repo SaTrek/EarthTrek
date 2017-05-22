@@ -20,7 +20,10 @@
 #satellite-panel > .row:not(:last-child) {
     border-bottom: 1px solid rgba(255, 255, 255, 0.2);
 }
-#satellite-panel button {
+#satellite-panel .layer-available button {
+
+}
+#satellite-panel .fixed-buttons button {
     position: absolute;
     right: 0; top: 0;
     width: 40px;
@@ -74,7 +77,7 @@
     padding-right: 100px;
 }
 .instrument-layer button {
-    height: 40px;
+   /** height: 40px;*/
 }
 .instrument-layer button.view {
     right: 45px !important;

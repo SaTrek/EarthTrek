@@ -1,0 +1,3 @@
+[submodule "app/assets"]
+	path = app/assets
+	url = https://github.com/AnalyticalGraphicsInc/cesium-assets.git
