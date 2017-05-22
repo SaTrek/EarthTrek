@@ -10,7 +10,7 @@ define([
     'jquery',
     'bootstrap',
     'slick',
-    'tle'
+    'provider'
 ], function () {
 
     function SatellitePanelView(viewer, options) {
@@ -130,6 +130,8 @@ define([
     }
 
     SatellitePanelView.prototype.createLayer = function(layer) {
+        var that = this;
+        var today = this.isoDate(this.viewer.clock.currentTime.toString());
         var instrumentLayer = document.createElement('div');
         $(instrumentLayer).addClass("instrument-layer");
         $(instrumentLayer).data("id", layer.id);
@@ -137,19 +139,66 @@ define([
         $(instrumentLayer).data("format", layer.format);
         $(instrumentLayer).data("resolution", layer.resolution);
 
-        var endDate = (layer.endDate != null) ? layer.endDate : 'today';
-        $(instrumentLayer).html("<div>" +layer.title + "</div>" + '<div class="layer-available"><span>Available: </span>' + layer.startDate + ' - ' + endDate  + '</div>');
+        /**
+         * FIX TODAY
+         */
 
+        var endDate = (layer.endDate == null) ? 'Present' : layer.endDate;
+
+        var startDateButton = document.createElement('button');
+        $(startDateButton).html(layer.startDate);
+        $(startDateButton).click(function() {
+            that.viewer.clock.currentTime = Cesium.JulianDate.fromDate(new Date(layer.startDate));
+        });
+        var endDateButton = document.createElement('button');
+        $(endDateButton).html(endDate);
+        $(endDateButton).click(function() {
+            var endDateObj = new Date(layer.endDate);
+            if (layer.endDate == null) {
+                endDateObj = new Date();
+            }
+            that.viewer.clock.currentTime = Cesium.JulianDate.fromDate(endDateObj);
+        });
+
+        var layerAvailable = document.createElement('div');
+        $(layerAvailable).addClass("layer-available");
+        $(layerAvailable).html('<span>Available:</span>');
+        $(layerAvailable).append(startDateButton);
+        $(layerAvailable).append(' - ');
+        $(layerAvailable).append(endDateButton);
+
+        $(instrumentLayer).html("<div>" + layer.title + "</div>");
+        $(instrumentLayer).append(layerAvailable);
+
+
+        var instrumentButtons = document.createElement("div");
+        $(instrumentButtons).addClass('fixed-buttons');
+        $(instrumentLayer).append(instrumentButtons);
+        /**
+         * SHOW LAYER
+         * @type {Element}
+         */
         var toggleLayerButton = document.createElement("button");
         $(toggleLayerButton).on('click', function () {
             $(this).toggleClass('selected');
-            var newProvider = provider.getProvider(layer.id, layer.startDate, layer.format, "epsg4326", layer.resolution);
-            viewer.scene.imageryLayers.addImageryProvider(newProvider);
+            var newProvider = provider.getProvider({
+                    layer: layer.id,
+                    time: layer.startDate,
+                    format: layer.format,
+                    tileMatrixSetID: "epsg4326",
+                    resolution: layer.resolution,
+                    maximumLevel: 5
+            });
+            that.viewer.scene.imageryLayers.addImageryProvider(newProvider);
         });
 
         $(toggleLayerButton).addClass("view");
-        $(instrumentLayer).append(toggleLayerButton);
+        $(instrumentButtons).append(toggleLayerButton);
 
+        /**
+         * COMPARE
+         * @type {Element}
+         */
         var compareButton = document.createElement("button");
         $(compareButton).html("C");
         $(compareButton).click(function () {
@@ -157,14 +206,18 @@ define([
             $(this).addClass("compare-selected");
             $('#compare-modal').show();
         });
-        $(instrumentLayer).append(compareButton);
+        $(instrumentButtons).append(compareButton);
 
-        /*if (layer.endDate < isoDate(clock.currentTime.toString()) || layer.startDate > isoDate(clock.currentTime.toString())) {
+        if (layer.endDate < today || layer.startDate > today) {
             $(toggleLayerButton).attr('disabled', 'disabled');
             $(compareButton).attr('disabled', 'disabled');
-        }*/
+        }
         return instrumentLayer;
     }
+
+    SatellitePanelView.prototype.isoDate = function(isoDateTime) {
+        return isoDateTime.split("T")[0];
+    };
 
     SatellitePanelView.prototype.magnitudesToOrbitalData = function (key, value) {
 
