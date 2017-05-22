@@ -5,15 +5,17 @@
  * @author Alejandro Sanchez <alejandro.sanchez.trek@gmail.com>
  * @description EarthTrek - NASA Space Apps 2017 13 APR 2017.
  */
-require("amd-loader");
+var earthTrekLayer = earthTrekLayer || {};
 define([
 ], function() {
 
+    var stackLayers = [];
 
-    function EarthTrekLayers () {
-
+    earthTrekLayer.addLayer = function(layer) {
+        stackLayers.push(layer);
     }
 
-    return EarthTrekLayer;
-    module.exports = EarthTrekLayer;
+    earthTrekLayer.getLayers = function() {
+        return stackLayers;
+    }
 });
