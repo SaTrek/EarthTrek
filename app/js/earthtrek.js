@@ -105,11 +105,11 @@ define([
                 infoBox: false,
                 creditContainer: "credit",
                 terrainExaggeration: 10,
-               // shadows: Cesium.ShadowMode.ENABLED,
-                imageryProvider : new Cesium.createTileMapServiceImageryProvider({
-                    url : 'app/assets/imagery/NaturalEarthII/',
-                    maximumLevel : 5,
-                    credit : 'Imagery courtesy Natural Earth'
+                // shadows: Cesium.ShadowMode.ENABLED,
+                imageryProvider: new Cesium.createTileMapServiceImageryProvider({
+                    url: 'app/assets/imagery/NaturalEarthII/',
+                    maximumLevel: 5,
+                    credit: 'Imagery courtesy Natural Earth'
                 }),
             });
             this.viewer.scene.globe.tileCacheSize = 1000;
@@ -122,7 +122,6 @@ define([
     }
 
     EarthTrek.prototype.init = function () {
-
         var that = this;
         var satellitePanel = new SatellitePanelView(this.viewer, {
             container: 'satellite-panel'
@@ -135,11 +134,13 @@ define([
                 if (entity != undefined) {
                     satellitePanel.show(entity);
                 }
-            } else  {
+            } else {
                 that.viewer.trackedEntity = undefined;
                 satellitePanel.hide();
             }
         }, Cesium.ScreenSpaceEventType.LEFT_CLICK);
+
+        this.satellitePanel = satellitePanel;
 
         this.satelliteToolbar = new SatelliteToolbarView(this.viewer, 'left-toolbar', satellitePanel);
 
@@ -163,12 +164,16 @@ define([
     EarthTrek.prototype.onClockUpdate = function (clock) {
         var isoDateTime = clock.currentTime.toString();
         var time = this.isoDate(isoDateTime);
-        this.updateEntities(time);
         if (time !== this.previousTime) {
-        //    this.previousTime = time;
 
-          //  updateLayers();
+            if (this.viewer.selectedEntity != null) {
+                this.satellitePanel.updateLayers(
+                    {data: {entity: this.viewer.selectedEntity, panel: this.satellitePanel}}
+                );
+            }
+            //  updateLayers();
         }
+        this.updateEntities(time);
     };
 
     /**
@@ -226,12 +231,12 @@ define([
                 scale: 0.6,
                 scaleByDistance: new Cesium.NearFarScalar(0, 1.5, 15.0e6, 0.85),
                 fillColor: Cesium.Color.WHITE,
-               // eyeOffset: new Cesium.Cartesian3(0.0, 300.0, 200.0),
+                // eyeOffset: new Cesium.Cartesian3(0.0, 300.0, 200.0),
                 outlineColor: color,
                 outlineWidth: 3,
                 style: Cesium.LabelStyle.FILL_AND_OUTLINE,
-                pixelOffset:  new Cesium.Cartesian2(0, -15)
-            //    heightReference: Cesium.HeightReference.RELATIVE_TO_GROUND
+                pixelOffset: new Cesium.Cartesian2(0, -15)
+                //    heightReference: Cesium.HeightReference.RELATIVE_TO_GROUND
             },
             billboard: {
                 image: 'images/satellites/' + satelliteInfo.image,
@@ -273,18 +278,22 @@ define([
             Cesium.JulianDate.secondsDifference(this.lastPropagationTime, this.clock.currentTime) > this.orbitDuration) {
 
             var p1 = new Promise(
-                function(resolve, reject) {
+                function (resolve, reject) {
                     console.log("VECES")
                     if (time !== that.previousTime) {
+
                         that.previousTime = time;
                         that.lastPropagationTime = that.clock.currentTime;
                         console.log('PREVIOUS');
                         var startDate = new Date(time);
-                        startDate.setDate(startDate.getDate() );
+                        startDate.setDate(startDate.getDate());
                         var endDate = new Date(time);
                         endDate.setDate(endDate.getDate() + 1);
                         console.log(startDate, endDate);
-                        return resolve(earthTrekData.getTLEs(earthTrekData.getSatelliteIds(), {startDate: startDate, endDate: endDate}));
+                        return resolve(earthTrekData.getTLEs(earthTrekData.getSatelliteIds(), {
+                            startDate: startDate,
+                            endDate: endDate
+                        }));
                     } else {
                         console.log('REJECT');
                         reject(time);
@@ -292,27 +301,27 @@ define([
                 }
             );
 
-            p1.then(function(tles) {
+            p1.then(function (tles) {
                 console.log('SE MATCHEAN LOS NUEVOS TLES'); // Error!
                 tles.data.forEach(function (tle) {
                     var entity = that.viewer.entities.getById(tle.satId);
                     if (entity != null) {
-                        console.log('New TLE ',tle.tle);
+                        console.log('New TLE ', tle.tle);
                         entity.properties.tle.setValue(tle.tle);
                     }
                 });
                 return new Promise(propagation);
-            }, function(time) {
+            }, function (time) {
                 console.log('NO HAY NUEVOS TLES, SE PROPGA'); // Error!
                 return new Promise(propagation);
             });
 
-            var propagation = function() {
+            var propagation = function () {
                 that.entities.forEach(function (entity) {
                     var newStart = that.clock.currentTime;
                     var tle1 = entity.properties.getValue(newStart).tle[0];
                     var tle2 = entity.properties.getValue(newStart).tle[1];
-                   console.log(tle1, tle2)
+                    console.log(tle1, tle2)
                     entity.position = earthTrekSatellite.getSamples(tle1, tle2, newStart, that.orbitDuration, that.frequency);
 
                     SatelliteToolbarView.prototype.updateSatellite(entity, that.goToEntity, time);
@@ -336,13 +345,13 @@ define([
         panel.show(entity);
 
         var position = entity.position.getValue(viewer.clock.currentTime);
-/*
-        viewer.camera.flyTo({
-            destination : position,
-            complete: function() {
-                viewer.trackedEntity = entity
-            }
-        });*/
+        /*
+         viewer.camera.flyTo({
+         destination : position,
+         complete: function() {
+         viewer.trackedEntity = entity
+         }
+         });*/
         viewer.trackedEntity = entity
         viewer.selectedEntity = entity;
         return true;
