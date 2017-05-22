@@ -18,4 +18,7 @@ define([
     earthTrekLayer.getLayers = function() {
         return stackLayers;
     }
+
+    earthTrekLayer.toggleLayer = function() {
+    }
 });

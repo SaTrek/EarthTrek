@@ -1,4 +1,5 @@
 [
+
   {
     "id": "gcomw1",
     "number": "38337",
@@ -11,12 +12,6 @@
     "description": "The “Global Change Observation Mission” (GCOM) aims to construct, use, and verify systems that enable continuous global-scale observations (for 10 to 15 years) of effective geophysical parameters for elucidating global climate change and water circulation mechanisms.",
     "launchDate": "2012-05-18",
     "endDate": null,
-    "orbitalData":  {
-    },
-    "tle":  {
-      "line1": "1 38337U 12025A   17134.32728513  .00000052  00000-0  21683-4 0  9992",
-      "line2": "2 38337  98.2029  75.0473 0001845 101.5842  51.0897 14.57101494265437"
-    },
     "instruments": [
       {
         "name": "AMSR2",
@@ -186,17 +181,6 @@
     "program": "EOS",
     "status": "ACTIVE",
     "description": "Aqua, Latin for water, is a NASA Earth Science satellite mission named for the large amount of information that the mission is collecting about the Earth's water cycle, including evaporation from the oceans, water vapor in the atmosphere, clouds, precipitation, soil moisture, sea ice, land ice, and snow cover on the land and ice. Additional variables also being measured by Aqua include radiative energy fluxes, aerosols, vegetation cover on the land, phytoplankton and dissolved organic matter in the oceans, and air, land, and water temperatures.",
-    "orbitalData":  {
-      "perigee": "702",
-      "apogee": "703",
-      "inclination": "98.1987",
-      "eccentricity": "0.0000979",
-      "period": "98"
-    },
-    "tle":  {
-      "line1": "1 27424U 02022A   17131.91562854  .00000110  00000-0  34384-4 0  9996",
-      "line2": "2 27424  98.2026  73.7533 0000860 153.0401 299.1971 14.57109646798942"
-    },
     "mass": "2850",
     "launchDate": "2002-05-04",
     "endDate": null,
@@ -1172,17 +1156,6 @@
     "name": "SAC-D",
     "image": "sacd.png",
     "status": "ACTIVE",
-    "orbitalData":  {
-      "perigee": "652.2",
-      "apogee": "654.7",
-      "inclination": "98",
-      "eccentricity": "0.0000181",
-      "period": "97.8"
-    },
-    "tle":  {
-      "line1": "1 37673U 11024A   11161.63936538 -.00000050  00000-0  00000+0 0    16",
-      "line2": "2 37673  98.0125 168.6228 0002456 212.6674 147.5382 14.72830191    07"
-    },
     "mass": "1600",
     "launchDate": "2011-06-10",
     "endDate": "2015-06-17",
@@ -1267,24 +1240,6 @@
     ]
   },
   {
-    "id": "ASTER",
-    "instruments": [
-      {
-        "name": "Precision Terrain Corrected",
-        "layers": [
-          {
-            "id": "ASTER_L1T_Radiance_Terrain_Corrected",
-            "title": "Registered Radiance at the Sensor",
-            "format": "image/png",
-            "resolution": "15.625m",
-            "startDate": "2016-01-01T10:13:24Z",
-            "endDate": "2016-12-31T23:18:30Z"
-          }
-        ]
-      }
-    ]
-  },
-  {
     "id": "terra",
     "name": "Terra",
     "number": "25994",
@@ -1305,6 +1260,14 @@
       {
         "name": "ASTER",
         "layers": [
+          {
+            "id": "ASTER_L1T_Radiance_Terrain_Corrected",
+            "title": "Registered Radiance at the Sensor",
+            "format": "image/png",
+            "resolution": "15.625m",
+            "startDate": "2016-01-01T10:13:24Z",
+            "endDate": "2016-12-31T23:18:30Z"
+          },
           {
             "id": "ASTER_GDEM_Color_Index",
             "title": "Digital Elevation Model (Color Index)",
@@ -2499,9 +2462,14 @@
   {
     "id": "GPM",
     "name": "GPM",
+    "fullName": "Global Precipitation Measurement",
     "number": "39574",
     "image": "gpm.png",
-    "status": "INACTIVE",
+    "status": "ACTIVE",
+    "agency": "NASA/JAXA",
+    "program": "ESM",
+    "launchDate": "2014-02-27T18:37",
+    "endDate": null,
     "instruments": [
       {
         "name": "GMI",
@@ -2817,20 +2785,11 @@
     "image": "aura.png",
     "description": "Aura is the third in the series of large Earth Observing System platforms to be flown by NASA with internationa contributions. Aura provides an unprecedented view of the global Earth system. The Aura mission consists of four instruments on a common spacecraft (the same bus design as for Aqua) designed to provide the essential services for the instruments.",
     "status": "ACTIVE",
-    "orbitalData":  {
-      "perigee": "708",
-      "apogee": "710",
-      "inclination": "98.22",
-      "eccentricity": "0.0001111",
-      "period": "98.83"
-    },
-    "tle":  {
-      "line1": "1 28376U 04026A   17132.93367026  .00000107  00000-0  33854-4 0  9993",
-      "line2": "2 28376  98.2016  76.9304 0001302 106.4937 253.6405 14.57110359682141"
-    },
     "mass": "1765",
     "launchDate": "2004-07-15",
     "endDate": null,
+    "agency": "NASA",
+    "programa": "EOS",
     "instruments": [
       {
         "name": "MLS",
@@ -3186,18 +3145,13 @@
   {
     "id": "smap",
     "name": "SMAP",
+    "fullName": "Soil Moisture Active Passive",
     "number": "40376",
     "type": "SATELLITE",
     "agency": "NASA",
     "program": "EOS",
     "status": "ACTIVE",
-    "description": "",
-    "orbitalData":  {
-    },
-    "tle":  {
-      "line1": "1 40376U 15003A   17134.47409620  .00000015  00000-0  11930-4 0  9991",
-      "line2": "2 40376  98.1231 142.6778 0000728  54.4507 305.6776 14.63393447121960"
-    },
+    "description": "SMAP is designed to measure soil moisture over a three-year period, every 2-3 days. This permits changes, around the world, to be observed over time scales ranging from major storms to repeated measurements of changes over the seasons.",
     "mass": "",
     "launchDate": "2015-01-31",
     "endDate": null,
@@ -4461,418 +4415,5 @@
         ]
       }
     ]
-  },
-  {
-    "id": "suomi",
-    "name": "Suomi NPP",
-    "number": "37849",
-    "image": "suomi.png",
-    "status": "ACTIVE",
-    "description": "Suomi National Polar-orbiting Partnership, formerly known as the NPOESS Preparatory Project, will serve as a bridge between the EOS satellites and the forthcoming series of Joint Polar Satellite System (JPSS) satellites. Suomi NPP represents a critical first step in building this next-generation satellite system. The JPSS satellites, previously called the National Polar-orbiting Operational Environmental Satellite System (NPOESS), will be developed by NASA for the National Oceanic and Atmospheric Administration (NOAA). Suomi NPP will carry five science instruments and test key technologies for the JPSS missions. Suomi NPP is the first satellite mission to address the challenge of acquiring a wide range of land, ocean, and atmospheric measurements for Earth system science while simultaneously preparing to address operational requirements for weather forecasting.",
-    "orbitalData":  {
-      "perigee": "833.7",
-      "apogee": "834.3",
-      "inclination": "98.7",
-      "period": "101.44"
-    },
-    "mass": "2128",
-    "launchDate": "2011-10-28",
-    "endDate": null,
-    "tle":  {
-      "line1": "1 37849U 11061A   17134.61187072  .00000010  00000-0  25685-4 0  9999",
-      "line2": "2 37849  98.7338  73.7852 0000576 114.9652 341.0329 14.19547803287336"
-    },
-    "instruments": [
-      {
-        "name": "VIIRS",
-        "layers": [
-          {
-            "id": "VIIRS_Black_Marble",
-            "title": "Black Marble",
-            "format": "image/png",
-            "resolution": "500m",
-            "startDate": "2012-01-01",
-            "endDate": "2012-01-01"
-          },
-          {
-            "id": "VIIRS_CityLights_2012",
-            "title": "Earth at Night (2012)",
-            "format": "image/jpeg",
-            "resolution": "500m"
-          },
-          {
-            "id": "VIIRS_Night_Lights",
-            "title": "Night Lights",
-            "format": "image/png",
-            "resolution": "500m",
-            "startDate": "2012-01-01",
-            "endDate": "2012-01-01"
-          },
-          {
-            "id": "VIIRS_SNPP_CorrectedReflectance_TrueColor",
-            "title": "Corrected Reflectance (True Color)",
-            "format": "image/jpeg",
-            "resolution": "250m",
-            "startDate": "2015-11-24",
-            "endDate": null
-          },
-          {
-            "id": "VIIRS_SNPP_CorrectedReflectance_BandsM11-I2-I1",
-            "title": "Corrected Reflectance (M11-I2-I1)",
-            "format": "image/jpeg",
-            "resolution": "250m",
-            "startDate": "2015-11-24",
-            "endDate": null
-          },
-          {
-            "id": "VIIRS_SNPP_CorrectedReflectance_BandsM3-I3-M11",
-            "title": "Corrected Reflectance (M3-I3-M11)",
-            "format": "image/jpeg",
-            "resolution": "250m",
-            "startDate": "2015-11-24",
-            "endDate": null
-          },
-          {
-            "id": "VIIRS_SNPP_DayNightBand_ENCC",
-            "title": "Nighttime Imagery (Day/Night Band, Enhanced Near Constant Contrast)",
-            "format": "image/png",
-            "resolution": "500m",
-            "startDate": "2016-11-30",
-            "endDate": null
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "id": "landsat7",
-    "name": "Landsat 7",
-    "number": "25682",
-    "image": "landsat7.png",
-    "status": "ACTIVE",
-    "description": "",
-    "orbitalData":  {
-    },
-    "mass": "2200",
-    "launchDate": "1999-04-19",
-    "endDate": null,
-    "tle":  {
-      "line1": "1 25682U 99020A   17134.34032548 -.00000078  00000-0 -71568-5 0  9997",
-      "line2": "2 25682  98.2131 205.9684 0001465  90.9971 269.1379 14.57108774961663"
-    },
-    "instruments": [
-      {
-        "name": "WELD v1.5",
-        "layers": [
-          {
-            "id": "Landsat_WELD_CorrectedReflectance_TrueColor_Alaska_Annual",
-            "title": "TOA Reflectance (True Color, Alaska, Annual)",
-            "format": "image/jpeg",
-            "resolution": "250m",
-            "startDate": "2002-12-01",
-            "endDate": "2011-12-01"
-          },
-          {
-            "id": "Landsat_WELD_CorrectedReflectance_TrueColor_Alaska_Monthly",
-            "title": "TOA Reflectance (True Color, Alaska, Monthly)",
-            "format": "image/jpeg",
-            "resolution": "250m",
-            "startDate": "2002-12-01",
-            "endDate": "2012-11-01"
-          },
-          {
-            "id": "Landsat_WELD_CorrectedReflectance_TrueColor_Alaska_Seasonal",
-            "title": "TOA Reflectance (True Color, Alaska, Seasonal)",
-            "format": "image/jpeg",
-            "resolution": "250m",
-            "startDate": "2002-12-01",
-            "endDate": "2012-09-01"
-          },
-          {
-            "id": "Landsat_WELD_CorrectedReflectance_TrueColor_CONUS_Annual",
-            "title": "TOA Reflectance (True Color, CONUS, Annual)",
-            "format": "image/jpeg",
-            "resolution": "250m",
-            "startDate": "2002-12-01",
-            "endDate": "2011-12-01"
-          },
-          {
-            "id": "Landsat_WELD_CorrectedReflectance_TrueColor_CONUS_Monthly",
-            "title": "TOA Reflectance (True Color, CONUS, Monthly)",
-            "format": "image/jpeg",
-            "resolution": "250m",
-            "startDate": "2002-12-01",
-            "endDate": "2012-11-01"
-          },
-          {
-            "id": "Landsat_WELD_CorrectedReflectance_TrueColor_CONUS_Seasonal",
-            "title": "TOA Reflectance (True Color, CONUS, Seasonal)",
-            "format": "image/jpeg",
-            "resolution": "250m",
-            "startDate": "2002-12-01",
-            "endDate": "2012-09-01"
-          }
-        ]
-      },
-      {
-        "name": "WELD v3.0",
-        "layers": [
-          {
-            "id": "Landsat_WELD_CorrectedReflectance_TrueColor_Global_Annual",
-            "title": "Surface Reflectance (NBAR, True Color, Global, Annual)",
-            "format": "image/jpeg",
-            "resolution": "31.25m",
-            "startDate": "2008-12-01",
-            "endDate": "2010-12-01"
-          },
-          {
-            "id": "Landsat_WELD_CorrectedReflectance_TrueColor_Global_Monthly",
-            "title": "Surface Reflectance (NBAR, True Color, Global, Monthly)",
-            "format": "image/jpeg",
-            "resolution": "31.25m",
-            "startDate": "2008-12-01",
-            "endDate": "2011-11-01"
-          }
-        ]
-      },
-      {
-        "name": "WELD NDVI",
-        "layers": [
-          {
-            "id": "Landsat_WELD_NDVI_Global_Annual",
-            "title": "Surface Normalized Difference Vegetation Index (NDVI) (NBAR, Global, Annual, v3.0, Landsat / WELD)",
-            "format": "image/jpeg",
-            "resolution": "31.25m",
-            "startDate": "2008-12-01",
-            "endDate": "2010-12-01"
-          },
-          {
-            "id": "Landsat_WELD_NDVI_Global_Monthly",
-            "title": "Surface Normalized Difference Vegetation Index (NDVI) (NBAR, Global, Monthly, v3.0, Landsat / WELD)",
-            "format": "image/jpeg",
-            "resolution": "31.25m",
-            "startDate": "2008-12-01",
-            "endDate": "2011-11-01"
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "id": "iss",
-    "name": "ISS",
-    "image": "iss.png",
-    "type": "SPACE_STATION",
-    "status": "ACTIVE",
-    "description": "The International Space Station is a global observation and diagnosis station. It promotes international Earth observations aimed at understanding and resolving the environmental issues of our home planet. The space station offers a unique vantage for observing the Earth's ecosystems with hands-on and automated equipment. These options enable astronauts to observe and explain what they witness in real time. Station crews can observe and collect camera images of events as they unfold and may also provide input to ground personnel programming the station's automated Earth-sensing systems. This flexibility is an advantage over sensors on unmanned spacecraft, especially when unexpected natural events, such as volcanic eruptions and earthquakes, occur.",
-    "orbitalData":  {
-      "perigee": "400.2",
-      "apogee": "409.5",
-      "inclination": "51.64",
-      "period": "92.65"
-    },
-    "tle":  {
-      "line1": "1 25544U 98067A   17132.15166687  .00016717  00000-0  10270-3 0  9023",
-      "line2": "2 25544  51.6405 217.9287 0004884 149.5686 210.5751 15.54020107 16140"
-    },
-    "mass": "419,455",
-    "launchDate": "1998-11-20",
-    "endDate": null,
-    "instruments": [
-      {
-      }
-    ]
-  },
-  {
-    "id": "calipso",
-    "name": "CALIPSO",
-    "number": "29108",
-    "image": "calipso.png",
-    "type": "SATELLITE",
-    "status": "ACTIVE",
-    "agency": "NASA",
-    "program": "EOS",
-    "description": "The Cloud-Aerosol Lidar and Infrared Pathfinder Satellite Observation (CALIPSO) satellite provides new insight into the role that clouds and atmospheric aerosols (airborne particles) play in regulating Earth's weather, climate, and air quality. CALIPSO combines an active lidar instrument with passive infrared and visible imagers to probe the vertical structure and properties of thin clouds and aerosols over the globe. CALIPSO was launched on April 28, 2006 with the cloud profiling radar system on the CloudSat satellite.",
-    "orbitalData":  {
-      "perigee": "702",
-      "apogee": "703",
-      "inclination": "98.2",
-      "period": "98.8"
-    },
-    "tle":  {
-      "line1": "1 29108U 06016B   17132.92916337  .00000089  00000-0  29786-4 0  9990",
-      "line2": "2 29108  98.2018  76.9839 0001419  82.5969 277.5391 14.57109312587205"
-    },
-    "mass": "587",
-    "launchDate": "2006-04-28",
-    "endDate": null,
-    "instruments": [
-      {
-      }
-    ]
-  },
-  {
-    "id": "jason2",
-    "name": "Jason-2",
-    "number": "33105",
-    "image": "jason2.png",
-    "type": "SATELLITE",
-    "agency": "NASA",
-    "program": "EOS",
-    "status": "INACTIVE",
-    "orbitalData":  {
-      "perigee": "1,332",
-      "apogee": "1,343",
-      "inclination": "66.03",
-      "period": "112.5667"
-    },
-    "description": "The Ocean Surface Topography Mission (OSTM)/Jason-2 is an international satellite mission that will extend into the next decade the continuous climate record of sea surface height measurements begun in 1992 by the joint NASA/Centre National d'Etudes Spatiales (CNES) Topex/Poseidon mission and continued in 2001 by the NASA/CNES Jason-1 mission. This multi-decadal record has already helped scientists study global sea level rise and better understand how ocean circulation and climate change are related."
-  },
-  {
-    "id": "cloudsat",
-    "name": "CloudSat",
-    "number": "29107",
-    "image": "cloudsat.png",
-    "type": "SATELLITE",
-    "status": "ACTIVE",
-    "agency": "NASA",
-    "program": "EOS",
-    "description": "NASA launched the CloudSat and the Cloud-Aerosol Lidar and Infrared Pathfinder Satellite Observation (CALIPSO) spacecraft to study the role that clouds and aerosols play in regulating Earth's weather, climate and air quality. Launch occurred on April 28, 2006, from Vandenberg Air Force Base, Calif., aboard a Boeing Delta II launch vehicle. The satellites launched into a 705-kilometer (438-mile) circular sun-synchronous polar orbit, and fly in orbital formation as part of the 'A-Train' constellation of three other Earth Observing satellites including Aqua, Aura and Centre National d'Etudes Spatiales' (CNES) PARASOL.",
-    "orbitalData":  {
-      "perigee": "702",
-      "apogee": "703",
-      "inclination": "98.2",
-      "period": "98.8"
-    },
-    "tle":  {
-      "line1": "1 29107U 06016A   17132.93034283  .00000030  00000-0  16625-4 0  9995",
-      "line2": "2 29107  98.2010  77.4323 0001634 110.7949 249.3425 14.57105626587132"
-    },
-    "mass": "848",
-    "launchDate": "2006-04-28",
-    "endDate": null
-  },
-  {
-    "id": "dscovr",
-    "name": "DSCOVR",
-    "image": "dscovr.png",
-    "type": "SATELLITE",
-    "status": "INACTIVE",
-    "agency": "NASA",
-    "program": "EOS",
-    "description": "The Deep Space Climate Observatory, or DSCOVR, will maintain the nation's real-time solar wind monitoring capabilitieswhich are critical to the accuracy and lead time of NOAA's space weather alerts and forecasts. Without timely and accurate warnings, space weather events like the geomagnetic storms caused by changes in solar wind have the potential to disrupt nearly every major public infrastructure system, including power grids, telecommunications, aviation and GPS.",
-    "orbitalData":  {
-      "perigee": "",
-      "apogee": "",
-      "inclination": "37",
-      "period": ""
-    },
-    "mass": "570",
-    "launchDate": "2015-02-11",
-    "endDate": null,
-    "instruments": [
-      {
-        "name": "EPIC"
-      }
-    ]
-  },
-  {
-    "id": "hubble",
-    "name": "Hubble (HST)",
-    "number": "20580",
-    "image": "hubble.png",
-    "type": "SPACE_TELESCOPE",
-    "status": "ACTIVE",
-    "description": "",
-    "orbitalData":  {
-      "perigee": "",
-      "apogee": "",
-      "inclination": "28.47",
-      "period": ""
-    },
-    "tle":  {
-      "line1": "1 20580U 90037B   17131.72607639  .00000480  00000-0  18628-4 0  9998",
-      "line2": "2 20580  28.4695 248.4464 0002839 136.5924  81.4422 15.08759509284683"
-    },
-    "mass": "",
-    "launchDate": "1990-04-24",
-    "endDate": null
-  },
-  {
-    "id": "oco2",
-    "name": "OCO-2",
-    "number": "40059",
-    "image": "oco2.png",
-    "type": "SATELLITE",
-    "status": "ACTIVE",
-    "agency": "NASA",
-    "program": "EOS",
-    "description": "Orbiting Carbon Observatory (OCO)-2 will be NASA’s first dedicated Earth remote sensing satellite to study atmospheric carbon dioxide from Space. OCO-2 will be collecting space-based global measurements of atmospheric CO2 with the precision, resolution, and coverage needed to characterize sources and sinks on regional scales. OCO-2 will also be able to quantify CO2 variability over the seasonal cycles year after year.",
-    "orbitalData":  {
-    },
-    "tle":  {
-      "line1": "1 40059U 14035A   17132.85453793  .00000034  00000-0  17621-4 0  9997",
-      "line2": "2 40059  98.2024  74.7782 0001800  87.9284 272.2121 14.57111883152258"
-    },
-    "mass": "409",
-    "launchDate": "2014-07-02",
-    "endDate": null
-  },
-  {
-    "id": "eo1",
-    "name": "EO-1",
-    "number": "26619",
-    "image": "eo1.png",
-    "type": "SATELLITE",
-    "status": "ACTIVE",
-    "agency": "NASA",
-    "program": "EOS",
-    "description": "",
-    "orbitalData":  {
-    },
-    "tle":  {
-      "line1": "1 26619U 00075A   17134.50152241 -.00004801  00000-0 -90053-3 0  9997",
-      "line2": "2 26619  97.8406 165.2919 0009217 204.4965 155.5535 14.64370218878606"
-    },
-    "mass": "573",
-    "launchDate": "2001-11-21",
-    "endDate": "2017-03-30"
-  },
-  {
-    "id": "topex",
-    "name": "TOPEX",
-    "image": "topex.png",
-    "type": "SATELLITE",
-    "status": "ACTIVE",
-    "agency": "NASA",
-    "program": "",
-    "description": "",
-    "orbitalData":  {
-    },
-    "tle":  {
-      "line1": "1 22076U 92052A   04366.59167448 -.00000038  00000-0  10000-3 0  7341",
-      "line2": "2 22076  66.0402 213.4252 0007863 265.7582  94.2577 12.80930685579653"
-    },
-    "mass": "",
-    "launchDate": "1992-08-10",
-    "endDate": "2006-01-01"
-  },
-  {
-    "id": "landsat8",
-    "name": "Landsat 8",
-    "number": "39084",
-    "image": "landsat8.png",
-    "type": "SATELLITE",
-    "status": "INACTIVE",
-    "agency": "NASA",
-    "program": "",
-    "description": "",
-    "orbitalData":  {
-    },
-    "tle":  {
-    },
-    "mass": "",
-    "launchDate": "1992-08-10",
-    "endDate": null
   }
 ]

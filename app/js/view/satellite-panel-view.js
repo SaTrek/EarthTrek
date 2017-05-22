@@ -79,10 +79,13 @@ define([
     SatellitePanelView.prototype.addInstruments = function (entity) {
         var that = this;
         var instruments = entity.properties.instruments.getValue();
-        if (instruments.length == 0) {
+        if (instruments.length === 0) {
             return false;
         }
         instruments.forEach(function(instrument) {
+            if (instrument == null) {
+                return false;
+            }
             var instrumentElement = document.createElement('div');
             $(instrumentElement).id = "satellite-instrument-" + entity.id + "-" + instrument.name;
             $(instrumentElement).addClass("satellite-instrument");
@@ -90,10 +93,28 @@ define([
             $(instrumentElement).data('instrument', instrument.name);
 
             var layerButton = document.createElement("button");
-            $(layerButton).click({entity: that.entity, panel: that}, that.showLayers);
+            $(layerButton).click({entity: that.entity, panel: that, instrument: instrument}, that.showLayers);
             $(instrumentElement).append(layerButton);
 
             that.instrumentsContainer.append(instrumentElement);
+        });
+    }
+
+    SatellitePanelView.prototype.updateLayers = function (event) {
+        var today = this.isoDate(this.viewer.clock.currentTime.toString());
+        var entity = event.data.entity;
+        var selectedInstrument = $($('.selected-instrument')[0].parentElement).data('instrument');
+
+        $.each(entity.properties.instruments.getValue(), function(key, instrument) {
+            if (instrument.name == selectedInstrument) {
+                $.each(instrument.layers, function(key, layer) {
+                    if (layer.startDate <= today && layer.endDate >= today) {
+                        $('#layer-view-' + layer.id).removeAttr('disabled');
+                    } else {
+                        $('#layer-view-' + layer.id).attr('disabled', 'disabled');
+                    }
+                });
+            }
         });
     }
 
@@ -101,12 +122,12 @@ define([
     SatellitePanelView.prototype.showLayers = function (event) {
         var entity = event.data.entity;
         var panel = event.data.panel;
-        $('.satellite-instrument .selected').removeClass('selected');
+        $('.satellite-instrument .selected-instrument').removeClass('selected-instrument');
 
-        $(this).addClass("selected");
+        $(this).addClass("selected-instrument");
         $("#satellite-instrument-layers").empty();
         $.each(entity.properties.instruments.getValue(), function(key, instrument) {
-            if (instrument.name == $(event.target.parentElement).data('instrument')) {
+            if (instrument.name == event.data.instrument.name) {
                 $.each(instrument.layers, function(key, layer) {
                     var instrumentLayer = panel.createLayer(layer);
                     $("#satellite-instrument-layers").append(instrumentLayer).show();
@@ -178,6 +199,7 @@ define([
         var objToday = new Date(today);
         objToday.setDate(objToday.getDate());
         var toggleLayerButton = document.createElement("button");
+        $(toggleLayerButton).attr('id', 'layer-view-' + layer.id);
         $(toggleLayerButton).on('click', function () {
             if ($(this).hasClass('selected')) {
                 $(this).removeClass('selected');
@@ -188,8 +210,7 @@ define([
                     }
                 }
             } else {
-                $(this).toggleClass('selected');
-
+                $(this).addClass('selected');
                 for (var i = 0; i <= that.viewer.scene.imageryLayers.length - 1; i++) {
                     var imageryLayer = that.viewer.scene.imageryLayers.get(i);
                     if (layer.format == 'image/jpeg' && imageryLayer.imageryProvider.format == 'image/jpeg') {
@@ -208,6 +229,7 @@ define([
                 //  earthTrekLayer.addLayer(newLayer);
                 that.viewer.scene.imageryLayers.addImageryProvider(newLayer);
             }
+
         });
 
         $(toggleLayerButton).addClass("view");
@@ -242,7 +264,7 @@ define([
         var data = {
             perigee: 'KM',
             apogee: 'KM',
-            inclination: '°',
+            inclination: 'ï¿½',
             period: 'mins'
         }
         if (data[key] == undefined) {
