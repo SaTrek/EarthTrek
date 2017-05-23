@@ -279,12 +279,10 @@ define([
 
             var p1 = new Promise(
                 function (resolve, reject) {
-                    console.log("VECES")
                     if (time !== that.previousTime) {
 
                         that.previousTime = time;
                         that.lastPropagationTime = that.clock.currentTime;
-                        console.log('PREVIOUS');
                         var startDate = new Date(time);
                         startDate.setDate(startDate.getDate());
                         var endDate = new Date(time);
@@ -295,24 +293,20 @@ define([
                             endDate: endDate
                         }));
                     } else {
-                        console.log('REJECT');
                         reject(time);
                     }
                 }
             );
 
             p1.then(function (tles) {
-                console.log('SE MATCHEAN LOS NUEVOS TLES'); // Error!
                 tles.data.forEach(function (tle) {
                     var entity = that.viewer.entities.getById(tle.satId);
                     if (entity != null) {
-                        console.log('New TLE ', tle.tle);
                         entity.properties.tle.setValue(tle.tle);
                     }
                 });
                 return new Promise(propagation);
             }, function (time) {
-                console.log('NO HAY NUEVOS TLES, SE PROPGA'); // Error!
                 return new Promise(propagation);
             });
 
@@ -327,7 +321,6 @@ define([
                     SatelliteToolbarView.prototype.updateSatellite(entity, that.goToEntity, time);
                 });
                 that.lastPropagationTime = that.clock.currentTime;
-                console.log("PROPAGO");
             };
         }
     }

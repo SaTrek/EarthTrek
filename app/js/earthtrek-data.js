@@ -36,7 +36,7 @@ define([
      *
      */
     earthTrekData.getSatellites = function () {
-        return $.ajax("http://localhost:9081/satellites");
+        return $.ajax("http://api.orbitaldesign.tk/satellites");
     }
 
     /**
@@ -59,7 +59,7 @@ define([
                 params.push('endDate=' + endDate);
             }
         }
-        return $.ajax("http://localhost:9081/tles?" + params.join('&'));
+        return $.ajax("http://api.orbitaldesign.tk/tles?" + params.join('&'));
     }
 
     /**
