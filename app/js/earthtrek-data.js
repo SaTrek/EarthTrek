@@ -47,6 +47,12 @@ define([
         params.push('ids=' + ids.join(','));
         if (options.startDate) {
             var startDate = options.startDate;
+
+            if (!(startDate instanceof Date)) {
+                var startDate = new Date(startDate);
+                startDate.setDate(startDate.getDate() - 1);
+            }
+
             if (startDate instanceof Date) {
                 startDate = startDate.getUTCFullYear() + '-' + (startDate.getUTCMonth() + 1) + '-' +  startDate.getUTCDate();
             }
