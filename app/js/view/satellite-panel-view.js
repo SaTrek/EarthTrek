@@ -248,9 +248,9 @@ define([
         });
         $(instrumentButtons).append(compareButton);
 
+        $(compareButton).attr('disabled', 'disabled');
         if (layer.endDate < today || layer.startDate > today) {
             $(toggleLayerButton).attr('disabled', 'disabled');
-            $(compareButton).attr('disabled', 'disabled');
         }
         return instrumentLayer;
     }
