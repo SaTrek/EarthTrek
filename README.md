@@ -28,6 +28,8 @@ Earth Trek - "Exploring our World"
 
 Clone this repository
 ```
+git submodule init
+git submodule update
 npm install
 
 node server.js
