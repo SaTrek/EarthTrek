@@ -1,6 +1,5 @@
 
 **NASA Space Apps Challenge 2017 - Buenos Aires Nominee**
-![NASA Space Apps Challenge 2017 - Buenos Aires](https://sa-media-2017.s3.amazonaws.com/media/images/Space_Apps_2017_Logo_BsAs.width-500.png)
 
 EarthTrek is an interactive 3D web application. It´s easy access for all kinds of users encourages the use of data that NASA`S EOS program compiles and collect with satellites´s instruments.
 
