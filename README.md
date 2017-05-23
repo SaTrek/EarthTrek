@@ -31,7 +31,6 @@ Clone this repository
 git submodule init
 git submodule update
 npm install
-
 node server.js
 ```
 That's it!
