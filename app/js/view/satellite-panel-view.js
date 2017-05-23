@@ -103,6 +103,9 @@ define([
     SatellitePanelView.prototype.updateLayers = function (event) {
         var today = this.isoDate(this.viewer.clock.currentTime.toString());
         var entity = event.data.entity;
+        if ($('.selected-instrument').length == 0) {
+            return false;
+        }
         var selectedInstrument = $($('.selected-instrument')[0].parentElement).data('instrument');
 
         $.each(entity.properties.instruments.getValue(), function(key, instrument) {
