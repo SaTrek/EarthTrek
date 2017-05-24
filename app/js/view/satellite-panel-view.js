@@ -101,6 +101,7 @@ define([
     }
 
     SatellitePanelView.prototype.updateLayers = function (event) {
+        var that = this;
         var today = this.isoDate(this.viewer.clock.currentTime.toString());
         var entity = event.data.entity;
         if ($('.selected-instrument').length == 0) {
@@ -111,6 +112,10 @@ define([
         $.each(entity.properties.instruments.getValue(), function(key, instrument) {
             if (instrument.name == selectedInstrument) {
                 $.each(instrument.layers, function(key, layer) {
+                    if (layer.endDate == null) {
+                        var present = new Date();
+                        layer.endDate = that.isoDate(present.toISOString());
+                    }
                     if (layer.startDate <= today && layer.endDate >= today) {
                         $('#layer-view-' + layer.id).removeAttr('disabled');
                     } else {
@@ -267,7 +272,7 @@ define([
         var data = {
             perigee: 'KM',
             apogee: 'KM',
-            inclination: '�',
+            inclination: '°',
             period: 'mins'
         }
         if (data[key] == undefined) {
