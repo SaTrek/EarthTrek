@@ -280,14 +280,12 @@ define([
             var p1 = new Promise(
                 function (resolve, reject) {
                     if (time !== that.previousTime) {
-
                         that.previousTime = time;
                         that.lastPropagationTime = that.clock.currentTime;
                         var startDate = new Date(time);
                         startDate.setDate(startDate.getDate());
                         var endDate = new Date(time);
                         endDate.setDate(endDate.getDate() + 1);
-                        console.log(startDate, endDate);
                         return resolve(earthTrekData.getTLEs(earthTrekData.getSatelliteIds(), {
                             startDate: startDate,
                             endDate: endDate
@@ -315,9 +313,9 @@ define([
                     var newStart = that.clock.currentTime;
                     var tle1 = entity.properties.getValue(newStart).tle[0];
                     var tle2 = entity.properties.getValue(newStart).tle[1];
-                    console.log(tle1, tle2)
+                    //console.log("LLEGA")
                     entity.position = earthTrekSatellite.getSamples(tle1, tle2, newStart, that.orbitDuration, that.frequency);
-
+                    //console.log("LLEGA2" + entity.id)
                     SatelliteToolbarView.prototype.updateSatellite(entity, that.goToEntity, time);
                 });
                 that.lastPropagationTime = that.clock.currentTime;

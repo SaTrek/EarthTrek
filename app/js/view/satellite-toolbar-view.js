@@ -25,6 +25,7 @@ define([
         (time >= entity.properties.getValue().endDate) ?
             $("." + entity.id + "-toolbar").addClass("satellite-disabled")
             : $("." + entity.id + "-toolbar").removeClass("satellite-disabled");
+
         (time < entity.properties.getValue().launchDate) ?
             $("." + entity.id + "-toolbar").addClass("satellite-disabled")
             : $("." + entity.id + "-toolbar").removeClass("satellite-disabled");
