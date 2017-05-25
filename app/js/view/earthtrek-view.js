@@ -1,4 +1,5 @@
 /**
+<<<<<<< HEAD
  * @class EarthTrekView
  * @module EarthTrek
  * @author SATrek
