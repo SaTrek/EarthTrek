@@ -116,6 +116,13 @@ define([
              */
             var finalJson = [];
             tles[0].data.forEach(function (satellite) {
+                satellite.data = {
+                 //   'description': satellite.description,
+                    'mass': satellite.mass,
+                    'agency': satellite.agency,
+                    'program': satellite.program,
+                    'launchDate': satellite.launchDate
+                }
                 tles[1].data.forEach(function (satTle) {
                     if (satellite.satId == satTle.satId) {
                         finalJson.push(_.extend(satTle, satellite));
