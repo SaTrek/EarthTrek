@@ -4,16 +4,19 @@
     position: absolute;
     top: 10%;
     right: 2%;
-    width: 430px;
+    width: 450px;
     color: white;
     background-color: rgba(18, 20, 24, 0.5);
     border: 1px solid rgba(255, 255, 255, 0.5);
-    border-radius: 4px;
+    border-radius: 10px;
     text-transform: uppercase;
     z-index: 2;
 }
+#satellite-panel .text-right {
+    text-align: right;
+    padding-right: 5px;
+}
 #satellite-panel span {
-    font-weight: bold;
     font-size: 1rem;
     padding: 5px;
 }
@@ -23,12 +26,26 @@
 #satellite-panel .layer-available button {
 
 }
+#satellite-panel .satellite-description {
+    font-weight: normal;
+    text-transform: none;
+    font-size: 0.9rem;;
+    overflow-y: auto;
+    max-height: 30vh;
+}
 #satellite-panel .fixed-buttons button {
     position: absolute;
     right: 0; top: 0;
     width: 40px;
     height: 30px;
     margin: 2px;
+}
+.satellite-panel-top {
+    font-size: 1.5rem;
+    padding-top: 2px;
+}
+#satellite-instruments {
+    padding: 0;
 }
 .satellite-instrument button {
     background-image: url("../images/layers.png");
@@ -53,21 +70,22 @@
 }
 .satellite-instrument:nth-child(even),
 .instrument-layer:nth-child(even) {
-    background-color: rgba(58, 94, 107, 0.5);
+    background-color: rgba(3, 46, 67, 0.9);
 }
 .satellite-instrument:nth-child(odd),
 
 /**LAYER */
 
 .instrument-layer:nth-child(odd) {
-    background-color: rgba(3, 46, 67, 0.5);
+    background-color: rgba(58, 94, 107, 0.9);
 }
 #satellite-instrument-layers {
     display: none;
     max-height: 50vh;
     overflow-y: auto;
-    padding-top: 10px;
-    padding-bottom: 10px;
+    padding: 10px 0 10px 0;
+    font-weight: bold;
+    text-transform: none;
 }
 .instrument-layer {
     position: relative;
@@ -86,9 +104,10 @@
 
 .layer-available {
     font-size: 0.8rem !important;
+    padding-top: 5px;
 }
 .layer-available span {
-    font-weight: bold;
+    font-weight: normal;
 }
 /**
 COMPARE
