@@ -10,9 +10,10 @@ define([
     'jquery',
     'bootstrap',
     'slick',
+    'moment',
     '../provider',
     '../earthtrek-layer'
-], function () {
+], function ($,b,s,moment) {
 
     function SatellitePanelView(viewer, options) {
         this.viewer = viewer;
@@ -55,16 +56,25 @@ define([
     SatellitePanelView.prototype.showOrbitalData = function (properties) {
         var data = properties.data;
         var that = this;
-        var descriptionContainer = document.createElement('div');
-        $(descriptionContainer).addClass("satellite-description");
+
+        var descriptionContainer = '#satellite-description';
         $(descriptionContainer).html(properties.description);
-        $(this.satelliteInfoContainer).append(descriptionContainer);
+
         var orbitalDataKeys = document.createElement('div');
         $(orbitalDataKeys).addClass("orbital-data-keys");
         var orbitalDataValues = document.createElement('div');
+        $(orbitalDataValues).addClass("orbital-data-values");
         $.each(data, function(key, value) {
             var orbitalDataKey = document.createElement('div');
-            $(orbitalDataKey).append(key);
+            $(orbitalDataKey).append(function () {
+                var data = {
+                    launchDate: 'Launch Date'
+                }
+                if (data[key] == undefined) {
+                    return key;
+                }
+                return data[key];
+            });
             $(orbitalDataKeys).append(orbitalDataKey);
 
             var orbitalDataValue = document.createElement('div');
@@ -86,8 +96,20 @@ define([
     SatellitePanelView.prototype.magnitudesToOrbitalData = function (key, value) {
 
         if (key == 'launchDate') {
-            var launchDate = new Date(value);
-            return launchDate.toLocaleDateString();
+            return moment(value).format('DD MMM Y');
+        }
+        if (key == 'agency') {
+            var agenciesLogos = '';
+            if (value == '') {
+                return value;
+            }
+            var agencies = value.split('/');
+            if (agencies.length > 0) {
+                agencies.forEach(function(agencyName) {
+                    agenciesLogos += '<img width=28" alt="' + agencyName + '" title="' + agencyName + '" src="images/agency/256/' + agencyName + '.png"/> ';
+                })
+            }
+            return agenciesLogos;
         }
         var data = {
             perigee: 'KM',
@@ -130,6 +152,11 @@ define([
         });
     }
 
+    /**
+     *
+     * @param event
+     * @returns {boolean}
+     */
     SatellitePanelView.prototype.updateLayers = function (event) {
         var that = this;
         var today = this.isoDate(this.viewer.clock.currentTime.toString());
@@ -156,7 +183,10 @@ define([
         });
     }
 
-
+    /**
+     *
+     * @param event
+     */
     SatellitePanelView.prototype.showLayers = function (event) {
         var entity = event.data.entity;
         var panel = event.data.panel;
@@ -188,7 +218,11 @@ define([
             }
         });*/
     }
-
+    /**
+     *
+     * @param layer
+     * @returns {Element}
+     */
     SatellitePanelView.prototype.createLayer = function(layer) {
         var that = this;
         var instrumentLayer = document.createElement('div');
@@ -246,7 +280,7 @@ define([
                 $(this).addClass('selected');
                 earthTrekLayer.hideLayer(layer);
                 var maximumLevel = (layer.format == 'image/png') ? 2 : 12;
-                var newLayer = provider.getProvider({
+                var newLayerProvider = provider.getProvider({
                     layer: layer.id,
                     time: that.isoDate(that.viewer.clock.currentTime.toString()),
                     format: layer.format,
@@ -254,7 +288,17 @@ define([
                     resolution: layer.resolution,
                     maximumLevel: maximumLevel
                 });
-                that.viewer.scene.imageryLayers.addImageryProvider(newLayer);
+
+                console.log(that.viewer.scene.imageryLayers._layers[0])
+                console.log(that.viewer.scene.imageryLayers._layers[0].imageryProvider)
+                if (that.viewer.scene.imageryLayers._layers[0].format == 'image/jpeg') {
+                    that.viewer.scene.imageryLayers._layers[0].show = false;
+                //    that.viewer.scene.imageryLayers.lowerToBottom(that.viewer.scene.imageryLayers._layers[0].show = false);
+                }
+                var addedLayer = that.viewer.scene.imageryLayers.addImageryProvider(newLayerProvider);
+                if (layer.format == 'image/jpeg') {
+                    that.viewer.scene.imageryLayers.lowerToBottom(addedLayer);
+                }
             }
 
         });

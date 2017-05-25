@@ -115,7 +115,8 @@ define([
                 imageryProvider: new Cesium.createTileMapServiceImageryProvider({
                     url: 'app/assets/imagery/NaturalEarthII/',
                     maximumLevel: 5,
-                    credit: 'Imagery courtesy Natural Earth'
+                    credit: 'Imagery courtesy Natural Earth',
+                    fileExtension: 'jpg'
                 }),
             });
             this.viewer.scene.globe.tileCacheSize = 1000;
@@ -133,6 +134,7 @@ define([
     EarthTrek.prototype.init = function () {
         var that = this;
 
+        var pickedEntity;
         earthTrekLayer.setViewer(this.viewer);
 
         var satellitePanel = new SatellitePanelView(this.viewer, {
@@ -141,14 +143,27 @@ define([
         var handler = new Cesium.ScreenSpaceEventHandler(this.viewer.scene.canvas);
         handler.setInputAction(function (movement) {
             var pick = that.viewer.scene.pick(movement.position);
+
+            if (pickedEntity != undefined) {
+                pickedEntity._path.width = 1;
+                pickedEntity._path.material = Cesium.Color.ALICEBLUE;
+                pickedEntity = undefined;
+            }
             if (Cesium.defined(pick)) {
                 var entity = that.viewer.entities.getById(pick.id._id);
                 if (entity != undefined) {
+                    pickedEntity = entity;
+                    entity._path.width = 7;
+                    entity._path.material =  new Cesium.PolylineGlowMaterialProperty({
+                        glowPower: 0.3,
+                        color: Cesium.Color.TOMATO
+                      //  color: entity._path.material
+                    });
                     satellitePanel.show(entity);
                 }
             } else {
-                that.viewer.trackedEntity = undefined;
                 satellitePanel.hide();
+                that.viewer.trackedEntity = undefined;
             }
         }, Cesium.ScreenSpaceEventType.LEFT_CLICK);
 
@@ -225,11 +240,11 @@ define([
 
         var positions = earthTrekSatellite.getSamples(satelliteInfo.tle[0], satelliteInfo.tle[1], startTime, this.orbitDuration, this.frequency);
 
+
         var entity = this.viewer.entities.add({
             id: satelliteInfo.satId,
             name: satelliteInfo.name,
             position: positions,
-            orientation: new Cesium.VelocityOrientationProperty(positions),
             model: {
                 uri: 'models/' + satelliteInfo.id + '.glb',
                 minimumPixelSize: 512,
@@ -238,11 +253,12 @@ define([
             },
             path: {
                 resolution: 5,
-                material: new Cesium.PolylineGlowMaterialProperty({
+                material: Cesium.Color.ALICEBLUE,
+                /*material: new Cesium.PolylineGlowMaterialProperty({
                     glowPower: 0.2,
                     color: color
-                }),
-                width: 7,
+                }),*/
+                width: 1,
                 trailTime: this.orbitDuration,
                 leadTime: 0
             },
@@ -255,7 +271,7 @@ define([
                 // eyeOffset: new Cesium.Cartesian3(0.0, 300.0, 200.0),
                 outlineColor: color,
                 outlineWidth: 3,
-                style: Cesium.LabelStyle.FILL_AND_OUTLINE,
+                style: Cesium.LabelStyle.FILL,
                 pixelOffset: new Cesium.Cartesian2(0, -15)
                 //    heightReference: Cesium.HeightReference.RELATIVE_TO_GROUND
             },
