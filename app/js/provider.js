@@ -26,7 +26,7 @@ define([
             //   layer, time, format, tileMatrixSetID, resolution, maxLevel
         }
         var provider = new Cesium.WebMapTileServiceImageryProvider({
-            url: "//gibs-c.earthdata.nasa.gov/wmts/" + options.tileMatrixSetID + "/best/wmts.cgi?" + options.time,
+            url: "//gibs-c.earthdata.nasa.gov/wmts/" + options.tileMatrixSetID + "/best/wmts.cgi?time=" + options.time,
             layer: options.layer,
             style: "",
             format: options.format,
