@@ -3,7 +3,7 @@
  * @module EarthTrek
  * @author SATrek
  * @author Alejandro Sanchez <alejandro.sanchez.trek@gmail.com>
- * @description EarthTrek - NASA Space Apps 2017 13 APR 2017.
+ * @description EarthTrek - NASA Space Apps 2017 13 MAY 2017.
  */
 //require("amd-loader");
 define([
@@ -44,7 +44,7 @@ define([
         var tle = this.entity.properties.getValue().tle.join("\n");
      //   var parsedTLE = TLE.parse( tle );
       //  console.log(parsedTLE);
-    //    this.showOrbitalData(entity.properties.orbitalData.getValue());
+        this.showOrbitalData(entity.properties.getValue());
 
         if (entity.properties.instruments !== undefined) {
             this.addInstruments(entity)
@@ -52,8 +52,13 @@ define([
         this.satellitePanel.show();
     }
 
-    SatellitePanelView.prototype.showOrbitalData = function (data) {
+    SatellitePanelView.prototype.showOrbitalData = function (properties) {
+        var data = properties.data;
         var that = this;
+        var descriptionContainer = document.createElement('div');
+        $(descriptionContainer).addClass("satellite-description");
+        $(descriptionContainer).html(properties.description);
+        $(this.satelliteInfoContainer).append(descriptionContainer);
         var orbitalDataKeys = document.createElement('div');
         $(orbitalDataKeys).addClass("orbital-data-keys");
         var orbitalDataValues = document.createElement('div');
@@ -63,13 +68,38 @@ define([
             $(orbitalDataKeys).append(orbitalDataKey);
 
             var orbitalDataValue = document.createElement('div');
-
-            $(orbitalDataValue).append(that.magnitudesToOrbitalData(key, value));
+            var value = that.magnitudesToOrbitalData(key, value);
+            $(orbitalDataValue).append((value != '') ? value : "-");
             $(orbitalDataValues).append(orbitalDataValue);
         });
 
         $(this.satelliteInfoContainer).append(orbitalDataKeys);
         $(this.satelliteInfoContainer).append(orbitalDataValues);
+    }
+
+    /**
+     * Magnitudes To Orbital Data
+     * @param key
+     * @param value
+     * @returns {*}
+     */
+    SatellitePanelView.prototype.magnitudesToOrbitalData = function (key, value) {
+
+        if (key == 'launchDate') {
+            var launchDate = new Date(value);
+            return launchDate.toLocaleDateString();
+        }
+        var data = {
+            perigee: 'KM',
+            apogee: 'KM',
+            inclination: '&deg;',
+            period: 'mins',
+            mass: 'kg'
+        }
+        if (data[key] == undefined) {
+            return value;
+        }
+        return value.toLocaleString() + ' ' + data[key];
     }
 
     SatellitePanelView.prototype.hide = function () {
@@ -260,20 +290,6 @@ define([
     SatellitePanelView.prototype.isoDate = function(isoDateTime) {
         return isoDateTime.split("T")[0];
     };
-
-    SatellitePanelView.prototype.magnitudesToOrbitalData = function (key, value) {
-
-        var data = {
-            perigee: 'KM',
-            apogee: 'KM',
-            inclination: '&deg;',
-            period: 'mins'
-        }
-        if (data[key] == undefined) {
-            return value;
-        }
-        return value + ' ' + data[key];
-    }
 
     SatellitePanelView.prototype.render = function () {
 
