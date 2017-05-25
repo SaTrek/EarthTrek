@@ -14,6 +14,7 @@ requirejs.config({
         bootstrap: '../node_modules/bootstrap/dist/js/bootstrap.min',
         slick: '../node_modules/slick-carousel/slick/slick.min',
         tle: '../node_modules/tle/lib/tle',
+        moment: '../node_modules/moment/min/moment-with-locales.min',
     }
 });
 
