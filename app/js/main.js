@@ -3,7 +3,7 @@
  * @module EarthTrek
  * @author SATrek
  * @author Alejandro Sanchez <alejandro.sanchez.trek@gmail.com>
- * @description EarthTrek - NASA Space Apps 2017 23 APR 2017.
+ * @description EarthTrek - NASA Space Apps 2017 - 23 APR 2017.
  */
 define([
     'jquery',

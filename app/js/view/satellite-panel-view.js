@@ -161,7 +161,6 @@ define([
 
     SatellitePanelView.prototype.createLayer = function(layer) {
         var that = this;
-        var today = this.isoDate(this.viewer.clock.currentTime.toString());
         var instrumentLayer = document.createElement('div');
         $(instrumentLayer).addClass("instrument-layer");
         $(instrumentLayer).data("id", layer.id);
@@ -204,6 +203,7 @@ define([
          * SHOW LAYER
          * @type {Element}
          */
+        var today = this.isoDate(this.viewer.clock.currentTime.toString());
         var objToday = new Date(today);
         objToday.setDate(objToday.getDate());
         var toggleLayerButton = document.createElement("button");
@@ -211,30 +211,19 @@ define([
         $(toggleLayerButton).on('click', function () {
             if ($(this).hasClass('selected')) {
                 $(this).removeClass('selected');
-                for (var i = 0; i <= that.viewer.scene.imageryLayers.length - 1; i++) {
-                    var imageryLayer = that.viewer.scene.imageryLayers.get(i);
-                    if (imageryLayer.imageryProvider._layer == layer.id) {
-                        that.viewer.scene.imageryLayers.remove(imageryLayer);
-                    }
-                }
+                earthTrekLayer.removeLayer(layer);
             } else {
                 $(this).addClass('selected');
-                for (var i = 0; i <= that.viewer.scene.imageryLayers.length - 1; i++) {
-                    var imageryLayer = that.viewer.scene.imageryLayers.get(i);
-                    if (layer.format == 'image/jpeg' && imageryLayer.imageryProvider.format == 'image/jpeg') {
-                        imageryLayer.show = false;
-                    }
-                }
+                earthTrekLayer.hideLayer(layer);
                 var maximumLevel = (layer.format == 'image/png') ? 2 : 12;
                 var newLayer = provider.getProvider({
                     layer: layer.id,
-                    time: that.isoDate(objToday.toISOString()),
+                    time: that.isoDate(that.viewer.clock.currentTime.toString()),
                     format: layer.format,
                     tileMatrixSetID: "epsg4326",
                     resolution: layer.resolution,
                     maximumLevel: maximumLevel
                 });
-                //  earthTrekLayer.addLayer(newLayer);
                 that.viewer.scene.imageryLayers.addImageryProvider(newLayer);
             }
 
@@ -243,12 +232,21 @@ define([
         $(toggleLayerButton).addClass("view");
         $(instrumentButtons).append(toggleLayerButton);
 
-        /**
-         * COMPARE
-         * @type {Element}
-         */
+        this.addCompareButton(instrumentButtons);
+
+        if (layer.endDate < today || layer.startDate > today) {
+            $(toggleLayerButton).attr('disabled', 'disabled');
+        }
+        return instrumentLayer;
+    }
+
+    /**
+     * Add Compare Button
+     * @param instrumentButtons
+     */
+    SatellitePanelView.prototype.addCompareButton = function(instrumentButtons) {
         var compareButton = document.createElement("button");
-        $(compareButton).html("C");
+        $(compareButton).html("");
         $(compareButton).click(function () {
             $('.compare-selected').removeClass('compare-selected');
             $(this).addClass("compare-selected");
@@ -257,11 +255,7 @@ define([
         $(instrumentButtons).append(compareButton);
 
         $(compareButton).attr('disabled', 'disabled');
-        if (layer.endDate < today || layer.startDate > today) {
-            $(toggleLayerButton).attr('disabled', 'disabled');
-        }
-        return instrumentLayer;
-    }
+    };
 
     SatellitePanelView.prototype.isoDate = function(isoDateTime) {
         return isoDateTime.split("T")[0];
@@ -272,7 +266,7 @@ define([
         var data = {
             perigee: 'KM',
             apogee: 'KM',
-            inclination: '°',
+            inclination: '&deg;',
             period: 'mins'
         }
         if (data[key] == undefined) {

@@ -10,9 +10,10 @@ define([
     'cesium',
     'earthtrek-satellite',
     'earthtrek-data',
+    'earthtrek-layer',
     'view/satellite-toolbar-view',
     'view/satellite-panel-view'
-], function (ce, earthTrekSatellitez, earthTrekDatas, SatelliteToolbarView, SatellitePanelView) {
+], function (ce, earthTrekSatellitez, earthTrekDatas, earthtrekLayers, SatelliteToolbarView, SatellitePanelView) {
     'use strict';
 
     /**
@@ -55,6 +56,9 @@ define([
             options.maxDistanceCamera = 10000000000; //10,000,000,000 meters
         }
 
+        if (!options.enableLighting) {
+            options.enableLighting = false;
+        }
         this.startTime = Cesium.JulianDate.fromDate(
             new Date(options.startTime));
         this.endTime = Cesium.JulianDate.fromDate(
@@ -70,11 +74,12 @@ define([
         this.frequency = options.frequency;
         this.multiplier = options.multiplier;
         this.maxDistanceCamera = options.maxDistanceCamera;
+        this.enableLighting = options.enableLighting;
         this.entities = [];
     }
 
     /**
-     *
+     * getClock
      * @returns {Cesium.Clock|*}
      */
     EarthTrek.prototype.getClock = function () {
@@ -91,6 +96,7 @@ define([
     }
 
     /**
+     * Create Viewer
      * @param mainContainer
      * @returns {Cesium.Viewer|*}
      */
@@ -113,7 +119,7 @@ define([
                 }),
             });
             this.viewer.scene.globe.tileCacheSize = 1000;
-            // this.viewer.scene.globe.enableLighting = true;
+            this.viewer.scene.globe.enableLighting = this.enableLighting;
             this.getClock().onTick.addEventListener(this.onClockUpdate, this);
             this.viewer.timeline.zoomTo(this.startTime, this.endTime);
             this.viewer.camera.frustum.far = this.maxDistanceCamera;
@@ -121,8 +127,14 @@ define([
         return this.viewer;
     }
 
+    /**
+     * Init
+     */
     EarthTrek.prototype.init = function () {
         var that = this;
+
+        earthTrekLayer.setViewer(this.viewer);
+
         var satellitePanel = new SatellitePanelView(this.viewer, {
             container: 'satellite-panel'
         });
@@ -157,10 +169,19 @@ define([
         });
     }
 
+    /**
+     *
+     * @param isoDateTime
+     * @returns {*}
+     */
     EarthTrek.prototype.isoDate = function (isoDateTime) {
         return isoDateTime.split("T")[0];
     };
 
+    /**
+     * onClockUpdate
+     * @param clock
+     */
     EarthTrek.prototype.onClockUpdate = function (clock) {
         var isoDateTime = clock.currentTime.toString();
         var time = this.isoDate(isoDateTime);
@@ -269,8 +290,10 @@ define([
         return intervalCollection;
     }
 
+
     /**
-     *
+     * Update Entities
+     * @param time
      */
     EarthTrek.prototype.updateEntities = function (time) {
         var that = this;
@@ -313,9 +336,7 @@ define([
                     var newStart = that.clock.currentTime;
                     var tle1 = entity.properties.getValue(newStart).tle[0];
                     var tle2 = entity.properties.getValue(newStart).tle[1];
-                    //console.log("LLEGA")
                     entity.position = earthTrekSatellite.getSamples(tle1, tle2, newStart, that.orbitDuration, that.frequency);
-                    //console.log("LLEGA2" + entity.id)
                     SatelliteToolbarView.prototype.updateSatellite(entity, that.goToEntity, time);
                 });
                 that.lastPropagationTime = that.clock.currentTime;
@@ -323,6 +344,13 @@ define([
         }
     }
 
+    /**
+     * Goto Entity
+     * @param entity
+     * @param panel
+     * @param viewer
+     * @returns {boolean}
+     */
     EarthTrek.prototype.goToEntity = function (entity, panel, viewer) {
         if (entity == undefined) {
             return false;
@@ -347,40 +375,6 @@ define([
         viewer.selectedEntity = entity;
         return true;
     }
-
-    /**
-     *
-
-     var promise = $.getJSON("http://localhost:9081/satellites", function (satellites) {
-            var satIds = [];
-            satellites.data.forEach(function (satellite) {
-                satIds.push(satellite.satId);
-            })
-            return satIds;
-        });;
-
-     promise.then(function(satellites) {
-            var satIds = [];
-            satellites.data.forEach(function (satellite) {
-                satIds.push(satellite.satId);
-            })
-            var tles = earthTrekData.getTLEs(satIds, {startDate: that.isoDate(that.getClock().currentTime.toString())});
-
-        }).then(function(tleData) {
-            console.log(tleData)
-            $.getJSON("data/instruments.json", function (satellites) {
-                satellites.forEach(function (satelliteData) {
-                    var entity = that.viewer.entities.getById(satelliteData.id);
-                    if (entity == null && satelliteData.status == 'ACTIVE') {
-                        entity = that.createEntity(satelliteData, that.clock.currentTime);
-                        that.entities.push(entity);
-                        that.satelliteToolbar.addSatellite(satelliteData, that.goToEntity);
-                    }
-                })
-                that.satelliteToolbar.render();
-            });
-        });
-     */
 
     return EarthTrek;
     module.exports = EarthTrek;

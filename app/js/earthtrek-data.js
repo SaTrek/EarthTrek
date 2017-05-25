@@ -17,13 +17,13 @@ define([
     var satelliteIds = [];
 
     /**
-     *
+     * Get Satellites Ids
      */
     earthTrekData.getSatelliteIds = function () {
         if (satelliteIds != null) {
             return satelliteIds;
         }
-        earthTrekData.getSatellites().then(function(satellites) {
+        earthTrekData.getSatellites().then(function (satellites) {
             var satIds = [];
             satellites.data.forEach(function (satellite) {
                 satIds.push(satellite.satId);
@@ -32,17 +32,24 @@ define([
             return satIds;
         });
     }
-    /**
-     *
-     */
-    earthTrekData.getSatellites = function () {
-        return $.ajax("http://api.orbitaldesign.tk/satellites");
-    }
 
     /**
      *
      */
+    earthTrekData.getSatellites = function () {
+        var config = earthTrekData.getConfig();
+        return $.ajax(config.api.url + config.api.satellites.endpoint);
+    }
+
+
+    /**
+     * Get TLE from Satellites IDs
+     * @param ids
+     * @param options
+     * @returns {*}
+     */
     earthTrekData.getTLEs = function (ids, options) {
+        var config = earthTrekData.getConfig();
         var params = [];
         params.push('ids=' + ids.join(','));
         if (options.startDate) {
@@ -54,18 +61,39 @@ define([
             }
 
             if (startDate instanceof Date) {
-                startDate = startDate.getUTCFullYear() + '-' + (startDate.getUTCMonth() + 1) + '-' +  startDate.getUTCDate();
+                startDate = startDate.getUTCFullYear() + '-' + (startDate.getUTCMonth() + 1) + '-' + startDate.getUTCDate();
             }
             params.push('startDate=' + startDate);
             if (options.endDate) {
                 var endDate = options.endDate;
                 if (endDate instanceof Date) {
-                    endDate = endDate.getUTCFullYear() + '-' + (endDate.getUTCMonth() + 1) + '-' +  endDate.getUTCDate();
+                    endDate = endDate.getUTCFullYear() + '-' + (endDate.getUTCMonth() + 1) + '-' + endDate.getUTCDate();
                 }
                 params.push('endDate=' + endDate);
             }
         }
-        return $.ajax("http://api.orbitaldesign.tk/tles?" + params.join('&'));
+        var fields = (!options.fields) ? config.api.tle.fields : options.fields;
+        params.push("fields=" + fields);
+
+        return $.ajax(config.api.url + config.api.tle.endpoint + "?" + params.join('&'));
+    }
+
+    /**
+     *
+     */
+    earthTrekData.getConfig = function () {
+        return {
+            api: {
+                url: "http://api.orbitaldesign.tk/",
+                satellites: {
+                    endpoint: "satellites"
+                },
+                tle: {
+                    endpoint: "tles",
+                    fields: "tle,satId"
+                }
+            }
+        };
     }
 
     /**
@@ -74,7 +102,7 @@ define([
     earthTrekData.getFullData = function (options, callback) {
         var promise = earthTrekData.getSatellites();
 
-        var tlePromise = promise.then(function(satellites) {
+        var tlePromise = promise.then(function (satellites) {
             var satIds = [];
             satellites.data.forEach(function (satellite) {
                 satIds.push(satellite.satId);
@@ -82,13 +110,13 @@ define([
             satelliteIds = satIds;
             return earthTrekData.getTLEs(satIds, options);
         });
-        Promise.all([promise, tlePromise]).then(function(tles) {
+        Promise.all([promise, tlePromise]).then(function (tles) {
             /**
              * @TODO -TEMPORAL
              */
             var finalJson = [];
             tles[0].data.forEach(function (satellite) {
-                tles[1].data.forEach(function(satTle) {
+                tles[1].data.forEach(function (satTle) {
                     if (satellite.satId == satTle.satId) {
                         finalJson.push(_.extend(satTle, satellite));
                     }
