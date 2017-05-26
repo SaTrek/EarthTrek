@@ -103,6 +103,11 @@ define([
     EarthTrek.prototype.createViewer = function () {
         if (this.viewer === undefined) {
             this.viewer = new Cesium.Viewer(this.mainContainerId, {
+                material: new Cesium.Material({
+                    SpecularMap: {image: 'app/images/earth/earthspec1k.jpg'},
+                    BumpMap: {image: 'app/images/earth/earthbump1k.jpg'},
+                    Water:
+                }),
                 clock: this.getClock(),
                 baseLayerPicker: false,
                 requestWaterMask: true,
@@ -253,7 +258,11 @@ define([
             },
             path: {
                 resolution: 5,
-                material: Cesium.Color.ALICEBLUE,
+                material: new Cesium.Material({
+                        color: Cesium.Color.ALICEBLUE,
+                        translucent: true
+                    }
+                ),
                 /*material: new Cesium.PolylineGlowMaterialProperty({
                     glowPower: 0.2,
                     color: color
