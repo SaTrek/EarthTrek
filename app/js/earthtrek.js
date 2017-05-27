@@ -186,6 +186,7 @@ define([
         var satellitePanel = new SatellitePanelView(this.viewer, {
             container: 'satellite-panel'
         });
+        this.lastOrbitalDataUpdated = this.clock.currentTime;
         var handler = new Cesium.ScreenSpaceEventHandler(this.viewer.scene.canvas);
 
         handler.setInputAction(function (movement) {
@@ -267,6 +268,12 @@ define([
             //  updateLayers();
         }
         this.updateEntities(time);
+
+        if (this.viewer.selectedEntity != null && (Cesium.JulianDate.secondsDifference(this.clock.currentTime, this.lastOrbitalDataUpdated) > 10 ||
+            Cesium.JulianDate.secondsDifference(this.lastOrbitalDataUpdated, this.clock.currentTime) > 10)) {
+            this.satellitePanel.updateOrbitalData(this.viewer.selectedEntity);
+            this.lastOrbitalDataUpdated = this.clock.currentTime;
+        }
     };
 
     /**
@@ -277,7 +284,7 @@ define([
      */
     EarthTrek.prototype.createEntity = function (satelliteInfo, startTime) {
 
-        var color, orbitMaterial;
+        var color;
         //var position = Cesium.Cartesian3.fromDegrees(307.56125, -47.846016, height);
         //  var heading = Cesium.Math.toRadians(135);
         var pitch = 0;
@@ -289,12 +296,14 @@ define([
             return false;
         }
 
-        var positions = earthTrekSatellite.getSamples(satelliteInfo.tle[0], satelliteInfo.tle[1], startTime, this.orbitDuration, this.frequency);
+        var samples = earthTrekSatellite.getSamples(satelliteInfo.tle[0], satelliteInfo.tle[1], startTime, this.orbitDuration, this.frequency);
+
 
         var entity = this.viewer.entities.add({
             id: satelliteInfo.satId,
             name: satelliteInfo.name,
-            position: positions,
+            position: samples.positions,
+            velocity: samples.velocities,
             model: {
                 uri: 'models/' + satelliteInfo.id + '.glb',
                 minimumPixelSize: 512,
@@ -324,7 +333,8 @@ define([
             billboard: {
                 image: 'images/satellites/' + satelliteInfo.image,
                 distanceDisplayCondition: new Cesium.DistanceDisplayCondition(40000.1, 150000000.0),
-                scale: 0.35
+                scale: 0.35,
+                alignedAxis : new Cesium.VelocityVectorProperty(samples.positions, true)
             },
             properties: satelliteInfo
         });
@@ -386,6 +396,7 @@ define([
                     var entity = that.viewer.entities.getById(tle.satId);
                     if (entity != null) {
                         entity.properties.tle.setValue(tle.tle);
+                        entity.properties.data.setValue(_.extend(entity.properties.data.getValue(), tle.data));
                     }
                 });
                 return new Promise(propagation);
@@ -398,7 +409,9 @@ define([
                     var newStart = that.clock.currentTime;
                     var tle1 = entity.properties.getValue(newStart).tle[0];
                     var tle2 = entity.properties.getValue(newStart).tle[1];
-                    entity.position = earthTrekSatellite.getSamples(tle1, tle2, newStart, that.orbitDuration, that.frequency);
+                    var samples = earthTrekSatellite.getSamples(tle1, tle2, newStart, that.orbitDuration, that.frequency);
+                    entity.position = samples.positions
+                    entity.velocity = samples.velocities;
                     SatelliteToolbarView.prototype.updateSatellite(entity, that.goToEntity, time);
                 });
                 that.lastPropagationTime = that.clock.currentTime;

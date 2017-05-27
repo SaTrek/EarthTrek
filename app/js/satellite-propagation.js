@@ -27,14 +27,9 @@ define([
 
     /**
      * Get Velocity in KM
-     * @param string tleLine1
-     * @param stringtleLine2
-     * @param Date date
      * @returns {number}
      */
-    satellitePropagation.getVelocity = function(tleLine1, tleLine2, date) {
-        var positionAndVelocity = this.propagate(tleLine1, tleLine2, date);
-        var velocityEci = positionAndVelocity.velocity;
+    satellitePropagation.getVelocity = function(velocityEci) {
         var vel = Math.sqrt(Math.pow(velocityEci.x, 2) + Math.pow(velocityEci.y, 2) + Math.pow(velocityEci.z, 2));
         return vel;
     }
@@ -46,7 +41,7 @@ define([
      * @param Date date
      * @returns {*}
      */
-    satellitePropagation.getPosition = function(tleLine1, tleLine2, date) {
+    satellitePropagation.getPositionAndVelocity = function(tleLine1, tleLine2, date) {
         var positionAndVelocity = this.propagate(tleLine1, tleLine2, date);
         var positionEci = positionAndVelocity.position;
 
@@ -61,8 +56,7 @@ define([
 
         var positionGd  = satellite.eciToGeodetic(positionEci, gmst);
         var longitude = positionGd.longitude,
-            latitude  = positionGd.latitude,
-            height    = positionGd.height;
+            latitude  = positionGd.latitude;
 
         var longitudeStr = satellite.degreesLong(longitude),
             latitudeStr  = satellite.degreesLat(latitude);
@@ -70,6 +64,6 @@ define([
         positionGd.longitude = longitudeStr;
         positionGd.latitude = latitudeStr;
         positionGd.height = positionGd.height * 1000;
-        return positionGd;
+        return {position: positionGd, velocity: positionAndVelocity.velocity};
     }
 });
