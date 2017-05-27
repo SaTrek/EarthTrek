@@ -52,7 +52,11 @@ define([
     SatellitePanelView.prototype.updateOrbitalData = function (entity) {
         if ($('.satellite-data-velocity').length > 0 && entity.velocity.getValue(this.viewer.clock.currentTime) != undefined) {
             var velocity = satellitePropagation.getVelocity(entity.velocity.getValue(this.viewer.clock.currentTime));
-            $($('.satellite-data-velocity')[0]).html(parseFloat(velocity).toFixed(3) + ' km/s');
+            $($('.satellite-data-velocity')[0]).html(parseFloat(velocity).toFixed(2) + ' km/s');
+        }
+
+        if ($('.satellite-data-altitude').length > 0 && entity.altitude.getValue(this.viewer.clock.currentTime) != undefined) {
+            $($('.satellite-data-altitude')[0]).html((entity.altitude.getValue(this.viewer.clock.currentTime)/1000).toFixed(1) + ' km');
         }
     }
 
@@ -61,6 +65,8 @@ define([
         var data = properties.data;
         var velocity = satellitePropagation.getVelocity(entity.velocity.getValue(this.viewer.clock.currentTime));
         data.velocity = velocity;
+
+        data.altitude = (entity.altitude.getValue(this.viewer.clock.currentTime)/1000).toFixed(1) ;
         var that = this;
 
         var descriptionContainer = '#satellite-description';
@@ -87,9 +93,7 @@ define([
 
             var orbitalDataValue = document.createElement('div');
             var value = that.magnitudesToOrbitalData(key, value);
-            if (key == 'velocity') {
-                $(orbitalDataValue).addClass('satellite-data-velocity');
-            }
+            $(orbitalDataValue).addClass('satellite-data-' + key);
             $(orbitalDataValue).append((value != '') ? value : "-");
             $(orbitalDataValues).append(orbitalDataValue);
         });
@@ -123,10 +127,11 @@ define([
             return agenciesLogos;
         }
         var data = {
+            altitude: 'km',
             perigee: 'km',
             apogee: 'km',
             inclination: '&deg;',
-            meanAnomaly: '&deg;',
+            meanAnomaly: '',
             argumentPerigee: '&deg;',
             period: 'mins',
             velocity: 'km/s',

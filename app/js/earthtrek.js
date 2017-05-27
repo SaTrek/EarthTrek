@@ -304,6 +304,7 @@ define([
             name: satelliteInfo.name,
             position: samples.positions,
             velocity: samples.velocities,
+            altitude: samples.heights,
             model: {
                 uri: 'models/' + satelliteInfo.id + '.glb',
                 minimumPixelSize: 512,
@@ -412,6 +413,7 @@ define([
                     var samples = earthTrekSatellite.getSamples(tle1, tle2, newStart, that.orbitDuration, that.frequency);
                     entity.position = samples.positions
                     entity.velocity = samples.velocities;
+                    entity.altitude = samples.heights;
                     SatelliteToolbarView.prototype.updateSatellite(entity, that.goToEntity, time);
                 });
                 that.lastPropagationTime = that.clock.currentTime;
