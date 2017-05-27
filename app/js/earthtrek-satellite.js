@@ -55,7 +55,7 @@ define([
             previousPositions.positions
         );
 
-        var heights = new Cesium.SampledPositionProperty();
+        var heights = new Cesium.SampledProperty(Number);
         heights.addSamples(
             previousPositions.times,
             previousPositions.heights
