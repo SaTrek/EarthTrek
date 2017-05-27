@@ -12,7 +12,7 @@ define([
     'slick',
     'moment',
     '../provider',
-    '../earthtrek-layer'
+    '../satellite-propagation'
 ], function ($,b,s,moment) {
 
     function SatellitePanelView(viewer, options) {
@@ -42,19 +42,25 @@ define([
         this.entity = entity;
         $('#satellite-name').html(entity.properties.name.getValue());
 
-        var tle = this.entity.properties.getValue().tle.join("\n");
-     //   var parsedTLE = TLE.parse( tle );
-      //  console.log(parsedTLE);
-        this.showOrbitalData(entity.properties.getValue());
-
+        this.showOrbitalData(entity);
         if (entity.properties.instruments !== undefined) {
             this.addInstruments(entity)
         }
         this.satellitePanel.show();
     }
 
-    SatellitePanelView.prototype.showOrbitalData = function (properties) {
+    SatellitePanelView.prototype.updateOrbitalData = function (entity) {
+        if ($('.satellite-data-velocity').length > 0 && entity.velocity.getValue(this.viewer.clock.currentTime) != undefined) {
+            var velocity = satellitePropagation.getVelocity(entity.velocity.getValue(this.viewer.clock.currentTime));
+            $($('.satellite-data-velocity')[0]).html(parseFloat(velocity).toFixed(3) + ' km/s');
+        }
+    }
+
+    SatellitePanelView.prototype.showOrbitalData = function (entity) {
+        var properties = entity.properties.getValue();
         var data = properties.data;
+        var velocity = satellitePropagation.getVelocity(entity.velocity.getValue(this.viewer.clock.currentTime));
+        data.velocity = velocity;
         var that = this;
 
         var descriptionContainer = '#satellite-description';
@@ -68,7 +74,9 @@ define([
             var orbitalDataKey = document.createElement('div');
             $(orbitalDataKey).append(function () {
                 var data = {
-                    launchDate: 'Launch Date'
+                    launchDate: 'Launch Date',
+                    argumentPerigee: 'Arg of Perigee',
+                    meanAnomaly: 'Mean Anomaly'
                 }
                 if (data[key] == undefined) {
                     return key;
@@ -79,6 +87,9 @@ define([
 
             var orbitalDataValue = document.createElement('div');
             var value = that.magnitudesToOrbitalData(key, value);
+            if (key == 'velocity') {
+                $(orbitalDataValue).addClass('satellite-data-velocity');
+            }
             $(orbitalDataValue).append((value != '') ? value : "-");
             $(orbitalDataValues).append(orbitalDataValue);
         });
@@ -112,10 +123,13 @@ define([
             return agenciesLogos;
         }
         var data = {
-            perigee: 'KM',
-            apogee: 'KM',
+            perigee: 'km',
+            apogee: 'km',
             inclination: '&deg;',
+            meanAnomaly: '&deg;',
+            argumentPerigee: '&deg;',
             period: 'mins',
+            velocity: 'km/s',
             mass: 'kg'
         }
         if (data[key] == undefined) {

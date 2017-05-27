@@ -15,10 +15,13 @@ define([
 
     earthTrekSatellite.calculatePosition = function(tleLine1, tleLine2, startTime, date, deltaStep, since) {
         date.setSeconds(date.getSeconds() + deltaStep)
-        var newPosition = satellitePropagation.getPosition(tleLine1, tleLine2, date);
+        var propagate = satellitePropagation.getPositionAndVelocity(tleLine1, tleLine2, date);
+        var newPosition = propagate.position;
         var samplePosition = {};
         samplePosition.time = Cesium.JulianDate.addSeconds(startTime, since, new Cesium.JulianDate());
-        samplePosition.value = Cesium.Cartesian3.fromDegrees(newPosition.longitude, newPosition.latitude, newPosition.height);
+        samplePosition.position = Cesium.Cartesian3.fromDegrees(newPosition.longitude, newPosition.latitude, newPosition.height);
+        samplePosition.height = newPosition.height;
+        samplePosition.velocity = propagate.velocity;
         return samplePosition;
     }
 
@@ -26,43 +29,65 @@ define([
         var deltaStep = duration / (frequency > 0 ? frequency : 1);
         var positions = [];
         positions.times = [];
-        positions.values = [];
+        positions.positions = [];
+        positions.heights = [];
+        positions.velocities = [];
         for (var since = 0; since <= duration; since += deltaStep) {
             var samplePosition = this.calculatePosition(tleLine1, tleLine2, startTime, date, deltaStep, since);
             positions.times.push(samplePosition.time);
-            positions.values.push(samplePosition.value);
+            positions.positions.push(samplePosition.position);
+            positions.heights.push(samplePosition.height);
+            positions.velocities.push(samplePosition.velocity);
         }
         return positions;
     }
 
     earthTrekSatellite.getSamples = function(tleLine1, tleLine2, startTime, duration, frequency) {
-        var property = new Cesium.SampledPositionProperty();
 
         var previousDate = new Date(Cesium.JulianDate.toIso8601(startTime));
         previousDate.setSeconds(previousDate.getSeconds() - duration);
         var previousTimeJulian = Cesium.JulianDate.fromDate(previousDate);
         var previousPositions  = this.calculatePositions(tleLine1, tleLine2, previousTimeJulian, duration, frequency, previousDate);
 
-        property.addSamples(
+        var positions = new Cesium.SampledPositionProperty();
+        positions.addSamples(
             previousPositions.times,
-            previousPositions.values
+            previousPositions.positions
+        );
+
+        var heights = new Cesium.SampledPositionProperty();
+        heights.addSamples(
+            previousPositions.times,
+            previousPositions.heights
+        );
+
+        var velocities = new Cesium.SampledPositionProperty();
+        velocities.addSamples(
+            previousPositions.times,
+            previousPositions.velocities
         );
 
         var currentDate = new Date(Cesium.JulianDate.toIso8601(startTime));
         var latestPositions  = this.calculatePositions(tleLine1, tleLine2, startTime, duration, frequency, currentDate);
-        property.addSamples(
+        positions.addSamples(
             latestPositions.times,
-            latestPositions.values
+            latestPositions.positions
         );
-        return property;
+        heights.addSamples(
+            latestPositions.times,
+            latestPositions.heights
+        );
+
+        velocities.addSamples(
+            latestPositions.times,
+            latestPositions.velocities
+        );
+        return {positions: positions, heights: heights, velocities: velocities};
     }
 
-    earthTrekSatellite.addSamples = function(samplePositions) {
+    earthTrekSatellite.addSamples = function(times, values) {
         var property = new Cesium.SampledPositionProperty();
-        property.addSamples(
-            samplePositions.times,
-            samplePositions.values
-        );
+        property.addSamples(times, values);
         return property;
     }
 });

@@ -73,6 +73,7 @@ define([
         }
         var fields = (!options.fields) ? config.api.tle.fields : options.fields;
         params.push("fields=" + fields);
+        params.push("extended=true");
 
         return $.ajax(config.api.url + config.api.tle.endpoint + "?" + params.join('&'));
     }
@@ -118,15 +119,16 @@ define([
                 if (satellite.color == undefined) {
                     satellite.color = '#8FBC8F';
                 }
-                satellite.data = {
-                    'mass': satellite.mass,
-                    'agency': satellite.agency,
-                    'program': satellite.program,
-                    'launchDate': satellite.launchDate
-                }
                 tles[1].data.forEach(function (satTle) {
                     if (satellite.satId == satTle.satId) {
-                        finalJson.push(_.extend(satTle, satellite));
+                        satellite.data = _.extend({
+                            'mass': satellite.mass,
+                            'agency': satellite.agency,
+                            'program': satellite.program,
+                            'launchDate': satellite.launchDate
+                        }, satTle.data);
+                        var dataMerge = _.extend(satTle, satellite);
+                        finalJson.push(dataMerge);
                     }
                 });
             });
