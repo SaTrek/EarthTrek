@@ -60,7 +60,7 @@ define([
             options.enableLighting = false;
         }
         if (!options.orbitColor) {
-            options.orbitColor = Cesium.Color.fromCssColorString('#F0F8FF');
+            options.orbitColor = '#F0F8FF';
         }
         if (!options.fadeOrbit) {
             options.fadeOrbit = true;
@@ -82,7 +82,7 @@ define([
         this.maxDistanceCamera = options.maxDistanceCamera;
         this.enableLighting = options.enableLighting;
 
-        this.orbitColor = options.orbitColor;
+        this.orbitColor = Cesium.Color.fromCssColorString(options.orbitColor);
         if (options.fadeOrbit == true) {
             this.orbitMaterial = new Cesium.StripeMaterialProperty({
                 evenColor: this.orbitColor.withAlpha(0.5),
@@ -425,6 +425,7 @@ define([
         }
         panel.show(entity);
 
+        //.setGlowPath(entity);
         var position = entity.position.getValue(viewer.clock.currentTime);
         /*
          viewer.camera.flyTo({
