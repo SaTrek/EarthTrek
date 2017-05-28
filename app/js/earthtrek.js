@@ -144,6 +144,7 @@ define([
             this.getClock().onTick.addEventListener(this.onClockUpdate, this);
             this.viewer.timeline.zoomTo(this.startTime, this.endTime);
             this.viewer.camera.frustum.far = this.maxDistanceCamera;
+            this.viewer.camera.defaultZoomAmount = 500000.0;
         }
         return this.viewer;
     }
@@ -414,7 +415,7 @@ define([
                     entity.position = samples.positions
                     entity.velocity = samples.velocities;
                     entity.altitude = samples.heights;
-                    SatelliteToolbarView.prototype.updateSatellite(entity, that.goToEntity, time);
+                    SatelliteToolbarView.prototype.updateSatellite(entity, that.goToEntity, newStart);
                 });
                 that.lastPropagationTime = that.clock.currentTime;
             };
@@ -428,20 +429,19 @@ define([
      * @param viewer
      * @returns {boolean}
      */
-    EarthTrek.prototype.goToEntity = function (entity, panel, viewer) {
-        if (entity == undefined) {
-            return false;
-        }
+    EarthTrek.prototype.goToEntity = function (entity, panel, viewer, track) {
         /**
          * @TODO FIX THIS
          */
         if (this != undefined) {
             viewer = this.viewer;
         }
+        if (entity == undefined || !entity.isAvailable(viewer.clock.currentTime)) {
+            return false;
+        }
         panel.show(entity);
 
         //.setGlowPath(entity);
-        var position = entity.position.getValue(viewer.clock.currentTime);
         /*
          viewer.camera.flyTo({
          destination : position,
@@ -449,7 +449,25 @@ define([
          viewer.trackedEntity = entity
          }
          });*/
-        viewer.trackedEntity = entity
+        if (track == null) {
+            track = false;
+        }
+        if (track == true) {
+            viewer.trackedEntity = entity
+        } else {
+            var position = entity.position.getValue(viewer.clock.currentTime);
+            if (position.z > 0) {
+                position.z = 30000000;
+            } else {
+                position.z = -30000000;
+            }
+            viewer.camera.flyTo({
+                destination : position,
+                complete: function() {
+                    //viewer.trackedEntity = entity
+                }
+            });
+        }
         viewer.selectedEntity = entity;
         return true;
     }
