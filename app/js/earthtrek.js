@@ -12,8 +12,10 @@ define([
     'earthtrek-data',
     'earthtrek-layer',
     'view/satellite-toolbar-view',
-    'view/satellite-panel-view'
-], function (ce, earthTrekSatellitez, earthTrekDatas, earthtrekLayers, SatelliteToolbarView, SatellitePanelView) {
+    'view/satellite-panel-view',
+    'view/earthtrek-tutorial-view',
+    'view/earthtrek-view'
+], function (ce, earthTrekSatellitez, earthTrekDatas, earthtrekLayers, SatelliteToolbarView, SatellitePanelView, EarthTrekTutorialView, EarthTrekView ) {
     'use strict';
 
     /**
@@ -190,6 +192,15 @@ define([
         this.lastOrbitalDataUpdated = this.clock.currentTime;
         var handler = new Cesium.ScreenSpaceEventHandler(this.viewer.scene.canvas);
 
+        if (localStorage.getItem("started") == null) {
+            var tutorialView = new EarthTrekTutorialView(this.viewer);
+            var mainView = new EarthTrekView(this.viewer);
+            mainView.welcome(tutorialView);
+
+            var evt = new Cesium.Event();
+            evt.addEventListener(tutorialView.thirdStep, tutorialView);
+        }
+
         handler.setInputAction(function (movement) {
             var pick = that.viewer.scene.pick(movement.position);
             if (pickedEntity != undefined) {
@@ -202,6 +213,7 @@ define([
                     that.setGlowPath(entity);
                     satellitePanel.show(entity);
                     pickedEntity = entity;
+                    evt.raiseEvent(entity);
                 }
             } else {
                 satellitePanel.hide();

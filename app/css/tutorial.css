@@ -1,0 +1,19 @@
+/** SATELLITE PANEL */
+#earthtrek-tutorial {
+    bottom: 10%;
+    width: 580px;
+}
+.blink {
+    animation: blink-animation 2s steps(10, start) infinite;
+    -webkit-animation: blink-animation 2s steps(10, start) infinite;
+}
+@keyframes blink-animation {
+    to {
+        background-color: #1ea9e9;
+    }
+}
+@-webkit-keyframes blink-animation {
+    to {
+        background-color: #1ea9e9;
+    }
+}
