@@ -16,6 +16,7 @@ define([
         initialTime: Date.now(),
         mainContainer: 'main-container',
         frequency: 50,
+        enableLighting: false,
         maxDistanceCamera: 10000000000 //10,000,000,000 meters
     });
     earthTrek.createViewer();
