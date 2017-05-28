@@ -169,12 +169,25 @@ define([
      */
     EarthTrek.prototype.setGlowPath = function (entity) {
         var orbitColor = Cesium.Color.fromCssColorString(entity.properties.getValue().color);
-        entity._path.width = 7;
+        entity._path.width = 5;
         entity._path.material = new Cesium.PolylineGlowMaterialProperty({
-            glowPower: 0.3,
+            glowPower: 0.4,
             color: orbitColor
         });
         return entity;
+    }
+
+    /**
+     *
+     */
+    EarthTrek.prototype.showWelcomeScreen = function () {
+     //   if (localStorage.getItem("started") == null) {
+            var tutorialView = new EarthTrekTutorialView(this.viewer);
+            var mainView = new EarthTrekView(this.viewer);
+            mainView.welcome(tutorialView);
+
+            this.evt.addEventListener(tutorialView.thirdStep, tutorialView);
+      //  }
     }
 
     /**
@@ -182,7 +195,6 @@ define([
      */
     EarthTrek.prototype.init = function () {
         var that = this;
-
         var pickedEntity;
         earthTrekLayer.setViewer(this.viewer);
 
@@ -191,15 +203,8 @@ define([
         });
         this.lastOrbitalDataUpdated = this.clock.currentTime;
         var handler = new Cesium.ScreenSpaceEventHandler(this.viewer.scene.canvas);
-
-        if (localStorage.getItem("started") == null) {
-            var tutorialView = new EarthTrekTutorialView(this.viewer);
-            var mainView = new EarthTrekView(this.viewer);
-            mainView.welcome(tutorialView);
-
-            var evt = new Cesium.Event();
-            evt.addEventListener(tutorialView.thirdStep, tutorialView);
-        }
+        this.evt = new Cesium.Event();
+        this.showWelcomeScreen();
 
         handler.setInputAction(function (movement) {
             var pick = that.viewer.scene.pick(movement.position);
@@ -213,7 +218,7 @@ define([
                     that.setGlowPath(entity);
                     satellitePanel.show(entity);
                     pickedEntity = entity;
-                    evt.raiseEvent(entity);
+                    that.evt.raiseEvent(entity);
                 }
             } else {
                 satellitePanel.hide();
@@ -341,10 +346,17 @@ define([
                 outlineColor: color,
                 outlineWidth: 3,
                 style: Cesium.LabelStyle.FILL,
-                pixelOffset: new Cesium.Cartesian2(0, -15)
+                horizontalOrigin: Cesium.HorizontalOrigin.LEFT,
+                verticalOrigin: Cesium.VerticalOrigin.BOTTOM,
+                pixelOffset: new Cesium.Cartesian2(15, 0)
                 //    heightReference: Cesium.HeightReference.RELATIVE_TO_GROUND
             },
             billboard: {
+              //  horizontalOrigin: Cesium.HorizontalOrigin.RIGHT,
+             //   verticalOrigin: Cesium.VerticalOrigin.TOP,
+                imageSubRegion: new Cesium.BoundingRectangle(0, 0, 80, 80),
+                  //  color: Cesium.Color.RED,
+             //   image: 'images/satellites/test.png',
                 image: 'images/satellites/' + satelliteInfo.image,
                 distanceDisplayCondition: new Cesium.DistanceDisplayCondition(40000.1, 150000000.0),
                 scale: 0.35,

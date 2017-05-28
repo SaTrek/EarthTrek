@@ -2,6 +2,7 @@
 #earthtrek-tutorial {
     bottom: 10%;
     width: 580px;
+    text-align: center;
 }
 .blink {
     animation: blink-animation 2s steps(10, start) infinite;
