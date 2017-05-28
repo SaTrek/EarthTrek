@@ -308,8 +308,6 @@ define([
                     maximumLevel: maximumLevel
                 });
 
-                console.log(that.viewer.scene.imageryLayers._layers[0])
-                console.log(that.viewer.scene.imageryLayers._layers[0].imageryProvider)
                 if (that.viewer.scene.imageryLayers._layers[0].format == 'image/jpeg') {
                     that.viewer.scene.imageryLayers._layers[0].show = false;
                 //    that.viewer.scene.imageryLayers.lowerToBottom(that.viewer.scene.imageryLayers._layers[0].show = false);
