@@ -15,7 +15,6 @@ define([
     'use strict';
 
     var satelliteIds = [];
-
     /**
      * Get Satellites Ids
      */
@@ -57,7 +56,7 @@ define([
 
             if (!(startDate instanceof Date)) {
                 var startDate = new Date(startDate);
-                startDate.setDate(startDate.getDate() - 1);
+                startDate.setDate(startDate.getDate() - 2);
             }
 
             if (startDate instanceof Date) {
@@ -116,6 +115,9 @@ define([
              */
             var finalJson = [];
             tles[0].data.forEach(function (satellite) {
+                if (satellite.color == undefined) {
+                    satellite.color = '#8FBC8F';
+                }
                 satellite.data = {
                     'mass': satellite.mass,
                     'agency': satellite.agency,
@@ -128,6 +130,7 @@ define([
                     }
                 });
             });
+
             callback(finalJson);
         });
     }
