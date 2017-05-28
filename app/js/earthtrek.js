@@ -59,6 +59,12 @@ define([
         if (!options.enableLighting) {
             options.enableLighting = false;
         }
+        if (!options.orbitColor) {
+            options.orbitColor = Cesium.Color.fromCssColorString('#F0F8FF');
+        }
+        if (!options.fadeOrbit) {
+            options.fadeOrbit = true;
+        }
         this.startTime = Cesium.JulianDate.fromDate(
             new Date(options.startTime));
         this.endTime = Cesium.JulianDate.fromDate(
@@ -75,6 +81,20 @@ define([
         this.multiplier = options.multiplier;
         this.maxDistanceCamera = options.maxDistanceCamera;
         this.enableLighting = options.enableLighting;
+
+        this.orbitColor = options.orbitColor;
+        if (options.fadeOrbit == true) {
+            this.orbitMaterial = new Cesium.StripeMaterialProperty({
+                evenColor: this.orbitColor.withAlpha(0.5),
+                oddColor: this.orbitColor.withAlpha(0.01),
+                repeat: 1,
+                offset: 0.2,
+                orientation: Cesium.StripeOrientation.VERTICAL
+            });
+        } else {
+            this.orbitMaterial = this.orbitColor.withAlpha(0.5);
+        }
+
         this.entities = [];
     }
 
@@ -115,7 +135,8 @@ define([
                 imageryProvider: new Cesium.createTileMapServiceImageryProvider({
                     url: 'app/assets/imagery/NaturalEarthII/',
                     maximumLevel: 5,
-                    credit: 'Imagery courtesy Natural Earth'
+                    credit: 'Imagery courtesy Natural Earth',
+                    fileExtension: 'jpg'
                 }),
             });
             this.viewer.scene.globe.tileCacheSize = 1000;
@@ -128,32 +149,83 @@ define([
     }
 
     /**
+     *
+     * @param entity
+     * @returns {*}
+     */
+    EarthTrek.prototype.setDefaultPath = function (entity) {
+        entity._path.width = 1;
+        entity._path.material = this.orbitMaterial;
+        return entity;
+    }
+
+    /**
+     *
+     * @param entity
+     * @returns {*}
+     */
+    EarthTrek.prototype.setGlowPath = function (entity) {
+        var orbitColor = Cesium.Color.fromCssColorString(entity.properties.getValue().color);
+        entity._path.width = 7;
+        entity._path.material = new Cesium.PolylineGlowMaterialProperty({
+            glowPower: 0.3,
+            color: orbitColor
+        });
+        return entity;
+    }
+
+    /**
      * Init
      */
     EarthTrek.prototype.init = function () {
         var that = this;
 
+        var pickedEntity;
         earthTrekLayer.setViewer(this.viewer);
 
         var satellitePanel = new SatellitePanelView(this.viewer, {
             container: 'satellite-panel'
         });
         var handler = new Cesium.ScreenSpaceEventHandler(this.viewer.scene.canvas);
+
         handler.setInputAction(function (movement) {
             var pick = that.viewer.scene.pick(movement.position);
+            if (pickedEntity != undefined) {
+                that.setDefaultPath(pickedEntity);
+                pickedEntity = undefined;
+            }
             if (Cesium.defined(pick)) {
                 var entity = that.viewer.entities.getById(pick.id._id);
                 if (entity != undefined) {
+                    that.setGlowPath(entity);
                     satellitePanel.show(entity);
+                    pickedEntity = entity;
                 }
             } else {
-                that.viewer.trackedEntity = undefined;
                 satellitePanel.hide();
+                that.viewer.trackedEntity = undefined;
             }
         }, Cesium.ScreenSpaceEventType.LEFT_CLICK);
 
-        this.satellitePanel = satellitePanel;
+        handler.setInputAction(function (movement) {
+            var pick = that.viewer.scene.pick(movement.endPosition);
+            if (Cesium.defined(pick)) {
+                var entity = that.viewer.entities.getById(pick.id._id);
+                if (entity != undefined) {
+                    that.mouseOverEntity = entity;
+                    that.setGlowPath(entity);
+                }
+            } else if (that.mouseOverEntity != null) {
+                that.viewer.entities.values.forEach(function (entity) {
+                    if (pickedEntity != entity) {
+                        that.setDefaultPath(entity);
+                    }
+                });
+                that.mouseOverEntity = null;
+            }
+        }, Cesium.ScreenSpaceEventType.MOUSE_MOVE);
 
+        this.satellitePanel = satellitePanel;
         this.satelliteToolbar = new SatelliteToolbarView(this.viewer, 'left-toolbar', satellitePanel);
 
         earthTrekData.getFullData({startDate: that.isoDate(that.getClock().currentTime.toString())}, function (satellites) {
@@ -205,19 +277,13 @@ define([
      */
     EarthTrek.prototype.createEntity = function (satelliteInfo, startTime) {
 
+        var color, orbitMaterial;
         //var position = Cesium.Cartesian3.fromDegrees(307.56125, -47.846016, height);
         //  var heading = Cesium.Math.toRadians(135);
         var pitch = 0;
         var roll = 0;
         //  var hpr = new Cesium.HeadingPitchRoll(heading, pitch, roll);
         // var orientation = Cesium.Transforms.headingPitchRollQuaternion(position, hpr);
-
-        var color = Cesium.Color.fromRandom({
-            minimumRed: 0.35,
-            minimumGreen: 0.15,
-            minimumBlue: 0.45,
-            alpha: 1.0
-        });
 
         if (satelliteInfo.tle == undefined) {
             return false;
@@ -229,7 +295,6 @@ define([
             id: satelliteInfo.satId,
             name: satelliteInfo.name,
             position: positions,
-            orientation: new Cesium.VelocityOrientationProperty(positions),
             model: {
                 uri: 'models/' + satelliteInfo.id + '.glb',
                 minimumPixelSize: 512,
@@ -238,12 +303,9 @@ define([
             },
             path: {
                 resolution: 5,
-                material: new Cesium.PolylineGlowMaterialProperty({
-                    glowPower: 0.2,
-                    color: color
-                }),
-                width: 7,
-                trailTime: this.orbitDuration,
+                material: this.orbitMaterial,
+                width: 1,
+                trailTime: this.orbitDuration / 2,
                 leadTime: 0
             },
             label: {
@@ -255,7 +317,7 @@ define([
                 // eyeOffset: new Cesium.Cartesian3(0.0, 300.0, 200.0),
                 outlineColor: color,
                 outlineWidth: 3,
-                style: Cesium.LabelStyle.FILL_AND_OUTLINE,
+                style: Cesium.LabelStyle.FILL,
                 pixelOffset: new Cesium.Cartesian2(0, -15)
                 //    heightReference: Cesium.HeightReference.RELATIVE_TO_GROUND
             },
