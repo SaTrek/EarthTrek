@@ -16,11 +16,19 @@ define([
      * @constructor
      */
     function EarthTrekTutorialView(viewer, options) {
+        var that = this;
         this.viewer = viewer;
         this.tutorialContainer = '#earthtrek-tutorial';
         this.tutorialTextContainer = '#earthtrek-tutorial-text';
         this.runningTutorial = false;
+        this.tutorialStep = false;
 
+        $('#earthtrek-tutorial-skip').click(function() {
+            that[that.nextTutorialStep]();
+        });
+        $('#earthtrek-tutorial-finish').click(function() {
+            $(that.tutorialContainer).hide();
+        });
     }
 
     /**
@@ -28,10 +36,15 @@ define([
      */
     EarthTrekTutorialView.prototype.firstStep = function () {
         this.runningTutorial = true;
+        this.tutorialStep = "firstStep";
+        this.nextTutorialStep = "secondStep";
         var that = this;
         var handler = new Cesium.ScreenSpaceEventHandler(this.viewer.scene.canvas);
 
         handler.setInputAction(function (movement) {
+            if (that.tutorialStep != "firstStep") {
+                return false;
+            }
             var globe = that.viewer.scene.globe;
             var ray = that.viewer.camera.getPickRay(movement.position);
             var intersection = globe.pick(ray, that.viewer.scene);
@@ -42,13 +55,6 @@ define([
         }, Cesium.ScreenSpaceEventType.LEFT_UP);
 
         $(this.tutorialContainer).show();
-        $('#earthtrek-tutorial-skip').click(function() {
-            handler.removeInputAction(Cesium.ScreenSpaceEventType.LEFT_UP);
-            that.secondStep();
-        });
-        $('#earthtrek-tutorial-finish').click(function() {
-            $(that.tutorialContainer).hide();
-        });
 
         $(this.tutorialTextContainer).html('Este es nuestro hogar: la Tierra. Pulsando y manteniendo el clic izquierdo del mouse sobre el globo, usted podra rotarlo. Una vez que usted termine de rotar la Tierra, suelte el boton para continuar &iexcl;Intentelo!');
     }
@@ -57,6 +63,8 @@ define([
      *
      */
     EarthTrekTutorialView.prototype.secondStep = function () {
+        this.tutorialStep = "secondStep";
+        this.nextTutorialStep = "thirdStep";
         $(this.tutorialTextContainer).html('&iexcl;Perfecto! La Tierra tiene un radio aproximado de 6378 km y posee casi 1500 satelites en orbita. Generalmente se clasifican por su altura: Low Earh Orbit (LEO), Medium Earth Orbit (MEO) y Geostationary Orbit (GEO). Ahora: prueba hacer clic en un satelite.');
     }
 
@@ -66,13 +74,22 @@ define([
      */
     EarthTrekTutorialView.prototype.thirdStep = function (entity) {
         var that = this;
+        this.tutorialStep = "thirdStep";
+        this.nextTutorialStep = "fourthStep";
         if (!that.runningTutorial) {
             return false;
         }
 
+        if (entity == undefined) {
+            entity = that.viewer.entities.values[0];
+        }
+
         $('.satellite-instrument button').addClass('blink');
         $('.satellite-instrument button').click(function() {
-            that.fourthStep(entity);
+            if (that.tutorialStep != "thirdStep") {
+                return false;
+            }
+            that.fourthStep();
         });
         $(this.tutorialTextContainer).html("En este momento te encuentras siguiendo la orbita de " + entity.properties.getValue().name + ", uno de los satelites del programa " + entity.properties.getValue().data.program + " de " + entity.properties.getValue().data.agency + ". Son m&aacute;s de 25 satelites que orbitan o han orbitado la Tierra, recolectando datos con sus instrumentos.\n Ahora: selecciona uno de los instrumentos que se encuentran en el panel derecho.");
     }
@@ -81,7 +98,8 @@ define([
      *
      * @param entity
      */
-    EarthTrekTutorialView.prototype.fourthStep = function (entity) {
+    EarthTrekTutorialView.prototype.fourthStep = function () {
+        this.tutorialStep = "fourthStep";
         $('.satellite-instrument button').removeClass('blink');
         $('.satellite-instrument button').click(function() {
 
