@@ -477,7 +477,7 @@ define([
             track = false;
         }
         if (track == true) {
-            viewer.trackedEntity = entity
+            viewer.trackedEntity = entity;
         } else {
             var position = entity.position.getValue(viewer.clock.currentTime);
             if (position.z > 0) {
