@@ -1,8 +1,3 @@
-// For any third party dependencies, like jQuery, place them in the lib folder.
-
-// Configure loading modules from the lib directory,
-// except for 'app' ones, which are in a sibling
-// directory.
 requirejs.config({
     baseUrl: 'js',
     paths: {
@@ -14,10 +9,7 @@ requirejs.config({
         bootstrap: '../node_modules/bootstrap/dist/js/bootstrap.min',
         slick: '../node_modules/slick-carousel/slick/slick.min',
         tle: '../node_modules/tle/lib/tle',
-        moment: '../node_modules/moment/min/moment-with-locales.min',
+        moment: '../node_modules/moment/min/moment-with-locales.min'
     }
-});
-
-// Start loading the main app file. Put all of
-// your application logic in there.
+})
 requirejs(['app/main']);
