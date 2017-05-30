@@ -1,15 +1,15 @@
 var HtmlPlugin = require("html-webpack-plugin");
 
 module.exports = {
-    entry: "./src/main.js",
+    entry: "./app/main.js",
     output: {
-        path: "./public",
+        path: __dirname + "/../public",
         filename: "bundle.js",
         sourcePrefix: ""
     },
     plugins: [
         new HtmlPlugin({
-            template: "./src/index.html",
+            template: "./app/index.html",
             inject: "body"
         })
     ],
@@ -19,8 +19,16 @@ module.exports = {
     module: {
         unknownContextCritical: false,
         loaders: [
-            { test: /\.css$/, loader: "style!css" },
-            { test: /\.(png|gif|jpg|jpeg)$/,  loader: "file-loader" },
+            {
+                test: /\.css$/,
+                use: [
+                    {loader: "css-loader", options: { modules: true }  }
+                ]
+            },
+            {
+                test: /\.(png|gif|jpg|jpeg)$/,
+                loader: 'file-loader'
+            },
             { test: /Cesium\.js$/, loader: "script" }
         ]
     }
