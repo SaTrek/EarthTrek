@@ -7,11 +7,17 @@
  */
 var assert = require('assert');
 var should = require('should');
-var Cesium = require('cesium');
-require("amd-loader");
+//require("amd-loader");
+var requirejs = require('requirejs');
+requirejs.config({
+    paths: {
+        cesium: '../node_modules/cesium/Build/Cesium/Cesium',
+        satellitejs: '../node_modules/satellite.js/dist/satellite.min'
+    },
+    nodeRequire: require
+});
 
-define(['../js/earthtrek-satellite'], function(earthTrekSatellite) {
-    console.log('FUCK', earthTrekSatellite)
+define(['../app/js/earthtrek-satellite'], function(earthTrekSatellite) {
     describe('EarthTrek Satellite', function(){
         it('Get Sample Positions by 1000 seconds trajectory with 10 intervals', function(done) {
 

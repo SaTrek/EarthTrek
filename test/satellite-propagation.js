@@ -7,7 +7,15 @@
  */
 var assert = require('assert');
 var should = require('should');
-var satellitePropagation = require('../js/satellite-propagation');
+var requirejs = require('requirejs');
+requirejs.config({
+    baseUrl: '../app/js',
+    paths: {
+        satellitejs: '../node_modules/satellite.js/dist/satellite.min'
+    },
+    nodeRequire: require
+});
+
 
 describe('Propagate Satellite', function(){
     it('get satellite position by two different dates using one TLE', function(done) {
