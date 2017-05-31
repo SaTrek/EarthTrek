@@ -56,7 +56,7 @@ define([
 
             if (!(startDate instanceof Date)) {
                 var startDate = new Date(startDate);
-                startDate.setDate(startDate.getDate() - 2);
+                startDate.setDate(startDate.getDate());
             }
 
             if (startDate instanceof Date) {
