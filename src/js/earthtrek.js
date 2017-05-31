@@ -12,8 +12,10 @@ define([
     'earthtrek-data',
     'earthtrek-layer',
     'view/satellite-toolbar-view',
-    'view/satellite-panel-view'
-], function (ce, earthTrekSatellitez, earthTrekDatas, earthtrekLayers, SatelliteToolbarView, SatellitePanelView) {
+    'view/satellite-panel-view',
+    'view/earthtrek-tutorial-view',
+    'view/earthtrek-view'
+], function (ce, earthTrekSatellitez, earthTrekDatas, earthtrekLayers, SatelliteToolbarView, SatellitePanelView, EarthTrekTutorialView, EarthTrekView ) {
     'use strict';
 
     /**
@@ -21,7 +23,7 @@ define([
      * @constructor
      */
     function EarthTrek(options) {
-        options = options || {};
+        var options = options || {};
         this.options = options;
 
         if (!options.mainContainer) {
@@ -60,7 +62,7 @@ define([
             options.enableLighting = false;
         }
         if (!options.orbitColor) {
-            options.orbitColor = Cesium.Color.fromCssColorString('#F0F8FF');
+            options.orbitColor = '#F0F8FF';
         }
         if (!options.fadeOrbit) {
             options.fadeOrbit = true;
@@ -82,7 +84,7 @@ define([
         this.maxDistanceCamera = options.maxDistanceCamera;
         this.enableLighting = options.enableLighting;
 
-        this.orbitColor = options.orbitColor;
+        this.orbitColor = Cesium.Color.fromCssColorString(options.orbitColor);
         if (options.fadeOrbit == true) {
             this.orbitMaterial = new Cesium.StripeMaterialProperty({
                 evenColor: this.orbitColor.withAlpha(0.5),
@@ -133,7 +135,7 @@ define([
                 terrainExaggeration: 10,
                 // shadows: Cesium.ShadowMode.ENABLED,
                 imageryProvider: new Cesium.createTileMapServiceImageryProvider({
-                    url: 'app/assets/imagery/NaturalEarthII/',
+                    url: 'public/assets/imagery/NaturalEarthII/',
                     maximumLevel: 5,
                     credit: 'Imagery courtesy Natural Earth',
                     fileExtension: 'jpg'
@@ -144,6 +146,7 @@ define([
             this.getClock().onTick.addEventListener(this.onClockUpdate, this);
             this.viewer.timeline.zoomTo(this.startTime, this.endTime);
             this.viewer.camera.frustum.far = this.maxDistanceCamera;
+            this.viewer.camera.defaultZoomAmount = 500000.0;
         }
         return this.viewer;
     }
@@ -166,12 +169,25 @@ define([
      */
     EarthTrek.prototype.setGlowPath = function (entity) {
         var orbitColor = Cesium.Color.fromCssColorString(entity.properties.getValue().color);
-        entity._path.width = 7;
+        entity._path.width = 5;
         entity._path.material = new Cesium.PolylineGlowMaterialProperty({
-            glowPower: 0.3,
+            glowPower: 0.4,
             color: orbitColor
         });
         return entity;
+    }
+
+    /**
+     *
+     */
+    EarthTrek.prototype.showWelcomeScreen = function () {
+        var mainView = new EarthTrekView(this.viewer, {showTutorial: false});
+        if (localStorage.getItem("started") == null) {
+            var tutorialView = new EarthTrekTutorialView(this.viewer);
+            mainView.welcome(tutorialView);
+
+            this.evt.addEventListener(tutorialView.thirdStep, tutorialView);
+        }
     }
 
     /**
@@ -179,14 +195,16 @@ define([
      */
     EarthTrek.prototype.init = function () {
         var that = this;
-
         var pickedEntity;
         earthTrekLayer.setViewer(this.viewer);
 
         var satellitePanel = new SatellitePanelView(this.viewer, {
             container: 'satellite-panel'
         });
+        this.lastOrbitalDataUpdated = this.clock.currentTime;
         var handler = new Cesium.ScreenSpaceEventHandler(this.viewer.scene.canvas);
+        this.evt = new Cesium.Event();
+        this.showWelcomeScreen();
 
         handler.setInputAction(function (movement) {
             var pick = that.viewer.scene.pick(movement.position);
@@ -200,6 +218,7 @@ define([
                     that.setGlowPath(entity);
                     satellitePanel.show(entity);
                     pickedEntity = entity;
+                    that.evt.raiseEvent(entity);
                 }
             } else {
                 satellitePanel.hide();
@@ -228,7 +247,7 @@ define([
         this.satellitePanel = satellitePanel;
         this.satelliteToolbar = new SatelliteToolbarView(this.viewer, 'left-toolbar', satellitePanel);
 
-        earthTrekData.getFullData({startDate: that.isoDate(that.getClock().currentTime.toString())}, function (satellites) {
+        earthTrekData.getFullData({}, function (satellites) {
             satellites.forEach(function (satelliteData) {
                 var entity = that.viewer.entities.getById(satelliteData.satId);
                 if (entity == null && satelliteData.status == 'ACTIVE') {
@@ -267,6 +286,12 @@ define([
             //  updateLayers();
         }
         this.updateEntities(time);
+
+        if (this.viewer.selectedEntity != null && (Cesium.JulianDate.secondsDifference(this.clock.currentTime, this.lastOrbitalDataUpdated) > 10 ||
+            Cesium.JulianDate.secondsDifference(this.lastOrbitalDataUpdated, this.clock.currentTime) > 10)) {
+            this.satellitePanel.updateOrbitalData(this.viewer.selectedEntity);
+            this.lastOrbitalDataUpdated = this.clock.currentTime;
+        }
     };
 
     /**
@@ -277,24 +302,20 @@ define([
      */
     EarthTrek.prototype.createEntity = function (satelliteInfo, startTime) {
 
-        var color, orbitMaterial;
-        //var position = Cesium.Cartesian3.fromDegrees(307.56125, -47.846016, height);
-        //  var heading = Cesium.Math.toRadians(135);
-        var pitch = 0;
-        var roll = 0;
-        //  var hpr = new Cesium.HeadingPitchRoll(heading, pitch, roll);
-        // var orientation = Cesium.Transforms.headingPitchRollQuaternion(position, hpr);
-
+        var color;
         if (satelliteInfo.tle == undefined) {
             return false;
         }
 
-        var positions = earthTrekSatellite.getSamples(satelliteInfo.tle[0], satelliteInfo.tle[1], startTime, this.orbitDuration, this.frequency);
+        var samples = earthTrekSatellite.getSamples(satelliteInfo.tle[0], satelliteInfo.tle[1], startTime, this.orbitDuration, this.frequency);
+
 
         var entity = this.viewer.entities.add({
             id: satelliteInfo.satId,
             name: satelliteInfo.name,
-            position: positions,
+            position: samples.positions,
+            velocity: samples.velocities,
+            altitude: samples.heights,
             model: {
                 uri: 'models/' + satelliteInfo.id + '.glb',
                 minimumPixelSize: 512,
@@ -318,13 +339,17 @@ define([
                 outlineColor: color,
                 outlineWidth: 3,
                 style: Cesium.LabelStyle.FILL,
-                pixelOffset: new Cesium.Cartesian2(0, -15)
-                //    heightReference: Cesium.HeightReference.RELATIVE_TO_GROUND
+                horizontalOrigin: Cesium.HorizontalOrigin.LEFT,
+                verticalOrigin: Cesium.VerticalOrigin.BOTTOM,
+                pixelOffset: new Cesium.Cartesian2(15, 0)
             },
             billboard: {
+                imageSubRegion: new Cesium.BoundingRectangle(0, 0, 80, 80),
+             //   image: 'images/satellites/test.png',
                 image: 'images/satellites/' + satelliteInfo.image,
                 distanceDisplayCondition: new Cesium.DistanceDisplayCondition(40000.1, 150000000.0),
-                scale: 0.35
+                scale: 0.35,
+                alignedAxis : new Cesium.VelocityVectorProperty(samples.positions, true)
             },
             properties: satelliteInfo
         });
@@ -386,6 +411,7 @@ define([
                     var entity = that.viewer.entities.getById(tle.satId);
                     if (entity != null) {
                         entity.properties.tle.setValue(tle.tle);
+                        entity.properties.data.setValue(_.extend(entity.properties.data.getValue(), tle.data));
                     }
                 });
                 return new Promise(propagation);
@@ -398,8 +424,11 @@ define([
                     var newStart = that.clock.currentTime;
                     var tle1 = entity.properties.getValue(newStart).tle[0];
                     var tle2 = entity.properties.getValue(newStart).tle[1];
-                    entity.position = earthTrekSatellite.getSamples(tle1, tle2, newStart, that.orbitDuration, that.frequency);
-                    SatelliteToolbarView.prototype.updateSatellite(entity, that.goToEntity, time);
+                    var samples = earthTrekSatellite.getSamples(tle1, tle2, newStart, that.orbitDuration, that.frequency);
+                    entity.position = samples.positions
+                    entity.velocity = samples.velocities;
+                    entity.altitude = samples.heights;
+                    SatelliteToolbarView.prototype.updateSatellite(entity, that.goToEntity, newStart);
                 });
                 that.lastPropagationTime = that.clock.currentTime;
             };
@@ -413,19 +442,19 @@ define([
      * @param viewer
      * @returns {boolean}
      */
-    EarthTrek.prototype.goToEntity = function (entity, panel, viewer) {
-        if (entity == undefined) {
-            return false;
-        }
+    EarthTrek.prototype.goToEntity = function (entity, panel, viewer, track) {
         /**
          * @TODO FIX THIS
          */
         if (this != undefined) {
             viewer = this.viewer;
         }
+        if (entity == undefined || !entity.isAvailable(viewer.clock.currentTime)) {
+            return false;
+        }
         panel.show(entity);
 
-        var position = entity.position.getValue(viewer.clock.currentTime);
+        //.setGlowPath(entity);
         /*
          viewer.camera.flyTo({
          destination : position,
@@ -433,7 +462,25 @@ define([
          viewer.trackedEntity = entity
          }
          });*/
-        viewer.trackedEntity = entity
+        if (track == null) {
+            track = false;
+        }
+        if (track == true) {
+            viewer.trackedEntity = entity;
+        } else {
+            var position = entity.position.getValue(viewer.clock.currentTime);
+            if (position.z > 0) {
+                position.z = 30000000;
+            } else {
+                position.z = -30000000;
+            }
+            viewer.camera.flyTo({
+                destination : position,
+                complete: function() {
+                    //viewer.trackedEntity = entity
+                }
+            });
+        }
         viewer.selectedEntity = entity;
         return true;
     }
