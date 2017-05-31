@@ -23,7 +23,7 @@ define([
      * @constructor
      */
     function EarthTrek(options) {
-        options = options || {};
+        var options = options || {};
         this.options = options;
 
         if (!options.mainContainer) {
@@ -135,7 +135,7 @@ define([
                 terrainExaggeration: 10,
                 // shadows: Cesium.ShadowMode.ENABLED,
                 imageryProvider: new Cesium.createTileMapServiceImageryProvider({
-                    url: 'app/assets/imagery/NaturalEarthII/',
+                    url: 'public/assets/imagery/NaturalEarthII/',
                     maximumLevel: 5,
                     credit: 'Imagery courtesy Natural Earth',
                     fileExtension: 'jpg'
@@ -181,13 +181,13 @@ define([
      *
      */
     EarthTrek.prototype.showWelcomeScreen = function () {
-     //   if (localStorage.getItem("started") == null) {
+        var mainView = new EarthTrekView(this.viewer, {showTutorial: false});
+        if (localStorage.getItem("started") == null) {
             var tutorialView = new EarthTrekTutorialView(this.viewer);
-            var mainView = new EarthTrekView(this.viewer);
             mainView.welcome(tutorialView);
 
             this.evt.addEventListener(tutorialView.thirdStep, tutorialView);
-      //  }
+        }
     }
 
     /**
@@ -247,7 +247,7 @@ define([
         this.satellitePanel = satellitePanel;
         this.satelliteToolbar = new SatelliteToolbarView(this.viewer, 'left-toolbar', satellitePanel);
 
-        earthTrekData.getFullData({startDate: that.isoDate(that.getClock().currentTime.toString())}, function (satellites) {
+        earthTrekData.getFullData({}, function (satellites) {
             satellites.forEach(function (satelliteData) {
                 var entity = that.viewer.entities.getById(satelliteData.satId);
                 if (entity == null && satelliteData.status == 'ACTIVE') {
@@ -303,13 +303,6 @@ define([
     EarthTrek.prototype.createEntity = function (satelliteInfo, startTime) {
 
         var color;
-        //var position = Cesium.Cartesian3.fromDegrees(307.56125, -47.846016, height);
-        //  var heading = Cesium.Math.toRadians(135);
-        var pitch = 0;
-        var roll = 0;
-        //  var hpr = new Cesium.HeadingPitchRoll(heading, pitch, roll);
-        // var orientation = Cesium.Transforms.headingPitchRollQuaternion(position, hpr);
-
         if (satelliteInfo.tle == undefined) {
             return false;
         }
@@ -349,13 +342,9 @@ define([
                 horizontalOrigin: Cesium.HorizontalOrigin.LEFT,
                 verticalOrigin: Cesium.VerticalOrigin.BOTTOM,
                 pixelOffset: new Cesium.Cartesian2(15, 0)
-                //    heightReference: Cesium.HeightReference.RELATIVE_TO_GROUND
             },
             billboard: {
-              //  horizontalOrigin: Cesium.HorizontalOrigin.RIGHT,
-             //   verticalOrigin: Cesium.VerticalOrigin.TOP,
                 imageSubRegion: new Cesium.BoundingRectangle(0, 0, 80, 80),
-                  //  color: Cesium.Color.RED,
              //   image: 'images/satellites/test.png',
                 image: 'images/satellites/' + satelliteInfo.image,
                 distanceDisplayCondition: new Cesium.DistanceDisplayCondition(40000.1, 150000000.0),

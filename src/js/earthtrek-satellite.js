@@ -9,8 +9,8 @@
 var earthTrekSatellite = earthTrekSatellite || {};
 
 define([
-    'cesium', '../js/satellite-propagation'
-], function(cesiuma, satellitePropagationa) {
+    'cesium', 'satellite-propagation'
+], function() {
 
 
     earthTrekSatellite.calculatePosition = function(tleLine1, tleLine2, startTime, date, deltaStep, since) {
