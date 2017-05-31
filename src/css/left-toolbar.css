@@ -3,7 +3,7 @@
     left: 2%;
     width: 600px;
 }
-#left-toolbar img {
+#satellite-toolbar-container img {
     height: 80px;
 }
 #left-toolbar .slick-slide {
@@ -26,7 +26,6 @@
     left: 2%;
     width: 600px;
 }
-
 .satellite-disabled img {
     -webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
     filter: grayscale(100%);
@@ -43,4 +42,36 @@
     height: 23px;
     background-image: url("../images/mini-search.png");
     background-repeat: no-repeat;
+}
+/**POPOVER*/
+.satellite-popover {
+    text-transform: uppercase;
+    font-family: 'Myriad Pro Bold Condensed';
+}
+.popover-title img {
+    width: 34px;
+    heighti: 32px !important;
+}
+.satellite-popover .satellite-description{
+    text-transform: none;
+    font-family: 'Myriad Pro Condensed';
+}
+.popover {
+    width: 200px;
+    font-family: 'Myriad Pro Condensed';
+}
+button.satellite-zoom {
+    width: 34px;
+    height: 32px;
+    background-image: url("../images/zoom.png");
+}
+button.satellite-show {
+    width: 34px;
+    height: 32px;
+    background-image: url("../images/view.png");
+}
+button.satellite-hide {
+    width: 34px;
+    height: 32px;
+    background-image: url("../images/hide.png");
 }

@@ -4,7 +4,7 @@
     position: absolute;
     top: 10%;
     right: 2%;
-    width: 470px;
+    width: 480px;
     color: white;
     background-color: rgba(18, 20, 24, 0.5);
     border: 1px solid rgba(255, 255, 255, 0.5);
@@ -20,6 +20,7 @@
 #satellite-panel .text-right {
     padding-right: 5px;
     font-size: 1rem;
+    float: left;
 }
 #satellite-panel span {
     font-size: 1rem;
@@ -60,6 +61,13 @@
 }
 #satellite-info {
     font-size: 1.3rem;
+    padding-right: 0;
+    position: relative;
+    min-height: 1px;
+    padding-right: 15px;
+    padding-left: 15px;
+    max-width: 60%;
+    float: left;
 }
 #satellite-info .orbital-data-keys {
     margin-right: 5px;
@@ -105,8 +113,9 @@
     padding: 5px;
     padding-right: 100px;
 }
-.instrument-layer button {
-   /** height: 40px;*/
+.instrument-layer .fixed-buttons button {
+    width: 34px !important;
+    height: 32px !important;
 }
 .instrument-layer button.view {
     right: 45px !important;
