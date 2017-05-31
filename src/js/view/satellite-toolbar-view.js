@@ -5,7 +5,6 @@
  * @author Alejandro Sanchez <alejandro.sanchez.trek@gmail.com>
  * @description EarthTrek - NASA Space Apps 2017 13 MAY 2017.
  */
-//require("amd-loader");
 define([
     'moment',
     'bootstrap',
@@ -13,6 +12,13 @@ define([
     'earthtrek-toolbar'
 ], function(moment) {
 
+    /**
+     * SatelliteToolbarView constructor
+     * @param viewer
+     * @param toolbarContainerId
+     * @param satellitePanel
+     * @constructor
+     */
     function SatelliteToolbarView (viewer, toolbarContainerId, satellitePanel) {
         this.viewer = viewer;
         this.mainContainerId = this.viewer.container.id;
@@ -21,14 +27,26 @@ define([
         this.satellitePanel = satellitePanel;
     }
 
+    /**
+     * Update satellite availability
+     * @param entity
+     * @param goToCallback
+     * @param time
+     */
     SatelliteToolbarView.prototype.updateSatellite = function (entity, goToCallback, time) {
-         if (entity.isAvailable(time)) {
-             $("." + entity.id + "-toolbar").removeClass("satellite-disabled");
-         } else {
-             $("." + entity.id + "-toolbar").addClass("satellite-disabled");
-         }
+        if (entity.isAvailable(time)) {
+            $("." + entity.id + "-toolbar").removeClass("satellite-disabled");
+        } else {
+            $("." + entity.id + "-toolbar").addClass("satellite-disabled");
+        }
     }
 
+    /**
+     * Add satellite to toolbar
+     * @param satelliteData
+     * @param goToCallback
+     * @returns {Element}
+     */
     SatelliteToolbarView.prototype.addSatellite = function (satelliteData, goToCallback) {
         var that = this;
         var satelliteContainer = document.createElement('div');
@@ -81,20 +99,38 @@ define([
         return satelliteContainer;
     }
 
+    /**
+     * Get Popover Title
+     * @param satelliteData
+     * @param goToCallback
+     * @param satelliteContainer
+     * @returns {*|jQuery|HTMLElement}
+     */
     SatelliteToolbarView.prototype.getPopoverTitle = function (satelliteData, goToCallback, satelliteContainer) {
         var that = this;
         var satelliteTitlePopoverContainer = document.createElement('div');
         var satelliteTitle = document.createElement('div');
         $(satelliteTitle).html(satelliteData.name);
         $(satelliteTitlePopoverContainer).append(satelliteTitle);
+        return $(satelliteTitlePopoverContainer);
+    }
 
+    /**
+     * Get Popover Content
+     * @param satelliteData
+     * @param goToCallback
+     * @param satelliteContainer
+     * @returns {Element}
+     */
+    SatelliteToolbarView.prototype.getPopoverContent = function (satelliteData, goToCallback, satelliteContainer) {
+        var that = this;
+        var satellitePopoverContainer = document.createElement('div');
         var satelliteOptions = document.createElement('div');
 
+        var entity = that.viewer.entities.getById(satelliteData.satId);
         var zoomOption = document.createElement('button');
         $(zoomOption).addClass('satellite-zoom');
         $(zoomOption).click(function() {
-            console.log("zoom")
-            var entity = that.viewer.entities.getById(satelliteData.satId);
             if (entity && entity.isAvailable(that.viewer.clock.currentTime)) {
                 var selected = goToCallback(entity, that.satellitePanel, that.viewer, true);
                 if (selected == true) {
@@ -105,19 +141,25 @@ define([
         });
         $(satelliteOptions).append(zoomOption);
 
-        var hideOption = document.createElement('img');
-        $(hideOption).attr('src', "images/hide.png");
-        $(hideOption).click(function() {
 
+        var hideOption = document.createElement('button');
+        $(hideOption).addClass(entity.isShowing ? 'satellite-hide': 'satellite-show');
+        $(hideOption).click(function() {
+            if (entity && entity.isAvailable(that.viewer.clock.currentTime)) {
+                entity.show = !entity.show;
+                if ($(hideOption).hasClass('satellite-hide')) {
+                    $(hideOption).removeClass('satellite-hide');
+                }
+                if ($(hideOption).hasClass('satellite-show')) {
+                    $(hideOption).removeClass('satellite-show');
+                }
+                $(hideOption).addClass(entity.isShowing ? 'satellite-hide': 'satellite-show');
+            }
         });
         $(satelliteOptions).append(hideOption);
-        $(satelliteTitlePopoverContainer).append(satelliteOptions);
-        return $(satelliteTitlePopoverContainer);
-    }
 
-    SatelliteToolbarView.prototype.getPopoverContent = function (satelliteData, goToCallback, satelliteContainer) {
-        var that = this;
-        var satellitePopoverContainer = document.createElement('div');
+        $(satellitePopoverContainer).append(satelliteOptions);
+
         var launchDate = document.createElement('div');
         $(launchDate).html("Launch date");
         $(satellitePopoverContainer).append(launchDate);
@@ -162,6 +204,9 @@ define([
 
     }
 
+    /**
+     *
+     */
     SatelliteToolbarView.prototype.render = function () {
         var that = this;
         this.toolbarContainer = earthTrekToolbar.create(this.toolbarContainerId, function(toolbarContainer) {
