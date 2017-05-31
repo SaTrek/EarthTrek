@@ -65,3 +65,13 @@ button.satellite-zoom {
     height: 32px;
     background-image: url("../images/zoom.png");
 }
+button.satellite-show {
+    width: 34px;
+    height: 32px;
+    background-image: url("../images/view.png");
+}
+button.satellite-hide {
+    width: 34px;
+    height: 32px;
+    background-image: url("../images/hide.png");
+}

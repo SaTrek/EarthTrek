@@ -88,6 +88,7 @@ html, body, #main-container {
     text-align: center;
     top: 30%;
     padding-bottom: 10px;
+    max-height: 800px;
 }
 .earthtrek-welcome-title {
     font-family: 'Myriad Pro Bold Condensed';
