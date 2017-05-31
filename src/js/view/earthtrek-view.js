@@ -22,6 +22,13 @@ define([
         var that = this;
         $(this.welcomeContainer).show();
 
+        $(window).click(function() {
+            if ($(that.welcomeContainer).is(':visible')) {
+                $(that.welcomeContainer).remove();
+                localStorage.setItem('started', true);
+            }
+        });
+
         var startButton = $('#earthtrek-welcome-start');
         $(startButton).click(function() {
             $(that.welcomeContainer).remove();
