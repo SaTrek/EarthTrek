@@ -50,16 +50,7 @@ That's it!
 
 ![TERRA](https://scontent-gru2-1.xx.fbcdn.net/v/t31.0-0/p235x350/18739306_1736311510001386_408202630302674080_o.png?oh=8826445f9a93105e1b11ba5f1d5467a9&oe=59B432D8)
 
-
-
-
-![Mato Grosso deforestation](http://i.imgur.com/01GK2is.jpg)
-Once a satellite is selected, two satellite images of the Earth can be compared.
-By determining a geographic location through the geolocation finder and selecting a date before the current one, the screen will be divided in two, being possible to observe the differences between the state of the zone in those moments. For example using MODIS, Terra´s instrument, deforestation or fire outbreaks can be compared.
-
 <br/>
-
-
 **RESOURCES**
 
 * SatelliteJS (Satellite propagation): https://github.com/shashwatak/satellite-js
@@ -67,3 +58,11 @@ By determining a geographic location through the geolocation finder and selectin
 * GIB (Imagery) https://earthdata.nasa.gov/about/science-system-de...
 * Celestrak (TLE & orbital Data): http://www.celestrak.com/NORAD/elements/science.txt
 * NASA 3D Resources: https://nasa3d.arc.nasa.gov/
+
+<br/>
+
+![Mato Grosso deforestation](http://i.imgur.com/01GK2is.jpg)
+
+
+
+
