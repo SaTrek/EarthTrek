@@ -60,18 +60,18 @@
     width: 200px;
     font-family: 'Myriad Pro Condensed';
 }
-button.satellite-zoom {
+.satellite-options button {
     width: 34px;
     height: 32px;
+    margin-right: 5px;
+}
+
+button.satellite-zoom {
     background-image: url("../images/zoom.png");
 }
 button.satellite-show {
-    width: 34px;
-    height: 32px;
     background-image: url("../images/view.png");
 }
 button.satellite-hide {
-    width: 34px;
-    height: 32px;
     background-image: url("../images/hide.png");
 }
