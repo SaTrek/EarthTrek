@@ -5,12 +5,65 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
 
-    <title>EarthTrek - ALPHA v0.175.30</title>
+    <title>EarthTrek - ALPHA v0.175.27</title>
 
 </head>
     <body>
 
     <div id="main-container">
+
+        <div id="compare-modal" style="display: none;">
+            <legend>Select a date to compare</legend>
+            <input id="compare-date" class="datepicker" data-date-format="yyyy-mm-dd">
+            <button id="accept-date">OK</button>
+        </div>
+
+        <div id="slider" style="display: none;"></div>
+
+        <div id="satellite-panel" class="container earthtrek-toolbar">
+            <div class="row satellite-panel-top">
+                <div class="col-sm-6"><strong id="satellite-name"></strong></div>
+            </div>
+            <div id="satellite-description" class="satellite-description">
+            </div>
+            <div class="row">
+                <div id="satellite-info" >
+                </div>
+                <div class="text-right">Instruments</div>
+                <div id="satellite-instruments" class="col-sm-6 fixed-buttons">
+                </div>
+            </div>
+            <div class="row">
+                <div id="satellite-instrument-layers" class="col-sm-12">
+                </div>
+            </div>
+        </div>
+
+        <div id="earthtrek-welcome" class="earthtrek-modal container earthtrek-toolbar earthtrek-panel">
+            <div class='earthtrek-welcome-title'>WELCOME TO EARTH TREK!</div>
+            <div id="earthtrek-welcome-text"><p>EarthTrek is an interactive 3D web application. It's easy access for all kinds of users encourages the use of data that NASA's EOS program compiles and collect with satellites's instruments.</p><p>It allows to visualize in real time the orbits of the different kinds of satellites around the Earth up to its launch until future predictions.</p><p>With this tool, we aim to encourage new generations to get involved in NASA's programs, from spreading the word to becoming active members -or even pioneers- of present and future developments.</p><p>Public engagement is key in the pursuit of aerospace exploration.</p></div>
+            <div id="earthtrek-welcome-buttons">
+                <button id="earthtrek-welcome-start">START</button>
+                <button id="earthtrek-welcome-tutorial">TUTORIAL</button>
+            </div>
+        </div>
+
+        <div id="earthtrek-tutorial" class="container earthtrek-toolbar earthtrek-panel">
+            <div id="earthtrek-tutorial-text"></div>
+            <div id="earthtrek-tutorial-buttons">
+                <button id="earthtrek-tutorial-skip">SKIP</button>
+                <button id="earthtrek-tutorial-finish">FINISH</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="credit" style="display: none">
+
+    </div>
+
+    <div id="search-satellite" >
+        <input id="search-satellite-text" type="text" placeholder="Satellite name"/> <button></button>
+    </div>
 
     </body>
 </html>
