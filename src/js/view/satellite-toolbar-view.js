@@ -127,6 +127,7 @@ define([
         var satellitePopoverContainer = document.createElement('div');
         var satelliteOptions = document.createElement('div');
 
+        $(satelliteOptions).addClass('satellite-options');
         var entity = that.viewer.entities.getById(satelliteData.satId);
         var zoomOption = document.createElement('button');
         $(zoomOption).addClass('satellite-zoom');
