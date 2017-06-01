@@ -3,7 +3,7 @@
 
 Global Nominee - Team SATrek
 
-EarthTrek is an interactive 3D web application that does not require the installation of any plugins, it can be launched through web browsers. It´s easy access for all kinds of users encourages the use of data that NASA`s EOS program compiles and collect with satellites´s different instruments.
+EarthTrek is an interactive 3D web application that does not require the installation of any plugins, it can be launched through web browsers. It´s easy access for all kinds of users encourages the use of data that NASA´s EOS program compiles and collect with satellites´s different instruments.
 
 For now, our app will allow to:
 * Observing satellite images
