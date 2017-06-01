@@ -5,6 +5,12 @@ Global Nominee - Team SATrek
 
 EarthTrek is an interactive 3D web application that does not require the installation of any plugins, it can be launched through web browsers. It´s easy access for all kinds of users encourages the use of data that NASA´s EOS program compiles and collect with satellites´s different instruments.
 
+<br/>
+
+![DISPLAY](http://i.imgur.com/mmRJ0Yz.jpg)
+
+
+<br/>
 For now, our app will allow to:
 * Observing satellite images
 * View real-time orbits of the various satellites around Earth from launch to future predictions.
@@ -26,6 +32,9 @@ Public engagement is key in the pursuit of aerospace exploration.
 
 Earth Trek - "Exploring our World"
 
+
+
+<br/>
 ### GET STARTED ###
 
 **INSTALLATION**
@@ -39,21 +48,16 @@ node server.js
 ```
 That's it!
 
-**Some aspects of HOW THE APP WORKS..**
-
-When you open the application, it will be displayed a 3D image of the Earth and the satellite's orbits that are currently orbiting the area of the Earth we are observing:
-
-![DISPLAY](http://i.imgur.com/mmRJ0Yz.jpg)
-
-If you select a Satellite, firstly you will see details about its missions and instruments:
-
 ![TERRA](https://scontent-gru2-1.xx.fbcdn.net/v/t31.0-0/p235x350/18739306_1736311510001386_408202630302674080_o.png?oh=8826445f9a93105e1b11ba5f1d5467a9&oe=59B432D8)
 
 
-Once a satellite is selected, two satellite images of the Earth can be compared.
-By determining a geographic location through the geolocation finder and selecting a date before the current one, the screen will be divided in two, being possible to observe the differences between the state of the zone in those moments. For example using MODIS, Terra´s instrument, deforestation or fire outbreaks can be compared:
+
 
 ![Mato Grosso deforestation](http://i.imgur.com/01GK2is.jpg)
+Once a satellite is selected, two satellite images of the Earth can be compared.
+By determining a geographic location through the geolocation finder and selecting a date before the current one, the screen will be divided in two, being possible to observe the differences between the state of the zone in those moments. For example using MODIS, Terra´s instrument, deforestation or fire outbreaks can be compared.
+
+<br/>
 
 
 **RESOURCES**
