@@ -8,6 +8,7 @@
 
 define([
     'cesium',
+    'moment',
     'earthtrek-satellite',
     'earthtrek-data',
     'earthtrek-layer',
@@ -15,7 +16,7 @@ define([
     'view/satellite-panel-view',
     'view/earthtrek-tutorial-view',
     'view/earthtrek-view'
-], function (ce, earthTrekSatellitez, earthTrekDatas, earthtrekLayers, SatelliteToolbarView, SatellitePanelView, EarthTrekTutorialView, EarthTrekView ) {
+], function (ce, moment, earthTrekSatellitez, earthTrekDatas, earthtrekLayers, SatelliteToolbarView, SatellitePanelView, EarthTrekTutorialView, EarthTrekView ) {
     'use strict';
 
     /**
@@ -228,15 +229,25 @@ define([
 
         handler.setInputAction(function (movement) {
             var pick = that.viewer.scene.pick(movement.endPosition);
+            console.log(pick)
             if (Cesium.defined(pick)) {
+                console.log("FUNCIONA");
                 var entity = that.viewer.entities.getById(pick.id._id);
                 if (entity != undefined) {
+                    entity.label.text = entity.name
+                        + "\nMass: " + entity.properties.getValue().data.mass + " kg"
+                        + "\nLaunch date: " + moment(entity.properties.getValue().launchDate).format('DD MMM Y')
+                    ;
+                    entity.label.backgroundPadding = new Cesium.Cartesian2(10, 10);
+                    entity.label.showBackground = true;
                     that.mouseOverEntity = entity;
                     that.setGlowPath(entity);
                 }
             } else if (that.mouseOverEntity != null) {
                 that.viewer.entities.values.forEach(function (entity) {
                     if (pickedEntity != entity) {
+                        entity.label.showBackground = false;
+                        entity.label.text = entity.name;
                         that.setDefaultPath(entity);
                     }
                 });
