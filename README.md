@@ -5,6 +5,8 @@ Global Nominee - Team SATrek
 
 EarthTrek is an interactive 3D web application that does not require the installation of any plugins, it can be launched through web browsers. It´s easy access for all kinds of users encourages the use of data that NASA´s EOS program compiles and collect with satellites´s different instruments.
 
+![DISPLAY](http://i.imgur.com/mmRJ0Yz.jpg)
+
 For now, our app will allow to:
 * Observing satellite images
 * View real-time orbits of the various satellites around Earth from launch to future predictions.
@@ -40,10 +42,6 @@ node server.js
 That's it!
 
 **Some aspects of HOW THE APP WORKS..**
-
-When you open the application, it will be displayed a 3D image of the Earth and the satellite's orbits that are currently orbiting the area of the Earth we are observing:
-
-![DISPLAY](http://i.imgur.com/mmRJ0Yz.jpg)
 
 If you select a Satellite, firstly you will see details about its missions and instruments:
 
