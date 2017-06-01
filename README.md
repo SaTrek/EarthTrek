@@ -5,12 +5,12 @@ Global Nominee - Team SATrek
 
 EarthTrek is an interactive 3D web application that does not require the installation of any plugins, it can be launched through web browsers. It´s easy access for all kinds of users encourages the use of data that NASA´s EOS program compiles and collect with satellites´s different instruments.
 
-<br/>
+
 
 ![DISPLAY](http://i.imgur.com/mmRJ0Yz.jpg)
 
 
-<br/>
+
 For now, our app will allow to:
 * Observing satellite images
 * View real-time orbits of the various satellites around Earth from launch to future predictions.
@@ -34,7 +34,7 @@ Earth Trek - "Exploring our World"
 
 
 
-<br/>
+
 ### GET STARTED ###
 
 **INSTALLATION**
@@ -50,7 +50,7 @@ That's it!
 
 ![TERRA](https://scontent-gru2-1.xx.fbcdn.net/v/t31.0-0/p235x350/18739306_1736311510001386_408202630302674080_o.png?oh=8826445f9a93105e1b11ba5f1d5467a9&oe=59B432D8)
 
-<br/>
+
 **RESOURCES**
 
 * SatelliteJS (Satellite propagation): https://github.com/shashwatak/satellite-js
@@ -59,7 +59,6 @@ That's it!
 * Celestrak (TLE & orbital Data): http://www.celestrak.com/NORAD/elements/science.txt
 * NASA 3D Resources: https://nasa3d.arc.nasa.gov/
 
-<br/>
 
 ![Mato Grosso deforestation](http://i.imgur.com/01GK2is.jpg)
 
