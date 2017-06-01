@@ -35,9 +35,7 @@ Earth Trek - "Exploring our World"
 
 
 
-### GET STARTED ###
-
-**INSTALLATION**
+### INSTALLATION ###
 
 Clone this repository
 ```
