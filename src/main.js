@@ -8,10 +8,14 @@
 /**
  * REQUIRES
  */
-var BuildModuleUrl = require('cesium/Source/Core/buildModuleUrl');
 var EarthTrek = require('./js/earthtreknew');
 /**CSS*/
-BuildModuleUrl.setBaseUrl('./');
+require('./css/main.css');
+require('./css/left-toolbar.css');
+require('./css/satellite.css');
+require('./css/fonts/myriad.css');
+//var BuildModuleUrl = require('cesium/Source/Core/buildModuleUrl');
+//BuildModuleUrl.setBaseUrl('./');
 
 var earthTrek = new EarthTrek({
     startTime: Date.UTC(1999, 1, 1),
