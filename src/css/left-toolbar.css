@@ -1,7 +1,7 @@
 #left-toolbar {
-    top: 40px;
+    top: 5%;
     left: 2%;
-    width: 600px;
+    max-width: 45%;
 }
 #satellite-toolbar-container img {
     height: 80px;
@@ -22,9 +22,9 @@
     background-color: rgba(3, 46, 67, 0.5);
 }
 #top-left-toolbar {
-    top: 1px;
+    top: 1%;
     left: 2%;
-    width: 600px;
+    max-width: 50%;
 }
 .satellite-disabled img {
     -webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
