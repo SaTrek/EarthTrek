@@ -16,3 +16,5 @@ earthTrekToolbar.create = function(id, callback) {
     }
     return toolbar;
 }
+
+module.exports = earthTrekToolbar;

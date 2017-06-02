@@ -7,35 +7,33 @@
  */
 
 var provider = provider || {};
-define([
-    'cesium',
-    'tilling-scheme'
-], function() {
+var WebMapTileServiceImageryProvider = require('cesium/Source/Scene/WebMapTileServiceImageryProvider');
+var gibs = require('./tilling-scheme');
 
-    provider.getProvider = function(options) {
-        if (!options.layer) {
+provider.getProvider = function(options) {
+    if (!options.layer) {
 
-        }
-        if (!options.time) {
-
-        }
-        if (!options.format) {
-         //   layer, time, format, tileMatrixSetID, resolution, maxLevel
-        }
-        if (!options.tileMatrixSetID) {
-            //   layer, time, format, tileMatrixSetID, resolution, maxLevel
-        }
-        var provider = new Cesium.WebMapTileServiceImageryProvider({
-            url: "//gibs-c.earthdata.nasa.gov/wmts/" + options.tileMatrixSetID + "/best/wmts.cgi?time=" + options.time,
-            layer: options.layer,
-            style: "",
-            format: options.format,
-            tileMatrixSetID: options.tileMatrixSetID.toUpperCase() + "_" + options.resolution,
-            maximumLevel: options.maximumLevel,
-            tileWidth: 256,
-            tileHeight: 256,
-            tilingScheme: gibs.GeographicTilingScheme()
-        });
-        return provider;
     }
-});
+    if (!options.time) {
+
+    }
+    if (!options.format) {
+        //   layer, time, format, tileMatrixSetID, resolution, maxLevel
+    }
+    if (!options.tileMatrixSetID) {
+        //   layer, time, format, tileMatrixSetID, resolution, maxLevel
+    }
+    var provider = new WebMapTileServiceImageryProvider({
+        url: "//gibs-c.earthdata.nasa.gov/wmts/" + options.tileMatrixSetID + "/best/wmts.cgi?time=" + options.time,
+        layer: options.layer,
+        style: "",
+        format: options.format,
+        tileMatrixSetID: options.tileMatrixSetID.toUpperCase() + "_" + options.resolution,
+        maximumLevel: options.maximumLevel,
+        tileWidth: 256,
+        tileHeight: 256,
+        tilingScheme: gibs.GeographicTilingScheme()
+    });
+    return provider;
+}
+module.exports = provider;

@@ -5,13 +5,17 @@
  * @author Alejandro Sanchez <alejandro.sanchez.trek@gmail.com>
  * @description EarthTrek - NASA Space Apps 2017 23 APR 2017.
  */
-//window.CESIUM_BASE_URL = './';
+window.CESIUM_BASE_URL = './';
 require('cesium/Build/CesiumUnminified/Cesium.js');
 require('cesium/Build/Cesium/Widgets/widgets.css');
+var _ = require('underscore');
 
 var earthTrekLayer = require('./earthtrek-layer');
+var earthTrekData = require('./earthtrek-data');
 var SatellitePanelView = require('./view/satellite-panel-view');
 var SatelliteToolbarView = require('./view/satellite-toolbar-view');
+var EarthTrekView = require('./view/earthtrek-view');
+var earthTrekSatellite = require('./earthtrek-satellite');
 var Cesium = window.Cesium;
 
 /**
@@ -164,7 +168,7 @@ EarthTrek.prototype.setDefaultPath = function (entity) {
  * @returns {*}
  */
 EarthTrek.prototype.setGlowPath = function (entity) {
-    var orbitColor = Cesium.Color.fromCssColorString(entity.properties.getValue().color);
+    var orbitColor = Cesium.Color.fromCssColorString(entity.properties.getValue(this.viewer.clock.currentTime).color);
     entity._path.width = 5;
     entity._path.material = new Cesium.PolylineGlowMaterialProperty({
         glowPower: 0.4,
@@ -442,9 +446,10 @@ EarthTrek.prototype.goToEntity = function (entity, panel, viewer, track) {
     /**
      * @TODO FIX THIS
      */
-    if (this != undefined) {
+    if (this != undefined && viewer == undefined) {
         viewer = this.viewer;
     }
+    console.log(viewer.clock.currentTime)
     if (entity == undefined || !entity.isAvailable(viewer.clock.currentTime)) {
         return false;
     }
