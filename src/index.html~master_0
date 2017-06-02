@@ -5,8 +5,22 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
 
-    <title>EarthTrek - ALPHA v0.175.31</title>
+    <title>EarthTrek - ALPHA v0.175.27</title>
 
+    <script data-main="app" src="../node_modules/requirejs/require.js"></script>
+
+    <style>
+        @import url(../node_modules/cesium/Build/Cesium/Widgets/widgets.css);
+        @import url(../node_modules/bootstrap/dist/css/bootstrap.min.css);
+        @import url(../node_modules/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css);
+        @import url(../node_modules/slick-carousel/slick/slick.css);
+        @import url(../node_modules/slick-carousel/slick/slick-theme.css);
+        @import url(css/main.css);
+        @import url(css/satellite.css);
+        @import url(css/left-toolbar.css);
+        @import url(css/tutorial.css);
+        @import url(css/fonts/myriad.css);
+    </style>
 </head>
     <body>
 

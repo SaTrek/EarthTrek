@@ -7,45 +7,37 @@
  */
 var assert = require('assert');
 var should = require('should');
-//require("amd-loader");
-var requirejs = require('requirejs');
-requirejs.config({
-    paths: {
-        cesium: '../node_modules/cesium/Build/Cesium/Cesium',
-        satellitejs: '../node_modules/satellite.js/dist/satellite.min'
-    },
-    nodeRequire: require
-});
+var JulianDate = require('cesium/Source/Core/JulianDate');
+var earthTrekSatellite = require('../src/js/earthtrek-satellite');
 
-define(['../app/js/earthtrek-satellite'], function(earthTrekSatellite) {
-    describe('EarthTrek Satellite', function(){
-        it('Get Sample Positions by 1000 seconds trajectory with 10 intervals', function(done) {
+describe('EarthTrek Satellite', function(){
+    it('Get Sample Positions by 1000 seconds trajectory with 10 intervals', function(done) {
 
-            /** ISS TLE*/
-            var tleLine1 = '1 25544U 98067A   17132.15166687  .00016717  00000-0  10270-3 0  9023',
-                tleLine2 = '2 25544  51.6405 217.9287 0004884 149.5686 210.5751 15.54020107 16140';
+        /** ISS TLE*/
+        var tleLine1 = '1 25544U 98067A   17132.15166687  .00016717  00000-0  10270-3 0  9023',
+            tleLine2 = '2 25544  51.6405 217.9287 0004884 149.5686 210.5751 15.54020107 16140';
 
-            var intervals = 10;
-            var seconds = 1000;
-            var startTime = new Date(Date.UTC(2017, 4, 12, 0, 0, 0));
-            var currentDate = new Date(Cesium.JulianDate.toIso8601(startTime));
-            var positions = earthTrekSatellite.calculatePositions(
-                tleLine1,
-                tleLine2,
-                startTime,
-                seconds,
-                intervals,
-                currentDate
-            );
+        var intervals = 10;
+        var seconds = 1000;
 
-            positions.times.should.not.empty();
-            positions.values.should.not.empty();
+        var currentDate = new Date(Date.UTC(2017, 4, 12, 0, 0, 0));
+        var julianDate = JulianDate.fromDate(currentDate);
+        var positions = earthTrekSatellite.calculatePositions(
+            tleLine1,
+            tleLine2,
+            julianDate,
+            seconds,
+            intervals,
+            currentDate
+        );
 
-            positions.times.should.have.size(intervals + 1);
-            positions.values.should.have.size(intervals + 1);
+        positions.times.should.not.empty();
+        positions.positions.should.not.empty();
 
-            //    positions.times[0].dayNumber.should.not.be.eql(NaN);
-            done();
-        });
+        positions.times.should.have.size(intervals + 1);
+        positions.positions.should.have.size(intervals + 1);
+
+        //    positions.times[0].dayNumber.should.not.be.eql(NaN);
+        done();
     });
 });

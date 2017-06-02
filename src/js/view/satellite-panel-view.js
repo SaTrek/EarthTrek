@@ -5,14 +5,13 @@
  * @author Alejandro Sanchez <alejandro.sanchez.trek@gmail.com>
  * @description EarthTrek - NASA Space Apps 2017 13 MAY 2017.
  */
-//require("amd-loader");
 define([
     'jquery',
     'bootstrap',
     'slick',
     'moment',
     '../provider',
-    '../earthtrek-layer'
+    '../satellite-propagation'
 ], function ($,b,s,moment) {
 
     function SatellitePanelView(viewer, options) {
@@ -42,19 +41,31 @@ define([
         this.entity = entity;
         $('#satellite-name').html(entity.properties.name.getValue());
 
-        var tle = this.entity.properties.getValue().tle.join("\n");
-     //   var parsedTLE = TLE.parse( tle );
-      //  console.log(parsedTLE);
-        this.showOrbitalData(entity.properties.getValue());
-
+        this.showOrbitalData(entity);
         if (entity.properties.instruments !== undefined) {
             this.addInstruments(entity)
         }
         this.satellitePanel.show();
     }
 
-    SatellitePanelView.prototype.showOrbitalData = function (properties) {
+    SatellitePanelView.prototype.updateOrbitalData = function (entity) {
+        if ($('.satellite-data-velocity').length > 0 && entity.velocity.getValue(this.viewer.clock.currentTime) != undefined) {
+            var velocity = satellitePropagation.getVelocity(entity.velocity.getValue(this.viewer.clock.currentTime));
+            $($('.satellite-data-velocity')[0]).html(parseFloat(velocity).toFixed(2) + ' km/s');
+        }
+
+        if ($('.satellite-data-altitude').length > 0 && entity.altitude.getValue(this.viewer.clock.currentTime) != undefined) {
+            $($('.satellite-data-altitude')[0]).html((entity.altitude.getValue(this.viewer.clock.currentTime)/1000).toFixed(1) + ' km');
+        }
+    }
+
+    SatellitePanelView.prototype.showOrbitalData = function (entity) {
+        var properties = entity.properties.getValue();
         var data = properties.data;
+        var velocity = satellitePropagation.getVelocity(entity.velocity.getValue(this.viewer.clock.currentTime));
+        data.velocity = velocity;
+
+        data.altitude = (entity.altitude.getValue(this.viewer.clock.currentTime)/1000).toFixed(1) ;
         var that = this;
 
         var descriptionContainer = '#satellite-description';
@@ -68,7 +79,9 @@ define([
             var orbitalDataKey = document.createElement('div');
             $(orbitalDataKey).append(function () {
                 var data = {
-                    launchDate: 'Launch Date'
+                    launchDate: 'Launch Date',
+                    argumentPerigee: 'Arg of Perigee',
+                    meanAnomaly: 'Mean Anomaly'
                 }
                 if (data[key] == undefined) {
                     return key;
@@ -79,6 +92,7 @@ define([
 
             var orbitalDataValue = document.createElement('div');
             var value = that.magnitudesToOrbitalData(key, value);
+            $(orbitalDataValue).addClass('satellite-data-' + key);
             $(orbitalDataValue).append((value != '') ? value : "-");
             $(orbitalDataValues).append(orbitalDataValue);
         });
@@ -112,10 +126,14 @@ define([
             return agenciesLogos;
         }
         var data = {
-            perigee: 'KM',
-            apogee: 'KM',
+            altitude: 'km',
+            perigee: 'km',
+            apogee: 'km',
             inclination: '&deg;',
+            meanAnomaly: '',
+            argumentPerigee: '&deg;',
             period: 'mins',
+            velocity: 'km/s',
             mass: 'kg'
         }
         if (data[key] == undefined) {
@@ -289,8 +307,6 @@ define([
                     maximumLevel: maximumLevel
                 });
 
-                console.log(that.viewer.scene.imageryLayers._layers[0])
-                console.log(that.viewer.scene.imageryLayers._layers[0].imageryProvider)
                 if (that.viewer.scene.imageryLayers._layers[0].format == 'image/jpeg') {
                     that.viewer.scene.imageryLayers._layers[0].show = false;
                 //    that.viewer.scene.imageryLayers.lowerToBottom(that.viewer.scene.imageryLayers._layers[0].show = false);
@@ -339,5 +355,6 @@ define([
 
     }
 
-    return SatellitePanelView;
 });
+
+module.exports = SatellitePanelView;

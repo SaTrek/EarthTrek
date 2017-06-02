@@ -1,6 +1,6 @@
 var HtmlPlugin = require("html-webpack-plugin");
 var UglifyJSPlugin = require('uglifyjs-webpack-plugin');
-
+var webpack = require("webpack");
 module.exports = {
     entry: "./src/main.js",
     output: {
@@ -9,9 +9,13 @@ module.exports = {
         filename:  'bundle.js'
     },
     plugins: [
-        new UglifyJSPlugin({
-            compress: { warnings: false }
+        new webpack.ProvidePlugin({
+            $: "jquery",
+            jQuery: "jquery"
         }),
+     /*   new UglifyJSPlugin({
+            compress: { warnings: false }
+        }),*/
         new HtmlPlugin({
             template: "./src/index.html",
             inject: "body"
@@ -20,6 +24,17 @@ module.exports = {
     devServer: {
         contentBase: "./public",
         port: 9080
+    },
+    resolve: {
+        alias: {
+            jquery: '../node_modules/jquery/dist/jquery.min',
+            underscore: '../node_modules/underscore/underscore',
+            satellitejs: '../node_modules/satellite.js/dist/satellite.min',
+            bootstrap: '../node_modules/bootstrap/dist/js/bootstrap.min',
+            slick: '../node_modules/slick-carousel/slick/slick.min',
+            tle: '../node_modules/tle/lib/tle',
+            moment: '../node_modules/moment/min/moment-with-locales.min',
+        }
     },
     module: {
         unknownContextCritical: false,
