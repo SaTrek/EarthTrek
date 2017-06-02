@@ -72,13 +72,13 @@ SatellitePanelView.prototype.showOrbitalData = function (entity) {
     var descriptionContainer = '#satellite-description';
     $(descriptionContainer).html(properties.description);
 
-    var orbitalDataKeys = document.createElement('div');
-    $(orbitalDataKeys).addClass("orbital-data-keys");
-    var orbitalDataValues = document.createElement('div');
-    $(orbitalDataValues).addClass("orbital-data-values");
     $.each(data, function(key, value) {
+        var orbitalData = document.createElement('div');
+
         var orbitalDataKey = document.createElement('div');
-        $(orbitalDataKey).append(function () {
+        $(orbitalDataKey).addClass("orbital-data-keys");
+
+        $(orbitalDataKey).html(function () {
             var data = {
                 launchDate: 'Launch Date',
                 argumentPerigee: 'Arg of Perigee',
@@ -89,17 +89,17 @@ SatellitePanelView.prototype.showOrbitalData = function (entity) {
             }
             return data[key];
         });
-        $(orbitalDataKeys).append(orbitalDataKey);
+        $(orbitalData).append(orbitalDataKey);
 
         var orbitalDataValue = document.createElement('div');
+        $(orbitalDataValue).addClass("orbital-data-values");
         var value = that.magnitudesToOrbitalData(key, value);
         $(orbitalDataValue).addClass('satellite-data-' + key);
         $(orbitalDataValue).append((value != '') ? value : "-");
-        $(orbitalDataValues).append(orbitalDataValue);
+        $(orbitalData).append(orbitalDataValue);
+        $(that.satelliteInfoContainer).append(orbitalData);
     });
 
-    $(this.satelliteInfoContainer).append(orbitalDataKeys);
-    $(this.satelliteInfoContainer).append(orbitalDataValues);
 }
 
 /**

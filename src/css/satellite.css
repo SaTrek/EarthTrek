@@ -49,9 +49,12 @@
 }
 .satellite-panel-top {
     padding-top: 2px;
+    padding-left: 15px;
 }
 #satellite-instruments {
     padding: 0;
+    width: 40% !important;
+    float: left;
 }
 .satellite-instrument button {
     background-image: url("../images/layers.png");
@@ -64,7 +67,6 @@
     padding-right: 0;
     position: relative;
     min-height: 1px;
-    padding-right: 15px;
     padding-left: 15px;
     max-width: 60%;
     float: left;
@@ -72,13 +74,17 @@
 #satellite-info .orbital-data-keys {
     margin-right: 5px;
     font-family: 'Myriad Pro Bold Condensed';
+    width: 40%;
+    float: left;
 }
 #satellite-info .orbital-data-values {
-    max-width: 90%;
+
 }
 #satellite-info > div {
     display: inline-block;
     vertical-align: top;
+    width: 100%;
+    clear: both;
 }
 
 /** INSTRUMENT */
