@@ -17,6 +17,7 @@ var SatelliteToolbarView = require('./view/satellite-toolbar-view');
 var EarthTrekView = require('./view/earthtrek-view');
 var earthTrekSatellite = require('./earthtrek-satellite');
 var EarthTrekEntity = require('./earthtrek-entity');
+var EarthTrekHandler = require('./earthtrek-handler');
 var Cesium = window.Cesium;
 
 /**
@@ -154,32 +155,6 @@ EarthTrek.prototype.createViewer = function () {
 
 /**
  *
- * @param entity
- * @returns {*}
- */
-EarthTrek.prototype.setDefaultPath = function (entity) {
-    entity._path.width = 1;
-    entity._path.material = this.orbitMaterial;
-    return entity;
-}
-
-/**
- *
- * @param entity
- * @returns {*}
- */
-EarthTrek.prototype.setGlowPath = function (entity) {
-    var orbitColor = Cesium.Color.fromCssColorString(entity.properties.getValue(this.viewer.clock.currentTime).color);
-    entity._path.width = 5;
-    entity._path.material = new Cesium.PolylineGlowMaterialProperty({
-        glowPower: 0.4,
-        color: orbitColor
-    });
-    return entity;
-}
-
-/**
- *
  */
 EarthTrek.prototype.showWelcomeScreen = function () {
     var mainView = new EarthTrekView(this.viewer, {showTutorial: false});
@@ -196,17 +171,35 @@ EarthTrek.prototype.showWelcomeScreen = function () {
  */
 EarthTrek.prototype.init = function () {
     var that = this;
-    var pickedEntity;
     earthTrekLayer.setViewer(this.viewer);
 
     var satellitePanel = new SatellitePanelView(this.viewer, {
         container: 'satellite-panel'
     });
     this.lastOrbitalDataUpdated = this.clock.currentTime;
-    var handler = new Cesium.ScreenSpaceEventHandler(this.viewer.scene.canvas);
-    this.evt = new Cesium.Event();
-    this.showWelcomeScreen();
 
+    this.evt = new Cesium.Event();
+
+    var handler = new EarthTrekHandler(this.viewer);
+    handler.onLeftClick(
+        function (pickedEntity) {
+            EarthTrekEntity.setDefaultPath(pickedEntity, {width: 1, orbitalMaterial: that.orbitalMaterial});
+        },
+        function(entity) {
+            EarthTrekEntity.setGlowPath(entity, that.viewer.clock.currentTime);
+            //PASARLO A EVENTO
+            satellitePanel.show(entity);
+            that.evt.raiseEvent(entity);
+        },
+        function() {
+            satellitePanel.hide();
+            that.viewer.trackedEntity = undefined;
+        }
+    );
+
+   // var handler = new Cesium.ScreenSpaceEventHandler(this.viewer.scene.canvas);
+    this.showWelcomeScreen();
+/*
     handler.setInputAction(function (movement) {
         var pick = that.viewer.scene.pick(movement.position);
         if (pickedEntity != undefined) {
@@ -226,7 +219,8 @@ EarthTrek.prototype.init = function () {
             that.viewer.trackedEntity = undefined;
         }
     }, Cesium.ScreenSpaceEventType.LEFT_CLICK);
-
+*/
+    /*
     handler.setInputAction(function (movement) {
         var pick = that.viewer.scene.pick(movement.endPosition);
         if (Cesium.defined(pick)) {
@@ -244,7 +238,7 @@ EarthTrek.prototype.init = function () {
             that.mouseOverEntity = null;
         }
     }, Cesium.ScreenSpaceEventType.MOUSE_MOVE);
-
+*/
     this.satellitePanel = satellitePanel;
     this.satelliteToolbar = new SatelliteToolbarView(this.viewer, 'left-toolbar', satellitePanel);
 
@@ -252,11 +246,10 @@ EarthTrek.prototype.init = function () {
         satellites.forEach(function (satelliteData) {
             var entity = that.viewer.entities.getById(satelliteData.satId);
             if (entity == null && satelliteData.status == 'ACTIVE') {
-                var earthTrekEntity = new EarthTrekEntity({
-                        orbitDuration: that.orbitDuration,
-                        frequency: that.frequency
-                });
-                entity = that.viewer.entities.add(earthTrekEntity.create(satelliteData, that.clock.currentTime));
+                entity = that.viewer.entities.add(EarthTrekEntity.create(satelliteData, that.clock.currentTime, {
+                    orbitDuration: that.orbitDuration,
+                    frequency: that.frequency
+                }));
                 that.entities.push(entity);
                 that.satelliteToolbar.addSatellite(satelliteData, that.goToEntity);
             }

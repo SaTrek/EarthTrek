@@ -21,14 +21,16 @@ var HorizontalOrigin = require('cesium/Source/Scene/HorizontalOrigin');
 var VerticalOrigin = require('cesium/Source/Scene/VerticalOrigin');
 
 var VelocityVectorProperty = require('cesium/Source/DataSources/VelocityVectorProperty');
+var PolylineGlowMaterialProperty =require('cesium/Source/DataSources/PolylineGlowMaterialProperty');
 
 /**EarthTrek*/
 var earthTrekSatellite = require('./earthtrek-satellite');
-
+var EarthTrekEntity = EarthTrekEntity || {};
+/*
 function EarthTrekEntity(options) {
     this.orbitDuration = options.orbitDuration;
     this.frequency = options.frequency;
-}
+}*/
 
 /**
  *
@@ -36,8 +38,10 @@ function EarthTrekEntity(options) {
  * @param startTime
  * @returns {Cesium.Entity}
  */
-EarthTrekEntity.prototype.create = function (satelliteInfo, startTime) {
+EarthTrekEntity.create = function (satelliteInfo, startTime, options) {
 
+    this.orbitDuration = options.orbitDuration;
+    this.frequency = options.frequency;
     var color;
     if (satelliteInfo.tle == undefined) {
         return false;
@@ -99,7 +103,7 @@ EarthTrekEntity.prototype.create = function (satelliteInfo, startTime) {
  * @param endDate
  * @returns {Cesium.TimeIntervalCollection}
  */
-EarthTrekEntity.prototype.generateInterval = function (launchDate, endDate) {
+EarthTrekEntity.generateInterval = function (launchDate, endDate) {
     var timeInterval = new TimeInterval({
         start: JulianDate.fromIso8601(launchDate),
         stop: (endDate == null) ? JulianDate.fromIso8601("2099-01-01") : JulianDate.fromIso8601(endDate),
@@ -110,6 +114,35 @@ EarthTrekEntity.prototype.generateInterval = function (launchDate, endDate) {
     var intervalCollection = new TimeIntervalCollection();
     intervalCollection.addInterval(timeInterval);
     return intervalCollection;
+}
+
+/**
+ *
+ * @param entity
+ * @returns {*}
+ */
+EarthTrekEntity.setDefaultPath = function (entity, options) {
+    if (!options.width) {
+        options.width = 1;
+    }
+    entity._path.width = options.width;
+    entity._path.material = options.orbitMaterial;
+    return entity;
+}
+
+/**
+ *
+ * @param entity
+ * @returns {*}
+ */
+EarthTrekEntity.setGlowPath = function (entity, currentTime) {
+    var orbitColor = Color.fromCssColorString(entity.properties.getValue(currentTime).color);
+    entity._path.width = 5;
+    entity._path.material = new PolylineGlowMaterialProperty({
+        glowPower: 0.4,
+        color: orbitColor
+    });
+    return entity;
 }
 
 module.exports = EarthTrekEntity;
