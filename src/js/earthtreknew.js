@@ -16,6 +16,7 @@ var SatellitePanelView = require('./view/satellite-panel-view');
 var SatelliteToolbarView = require('./view/satellite-toolbar-view');
 var EarthTrekView = require('./view/earthtrek-view');
 var earthTrekSatellite = require('./earthtrek-satellite');
+var EarthTrekEntity = require('./earthtrek-entity');
 var Cesium = window.Cesium;
 
 /**
@@ -251,7 +252,14 @@ EarthTrek.prototype.init = function () {
         satellites.forEach(function (satelliteData) {
             var entity = that.viewer.entities.getById(satelliteData.satId);
             if (entity == null && satelliteData.status == 'ACTIVE') {
-                entity = that.createEntity(satelliteData, that.clock.currentTime);
+                earthTrekEntity = new EarthTrekEntity(
+                    {
+                        orbitDuration: that.orbitDuration,
+                        frequency: that.frequency
+                    }
+                );
+                entity = that.viewer.entities.add(earthTrekEntity.create(satelliteData, that.clock.currentTime));
+               // entity = that.createEntity(satelliteData, that.clock.currentTime);
                 that.entities.push(entity);
                 that.satelliteToolbar.addSatellite(satelliteData, that.goToEntity);
             }

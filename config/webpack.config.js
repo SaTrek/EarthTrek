@@ -2,8 +2,12 @@ var HtmlPlugin = require("html-webpack-plugin");
 var UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 var webpack = require("webpack");
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
+var CopyWebpackPlugin = require('copy-webpack-plugin');
+var path = require('path');
+
 module.exports = {
-    entry: "./src/main.js",
+    context: path.join(__dirname, '../src'),
+    entry: "./main.js",
     output: {
         path: "./public",
         sourcePrefix: "",
@@ -18,10 +22,15 @@ module.exports = {
             compress: { warnings: false }
         }),*/
         new HtmlPlugin({
-            template: "./src/index.html",
+            template: "./index.html",
             inject: "body"
         }),
-        new ExtractTextPlugin("[name].css")
+        new ExtractTextPlugin("[name].css"),
+        new CopyWebpackPlugin([
+            { from: './models', to: 'models/' }, { from: './images', to: 'images/' }
+            ]
+            , {copyUnmodified: true}
+        )
     ],
     devServer: {
         contentBase: "./public",
@@ -38,7 +47,6 @@ module.exports = {
     module: {
         unknownContextCritical: false,
         loaders: [
-            { test: /\.glb$/, loader: "file-loader?name=/models/[name].[ext]" },
             {
                 test: /\.css$/,
                 loader: ExtractTextPlugin.extract("style-loader", "css-loader")
