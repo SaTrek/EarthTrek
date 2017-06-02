@@ -7,6 +7,9 @@
  */
 
 var satellite = require('satellite.js');
+if (satellite.satellite != undefined) {
+    satellite = satellite.satellite;
+}
 var satellitePropagation = satellitePropagation || {};
 /**
  * Propagate Satellite
