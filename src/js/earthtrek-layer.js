@@ -48,3 +48,5 @@ define([
         }
     }
 });
+
+module.exports = earthTrekLayer;

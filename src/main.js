@@ -13,10 +13,8 @@ var EarthTrek = require('./js/earthtreknew');
 require('./css/main.css');
 require('./css/left-toolbar.css');
 require('./css/satellite.css');
+require('./css/tutorial.css');
 require('./css/fonts/myriad.css');
-//var BuildModuleUrl = require('cesium/Source/Core/buildModuleUrl');
-//BuildModuleUrl.setBaseUrl('./');
-
 var earthTrek = new EarthTrek({
     startTime: Date.UTC(1999, 1, 1),
     endTime: Date.now(),
@@ -26,3 +24,4 @@ var earthTrek = new EarthTrek({
     maxDistanceCamera: 10000000000 //10,000,000,000 meters
 });
 earthTrek.createViewer();
+earthTrek.init();
