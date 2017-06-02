@@ -51,6 +51,7 @@
   },
   "devDependencies": {
     "amd-loader": "0.0.8",
+    "copy-webpack-plugin": "^4.0.1",
     "cpr": "^1.1.2",
     "css-loader": "^0.23.1",
     "extract-text-webpack-plugin": "^1.0.1",
