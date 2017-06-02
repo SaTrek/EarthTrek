@@ -6,47 +6,44 @@
  * @description EarthTrek - NASA Space Apps 2017 - 2017-05-25
  */
 var earthTrekLayer = earthTrekLayer || {};
-define([
-], function() {
 
-    earthTrekLayer.setViewer = function(viewer) {
-        this.layerViewer = viewer;
-    }
+earthTrekLayer.setViewer = function(viewer) {
+    this.layerViewer = viewer;
+}
 
-    earthTrekLayer.addLayer = function(layer) {
+earthTrekLayer.addLayer = function(layer) {
 
-    }
+}
 
-    earthTrekLayer.getLayers = function() {
-        return this.layerViewer.scene.imageryLayers;
-    }
+earthTrekLayer.getLayers = function() {
+    return this.layerViewer.scene.imageryLayers;
+}
 
-    earthTrekLayer.toggleLayer = function() {
-    }
+earthTrekLayer.toggleLayer = function() {
+}
 
-    earthTrekLayer.removeLayer = function(layer) {
-        var imageryLayers = earthTrekLayer.getLayers();
-        for (var i = 0; i <= imageryLayers.length - 1; i++) {
-            var imageryLayer = imageryLayers.get(i);
-            if (imageryLayer.imageryProvider._layer == layer.id) {
-                console.log("Removio")
-                imageryLayers.remove(imageryLayer);
-                return true;
-            }
-        }
-        return false;
-    }
-
-    earthTrekLayer.hideLayer = function(layer) {
-        var imageryLayers = earthTrekLayer.getLayers();
-        for (var i = 0; i <= imageryLayers.length - 1; i++) {
-            var imageryLayer = imageryLayers.get(i);
-            if (layer.format == 'image/jpeg' && imageryLayer.imageryProvider.format == 'image/jpeg') {
-                console.log("Oculto")
-                imageryLayer.show = false;
-            }
+earthTrekLayer.removeLayer = function(layer) {
+    var imageryLayers = earthTrekLayer.getLayers();
+    for (var i = 0; i <= imageryLayers.length - 1; i++) {
+        var imageryLayer = imageryLayers.get(i);
+        if (imageryLayer.imageryProvider._layer == layer.id) {
+            console.log("Removio")
+            imageryLayers.remove(imageryLayer);
+            return true;
         }
     }
-});
+    return false;
+}
+
+earthTrekLayer.hideLayer = function(layer) {
+    var imageryLayers = earthTrekLayer.getLayers();
+    for (var i = 0; i <= imageryLayers.length - 1; i++) {
+        var imageryLayer = imageryLayers.get(i);
+        if (layer.format == 'image/jpeg' && imageryLayer.imageryProvider.format == 'image/jpeg') {
+            console.log("Oculto")
+            imageryLayer.show = false;
+        }
+    }
+}
 
 module.exports = earthTrekLayer;

@@ -1,6 +1,7 @@
 var HtmlPlugin = require("html-webpack-plugin");
 var UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 var webpack = require("webpack");
+var ExtractTextPlugin = require("extract-text-webpack-plugin");
 module.exports = {
     entry: "./src/main.js",
     output: {
@@ -19,7 +20,8 @@ module.exports = {
         new HtmlPlugin({
             template: "./src/index.html",
             inject: "body"
-        })
+        }),
+        new ExtractTextPlugin("[name].css")
     ],
     devServer: {
         contentBase: "./public",
@@ -27,24 +29,25 @@ module.exports = {
     },
     resolve: {
         alias: {
-            jquery: '../node_modules/jquery/dist/jquery.min',
-            underscore: '../node_modules/underscore/underscore',
-            satellitejs: '../node_modules/satellite.js/dist/satellite.min',
-            bootstrap: '../node_modules/bootstrap/dist/js/bootstrap.min',
-            slick: '../node_modules/slick-carousel/slick/slick.min',
-            tle: '../node_modules/tle/lib/tle',
-            moment: '../node_modules/moment/min/moment-with-locales.min',
+            jquery: 'jquery/dist/jquery.min'
         }
+    },
+    node: {
+        fs: "empty"
     },
     module: {
         unknownContextCritical: false,
         loaders: [
-            { test: /\.css$/, loader: "style!css" },
-            { test: /\.(png|gif|jpg|jpeg)$/,  loader: "file-loader" },
+            { test: /\.glb$/, loader: "file-loader?name=/models/[name].[ext]" },
+            {
+                test: /\.css$/,
+                loader: ExtractTextPlugin.extract("style-loader", "css-loader")
+            },
+            { test: /\.(png|gif|jpg|jpeg)$/,  loader: "file-loader?name=/images/[name].[ext]" },
             { test: /Cesium\.js$/, loader: "script" },
             {
                 test: /\.(eot|svg|ttf|woff|woff2)$/,
-                loader: 'file?name=public/fonts/[name].[ext]'
+                loader: 'file?name=css/fonts/[name].[ext]'
             }
         ]
     }
