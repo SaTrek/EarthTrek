@@ -252,14 +252,11 @@ EarthTrek.prototype.init = function () {
         satellites.forEach(function (satelliteData) {
             var entity = that.viewer.entities.getById(satelliteData.satId);
             if (entity == null && satelliteData.status == 'ACTIVE') {
-                earthTrekEntity = new EarthTrekEntity(
-                    {
+                var earthTrekEntity = new EarthTrekEntity({
                         orbitDuration: that.orbitDuration,
                         frequency: that.frequency
-                    }
-                );
+                });
                 entity = that.viewer.entities.add(earthTrekEntity.create(satelliteData, that.clock.currentTime));
-               // entity = that.createEntity(satelliteData, that.clock.currentTime);
                 that.entities.push(entity);
                 that.satelliteToolbar.addSatellite(satelliteData, that.goToEntity);
             }
@@ -301,89 +298,6 @@ EarthTrek.prototype.onClockUpdate = function (clock) {
         this.lastOrbitalDataUpdated = this.clock.currentTime;
     }
 };
-
-/**
- *
- * @param satelliteInfo
- * @param startTime
- * @returns {Cesium.Entity}
- */
-EarthTrek.prototype.createEntity = function (satelliteInfo, startTime) {
-
-    var color;
-    if (satelliteInfo.tle == undefined) {
-        return false;
-    }
-
-    var samples = earthTrekSatellite.getSamples(satelliteInfo.tle[0], satelliteInfo.tle[1], startTime, this.orbitDuration, this.frequency);
-
-
-    var entity = this.viewer.entities.add({
-        id: satelliteInfo.satId,
-        name: satelliteInfo.name,
-        position: samples.positions,
-        velocity: samples.velocities,
-        altitude: samples.heights,
-        model: {
-            uri: 'models/' + satelliteInfo.id + '.glb',
-            minimumPixelSize: 512,
-            maximumScale: 1,
-            distanceDisplayCondition: new Cesium.DistanceDisplayCondition(0.0, 40000.0)
-        },
-        path: {
-            resolution: 5,
-            material: this.orbitMaterial,
-            width: 1,
-            trailTime: this.orbitDuration / 2,
-            leadTime: 0
-        },
-        label: {
-            show: true,
-            text: satelliteInfo.name,
-            scale: 0.6,
-            scaleByDistance: new Cesium.NearFarScalar(0, 1.5, 15.0e6, 0.85),
-            fillColor: Cesium.Color.WHITE,
-            // eyeOffset: new Cesium.Cartesian3(0.0, 300.0, 200.0),
-            outlineColor: color,
-            outlineWidth: 3,
-            style: Cesium.LabelStyle.FILL,
-            horizontalOrigin: Cesium.HorizontalOrigin.LEFT,
-            verticalOrigin: Cesium.VerticalOrigin.BOTTOM,
-            pixelOffset: new Cesium.Cartesian2(15, 0)
-        },
-        billboard: {
-            imageSubRegion: new Cesium.BoundingRectangle(0, 0, 80, 80),
-            //   image: 'images/satellites/test.png',
-            image: 'images/satellites/' + satelliteInfo.image,
-            distanceDisplayCondition: new Cesium.DistanceDisplayCondition(40000.1, 150000000.0),
-            scale: 0.35,
-            alignedAxis : new Cesium.VelocityVectorProperty(samples.positions, true)
-        },
-        properties: satelliteInfo
-    });
-
-    entity.availability = this.generateInterval(satelliteInfo.launchDate, satelliteInfo.endDate);
-    return entity;
-}
-
-/**
- *
- * @param launchDate
- * @param endDate
- * @returns {Cesium.TimeIntervalCollection}
- */
-EarthTrek.prototype.generateInterval = function (launchDate, endDate) {
-    var timeInterval = new Cesium.TimeInterval({
-        start: Cesium.JulianDate.fromIso8601(launchDate),
-        stop: (endDate == null) ? Cesium.JulianDate.fromIso8601("2099-01-01") : Cesium.JulianDate.fromIso8601(endDate),
-        isStartIncluded: true,
-        isStopIncluded: (endDate === null) ? false : true
-    });
-
-    var intervalCollection = new Cesium.TimeIntervalCollection();
-    intervalCollection.addInterval(timeInterval);
-    return intervalCollection;
-}
 
 
 /**
