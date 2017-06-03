@@ -1,7 +1,7 @@
 {
   "name": "EarthTrek",
-  "version": "0.175.31",
-  "description": "NASA Space Apps Challenge 2017 - Buenos Aires - Nominee - 1D, 2D, 3D, Go! Challenge",
+  "version": "0.176.03",
+  "description": "Global Nominee NASA Space Apps Challenge 2017 Buenos Aires - Global Finalist (Best Use of Data) NASA Space Apps Challenge 2017 - 1D, 2D, 3D, Go! Challenge",
   "homepage": "http://github.com/SATrek/EarthTrek",
   "author": {
     "name": "SATrek",
@@ -26,6 +26,10 @@
     {
       "email": "impera87@gmail.com",
       "name": "Alejandro Hikari"
+    },
+    {
+      "email": "leticia.tomasini@gmail.com",
+      "name": "Leticia Tomasini"
     }
   ],
   "dependencies": {

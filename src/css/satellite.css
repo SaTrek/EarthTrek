@@ -2,9 +2,9 @@
 #satellite-panel {
     display: none;
     position: absolute;
-    top: 5%;
+    top: 6%;
     right: 2%;
-    width: 480px;
+    max-width: 33%;
     color: white;
     background-color: rgba(18, 20, 24, 0.5);
     border: 1px solid rgba(255, 255, 255, 0.5);
@@ -49,9 +49,12 @@
 }
 .satellite-panel-top {
     padding-top: 2px;
+    padding-left: 15px;
 }
 #satellite-instruments {
     padding: 0;
+    width: 40% !important;
+    float: left;
 }
 .satellite-instrument button {
     background-image: url("../images/layers.png");
@@ -60,11 +63,10 @@
     background: rgb(105,105,105);
 }
 #satellite-info {
-    font-size: 1.3rem;
+    font-size: 1.2rem;
     padding-right: 0;
     position: relative;
     min-height: 1px;
-    padding-right: 15px;
     padding-left: 15px;
     max-width: 60%;
     float: left;
@@ -72,13 +74,20 @@
 #satellite-info .orbital-data-keys {
     margin-right: 5px;
     font-family: 'Myriad Pro Bold Condensed';
+    width: 40%;
+    float: left;
 }
 #satellite-info .orbital-data-values {
-    max-width: 90%;
+
 }
 #satellite-info > div {
     display: inline-block;
     vertical-align: top;
+    width: 100%;
+    clear: both;
+}
+#satellite-info .agency {
+    width: 30px;
 }
 
 /** INSTRUMENT */
@@ -93,14 +102,14 @@
 }
 .satellite-instrument:nth-child(odd),
 
-/**LAYER */
+    /**LAYER */
 
 .instrument-layer:nth-child(odd) {
     background-color: rgba(58, 94, 107, 0.9);
 }
 #satellite-instrument-layers {
     display: none;
-    max-height: 25vh;
+    max-height: 30vh;
     overflow-y: auto;
     padding: 10px 1px 10px 10px;
     font-weight: bold;
@@ -150,4 +159,3 @@ COMPARE
 #compare-modal input {
     color: black;
 }
-
