@@ -1,7 +1,7 @@
 {
   "name": "EarthTrek",
-  "version": "0.175.31",
-  "description": "NASA Space Apps Challenge 2017 - Buenos Aires - Nominee - 1D, 2D, 3D, Go! Challenge",
+  "version": "0.176.03",
+  "description": "Global Nominee NASA Space Apps Challenge 2017 Buenos Aires - Global Finalist (Best Use of Data) NASA Space Apps Challenge 2017 - 1D, 2D, 3D, Go! Challenge",
   "homepage": "http://github.com/SATrek/EarthTrek",
   "author": {
     "name": "SATrek",
@@ -13,6 +13,7 @@
     "test": "./node_modules/.bin/mocha",
     "clean": "mkdirp public & rimraf public/*",
     "build": "npm run clean && cpr node_modules/cesium/Build/Cesium public && webpack --config config/webpack.config.js --progress",
+    "build2": "npm run clean && cpr node_modules/cesium/Build/Cesium/Assets public/Assets &&  webpack --config config/webpack.config.js --progress",
     "devserver": "webpack-dev-server --config config/webpack.config.js --progress",
     "dev": "npm run build && npm run devserver",
     "release": "npm run build -- --optimize-minimize"
@@ -32,6 +33,10 @@
     {
       "email": "impera87@gmail.com",
       "name": "Alejandro Hikari"
+    },
+    {
+      "email": "leticia.tomasini@gmail.com",
+      "name": "Leticia Tomasini"
     }
   ],
   "dependencies": {

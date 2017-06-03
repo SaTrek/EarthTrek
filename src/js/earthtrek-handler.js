@@ -6,6 +6,7 @@
  * @description EarthTrek - NASA Space Apps 2017 - 02 JUN 2017
  */
 
+var Cesium = require('./cesium');
 var ScreenSpaceEventHandler = require('cesium/Source/Core/ScreenSpaceEventHandler');
 var ScreenSpaceEventType = require('cesium/Source/Core/ScreenSpaceEventType');
 

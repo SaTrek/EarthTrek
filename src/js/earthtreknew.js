@@ -6,7 +6,7 @@
  * @description EarthTrek - NASA Space Apps 2017 23 APR 2017.
  */
 window.CESIUM_BASE_URL = './';
-require('cesium/Build/CesiumUnminified/Cesium.js');
+var Cesium = require('./cesium');
 require('cesium/Build/Cesium/Widgets/widgets.css');
 var _ = require('underscore');
 
@@ -18,7 +18,7 @@ var EarthTrekView = require('./view/earthtrek-view');
 var earthTrekSatellite = require('./earthtrek-satellite');
 var EarthTrekEntity = require('./earthtrek-entity');
 var EarthTrekHandler = require('./earthtrek-handler');
-var Cesium = window.Cesium;
+//var Cesium = window.Cesium;
 
 /**
  * @param options
