@@ -30,40 +30,33 @@ EarthTrekHandler.prototype.onLeftClick = function(defaultCallback, callbackPicke
             var entity = that.viewer.entities.getById(pick.id._id);
             if (entity != undefined) {
                 callbackPicked(entity);
-                /*that.setGlowPath(entity);
-                satellitePanel.show(entity);
-                that.evt.raiseEvent(entity);*/
                 that.pickedEntity = entity;
             }
         } else {
             callbackUnpick();
-           // satellitePanel.hide();
-          //  that.viewer.trackedEntity = undefined;
         }
     }, ScreenSpaceEventType.LEFT_CLICK);
 }
 
-/**
- *
- */
-/*EarthTrekHandler.prototype.onMouseMove = function() {
+EarthTrekHandler.prototype.onMouseMove = function(callbackPicked, callbackUnpick) {
+    var that = this;
     this.handler.setInputAction(function (movement) {
         var pick = that.viewer.scene.pick(movement.endPosition);
         if (Cesium.defined(pick)) {
             var entity = that.viewer.entities.getById(pick.id._id);
             if (entity != undefined) {
                 that.mouseOverEntity = entity;
-                that.setGlowPath(entity);
+                callbackPicked(entity);
             }
         } else if (that.mouseOverEntity != null) {
             that.viewer.entities.values.forEach(function (entity) {
-                if (this.pickedEntity != entity) {
-                    that.setDefaultPath(entity);
+                if (that.pickedEntity != entity) {
+                    callbackUnpick(entity);
                 }
             });
             that.mouseOverEntity = null;
         }
     }, ScreenSpaceEventType.MOUSE_MOVE);
 }
-*/
+
 module.exports = EarthTrekHandler;

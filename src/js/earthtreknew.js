@@ -137,7 +137,7 @@ EarthTrek.prototype.createViewer = function () {
             terrainExaggeration: 10,
             // shadows: Cesium.ShadowMode.ENABLED,
             imageryProvider: new Cesium.createTileMapServiceImageryProvider({
-                url: 'Assets/imagery/NaturalEarthII/',
+                url: 'newassets/imagery/NaturalEarthII/',
                 maximumLevel: 5,
                 credit: 'Imagery courtesy Natural Earth',
                 fileExtension: 'jpg'
@@ -173,73 +173,17 @@ EarthTrek.prototype.init = function () {
     var that = this;
     earthTrekLayer.setViewer(this.viewer);
 
-    var satellitePanel = new SatellitePanelView(this.viewer, {
-        container: 'satellite-panel'
-    });
     this.lastOrbitalDataUpdated = this.clock.currentTime;
 
     this.evt = new Cesium.Event();
 
-    var handler = new EarthTrekHandler(this.viewer);
-    handler.onLeftClick(
-        function (pickedEntity) {
-            EarthTrekEntity.setDefaultPath(pickedEntity, {width: 1, orbitalMaterial: that.orbitalMaterial});
-        },
-        function(entity) {
-            EarthTrekEntity.setGlowPath(entity, that.viewer.clock.currentTime);
-            //PASARLO A EVENTO
-            satellitePanel.show(entity);
-            that.evt.raiseEvent(entity);
-        },
-        function() {
-            satellitePanel.hide();
-            that.viewer.trackedEntity = undefined;
-        }
-    );
-
-   // var handler = new Cesium.ScreenSpaceEventHandler(this.viewer.scene.canvas);
-    this.showWelcomeScreen();
-/*
-    handler.setInputAction(function (movement) {
-        var pick = that.viewer.scene.pick(movement.position);
-        if (pickedEntity != undefined) {
-            that.setDefaultPath(pickedEntity);
-            pickedEntity = undefined;
-        }
-        if (Cesium.defined(pick)) {
-            var entity = that.viewer.entities.getById(pick.id._id);
-            if (entity != undefined) {
-                that.setGlowPath(entity);
-                satellitePanel.show(entity);
-                pickedEntity = entity;
-                that.evt.raiseEvent(entity);
-            }
-        } else {
-            satellitePanel.hide();
-            that.viewer.trackedEntity = undefined;
-        }
-    }, Cesium.ScreenSpaceEventType.LEFT_CLICK);
-*/
-    /*
-    handler.setInputAction(function (movement) {
-        var pick = that.viewer.scene.pick(movement.endPosition);
-        if (Cesium.defined(pick)) {
-            var entity = that.viewer.entities.getById(pick.id._id);
-            if (entity != undefined) {
-                that.mouseOverEntity = entity;
-                that.setGlowPath(entity);
-            }
-        } else if (that.mouseOverEntity != null) {
-            that.viewer.entities.values.forEach(function (entity) {
-                if (pickedEntity != entity) {
-                    that.setDefaultPath(entity);
-                }
-            });
-            that.mouseOverEntity = null;
-        }
-    }, Cesium.ScreenSpaceEventType.MOUSE_MOVE);
-*/
+    var satellitePanel = new SatellitePanelView(this.viewer, {
+        container: 'satellite-panel'
+    });
     this.satellitePanel = satellitePanel;
+    this.addHandlers(satellitePanel);
+
+    this.showWelcomeScreen();
     this.satelliteToolbar = new SatelliteToolbarView(this.viewer, 'left-toolbar', satellitePanel);
 
     earthTrekData.getFullData({}, function (satellites) {
@@ -257,6 +201,37 @@ EarthTrek.prototype.init = function () {
         that.satelliteToolbar.render();
     });
 }
+
+
+EarthTrek.prototype.addHandlers = function (satellitePanel) {
+    var that = this;
+    var handler = new EarthTrekHandler(this.viewer);
+    handler.onLeftClick(
+        function (pickedEntity) {
+            EarthTrekEntity.setDefaultPath(pickedEntity, {width: 1, orbitalMaterial: that.orbitalMaterial});
+        },
+        function(entity) {
+            EarthTrekEntity.setGlowPath(entity, that.viewer.clock.currentTime);
+            //el show PASARLO A EVENTO
+            satellitePanel.show(entity);
+            that.evt.raiseEvent(entity);
+        },
+        function() {
+            //el hide PASARLO A EVENTO
+            satellitePanel.hide();
+            that.viewer.trackedEntity = undefined;
+        }
+    );
+
+    handler.onMouseMove(
+        function(entity) {
+            EarthTrekEntity.setGlowPath(entity, that.viewer.clock.currentTime);
+        },
+        function(entity) {
+            EarthTrekEntity.setDefaultPath(entity, {width: 1, orbitalMaterial: that.orbitalMaterial});
+        }
+    );
+};
 
 /**
  *

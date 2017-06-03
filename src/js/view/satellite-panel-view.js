@@ -121,7 +121,7 @@ SatellitePanelView.prototype.magnitudesToOrbitalData = function (key, value) {
         var agencies = value.split('/');
         if (agencies.length > 0) {
             agencies.forEach(function(agencyName) {
-                agenciesLogos += '<img width=28" alt="' + agencyName + '" title="' + agencyName + '" src="images/agency/256/' + agencyName + '.png"/> ';
+                agenciesLogos += '<img class="agency" alt="' + agencyName + '" title="' + agencyName + '" src="images/agency/40/' + agencyName + '.png"/> ';
             })
         }
         return agenciesLogos;
