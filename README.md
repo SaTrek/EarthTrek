@@ -10,7 +10,7 @@ EarthTrek is an interactive 3D web application that does not require the install
 ![DISPLAY](http://i.imgur.com/mmRJ0Yz.jpg)
 
 For now, our app will allow to:
-* Observing satellite images
+* Observe satellite images
 * View real-time orbits of the various satellites around Earth from launch to future predictions.
 * View satellites´s models on 3D.
 * Learn the instruments that each satellite owns.
