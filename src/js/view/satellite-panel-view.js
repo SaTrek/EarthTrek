@@ -72,13 +72,14 @@ define([
         var descriptionContainer = '#satellite-description';
         $(descriptionContainer).html(properties.description);
 
-        var orbitalDataKeys = document.createElement('div');
-        $(orbitalDataKeys).addClass("orbital-data-keys");
-        var orbitalDataValues = document.createElement('div');
-        $(orbitalDataValues).addClass("orbital-data-values");
+
         $.each(data, function(key, value) {
+            var orbitalData = document.createElement('div');
+
             var orbitalDataKey = document.createElement('div');
-            $(orbitalDataKey).append(function () {
+            $(orbitalDataKey).addClass("orbital-data-keys");
+
+            $(orbitalDataKey).html(function () {
                 var data = {
                     launchDate: 'Launch Date',
                     argumentPerigee: 'Arg of Perigee',
@@ -89,17 +90,16 @@ define([
                 }
                 return data[key];
             });
-            $(orbitalDataKeys).append(orbitalDataKey);
+            $(orbitalData).append(orbitalDataKey);
 
             var orbitalDataValue = document.createElement('div');
+            $(orbitalDataValue).addClass("orbital-data-values");
             var value = that.magnitudesToOrbitalData(key, value);
             $(orbitalDataValue).addClass('satellite-data-' + key);
             $(orbitalDataValue).append((value != '') ? value : "-");
-            $(orbitalDataValues).append(orbitalDataValue);
+            $(orbitalData).append(orbitalDataValue);
+            $(that.satelliteInfoContainer).append(orbitalData);
         });
-
-        $(this.satelliteInfoContainer).append(orbitalDataKeys);
-        $(this.satelliteInfoContainer).append(orbitalDataValues);
     }
 
     /**
@@ -121,7 +121,7 @@ define([
             var agencies = value.split('/');
             if (agencies.length > 0) {
                 agencies.forEach(function(agencyName) {
-                    agenciesLogos += '<img width=28" alt="' + agencyName + '" title="' + agencyName + '" src="images/agency/256/' + agencyName + '.png"/> ';
+                    agenciesLogos += '<img alt="' + agencyName + '" title="' + agencyName + '" src="images/agency/40/' + agencyName + '.png"/> ';
                 })
             }
             return agenciesLogos;
