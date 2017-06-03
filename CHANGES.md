@@ -2,9 +2,7 @@ Change Log
 ==========
 # 0.176
 ### 0.176.03- 2017-06-03
-* Satellite Toolbar:
-* Go to satellite launch date and last contact date
-* Fly to Satellite
+* Mobile UI fixes in Satellite Panel & Toolbar
 
 # 0.175
 ## [Friendship 1](https://github.com/SaTrek/EarthTrek/releases/tag/v0.175.31)
