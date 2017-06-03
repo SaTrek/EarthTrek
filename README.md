@@ -1,18 +1,11 @@
 
-**NASA Space Apps Challenge 2017 - Buenos Aires** 
+**NASA Space Apps Challenge 2017 - Buenos Aires - Team SATrek** 
 
-Team SATrek 
 
 ![Global Finalist (Best Use of Data)](http://i.imgur.com/6H29eDd.png)
 
 EarthTrek is an interactive 3D web application that does not require the installation of any plugins, it can be launched through web browsers. It´s easy access for all kinds of users encourages the use of data that NASA´s EOS program compiles and collect with satellites´s different instruments.
 
-
-### BROWSER SUPPORT ###
-EarthTrek Version| Chrome ![Chrome](https://www.w3schools.com/images/compatible_chrome2020.gif) | Firefox ![Firefox](https://www.w3schools.com/images/compatible_firefox2020.gif)  |  IE 11 ![IE](https://www.w3schools.com/images/compatible_edge2020.gif)  | Chrome Android ![Android](http://www.nch.com.au/images/android_icon_20x20.gif) | 
---- | --- | ---| --- | ---
-0.176.03 (Current) | ![Yes](https://dvyn1ggd1flup.cloudfront.net/templates/cre63_ats/img/reserve_tickmark.png)|  ![Yes](https://dvyn1ggd1flup.cloudfront.net/templates/cre63_ats/img/reserve_tickmark.png) |  ![No](https://hosting.idiglocal.co.uk/templates/default/img/redcross20.png) |  ![Yes](https://dvyn1ggd1flup.cloudfront.net/templates/cre63_ats/img/reserve_tickmark.png) (Parcial)
-NX-Alpha (Early june) | ![Yes](https://dvyn1ggd1flup.cloudfront.net/templates/cre63_ats/img/reserve_tickmark.png)|  ![Yes](https://dvyn1ggd1flup.cloudfront.net/templates/cre63_ats/img/reserve_tickmark.png)  |  ![Yes](https://dvyn1ggd1flup.cloudfront.net/templates/cre63_ats/img/reserve_tickmark.png) |  ![Yes](https://dvyn1ggd1flup.cloudfront.net/templates/cre63_ats/img/reserve_tickmark.png) 
 
 ![DISPLAY](http://i.imgur.com/mmRJ0Yz.jpg)
 
@@ -48,6 +41,12 @@ node server.js
 ```
 That's it!
 
+
+### BROWSER SUPPORT ###
+EarthTrek Version| Chrome ![Chrome](https://www.w3schools.com/images/compatible_chrome2020.gif) | Firefox ![Firefox](https://www.w3schools.com/images/compatible_firefox2020.gif)  |  IE 11 ![IE](https://www.w3schools.com/images/compatible_edge2020.gif)  | Chrome Android ![Android](http://www.nch.com.au/images/android_icon_20x20.gif) | 
+--- | --- | ---| --- | ---
+0.176.03 (Current) | ![Yes](https://dvyn1ggd1flup.cloudfront.net/templates/cre63_ats/img/reserve_tickmark.png)|  ![Yes](https://dvyn1ggd1flup.cloudfront.net/templates/cre63_ats/img/reserve_tickmark.png) |  ![No](https://hosting.idiglocal.co.uk/templates/default/img/redcross20.png) |  ![Yes](https://dvyn1ggd1flup.cloudfront.net/templates/cre63_ats/img/reserve_tickmark.png) (Parcial)
+NX-Alpha (Early june) | ![Yes](https://dvyn1ggd1flup.cloudfront.net/templates/cre63_ats/img/reserve_tickmark.png)|  ![Yes](https://dvyn1ggd1flup.cloudfront.net/templates/cre63_ats/img/reserve_tickmark.png)  |  ![Yes](https://dvyn1ggd1flup.cloudfront.net/templates/cre63_ats/img/reserve_tickmark.png) |  ![Yes](https://dvyn1ggd1flup.cloudfront.net/templates/cre63_ats/img/reserve_tickmark.png) 
 
 **Some aspects of HOW THE APP WORKS..**
 
