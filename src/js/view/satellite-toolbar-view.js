@@ -7,12 +7,12 @@
  */
 
 var moment = require('moment');
-var bootstrap = require('bootstrap');
 var slick = require('slick-carousel');
 require('slick-carousel/slick/slick.css');
 require('slick-carousel/slick/slick-theme.css');
 require('bootstrap/dist/css/bootstrap.min.css');
 
+var Cesium = require('../cesium');
 var earthTrekToolbar = require('../earthtrek-toolbar');
 
 

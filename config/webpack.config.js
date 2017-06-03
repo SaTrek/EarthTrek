@@ -18,9 +18,9 @@ module.exports = {
             $: "jquery",
             jQuery: "jquery"
         }),
-     /*   new UglifyJSPlugin({
+        new UglifyJSPlugin({
             compress: { warnings: false }
-        }),*/
+        }),
         new HtmlPlugin({
             template: "./index.html",
             inject: "body"
@@ -52,7 +52,6 @@ module.exports = {
                 loader: ExtractTextPlugin.extract("style-loader", "css-loader")
             },
             { test: /\.(png|gif|jpg|jpeg)$/,  loader: "file-loader?name=/images/[name].[ext]" },
-            { test: /Cesium\.js$/, loader: "script" },
             {
                 test: /\.(eot|svg|ttf|woff|woff2)$/,
                 loader: 'file?name=css/fonts/[name].[ext]'

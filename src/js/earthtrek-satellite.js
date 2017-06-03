@@ -46,7 +46,6 @@ earthTrekSatellite.calculatePositions = function(tleLine1, tleLine2, startTime, 
 earthTrekSatellite.getSamples = function(tleLine1, tleLine2, startTime, duration, frequency) {
 
     var previousDate = new Date(JulianDate.toIso8601(startTime));
-    console.log( duration)
     previousDate.setSeconds(previousDate.getSeconds() - duration);
     var previousTimeJulian = JulianDate.fromDate(previousDate);
     var previousPositions  = this.calculatePositions(tleLine1, tleLine2, previousTimeJulian, duration, frequency, previousDate);
@@ -69,7 +68,7 @@ earthTrekSatellite.getSamples = function(tleLine1, tleLine2, startTime, duration
         previousPositions.velocities
     );
 
-    var currentDate = new Date(Cesium.JulianDate.toIso8601(startTime));
+    var currentDate = new Date(JulianDate.toIso8601(startTime));
     var latestPositions  = this.calculatePositions(tleLine1, tleLine2, startTime, duration, frequency, currentDate);
     positions.addSamples(
         latestPositions.times,
