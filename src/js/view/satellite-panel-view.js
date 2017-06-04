@@ -5,15 +5,15 @@
  * @author Alejandro Sanchez <alejandro.sanchez.trek@gmail.com>
  * @description EarthTrek - NASA Space Apps 2017 13 MAY 2017.
  */
-//require("amd-loader");
 define([
     'jquery',
     'bootstrap',
     'slick',
     'moment',
-    '../provider',
+    'datepicker',
+    '../earthtrek-compare',
     '../satellite-propagation'
-], function ($,b,s,moment) {
+], function ($,b,s,moment, d,EarthTrekCompare) {
 
     function SatellitePanelView(viewer, options) {
         this.viewer = viewer;
@@ -28,6 +28,7 @@ define([
         }
         this.satellitePanel = $('#' + options.container);
         this.instrumentsContainer = $("#satellite-instruments");
+        this.earthTrekCompare = new EarthTrekCompare(viewer);
     }
 
     SatellitePanelView.prototype.show = function (entity) {
@@ -88,7 +89,7 @@ define([
                 if (data[key] == undefined) {
                     return key;
                 }
-                return data[key];
+                return data[key]
             });
             $(orbitalData).append(orbitalDataKey);
 
@@ -221,21 +222,6 @@ define([
                 });
             }
         });
-
-        /*
-        $("#accept-date").click(function () {
-            if ($('#compare-date').val()) {
-                var layer = {};
-                layer.id = $('.compare-selected').parent().data("id");
-                layer.firstDate = $('#compare-date').val();
-                layer.secondDate = clock.currentTime.toString();
-                layer.format = $('.compare-selected').parent().data("format");
-                layer.resolution = $('.compare-selected').parent().data("resolution");
-
-                compare(layer);
-                $('#compare-modal').hide();
-            }
-        });*/
     }
     /**
      *
@@ -250,8 +236,28 @@ define([
         $(instrumentLayer).data("startDate", layer.startDate);
         $(instrumentLayer).data("format", layer.format);
         $(instrumentLayer).data("resolution", layer.resolution);
+        $(instrumentLayer).html("<div>" + layer.title + "</div>");
 
+        $(instrumentLayer).append(this.addAvailabilityButtons(layer));
 
+        var instrumentButtons = document.createElement("div");
+        $(instrumentButtons).addClass('fixed-buttons');
+        $(instrumentLayer).append(instrumentButtons);
+
+        $(instrumentButtons).append(this.addToggleLayerButton(layer));
+        $(instrumentButtons).append(this.addCompareButton(layer));
+
+        return instrumentLayer;
+    }
+
+    /**
+     *
+     * @param layer
+     * @returns {Element}
+     */
+    SatellitePanelView.prototype.addAvailabilityButtons = function(layer) {
+
+        var that = this;
         var endDate = (layer.endDate == null) ? 'Present' : layer.endDate;
 
         var startDateButton = document.createElement('button');
@@ -275,18 +281,17 @@ define([
         $(layerAvailable).append(startDateButton);
         $(layerAvailable).append(' - ');
         $(layerAvailable).append(endDateButton);
+        return layerAvailable;
+    }
 
-        $(instrumentLayer).html("<div>" + layer.title + "</div>");
-        $(instrumentLayer).append(layerAvailable);
-
-        var instrumentButtons = document.createElement("div");
-        $(instrumentButtons).addClass('fixed-buttons');
-        $(instrumentLayer).append(instrumentButtons);
-        /**
-         * SHOW LAYER
-         * @type {Element}
-         */
-        var today = this.isoDate(this.viewer.clock.currentTime.toString());
+    /**
+     *
+     * @param layer
+     * @returns {Element}
+     */
+    SatellitePanelView.prototype.addToggleLayerButton = function(layer) {
+        var that = this;
+        var today = this.isoDate(that.viewer.clock.currentTime.toString());
         var objToday = new Date(today);
         objToday.setDate(objToday.getDate());
         var toggleLayerButton = document.createElement("button");
@@ -297,57 +302,65 @@ define([
                 earthTrekLayer.removeLayer(layer);
             } else {
                 $(this).addClass('selected');
-                earthTrekLayer.hideLayer(layer);
-                var maximumLevel = (layer.format == 'image/png') ? 2 : 12;
-                var newLayerProvider = provider.getProvider({
-                    layer: layer.id,
-                    time: that.isoDate(that.viewer.clock.currentTime.toString()),
-                    format: layer.format,
-                    tileMatrixSetID: "epsg4326",
-                    resolution: layer.resolution,
-                    maximumLevel: maximumLevel
-                });
-
-                if (that.viewer.scene.imageryLayers._layers[0].format == 'image/jpeg') {
-                    that.viewer.scene.imageryLayers._layers[0].show = false;
-                //    that.viewer.scene.imageryLayers.lowerToBottom(that.viewer.scene.imageryLayers._layers[0].show = false);
-                }
-                var addedLayer = that.viewer.scene.imageryLayers.addImageryProvider(newLayerProvider);
-                if (layer.format == 'image/jpeg') {
-                    that.viewer.scene.imageryLayers.lowerToBottom(addedLayer);
-                }
+                earthTrekLayer.addLayer(that.isoDate(that.viewer.clock.currentTime.toString()), layer);
             }
 
         });
 
         $(toggleLayerButton).addClass("view");
-        $(instrumentButtons).append(toggleLayerButton);
-
-        this.addCompareButton(instrumentButtons);
-
         if (layer.endDate < today || layer.startDate > today) {
             $(toggleLayerButton).attr('disabled', 'disabled');
         }
-        return instrumentLayer;
-    }
+        return toggleLayerButton;
+    };
 
     /**
      * Add Compare Button
      * @param instrumentButtons
      */
-    SatellitePanelView.prototype.addCompareButton = function(instrumentButtons) {
+    SatellitePanelView.prototype.addCompareButton = function(layer) {
+        var that = this;
         var compareButton = document.createElement("button");
-        $(compareButton).html("");
         $(compareButton).click(function () {
-            $('.compare-selected').removeClass('compare-selected');
-            $(this).addClass("compare-selected");
-            $('#compare-modal').show();
+            var button = $(this);
+            that.showCompare(layer, function() {
+                if (button.hasClass('selected')) {
+                    button.removeClass('selected');
+                } else {
+                    button.addClass('selected');
+                }
+            });
         });
-        $(instrumentButtons).append(compareButton);
-
-        $(compareButton).attr('disabled', 'disabled');
+        return compareButton;
     };
 
+    /**
+     *
+     * @param layer
+     */
+    SatellitePanelView.prototype.showCompare = function (layer, callback) {
+        var that = this;
+        $('.datepicker').datepicker();
+        $('#compare-modal').show();
+        $("#accept-date").click(function () {
+            if ($('#compare-date').val()) {
+                var today = that.isoDate(that.viewer.clock.currentTime.toString());
+                layer.id = layer.id;
+                layer.firstDate = $('#compare-date').val();
+                layer.secondDate = today;
+                layer.format = layer.format;
+                layer.resolution = layer.resolution;
+                that.earthTrekCompare.compare(layer);
+                $('#compare-modal').hide();
+            }
+        });
+    }
+
+    /**
+     *
+     * @param isoDateTime
+     * @returns {*}
+     */
     SatellitePanelView.prototype.isoDate = function(isoDateTime) {
         return isoDateTime.split("T")[0];
     };

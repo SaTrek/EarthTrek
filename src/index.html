@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
 
-    <title>EarthTrek - ALPHA v0.175.27</title>
+    <title>EarthTrek - ALPHA v0.176.04</title>
 
     <script data-main="app" src="../node_modules/requirejs/require.js"></script>
 
@@ -20,6 +20,7 @@
         @import url(css/left-toolbar.css);
         @import url(css/tutorial.css);
         @import url(css/mobile.css);
+        @import url(css/compare.css);
         @import url(css/fonts/myriad.css);
     </style>
 </head>
@@ -27,7 +28,7 @@
 
     <div id="main-container">
 
-        <div id="compare-modal" style="display: none;">
+        <div id="compare-modal" class="earthtrek-modal container earthtrek-toolbar earthtrek-panel"
             <legend>Select a date to compare</legend>
             <input id="compare-date" class="datepicker" data-date-format="yyyy-mm-dd">
             <button id="accept-date">OK</button>
