@@ -39,6 +39,8 @@ git submodule update
 npm install
 node server.js
 ```
+Finally, in order to launch the app, enter the URL: http://localhost:9080.
+
 That's it!
 
 
