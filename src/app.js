@@ -10,6 +10,7 @@ requirejs.config({
         slick: '../node_modules/slick-carousel/slick/slick.min',
         tle: '../node_modules/tle/lib/tle',
         moment: '../node_modules/moment/min/moment-with-locales.min',
+        datepicker: '../node_modules/bootstrap-datepicker/dist/js/bootstrap-datepicker',
     }
 });
 
