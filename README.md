@@ -5,7 +5,9 @@
 ![Global Finalist (Best Use of Data)](http://i.imgur.com/6H29eDd.png)
 
 * [Roadmap](https://github.com/SaTrek/EarthTrek/projects/1)
+* [Installation](#installation)
 * [Browser support](#browser-support)
+* [Resources](#resources)
 
 EarthTrek is an interactive 3D web application that does not require the installation of any plugins, it can be launched through web browsers. It´s easy access for all kinds of users encourages the use of data that NASA´s EOS program compiles and collect with satellites´s different instruments.
 
@@ -56,7 +58,7 @@ NX-Alpha (Early june) | ![Yes][YesTickmark]|  ![Yes][YesTickmark] |  ![Yes][YesT
 [YesTickmark]: https://dvyn1ggd1flup.cloudfront.net/templates/cre63_ats/img/reserve_tickmark.png
 [NoRedCross]: https://hosting.idiglocal.co.uk/templates/default/img/redcross20.png
 
-**Some aspects of HOW THE APP WORKS**
+## Some aspects of HOW THE APP WORKS
 
 If you select a satellite, firstly you will see details about its missions and instruments:
 
@@ -68,7 +70,7 @@ By determining a geographic location through the geolocation finder and selectin
 
 ![Mato Grosso deforestation](http://i.imgur.com/01GK2is.jpg)
 
-**RESOURCES**
+## RESOURCES
 
 * SatelliteJS (Satellite propagation): https://github.com/shashwatak/satellite-js
 * CesiumJs: https://cesiumjs.org/
