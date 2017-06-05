@@ -1,8 +1,9 @@
 #compare-modal {
     display: none;
-    max-width: 20%;
+    max-width: 25%;
     text-align: left;
     bottom: 20%;
+    left: 10%;
     padding-bottom: 10px;
 }
 #compare-modal legend {
@@ -10,4 +11,5 @@
 }
 #compare-modal input {
     color: black;
+    height: 20px;
 }

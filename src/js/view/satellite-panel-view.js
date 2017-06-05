@@ -148,6 +148,11 @@ define([
         this.satellitePanel.hide();
     }
 
+    /**
+     *
+     * @param entity
+     * @returns {boolean}
+     */
     SatellitePanelView.prototype.addInstruments = function (entity) {
         var that = this;
         var instruments = entity.properties.instruments.getValue();
@@ -161,6 +166,7 @@ define([
             var instrumentElement = document.createElement('div');
             $(instrumentElement).id = "satellite-instrument-" + entity.id + "-" + instrument.name;
             $(instrumentElement).addClass("satellite-instrument");
+         //   $(instrumentElement).click({entity: that.entity, panel: that, instrument: instrument}, that.showLayers);
             $(instrumentElement).html("<div>" + instrument.name + "</div>");
             $(instrumentElement).data('instrument', instrument.name);
 
@@ -195,8 +201,10 @@ define([
                     }
                     if (layer.startDate <= today && layer.endDate >= today) {
                         $('#layer-view-' + layer.id).removeAttr('disabled');
+                        $('#layer-compare-' + layer.id).removeAttr('disabled');
                     } else {
                         $('#layer-view-' + layer.id).attr('disabled', 'disabled');
+                        $('#layer-compare-' + layer.id).attr('disabled', 'disabled');
                     }
                 });
             }
@@ -320,10 +328,12 @@ define([
      */
     SatellitePanelView.prototype.addCompareButton = function(layer) {
         var that = this;
+        var today = this.isoDate(that.viewer.clock.currentTime.toString());
         var compareButton = document.createElement("button");
+        $(compareButton).attr('id', 'layer-compare-' + layer.id);
         $(compareButton).click(function () {
             var button = $(this);
-            that.showCompare(layer, function() {
+            that.earthTrekCompare.showCompare(layer, function() {
                 if (button.hasClass('selected')) {
                     button.removeClass('selected');
                 } else {
@@ -331,30 +341,12 @@ define([
                 }
             });
         });
+        $(compareButton).addClass("compare");
+        if (layer.endDate < today || layer.startDate > today) {
+            $(compareButton).attr('disabled', 'disabled');
+        }
         return compareButton;
     };
-
-    /**
-     *
-     * @param layer
-     */
-    SatellitePanelView.prototype.showCompare = function (layer, callback) {
-        var that = this;
-        $('.datepicker').datepicker();
-        $('#compare-modal').show();
-        $("#accept-date").click(function () {
-            if ($('#compare-date').val()) {
-                var today = that.isoDate(that.viewer.clock.currentTime.toString());
-                layer.id = layer.id;
-                layer.firstDate = $('#compare-date').val();
-                layer.secondDate = today;
-                layer.format = layer.format;
-                layer.resolution = layer.resolution;
-                that.earthTrekCompare.compare(layer);
-                $('#compare-modal').hide();
-            }
-        });
-    }
 
     /**
      *

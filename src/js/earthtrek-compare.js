@@ -12,40 +12,95 @@ define([
 ], function () {
     'use strict';
 
+    /**
+     *
+     * @param viewer
+     * @constructor
+     */
     function EarthTrekCompare(viewer) {
         this.viewer = viewer;
     }
 
-    EarthTrekCompare.prototype.remove = function () {
-        earthTrekLayer.removeLayer(that.firstView);
-        that.secondView.splitDirection =  Cesium.ImageryLayer.DEFAULT_SPLIT;
+    /**
+     *
+     * @param layer
+     */
+    EarthTrekCompare.prototype.showCompare = function (layer) {
+        var that = this;
+        var today = that.isoDate(that.viewer.clock.currentTime.toString());
+
+        $('#compare-layer-name').html(layer.title);
+
+        var compareButton = '#remove-comparation';
+        $(compareButton).click(function() {
+            that.remove();
+        });
+
+        var endDate = (layer.endDate != null) ? layer.endDate : today;
+
+        $('.datepicker').datepicker({
+            autoclose: true,
+            todayHighlight: true,
+            startView: 2,
+            orientation: 'bottom'
+        });
+
+        $('.datepicker').datepicker('setStartDate', layer.startDate);
+        $('.datepicker').datepicker('setEndDate', endDate);
+
+        $('#compare-modal').show();
+        $('#compare-date').datepicker('show');
+
+        $("#accept-date").click(function () {
+            if ($('#compare-date').val()) {
+                var today = that.isoDate(that.viewer.clock.currentTime.toString());
+                layer.id = layer.id;
+                layer.firstDate = $('#compare-date').val();
+                layer.secondDate = today;
+                layer.format = layer.format;
+                layer.resolution = layer.resolution;
+                that.compare(layer);
+                $(compareButton).removeAttr('disabled');
+            }
+        });
     }
 
+
+    /**
+     *
+     * @param isoDateTime
+     * @returns {*}
+     */
+    EarthTrekCompare.prototype.isoDate = function(isoDateTime) {
+        return isoDateTime.split("T")[0];
+    };
+
+    /**
+     * Compare layer through time
+     * @param layer
+     */
     EarthTrekCompare.prototype.compare = function (layer) {
         var that = this;
 
         if (!$("#slider").is(':visible')) {
             $("#slider").show();
-            var compareButton = document.createElement('button');
-            $(compareButton).html('Remove comparation');
-            $(compareButton).click(function() {
-
-            });
-            $('#main-container').append(compareButton);
         }
-        if (that.firstView != undefined) {
+        if (this.firstView != undefined) {
             earthTrekLayer.removeLayer(that.firstView);
         }
-        if (that.secondView != undefined) {
+        if (this.secondView != undefined) {
             earthTrekLayer.removeLayer(that.secondView);
         }
-        that.firstView = earthTrekLayer.addLayer(layer.firstDate, layer, true);
-        that.secondView = earthTrekLayer.addLayer(layer.secondDate, layer, true);
-        that.secondView.splitDirection = Cesium.ImagerySplitDirection.RIGHT;
+        this.firstView = earthTrekLayer.addLayer(layer.firstDate, layer, true);
+        this.secondView = earthTrekLayer.addLayer(layer.secondDate, layer, true);
+        this.secondView.splitDirection = Cesium.ImagerySplitDirection.RIGHT;
 
         var slider = document.getElementById('slider');
-        that.viewer.scene.imagerySplitPosition = (slider.offsetLeft) / slider.parentElement.offsetWidth;
+        this.viewer.scene.imagerySplitPosition = (slider.offsetLeft) / slider.parentElement.offsetWidth;
 
+        /**
+         * REFACTOR
+         */
         var dragStartX = 0;
 
         document.getElementById('slider').addEventListener('mousedown', mouseDown, false);
@@ -68,36 +123,18 @@ define([
             that.viewer.scene.imagerySplitPosition = splitPosition;
         }
 
-
-
-
-
-        // this.className = "button-selected";
-       /* this.toggle($("#slider"), function() {
-            console.log(layer.secondDate)
-        }, function() {
-         //   that.secondView.splitDirection =  Cesium.ImageryLayer.DEFAULT_SPLIT;
-        });*/
-
-      /*  var referenceLayerProvider = provider.getProvider("Reference_Labels", '2016-11-19', "image/png", "epsg4326", "250m");
-        viewer.scene.imageryLayers.addImageryProvider(referenceLayerProvider);*/
     }
 
     /**
-     *
-     * @param div
-     * @param callbackOn
-     * @param callbackOff
+     * Remove Compare
      */
-    EarthTrekCompare.prototype.toggle = function(div, callbackOn, callbackOff) {
-        console.log(div.is(":visible"))
-        if (div.is(":visible")) {
-            div.hide();
-            callbackOff();
-        } else  {
-            div.show();
-            callbackOn();
+    EarthTrekCompare.prototype.remove = function () {
+        if ($("#slider").is(':visible')) {
+            $("#slider").hide();
         }
+        earthTrekLayer.removeLayer(this.firstView);
+        this.secondView.splitDirection =  Cesium.ImageryLayer.DEFAULT_SPLIT;
+        $('#compare-modal').hide();
     }
 
     return EarthTrekCompare;
