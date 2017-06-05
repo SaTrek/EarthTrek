@@ -8,7 +8,7 @@
 /**
  * REQUIRES
  */
-var EarthTrek = require('./js/earthtreknew');
+var EarthTrek = require('./js/earthtrek');
 /**CSS*/
 require('./css/main.css');
 require('./css/left-toolbar.css');

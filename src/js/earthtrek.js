@@ -18,6 +18,7 @@ var EarthTrekView = require('./view/earthtrek-view');
 var earthTrekSatellite = require('./earthtrek-satellite');
 var EarthTrekEntity = require('./earthtrek-entity');
 var EarthTrekHandler = require('./earthtrek-handler');
+var EarthTrekTutorialView = require('./view/earthtrek-tutorial-view');
 //var Cesium = window.Cesium;
 
 /**

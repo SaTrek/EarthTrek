@@ -5,11 +5,11 @@ var port = process.env.PORT || 9080
 var app = express()
 
 app.use(express.static(__dirname))
-app.use(express.static(__dirname + '/src'))
+app.use(express.static(__dirname + '/public'))
 app.use(express.static(__dirname + '/API'))
    
 app.get('/', function(req, res) {
-    res.sendFile(__dirname + '/src/index.html')
+    res.sendFile(__dirname + '/public/index.html')
 })
 
 app.get('/cap-parser', function(req, res) {

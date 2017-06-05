@@ -1,4 +1,5 @@
 var HtmlPlugin = require("html-webpack-plugin");
+var UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 var webpack = require("webpack");
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
 var CopyWebpackPlugin = require('copy-webpack-plugin');
@@ -17,13 +18,16 @@ module.exports = {
             $: "jquery",
             jQuery: "jquery"
         }),
+        new UglifyJSPlugin({
+            compress: { warnings: false }
+        }),
         new HtmlPlugin({
             template: "./index.html",
             inject: "body"
         }),
         new ExtractTextPlugin("[name].css"),
         new CopyWebpackPlugin([
-            { from: './models', to: 'models/' }, { from: './images', to: 'images/' }, { from: './newassets', to: 'newassets/' }
+                { from: './models', to: 'models/' }, { from: './images', to: 'images/' }, { from: './newassets', to: 'newassets/' }
             ]
             , {copyUnmodified: true}
         )
@@ -43,9 +47,15 @@ module.exports = {
     module: {
         unknownContextCritical: false,
         loaders: [
-            { test: /\.css$/, loader: ExtractTextPlugin.extract("style-loader", "css-loader") },
+            {
+                test: /\.css$/,
+                loader: ExtractTextPlugin.extract("style-loader", "css-loader")
+            },
             { test: /\.(png|gif|jpg|jpeg)$/,  loader: "file-loader?name=/images/[name].[ext]" },
-            { test: /\.(eot|svg|ttf|woff|woff2)$/, loader: 'file?name=css/fonts/[name].[ext]' }
+            {
+                test: /\.(eot|svg|ttf|woff|woff2)$/,
+                loader: 'file?name=css/fonts/[name].[ext]'
+            }
         ]
     }
 };
