@@ -1,10 +1,13 @@
 /**
- * @class EarthTrekLayers
+ * @class EarthTrekLayer
  * @module EarthTrek
  * @author SATrek
  * @author Alejandro Sanchez <alejandro.sanchez.trek@gmail.com>
- * @description EarthTrek - NASA Space Apps 2017 - 2017-05-25
+ * @description EarthTrek - NASA Space Apps 2017 - 25 MAY 2017
  */
+var earthTrekProvider = require('./earthtrek-provider');
+var ImageryLayer = require('cesium/Source/Scene/ImageryLayer');
+
 var earthTrekLayer = earthTrekLayer || {};
 
 earthTrekLayer.setViewer = function(viewer) {
@@ -31,9 +34,9 @@ earthTrekLayer.addLayer = function(today, layer, dontHide) {
     }
     var addedLayer = this.layerViewer.scene.imageryLayers.addImageryProvider(newLayerProvider);
     return addedLayer;
-    if (layer.format == 'image/jpeg') {
+   /* if (layer.format == 'image/jpeg') {
         this.layerViewer.scene.imageryLayers.lowerToBottom(addedLayer);
-    }
+    }*/
 }
 
 earthTrekLayer.getLayers = function() {
@@ -47,14 +50,12 @@ earthTrekLayer.toggleLayer = function() {
 earthTrekLayer.removeLayer = function(layer) {
     var imageryLayers = earthTrekLayer.getLayers();
     if (layer instanceof Cesium.ImageryLayer) {
-        console.log("Removio")
         imageryLayers.remove(layer);
         return true;
     }
     for (var i = 0; i <= imageryLayers.length - 1; i++) {
         var imageryLayer = imageryLayers.get(i);
         if (imageryLayer.imageryProvider._layer == layer.id) {
-            console.log("Removio")
             imageryLayers.remove(imageryLayer);
             return true;
         }
@@ -67,7 +68,6 @@ earthTrekLayer.hideLayer = function(layer) {
     for (var i = 0; i <= imageryLayers.length - 1; i++) {
         var imageryLayer = imageryLayers.get(i);
         if (layer.format == 'image/jpeg' && imageryLayer.imageryProvider.format == 'image/jpeg') {
-            console.log("Oculto")
             imageryLayer.show = false;
         }
     }

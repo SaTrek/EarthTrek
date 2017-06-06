@@ -13,6 +13,10 @@ var Clock = require('cesium/Source/Core/Clock');
 var ClockStep = require('cesium/Source/Core/ClockStep');
 var Event = require('cesium/Source/Core/Event');
 var defined = require('cesium/Source/Core/defined');
+var GeographicTilingScheme = require('cesium/Source/Core/GeographicTilingScheme');
+var Math = require('cesium/Source/Core/Math');
+var Rectangle = require('cesium/Source/Core/Rectangle');
+
 var Viewer = require('cesium/Source/Widgets/Viewer/Viewer');
 
 var LabelStyle = require('cesium/Source/Scene/LabelStyle');
@@ -38,6 +42,9 @@ var Cesium = {
     Cartesian2: Cartesian2,
     Cartesian3: Cartesian3,
     Color: Color,
+    Math: Math,
+    Rectangle: Rectangle,
+    GeographicTilingScheme: GeographicTilingScheme,
     defined: defined,
     StripeMaterialProperty: StripeMaterialProperty,
     StripeOrientation: StripeOrientation,

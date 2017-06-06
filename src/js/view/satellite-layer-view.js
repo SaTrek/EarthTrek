@@ -12,10 +12,10 @@ var bootstrap = require('bootstrap');
 var JulianDate = require('cesium/Source/Core/JulianDate');
 
 var provider = require('../earthtrek-provider');
-var satellitePropagation = require('../satellite-propagation');
 var earthTrekLayer = require('../earthtrek-layer');
+var EarthTrekCompare = require('../earthtrek-compare');
 
-function SatellitePanelView(viewer, options) {
+function SatelliteLayerView(viewer, options) {
     this.viewer = viewer;
     this.mainContainerId = this.viewer.container.id;
     if (!options.container) {
@@ -28,155 +28,8 @@ function SatellitePanelView(viewer, options) {
     }
     this.satellitePanel = $('#' + options.container);
     this.instrumentsContainer = $("#satellite-instruments");
+    this.earthTrekCompare = new EarthTrekCompare(viewer);
 
-}
-
-SatellitePanelView.prototype.show = function (entity) {
-    this.instrumentsContainer.empty();
-    $(this.satelliteInfoContainer).empty();
-    $('#satellite-instrument-layers').empty();
-    if (entity.properties == undefined) {
-        this.satellitePanel.hide();
-        return false;
-    }
-
-    this.entity = entity;
-    $('#satellite-name').html(entity.properties.name.getValue());
-
-    this.showOrbitalData(entity);
-    if (entity.properties.instruments !== undefined) {
-        this.addInstruments(entity)
-    }
-    this.satellitePanel.show();
-}
-
-SatellitePanelView.prototype.updateOrbitalData = function (entity) {
-    if ($('.satellite-data-velocity').length > 0 && entity.velocity.getValue(this.viewer.clock.currentTime) != undefined) {
-        var velocity = satellitePropagation.getVelocity(entity.velocity.getValue(this.viewer.clock.currentTime));
-        $($('.satellite-data-velocity')[0]).html(parseFloat(velocity).toFixed(2) + ' km/s');
-    }
-
-    if ($('.satellite-data-altitude').length > 0 && entity.altitude.getValue(this.viewer.clock.currentTime) != undefined) {
-        $($('.satellite-data-altitude')[0]).html((entity.altitude.getValue(this.viewer.clock.currentTime)/1000).toFixed(1) + ' km');
-    }
-}
-
-SatellitePanelView.prototype.showOrbitalData = function (entity) {
-    var properties = entity.properties.getValue(this.viewer.clock.currentTime);
-    var data = properties.data;
-    var velocity = satellitePropagation.getVelocity(entity.velocity.getValue(this.viewer.clock.currentTime));
-    data.velocity = velocity;
-
-    data.altitude = (entity.altitude.getValue(this.viewer.clock.currentTime)/1000).toFixed(1) ;
-    var that = this;
-
-    var descriptionContainer = '#satellite-description';
-    $(descriptionContainer).html(properties.description);
-
-    $.each(data, function(key, value) {
-        var orbitalData = document.createElement('div');
-
-        var orbitalDataKey = document.createElement('div');
-        $(orbitalDataKey).addClass("orbital-data-keys");
-
-        $(orbitalDataKey).html(function () {
-            var data = {
-                launchDate: 'Launch Date',
-                argumentPerigee: 'Arg of Perigee',
-                meanAnomaly: 'Mean Anomaly'
-            }
-            if (data[key] == undefined) {
-                return key;
-            }
-            return data[key];
-        });
-        $(orbitalData).append(orbitalDataKey);
-
-        var orbitalDataValue = document.createElement('div');
-        $(orbitalDataValue).addClass("orbital-data-values");
-        var value = that.magnitudesToOrbitalData(key, value);
-        $(orbitalDataValue).addClass('satellite-data-' + key);
-        $(orbitalDataValue).append((value != '') ? value : "-");
-        $(orbitalData).append(orbitalDataValue);
-        $(that.satelliteInfoContainer).append(orbitalData);
-    });
-
-}
-
-/**
- * Magnitudes To Orbital Data
- * @param key
- * @param value
- * @returns {*}
- */
-SatellitePanelView.prototype.magnitudesToOrbitalData = function (key, value) {
-
-    if (key == 'launchDate') {
-        return moment(value).format('DD MMM Y');
-    }
-    if (key == 'agency') {
-        var agenciesLogos = '';
-        if (value == '') {
-            return value;
-        }
-        var agencies = value.split('/');
-        if (agencies.length > 0) {
-            agencies.forEach(function(agencyName) {
-                agenciesLogos += '<img class="agency" alt="' + agencyName + '" title="' + agencyName + '" src="images/agency/40/' + agencyName + '.png"/> ';
-            })
-        }
-        return agenciesLogos;
-    }
-    var data = {
-        altitude: 'km',
-        perigee: 'km',
-        apogee: 'km',
-        inclination: '&deg;',
-        meanAnomaly: '',
-        argumentPerigee: '&deg;',
-        period: 'mins',
-        velocity: 'km/s',
-        mass: 'kg'
-    }
-    if (data[key] == undefined) {
-        return value;
-    }
-    return value.toLocaleString() + ' ' + data[key];
-}
-
-
-SatellitePanelView.prototype.hide = function () {
-    this.satellitePanel.hide();
-}
-
-/**
- *
- * @param entity
- * @returns {boolean}
- */
-SatellitePanelView.prototype.addInstruments = function (entity) {
-    var that = this;
-    var instruments = entity.properties.instruments.getValue();
-    if (instruments.length === 0) {
-        return false;
-    }
-    instruments.forEach(function(instrument) {
-        if (instrument == null) {
-            return false;
-        }
-        var instrumentElement = document.createElement('div');
-        $(instrumentElement).id = "satellite-instrument-" + entity.id + "-" + instrument.name;
-        $(instrumentElement).addClass("satellite-instrument");
-        //   $(instrumentElement).click({entity: that.entity, panel: that, instrument: instrument}, that.showLayers);
-        $(instrumentElement).html("<div>" + instrument.name + "</div>");
-        $(instrumentElement).data('instrument', instrument.name);
-
-        var layerButton = document.createElement("button");
-        $(layerButton).click({entity: that.entity, panel: that, instrument: instrument}, that.showLayers);
-        $(instrumentElement).append(layerButton);
-
-        that.instrumentsContainer.append(instrumentElement);
-    });
 }
 
 /**
@@ -184,9 +37,7 @@ SatellitePanelView.prototype.addInstruments = function (entity) {
  * @param event
  * @returns {boolean}
  */
-SatellitePanelView.prototype.updateLayers = function (event) {
-    var that = this;
-    var today = this.isoDate(this.viewer.clock.currentTime.toString());
+SatelliteLayerView.updateLayers = function (event, today) {
     var entity = event.data.entity;
     if ($('.selected-instrument').length == 0) {
         return false;
@@ -198,7 +49,7 @@ SatellitePanelView.prototype.updateLayers = function (event) {
             $.each(instrument.layers, function(key, layer) {
                 if (layer.endDate == null) {
                     var present = new Date();
-                    layer.endDate = that.isoDate(present.toISOString());
+                    layer.endDate = present.toISOString().split("T")[0]
                 }
                 if (layer.startDate <= today && layer.endDate >= today) {
                     $('#layer-view-' + layer.id).removeAttr('disabled');
@@ -216,7 +67,7 @@ SatellitePanelView.prototype.updateLayers = function (event) {
  *
  * @param event
  */
-SatellitePanelView.prototype.showLayers = function (event) {
+SatelliteLayerView.prototype.showLayers = function (event) {
     var entity = event.data.entity;
     var panel = event.data.panel;
     $('.satellite-instrument .selected-instrument').removeClass('selected-instrument');
@@ -237,8 +88,7 @@ SatellitePanelView.prototype.showLayers = function (event) {
  * @param layer
  * @returns {Element}
  */
-SatellitePanelView.prototype.createLayer = function(layer) {
-    var that = this;
+SatelliteLayerView.prototype.createLayer = function(layer) {
     var instrumentLayer = document.createElement('div');
     $(instrumentLayer).addClass("instrument-layer");
     $(instrumentLayer).data("id", layer.id);
@@ -265,7 +115,7 @@ SatellitePanelView.prototype.createLayer = function(layer) {
  * @param layer
  * @returns {Element}
  */
-SatellitePanelView.prototype.addAvailabilityButtons = function(layer) {
+SatelliteLayerView.prototype.addAvailabilityButtons = function(layer) {
 
     var that = this;
     var endDate = (layer.endDate == null) ? 'Present' : layer.endDate;
@@ -299,7 +149,7 @@ SatellitePanelView.prototype.addAvailabilityButtons = function(layer) {
  * @param layer
  * @returns {Element}
  */
-SatellitePanelView.prototype.addToggleLayerButton = function(layer) {
+SatelliteLayerView.prototype.addToggleLayerButton = function(layer) {
     var that = this;
     var today = this.isoDate(that.viewer.clock.currentTime.toString());
     var objToday = new Date(today);
@@ -328,7 +178,7 @@ SatellitePanelView.prototype.addToggleLayerButton = function(layer) {
  * Add Compare Button
  * @param instrumentButtons
  */
-SatellitePanelView.prototype.addCompareButton = function(layer) {
+SatelliteLayerView.prototype.addCompareButton = function(layer) {
     var that = this;
     var today = this.isoDate(that.viewer.clock.currentTime.toString());
     var compareButton = document.createElement("button");
@@ -350,19 +200,4 @@ SatellitePanelView.prototype.addCompareButton = function(layer) {
     return compareButton;
 };
 
-
-/**
- *
- * @param isoDateTime
- * @returns {*}
- */
-SatellitePanelView.prototype.isoDate = function(isoDateTime) {
-    return isoDateTime.split("T")[0];
-};
-
-SatellitePanelView.prototype.render = function () {
-
-
-}
-
-module.exports = SatellitePanelView;
+module.exports = SatelliteLayerView;
