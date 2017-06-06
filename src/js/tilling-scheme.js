@@ -1,4 +1,5 @@
 
+var Cesium = require('./cesium');
 var gibs = gibs || {};
 
 gibs.GeographicTilingScheme = function(options) {

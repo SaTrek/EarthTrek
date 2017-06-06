@@ -131,25 +131,3 @@
 .layer-available span {
     font-weight: normal;
 }
-/**
-COMPARE
-*/
-#compare-modal {
-    border: 1px solid white;
-    position: absolute;
-    top: 20%;
-    left: 25%;
-    text-align: center;
-    z-index: 1;
-    color: white;
-    width: 800px;
-    height: 250px;
-    background: rgba(0, 0, 0, 0.6);
-}
-#compare-modal legend {
-    color: white;
-}
-#compare-modal input {
-    color: black;
-}
-
