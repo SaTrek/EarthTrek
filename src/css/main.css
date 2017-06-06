@@ -5,7 +5,14 @@ html, body, #main-container {
     padding: 0;
     overflow: hidden;
     font-family: 'Myriad Pro Regular';
-    font-size: 14px;
+    font-size: 16px;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    cursor: default;
 }
 
 #slider {
@@ -29,12 +36,11 @@ html, body, #main-container {
     border-radius: 4px;
     z-index: 2;
 }
+/**EARTH TREK PANEL*/
 .earthtrek-panel {
-    font-family: 'Myriad Pro Condensed';
+    text-transform: uppercase;
     position: absolute;
     display: none;
-    left: 0;
-    right: 0;
     margin: auto;
     color: white;
     background-color: rgba(18, 20, 24, 0.5);
@@ -42,10 +48,9 @@ html, body, #main-container {
     border-radius: 10px;
     z-index: 2;
     padding-left: 8px;
-    font-size: 1.4rem;
     font-weight: normal;
 }
-.earthtrek-toolbar button {
+button {
     background-color: #2c69b3;
     border-radius: 4px;
     border: 0;
@@ -54,15 +59,19 @@ html, body, #main-container {
     padding: 3px;
 }
 
-.earthtrek-toolbar button:not(:disabled):hover,
-.earthtrek-toolbar button.selected {
+button:not(:disabled):hover,
+button.selected {
     color: white;
     background-color: #1ea9e9;
 }
-.earthtrek-toolbar input {
+.earthtrek-panel input {
     border: 0;
     box-shadow:none;
 }
+button:disabled {
+    background: rgb(105,105,105);
+}
+
 .slick-arrow {
     background: none !important;
 }
@@ -81,7 +90,21 @@ html, body, #main-container {
 {
     background: rgba(80, 150, 200, 0.5);
 }
-
+/**MODAL*/
+.earthtrek-modal {
+    text-transform: uppercase;
+    font-family: 'Myriad Pro Bold Condensed';
+}
+.earthtrek-modal > div {
+    margin-top: 10px;
+}
+.earthtrek-modal .buttons {
+    text-align: center;
+}
+.earthtrek-modal .top {
+    font-size: 1.6rem;
+    text-align: center;
+}
 /*WELCOME*/
 #earthtrek-welcome {
     width: 40%;

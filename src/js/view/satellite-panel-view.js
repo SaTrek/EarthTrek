@@ -28,6 +28,8 @@ function SatellitePanelView(viewer, options) {
     }
     this.satellitePanel = $('#' + options.container);
     this.instrumentsContainer = $("#satellite-instruments");
+    this.earthTrekCompare = new EarthTrekCompare(viewer);
+
 }
 
 SatellitePanelView.prototype.show = function (entity) {
@@ -143,10 +145,16 @@ SatellitePanelView.prototype.magnitudesToOrbitalData = function (key, value) {
     return value.toLocaleString() + ' ' + data[key];
 }
 
+
 SatellitePanelView.prototype.hide = function () {
     this.satellitePanel.hide();
 }
 
+/**
+ *
+ * @param entity
+ * @returns {boolean}
+ */
 SatellitePanelView.prototype.addInstruments = function (entity) {
     var that = this;
     var instruments = entity.properties.instruments.getValue();
@@ -160,6 +168,7 @@ SatellitePanelView.prototype.addInstruments = function (entity) {
         var instrumentElement = document.createElement('div');
         $(instrumentElement).id = "satellite-instrument-" + entity.id + "-" + instrument.name;
         $(instrumentElement).addClass("satellite-instrument");
+        //   $(instrumentElement).click({entity: that.entity, panel: that, instrument: instrument}, that.showLayers);
         $(instrumentElement).html("<div>" + instrument.name + "</div>");
         $(instrumentElement).data('instrument', instrument.name);
 
@@ -194,8 +203,10 @@ SatellitePanelView.prototype.updateLayers = function (event) {
                 }
                 if (layer.startDate <= today && layer.endDate >= today) {
                     $('#layer-view-' + layer.id).removeAttr('disabled');
+                    $('#layer-compare-' + layer.id).removeAttr('disabled');
                 } else {
                     $('#layer-view-' + layer.id).attr('disabled', 'disabled');
+                    $('#layer-compare-' + layer.id).attr('disabled', 'disabled');
                 }
             });
         }
@@ -221,21 +232,6 @@ SatellitePanelView.prototype.showLayers = function (event) {
             });
         }
     });
-
-    /*
-     $("#accept-date").click(function () {
-     if ($('#compare-date').val()) {
-     var layer = {};
-     layer.id = $('.compare-selected').parent().data("id");
-     layer.firstDate = $('#compare-date').val();
-     layer.secondDate = clock.currentTime.toString();
-     layer.format = $('.compare-selected').parent().data("format");
-     layer.resolution = $('.compare-selected').parent().data("resolution");
-
-     compare(layer);
-     $('#compare-modal').hide();
-     }
-     });*/
 }
 /**
  *
@@ -250,8 +246,53 @@ SatellitePanelView.prototype.createLayer = function(layer) {
     $(instrumentLayer).data("startDate", layer.startDate);
     $(instrumentLayer).data("format", layer.format);
     $(instrumentLayer).data("resolution", layer.resolution);
+    $(instrumentLayer).html("<div>" + layer.title + "</div>");
 
+    $(instrumentLayer).append(this.addAvailabilityButtons(layer));
 
+    var instrumentButtons = document.createElement("div");
+    $(instrumentButtons).addClass('fixed-buttons');
+    $(instrumentLayer).append(instrumentButtons);
+
+    $(instrumentButtons).append(this.addToggleLayerButton(layer));
+    $(instrumentButtons).append(this.addCompareButton(layer));
+
+    return instrumentLayer;
+}
+
+/**
+ *
+ * @param layer
+ * @returns {Element}
+ */
+SatellitePanelView.prototype.createLayer2 = function(layer) {
+    var that = this;
+    var instrumentLayer = document.createElement('div');
+    $(instrumentLayer).addClass("instrument-layer");
+    $(instrumentLayer).data("id", layer.id);
+    $(instrumentLayer).data("startDate", layer.startDate);
+    $(instrumentLayer).data("format", layer.format);
+    $(instrumentLayer).data("resolution", layer.resolution);
+    $(this).addClass("selected-instrument");
+    $("#satellite-instrument-layers").empty();
+    $.each(entity.properties.instruments.getValue(), function(key, instrument) {
+        if (instrument.name == event.data.instrument.name) {
+            $.each(instrument.layers, function(key, layer) {
+                var instrumentLayer = panel.createLayer(layer);
+                $("#satellite-instrument-layers").append(instrumentLayer).show();
+            });
+        }
+    });
+}
+
+/**
+ *
+ * @param layer
+ * @returns {Element}
+ */
+SatellitePanelView.prototype.addAvailabilityButtons = function(layer) {
+
+    var that = this;
     var endDate = (layer.endDate == null) ? 'Present' : layer.endDate;
 
     var startDateButton = document.createElement('button');
@@ -276,17 +317,16 @@ SatellitePanelView.prototype.createLayer = function(layer) {
     $(layerAvailable).append(' - ');
     $(layerAvailable).append(endDateButton);
 
-    $(instrumentLayer).html("<div>" + layer.title + "</div>");
-    $(instrumentLayer).append(layerAvailable);
+}
 
-    var instrumentButtons = document.createElement("div");
-    $(instrumentButtons).addClass('fixed-buttons');
-    $(instrumentLayer).append(instrumentButtons);
-    /**
-     * SHOW LAYER
-     * @type {Element}
-     */
-    var today = this.isoDate(this.viewer.clock.currentTime.toString());
+/**
+ *
+ * @param layer
+ * @returns {Element}
+ */
+SatellitePanelView.prototype.addToggleLayerButton = function(layer) {
+    var that = this;
+    var today = this.isoDate(that.viewer.clock.currentTime.toString());
     var objToday = new Date(today);
     objToday.setDate(objToday.getDate());
     var toggleLayerButton = document.createElement("button");
@@ -297,57 +337,50 @@ SatellitePanelView.prototype.createLayer = function(layer) {
             earthTrekLayer.removeLayer(layer);
         } else {
             $(this).addClass('selected');
-            earthTrekLayer.hideLayer(layer);
-            var maximumLevel = (layer.format == 'image/png') ? 2 : 12;
-            var newLayerProvider = provider.getProvider({
-                layer: layer.id,
-                time: that.isoDate(that.viewer.clock.currentTime.toString()),
-                format: layer.format,
-                tileMatrixSetID: "epsg4326",
-                resolution: layer.resolution,
-                maximumLevel: maximumLevel
-            });
-
-            if (that.viewer.scene.imageryLayers._layers[0].format == 'image/jpeg') {
-                that.viewer.scene.imageryLayers._layers[0].show = false;
-                //    that.viewer.scene.imageryLayers.lowerToBottom(that.viewer.scene.imageryLayers._layers[0].show = false);
-            }
-            var addedLayer = that.viewer.scene.imageryLayers.addImageryProvider(newLayerProvider);
-            if (layer.format == 'image/jpeg') {
-                that.viewer.scene.imageryLayers.lowerToBottom(addedLayer);
-            }
+            earthTrekLayer.addLayer(that.isoDate(that.viewer.clock.currentTime.toString()), layer);
         }
 
     });
 
     $(toggleLayerButton).addClass("view");
-    $(instrumentButtons).append(toggleLayerButton);
-
-    this.addCompareButton(instrumentButtons);
-
     if (layer.endDate < today || layer.startDate > today) {
         $(toggleLayerButton).attr('disabled', 'disabled');
     }
-    return instrumentLayer;
-}
+    return toggleLayerButton;
+};
 
 /**
  * Add Compare Button
  * @param instrumentButtons
  */
-SatellitePanelView.prototype.addCompareButton = function(instrumentButtons) {
+SatellitePanelView.prototype.addCompareButton = function(layer) {
+    var that = this;
+    var today = this.isoDate(that.viewer.clock.currentTime.toString());
     var compareButton = document.createElement("button");
-    $(compareButton).html("");
+    $(compareButton).attr('id', 'layer-compare-' + layer.id);
     $(compareButton).click(function () {
-        $('.compare-selected').removeClass('compare-selected');
-        $(this).addClass("compare-selected");
-        $('#compare-modal').show();
+        var button = $(this);
+        that.earthTrekCompare.showCompare(layer, function() {
+            if (button.hasClass('selected')) {
+                button.removeClass('selected');
+            } else {
+                button.addClass('selected');
+            }
+        });
     });
-    $(instrumentButtons).append(compareButton);
-
-    $(compareButton).attr('disabled', 'disabled');
+    $(compareButton).addClass("compare");
+    if (layer.endDate < today || layer.startDate > today) {
+        $(compareButton).attr('disabled', 'disabled');
+    }
+    return compareButton;
 };
 
+
+/**
+ *
+ * @param isoDateTime
+ * @returns {*}
+ */
 SatellitePanelView.prototype.isoDate = function(isoDateTime) {
     return isoDateTime.split("T")[0];
 };

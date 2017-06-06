@@ -1,21 +1,13 @@
 /** SATELLITE PANEL */
 #satellite-panel {
-    display: none;
-    position: absolute;
     top: 6%;
     right: 2%;
     max-width: 33%;
-    color: white;
-    background-color: rgba(18, 20, 24, 0.5);
-    border: 1px solid rgba(255, 255, 255, 0.5);
-    border-radius: 10px;
-    text-transform: uppercase;
-    z-index: 2;
     padding-left: 8px;
 }
 #satellite-panel #satellite-name {
     font-family: 'Myriad Pro Bold Condensed';
-    font-size: 2.2rem;
+    font-size: 1.8rem;
 }
 #satellite-panel .text-right {
     padding-right: 5px;
@@ -35,7 +27,7 @@
 #satellite-panel .satellite-description {
     font-weight: normal;
     text-transform: none;
-    font-size: 0.9rem;;
+    font-size: 0.8rem;;
     overflow-y: auto;
     max-height: 20vh;
     margin-bottom: 5px;
@@ -63,7 +55,7 @@
     background: rgb(105,105,105);
 }
 #satellite-info {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     padding-right: 0;
     position: relative;
     min-height: 1px;
@@ -78,7 +70,6 @@
     float: left;
 }
 #satellite-info .orbital-data-values {
-
 }
 #satellite-info > div {
     display: inline-block;
@@ -94,7 +85,7 @@
 .satellite-instrument {
     position: relative;
     padding: 5px 10px;
-    font-size: 1.3em;
+    font-size: 1em;
 }
 .satellite-instrument:nth-child(even),
 .instrument-layer:nth-child(even) {
@@ -102,7 +93,7 @@
 }
 .satellite-instrument:nth-child(odd),
 
-/**LAYER */
+    /**LAYER */
 
 .instrument-layer:nth-child(odd) {
     background-color: rgba(58, 94, 107, 0.9);
@@ -130,7 +121,9 @@
     right: 45px !important;
     background-image: url("../images/view.png");
 }
-
+.instrument-layer button.compare {
+    background-image: url("../images/compare.png");
+}
 .layer-available {
     font-size: 0.8rem !important;
     padding-top: 5px;

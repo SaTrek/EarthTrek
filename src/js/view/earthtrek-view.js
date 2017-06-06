@@ -26,11 +26,11 @@ EarthTrekView.prototype.welcome = function (tutorialView) {
         }
     });
 
-    var startButton = $('#earthtrek-welcome-start');
-    $(startButton).click(function() {
-        $(that.welcomeContainer).remove();
-        localStorage.setItem('started', true);
-    });
+        var startButton = $('#earthtrek-welcome-start');
+        $(startButton).click(function() {
+            $(that.welcomeContainer).remove();
+            localStorage.setItem('started', true);
+        });
 
     var tutorialButton = $('#earthtrek-welcome-tutorial');
     this.showTutorial == true ?  $(tutorialButton).show() :  $(tutorialButton).hide();

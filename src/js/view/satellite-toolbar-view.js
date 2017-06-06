@@ -199,6 +199,7 @@ SatelliteToolbarView.prototype.getPopoverContent = function (satelliteData, goTo
     $(satellitePopoverContainer).addClass('satellite-popover');
 
     var description = document.createElement('div');
+    $(description).attr('id', 'satellite-toolbar-description');
     $(description).html(satelliteData.description);
     $(description).addClass('satellite-description');
     $(satellitePopoverContainer).append(description);
