@@ -6,13 +6,13 @@
  * @description EarthTrek - NASA Space Apps 2017 01 MAY 2017.
  */
 
-var provider = provider || {};
+var earthTrekProvider = earthTrekProvider || {};
 define([
     'cesium',
     'tilling-scheme'
 ], function() {
 
-    provider.getProvider = function(options) {
+    earthTrekProvider.getProvider = function(options) {
         if (!options.layer) {
 
         }
