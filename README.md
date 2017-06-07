@@ -4,7 +4,7 @@
 
 ![Global Finalist (Best Use of Data)](http://i.imgur.com/6H29eDd.png)
 
-* [Roadmap](https://github.com/SaTrek/EarthTrek/projects/1)
+* [Roadmap](#roadmap)
 * [Installation](#installation)
 * [Browser support](#browser-support)
 * [Resources](#resources)
@@ -34,6 +34,9 @@ With this tool, we aim to encourage new generations to get involved in NASA's pr
 Public engagement is key in the pursuit of aerospace exploration.
 
 Earth Trek - "Exploring our World"
+
+# ROADMAP
+![ROADMAP](http://i.imgur.com/pSR96uW.png)
 
 ## DEPENDENCIES
 
