@@ -36,7 +36,7 @@ Earth Trek - "Exploring our World"
 
 # ROADMAP
 
-![ROADMAP](http://i.imgur.com/pSR96uW.png)
+![ROADMAP](https://image.ibb.co/gKeXyF/roadmapv6.png)
 
 ## DEPENDENCIES
 
