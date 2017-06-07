@@ -27,7 +27,9 @@ module.exports = {
         }),
         new ExtractTextPlugin("[name].css"),
         new CopyWebpackPlugin([
-                { from: './models', to: 'models/' }, { from: './images', to: 'images/' }, { from: './newassets', to: 'newassets/' }
+                { from: './models', to: 'models/' },
+                { from: './images', to: 'images/' },
+                { from: './newassets', to: 'newassets/' }
             ]
             , {copyUnmodified: true}
         )

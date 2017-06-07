@@ -1,3 +1,0 @@
-[submodule "src/newassets"]
-	path = src/newassets
-	url = https://github.com/AnalyticalGraphicsInc/cesium-assets.git
