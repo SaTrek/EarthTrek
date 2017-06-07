@@ -45,5 +45,6 @@ define([
         });
     }
 
+
     return EarthTrekView;
 });
