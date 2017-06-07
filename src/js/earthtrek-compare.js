@@ -68,15 +68,6 @@ EarthTrekCompare.prototype.showCompare = function (layer) {
 
 
 /**
- *
- * @param isoDateTime
- * @returns {*}
- */
-EarthTrekCompare.prototype.isoDate = function(isoDateTime) {
-    return isoDateTime.split("T")[0];
-};
-
-/**
  * Compare layer through time
  * @param layer
  */
@@ -137,5 +128,14 @@ EarthTrekCompare.prototype.remove = function () {
     this.secondView.splitDirection =  ImageryLayer.DEFAULT_SPLIT;
     $('#compare-modal').hide();
 }
+
+/**
+ *
+ * @param isoDateTime
+ * @returns {*}
+ */
+EarthTrekCompare.prototype.isoDate = function(isoDateTime) {
+    return isoDateTime.split("T")[0];
+};
 
 module.exports = EarthTrekCompare;

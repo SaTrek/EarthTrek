@@ -47,15 +47,9 @@ module.exports = {
     module: {
         unknownContextCritical: false,
         loaders: [
-            {
-                test: /\.css$/,
-                loader: ExtractTextPlugin.extract("style-loader", "css-loader")
-            },
+            { test: /\.css$/, loader: ExtractTextPlugin.extract("style-loader", "css-loader") },
             { test: /\.(png|gif|jpg|jpeg)$/,  loader: "file-loader?name=/images/[name].[ext]" },
-            {
-                test: /\.(eot|svg|ttf|woff|woff2)$/,
-                loader: 'file?name=css/fonts/[name].[ext]'
-            }
+            { test: /\.(eot|svg|ttf|woff|woff2)$/, loader: 'file?name=css/fonts/[name].[ext]' }
         ]
     }
 };
