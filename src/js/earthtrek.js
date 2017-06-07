@@ -255,7 +255,7 @@ EarthTrek.prototype.onClockUpdate = function (clock) {
         if (this.viewer.selectedEntity != null) {
             SatelliteLayerView.updateLayers(
                 {data: {entity: this.viewer.selectedEntity, panel: this.satellitePanel}},
-
+                time
             );
         }
         //  updateLayers();

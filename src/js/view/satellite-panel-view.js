@@ -238,7 +238,6 @@ SatellitePanelView.prototype.showLayers = function (event) {
  * @returns {Element}
  */
 SatellitePanelView.prototype.createLayer = function(layer) {
-    var that = this;
     var instrumentLayer = document.createElement('div');
     $(instrumentLayer).addClass("instrument-layer");
     $(instrumentLayer).data("id", layer.id);
