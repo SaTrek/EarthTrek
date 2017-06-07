@@ -1,5 +1,5 @@
 /**
- * @class SatellitePanelView
+ * @class SatelliteLayerView
  * @module EarthTrek
  * @author SATrek
  * @author Alejandro Sanchez <alejandro.sanchez.trek@gmail.com>
@@ -15,19 +15,11 @@ var provider = require('../earthtrek-provider');
 var earthTrekLayer = require('../earthtrek-layer');
 var EarthTrekCompare = require('../earthtrek-compare');
 
+require('bootstrap/dist/css/bootstrap.min.css');
+require('bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css');
+
 function SatelliteLayerView(viewer, options) {
     this.viewer = viewer;
-    this.mainContainerId = this.viewer.container.id;
-    if (!options.container) {
-        throw new Error('Invalid  Container');
-    }
-    if (options.satelliteInfoContainer) {
-        this.satelliteInfoContainer = '#' + options.satelliteInfoContainer;
-    } else {
-        this.satelliteInfoContainer = '#satellite-info';
-    }
-    this.satellitePanel = $('#' + options.container);
-    this.instrumentsContainer = $("#satellite-instruments");
     this.earthTrekCompare = new EarthTrekCompare(viewer);
 
 }
@@ -37,7 +29,7 @@ function SatelliteLayerView(viewer, options) {
  * @param event
  * @returns {boolean}
  */
-SatelliteLayerView.updateLayers = function (event, today) {
+SatelliteLayerView.prototype.updateLayers = function (event, today) {
     var entity = event.data.entity;
     if ($('.selected-instrument').length == 0) {
         return false;
@@ -71,7 +63,7 @@ SatelliteLayerView.prototype.showLayers = function (event) {
     var entity = event.data.entity;
     var panel = event.data.panel;
     $('.satellite-instrument .selected-instrument').removeClass('selected-instrument');
-
+    console.log(this)
     $(this).addClass("selected-instrument");
     $("#satellite-instrument-layers").empty();
     $.each(entity.properties.instruments.getValue(), function(key, instrument) {
@@ -200,4 +192,12 @@ SatelliteLayerView.prototype.addCompareButton = function(layer) {
     return compareButton;
 };
 
+/**
+ *
+ * @param isoDateTime
+ * @returns {*}
+ */
+SatelliteLayerView.prototype.isoDate = function(isoDateTime) {
+    return isoDateTime.split("T")[0];
+};
 module.exports = SatelliteLayerView;
