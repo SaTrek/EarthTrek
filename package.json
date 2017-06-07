@@ -17,7 +17,7 @@
     "devserver": "webpack-dev-server --config config/webpack.config.js --progress",
     "dev": "npm run build && npm run devserver",
     "release": "webpack -p --config config/webpack.prod.config.js --progress",
-    "heroku-postbuild": "git submodule init && git submodule update && npm run clean && cpr node_modules/cesium/Build/Cesium public && npm run release"
+    "heroku-postbuild": "npm run clean && cpr node_modules/cesium/Build/Cesium public && npm run release"
   },
   "repository": {
     "type": "git",
