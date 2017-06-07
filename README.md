@@ -12,7 +12,7 @@
 EarthTrek is an interactive 3D web application that does not require the installation of any plugins, it can be launched through web browsers. It´s easy access for all kinds of users encourages the use of data that NASA´s EOS program compiles and collect with satellites´s different instruments.
 
 
-![DISPLAY](http://i.imgur.com/mmRJ0Yz.jpg)
+![DISPLAY](http://i.imgur.com/GBbpEWa.png)
 
 For now, our app will allow to:
 * Observe satellite images
@@ -36,6 +36,7 @@ Public engagement is key in the pursuit of aerospace exploration.
 Earth Trek - "Exploring our World"
 
 # ROADMAP
+
 ![ROADMAP](http://i.imgur.com/pSR96uW.png)
 
 ## DEPENDENCIES
