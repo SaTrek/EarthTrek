@@ -46,10 +46,9 @@ earthTrekLayer.getLayers = function() {
 earthTrekLayer.toggleLayer = function() {
 }
 
-
 earthTrekLayer.removeLayer = function(layer) {
     var imageryLayers = earthTrekLayer.getLayers();
-    if (layer instanceof Cesium.ImageryLayer) {
+    if (layer instanceof ImageryLayer) {
         imageryLayers.remove(layer);
         return true;
     }
