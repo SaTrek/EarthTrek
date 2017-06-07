@@ -4,13 +4,17 @@
 
 ![Global Finalist (Best Use of Data)](http://i.imgur.com/6H29eDd.png)
 
+* [Roadmap](#roadmap)
+* [Installation](#installation)
+* [Browser support](#browser-support)
+* [Resources](#resources)
+
 EarthTrek is an interactive 3D web application that does not require the installation of any plugins, it can be launched through web browsers. It´s easy access for all kinds of users encourages the use of data that NASA´s EOS program compiles and collect with satellites´s different instruments.
 
-
-![DISPLAY](http://i.imgur.com/mmRJ0Yz.jpg)
+![DISPLAY](https://image.ibb.co/gPuMsa/imagen.png)
 
 For now, our app will allow to:
-* Observing satellite images
+* Observe satellite images
 * View real-time orbits of the various satellites around Earth from launch to future predictions.
 * View satellites´s models on 3D.
 * Learn the instruments that each satellite owns.
@@ -30,8 +34,16 @@ Public engagement is key in the pursuit of aerospace exploration.
 
 Earth Trek - "Exploring our World"
 
-### INSTALLATION ###
+# ROADMAP
 
+![ROADMAP](https://image.ibb.co/gKeXyF/roadmapv6.png)
+
+## DEPENDENCIES
+
+* node.js: https://nodejs.org/es/download/
+* npm: https://www.npmjs.com/get-npm
+
+## INSTALLATION 
 Clone this repository
 ```
 git submodule init
@@ -39,10 +51,12 @@ git submodule update
 npm install
 node server.js
 ```
+Finally, in order to launch the app, enter the URL: http://localhost:9080.
+
 That's it!
 
 
-### BROWSER SUPPORT ###
+## BROWSER SUPPORT
 EarthTrek Version| Chrome ![Chrome](https://www.w3schools.com/images/compatible_chrome2020.gif) | Firefox ![Firefox](https://www.w3schools.com/images/compatible_firefox2020.gif)  |  IE 11 ![IE](https://www.w3schools.com/images/compatible_edge2020.gif)  | Chrome Android ![Android](http://www.nch.com.au/images/android_icon_20x20.gif) | 
 --- | --- | ---| --- | ---
 0.176.03 (Current) | ![Yes][YesTickmark]|  ![Yes][YesTickmark]|  ![No][NoRedCross] |  ![Yes][YesTickmark] (Partial)
@@ -51,7 +65,7 @@ NX-Alpha (Early june) | ![Yes][YesTickmark]|  ![Yes][YesTickmark] |  ![Yes][YesT
 [YesTickmark]: https://dvyn1ggd1flup.cloudfront.net/templates/cre63_ats/img/reserve_tickmark.png
 [NoRedCross]: https://hosting.idiglocal.co.uk/templates/default/img/redcross20.png
 
-**Some aspects of HOW THE APP WORKS..**
+## Some aspects of HOW THE APP WORKS
 
 If you select a satellite, firstly you will see details about its missions and instruments:
 
@@ -63,7 +77,7 @@ By determining a geographic location through the geolocation finder and selectin
 
 ![Mato Grosso deforestation](http://i.imgur.com/01GK2is.jpg)
 
-**RESOURCES**
+## RESOURCES
 
 * SatelliteJS (Satellite propagation): https://github.com/shashwatak/satellite-js
 * CesiumJs: https://cesiumjs.org/
