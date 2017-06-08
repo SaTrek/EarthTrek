@@ -159,12 +159,12 @@ EarthTrek.prototype.createViewer = function () {
  */
 EarthTrek.prototype.showWelcomeScreen = function () {
     var mainView = new EarthTrekView(this.viewer, {showTutorial: false});
-    if (localStorage.getItem("started") == null) {
+   // if (localStorage.getItem("started") == null) {
         var tutorialView = new EarthTrekTutorialView(this.viewer);
         mainView.welcome(tutorialView);
 
         this.evt.addEventListener(tutorialView.thirdStep, tutorialView);
-    }
+  //  }
 }
 
 /**
