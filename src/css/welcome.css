@@ -1,0 +1,20 @@
+#earthtrek-welcome {
+    max-width: 40%;
+    text-align: center;
+    top: 20%;
+    padding-bottom: 10px;
+    max-height: 70%;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+}
+.earthtrek-welcome-title {
+    font-family: 'Myriad Pro Bold Condensed';
+    font-size: 2.5rem;
+}
+#earthtrek-welcome button,
+#earthtrek-tutorial button {
+    width: 100px;
+    margin: 5px;
+}

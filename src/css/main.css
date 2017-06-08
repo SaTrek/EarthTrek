@@ -105,20 +105,3 @@ button:disabled {
     font-size: 1.6rem;
     text-align: center;
 }
-/*WELCOME*/
-#earthtrek-welcome {
-    width: 40%;
-    text-align: center;
-    top: 20%;
-    padding-bottom: 10px;
-    max-height: 800px;
-}
-.earthtrek-welcome-title {
-    font-family: 'Myriad Pro Bold Condensed';
-    font-size: 2.5rem;
-}
-#earthtrek-welcome button,
-#earthtrek-tutorial button{
-    width: 100px;
-    margin: 5px;
-}

@@ -1,3 +1,0 @@
-[submodule "public/newassets"]
-	path = public/newassets
-	url = https://github.com/AnalyticalGraphicsInc/cesium-assets.git
