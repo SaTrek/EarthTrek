@@ -1,15 +1,23 @@
 {
   "name": "EarthTrek",
-  "version": "0.176.03",
+  "version": "0.176.08",
   "description": "Global Nominee NASA Space Apps Challenge 2017 Buenos Aires - Global Finalist (Best Use of Data) NASA Space Apps Challenge 2017 - 1D, 2D, 3D, Go! Challenge",
   "homepage": "http://github.com/SATrek/EarthTrek",
   "author": {
     "name": "SATrek",
     "url": "http://github.com/SATrek"
   },
+  "main": "main.js",
   "scripts": {
     "start": "node server.js",
-    "test": "./node_modules/.bin/mocha"
+    "test": "./node_modules/.bin/mocha",
+    "clean": "mkdirp public & rimraf public/*",
+    "build": "npm run clean && cpr node_modules/cesium/Build/Cesium public && webpack --config config/webpack.config.js --progress",
+    "build2": "npm run clean && cpr node_modules/cesium/Build/Cesium/Assets public/Assets &&  webpack --config config/webpack.config.js --progress",
+    "devserver": "webpack-dev-server --config config/webpack.config.js --progress",
+    "dev": "npm run build && npm run devserver",
+    "release": "webpack -p --config config/webpack.prod.config.js --progress",
+    "heroku-postbuild": "npm run clean && cpr node_modules/cesium/Build/Cesium public && npm run release"
   },
   "repository": {
     "type": "git",
@@ -33,10 +41,10 @@
     }
   ],
   "dependencies": {
-    "amd-loader": "0.0.8",
     "bootstrap": "^3.3.7",
     "bootstrap-datepicker": "^1.6.4",
     "cesium": "^1.32.1",
+    "core-js": "^2.4.1",
     "express": "^4.15.2",
     "jquery": "^3.2.1",
     "moment": "^2.18.1",
@@ -49,7 +57,24 @@
     "underscore": "^1.8.3"
   },
   "devDependencies": {
+    "amd-loader": "0.0.8",
+    "copy-webpack-plugin": "^4.0.1",
+    "cpr": "^1.1.2",
+    "css-loader": "^0.23.1",
+    "extract-text-webpack-plugin": "^1.0.1",
+    "file-loader": "^0.9.0",
+    "html-webpack-plugin": "^2.22.0",
+    "mkdirp": "^0.5.1",
     "mocha": "^3.3.0",
-    "should": "^11.2.1"
+    "rimraf": "^2.5.2",
+    "script-loader": "^0.7.0",
+    "should": "^11.2.1",
+    "style-loader": "^0.13.0",
+    "uglify-js": "^2.8.27",
+    "uglifyjs-webpack-plugin": "^0.4.3",
+    "url-loader": "^0.5.8",
+    "webpack": "^1.12.14",
+    "webpack-dev-server": "^1.14.1",
+    "webpack-merge": "^4.1.0"
   }
 }

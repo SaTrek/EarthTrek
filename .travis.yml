@@ -9,7 +9,7 @@ before_script:
   - npm install
 
 script:
-  - npm test app/test
+  - npm test
 
 after_success:
   #- test $TRAVIS_PULL_REQUEST == "false" && test $TRAVIS_BRANCH == "master" && /bin/bash infrastructure/jenkins-build.sh

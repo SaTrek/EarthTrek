@@ -1,7 +1,13 @@
 Change Log
 ==========
 # 0.176
-### 0.176.03- 2017-06-03
+### 0.176.08 - 2017-06-08
+* IE11 partial support
+### 0.176.07 - 2017-06-07
+* RequireJS to Webpack
+### 0.176.04 - 2017-06-04
+* Compare satellite images
+### 0.176.03 - 2017-06-03
 * Mobile UI fixes in Satellite Panel & Toolbar
 
 # 0.175

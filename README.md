@@ -43,13 +43,12 @@ Earth Trek - "Exploring our World"
 * node.js: https://nodejs.org/es/download/
 * npm: https://www.npmjs.com/get-npm
 
-## INSTALLATION 
+## INSTALLATION
 Clone this repository
+### DEVELOPMENT MODE
 ```
-git submodule init
-git submodule update
 npm install
-node server.js
+npm run dev
 ```
 Finally, in order to launch the app, enter the URL: http://localhost:9080.
 
@@ -59,7 +58,7 @@ That's it!
 ## BROWSER SUPPORT
 EarthTrek Version| Chrome ![Chrome](https://www.w3schools.com/images/compatible_chrome2020.gif) | Firefox ![Firefox](https://www.w3schools.com/images/compatible_firefox2020.gif)  |  IE 11 ![IE](https://www.masificados.com/propiedadraiz/images/frontend/logo_explorer.png)  | Edge ![IE](https://www.w3schools.com/images/compatible_edge2020.gif)   | Chrome Android ![Android](http://www.nch.com.au/images/android_icon_20x20.gif)
 --- | --- | ---| --- | --- | ---
-0.176.07 (Current) | ![Yes][YesTickmark]|  ![Yes][YesTickmark]|  ![No][NoRedCross]  |  ![Yes][YesTickmark] |  ![Yes][YesTickmark] (Partial)
+0.176.08 (Current) | ![Yes][YesTickmark]|  ![Yes][YesTickmark]|  ![No][NoRedCross]  |  ![Yes][YesTickmark] |  ![Yes][YesTickmark] (Partial)
 NX-Alpha (Early June) | ![Yes][YesTickmark]|  ![Yes][YesTickmark] |  ![Yes][YesTickmark] |  ![Yes][YesTickmark]  |  ![Yes][YesTickmark]
 
 [YesTickmark]: https://dvyn1ggd1flup.cloudfront.net/templates/cre63_ats/img/reserve_tickmark.png
