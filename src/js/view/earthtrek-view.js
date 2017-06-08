@@ -5,6 +5,8 @@
  * @author Alejandro Sanchez <alejandro.sanchez.trek@gmail.com>
  * @description EarthTrek - NASA Space Apps 2017 28 MAY 2017.
  */
+
+require('../../css/welcome.css');
 function EarthTrekView(viewer, options) {
     this.viewer = viewer;
     var options = options || {};
