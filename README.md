@@ -1,5 +1,6 @@
 
-**NASA Space Apps Challenge 2017 - Buenos Aires - Team SATrek** 
+# NASA Space Apps Challenge 2017 - Buenos Aires - Team SATrek  
+## EARTH TREK [![Build Status](https://secure.travis-ci.org/SaTrek/EarthTrek.png?branch=master)](http://travis-ci.org/SaTrek/EarthTrek)
 
 
 ![Global Finalist (Best Use of Data)](http://i.imgur.com/6H29eDd.png)
