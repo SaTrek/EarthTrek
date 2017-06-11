@@ -133,4 +133,11 @@ earthTrekData.getFullData = function (options, callback) {
     });
 }
 
+/**
+ *
+ */
+earthTrekData.getFeatures = function () {
+    var config = earthTrekData.getConfig();
+    return $.ajax('data/features.json');
+}
 module.exports = earthTrekData;

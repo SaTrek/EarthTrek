@@ -72,6 +72,12 @@ function EarthTrek(options) {
     if (!options.fadeOrbit) {
         options.fadeOrbit = true;
     }
+    if (!options.newFeatures) {
+        options.newFeatures = {
+            container: 'earthtrek-features',
+            show: true
+        };
+    }
     this.startTime = Cesium.JulianDate.fromDate(
         new Date(options.startTime));
     this.endTime = Cesium.JulianDate.fromDate(
@@ -160,7 +166,7 @@ EarthTrek.prototype.createViewer = function () {
  * Show Welcome Screen
  */
 EarthTrek.prototype.showWelcomeScreen = function () {
-    var mainView = new EarthTrekView(this.viewer, {showTutorial: false});
+    var mainView = new EarthTrekView(this.viewer, this.options);
     if (localStorage.getItem("started") == null) {
         var tutorialView = new EarthTrekTutorialView(this.viewer);
         mainView.welcome(tutorialView);
