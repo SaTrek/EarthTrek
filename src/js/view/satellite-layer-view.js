@@ -5,7 +5,8 @@
  * @author Alejandro Sanchez <alejandro.sanchez.trek@gmail.com>
  * @description EarthTrek - NASA Space Apps 2017 13 MAY 2017.
  */
-
+var earthTrekUtils = require('../utils/earthtrek-utils');
+var Cesium = require('../utils/cesium');
 var $ = require('jquery');
 var moment = require('moment');
 var bootstrap = require('bootstrap');
@@ -63,7 +64,6 @@ SatelliteLayerView.prototype.showLayers = function (event) {
     var entity = event.data.entity;
     var panel = event.data.panel;
     $('.satellite-instrument .selected-instrument').removeClass('selected-instrument');
-    console.log(this)
     $(this).addClass("selected-instrument");
     $("#satellite-instrument-layers").empty();
     $.each(entity.properties.instruments.getValue(), function(key, instrument) {
@@ -110,10 +110,10 @@ SatelliteLayerView.prototype.createLayer = function(layer) {
 SatelliteLayerView.prototype.addAvailabilityButtons = function(layer) {
 
     var that = this;
-    var endDate = (layer.endDate == null) ? 'Present' : layer.endDate;
+    var endDate = (layer.endDate == null) ? 'Present' : moment(layer.endDate).format('DD MMM Y');
 
     var startDateButton = document.createElement('button');
-    $(startDateButton).html(layer.startDate);
+    $(startDateButton).html(moment(layer.startDate).format('DD MMM Y'));
     $(startDateButton).click(function() {
         that.viewer.clock.currentTime = JulianDate.fromDate(new Date(layer.startDate));
     });
@@ -143,7 +143,7 @@ SatelliteLayerView.prototype.addAvailabilityButtons = function(layer) {
  */
 SatelliteLayerView.prototype.addToggleLayerButton = function(layer) {
     var that = this;
-    var today = this.isoDate(that.viewer.clock.currentTime.toString());
+    var today = earthTrekUtils.isoDate(that.viewer.clock.currentTime.toString());
     var objToday = new Date(today);
     objToday.setDate(objToday.getDate());
     var toggleLayerButton = document.createElement("button");
@@ -154,7 +154,7 @@ SatelliteLayerView.prototype.addToggleLayerButton = function(layer) {
             earthTrekLayer.removeLayer(layer);
         } else {
             $(this).addClass('selected');
-            earthTrekLayer.addLayer(that.isoDate(that.viewer.clock.currentTime.toString()), layer);
+            earthTrekLayer.addLayer(earthTrekUtils.isoDate(that.viewer.clock.currentTime.toString()), layer);
         }
 
     });
@@ -172,7 +172,7 @@ SatelliteLayerView.prototype.addToggleLayerButton = function(layer) {
  */
 SatelliteLayerView.prototype.addCompareButton = function(layer) {
     var that = this;
-    var today = this.isoDate(that.viewer.clock.currentTime.toString());
+    var today = earthTrekUtils.isoDate(that.viewer.clock.currentTime.toString());
     var compareButton = document.createElement("button");
     $(compareButton).attr('id', 'layer-compare-' + layer.id);
     $(compareButton).click(function () {
@@ -192,12 +192,4 @@ SatelliteLayerView.prototype.addCompareButton = function(layer) {
     return compareButton;
 };
 
-/**
- *
- * @param isoDateTime
- * @returns {*}
- */
-SatelliteLayerView.prototype.isoDate = function(isoDateTime) {
-    return isoDateTime.split("T")[0];
-};
 module.exports = SatelliteLayerView;

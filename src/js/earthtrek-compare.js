@@ -5,12 +5,15 @@
  * @author Alejandro Sanchez <alejandro.sanchez.trek@gmail.com>
  * @description EarthTrek - NASA Space Apps 2017 - 28 APR 2017.
  */
-
+var moment = require('moment');
 var ImageryLayer = require('cesium/Source/Scene/ImageryLayer');
 var ImagerySplitDirection = require('cesium/Source/Scene/ImagerySplitDirection');
 var datepicker = require('bootstrap-datepicker');
 var earthTrekLayer = require('./earthtrek-layer');
 
+var earthTrekUtils = require('./utils/earthtrek-utils');
+
+require('../css/compare.css');
 'use strict';
 
 /**
@@ -28,7 +31,7 @@ function EarthTrekCompare(viewer) {
  */
 EarthTrekCompare.prototype.showCompare = function (layer) {
     var that = this;
-    var today = that.isoDate(that.viewer.clock.currentTime.toString());
+    var today = earthTrekUtils.isoDate(that.viewer.clock.currentTime.toString());
 
     $('#compare-layer-name').html(layer.title);
 
@@ -44,7 +47,10 @@ EarthTrekCompare.prototype.showCompare = function (layer) {
         todayHighlight: true,
         startView: 2,
         orientation: 'bottom'
-    });
+    }).on('changeDate', function(e) {
+        that.onCompare(layer);
+        $(compareButton).removeAttr('disabled');
+    });;
 
     $('.datepicker').datepicker('setStartDate', layer.startDate);
     $('.datepicker').datepicker('setEndDate', endDate);
@@ -54,16 +60,21 @@ EarthTrekCompare.prototype.showCompare = function (layer) {
 
     $("#accept-date").click(function () {
         if ($('#compare-date').val()) {
-            var today = that.isoDate(that.viewer.clock.currentTime.toString());
-            layer.id = layer.id;
-            layer.firstDate = $('#compare-date').val();
-            layer.secondDate = today;
-            layer.format = layer.format;
-            layer.resolution = layer.resolution;
-            that.compare(layer);
+            that.onCompare(layer);
             $(compareButton).removeAttr('disabled');
         }
     });
+}
+
+EarthTrekCompare.prototype.onCompare = function (layer) {
+    var that = this;
+    var today = earthTrekUtils.isoDate(that.viewer.clock.currentTime.toString());
+    layer.id = layer.id;
+    layer.firstDate = $('#compare-date').val();
+    layer.secondDate = today;
+    layer.format = layer.format;
+    layer.resolution = layer.resolution;
+    that.compare(layer);
 }
 
 
@@ -90,6 +101,19 @@ EarthTrekCompare.prototype.compare = function (layer) {
     var slider = document.getElementById('slider');
     this.viewer.scene.imagerySplitPosition = (slider.offsetLeft) / slider.parentElement.offsetWidth;
 
+    var firstDate = document.createElement('div');
+    $(firstDate).addClass('earthtrek-panel first-date-compare');
+    $(firstDate).html(moment(layer.firstDate).format('DD MMM Y'));
+    $('#main-container').append(firstDate);
+    $(firstDate).show();
+
+    var secondDate = document.createElement('div');
+    $(secondDate).addClass('earthtrek-panel second-date-compare');
+    $(secondDate).html(moment(layer.secondDate).format('DD MMM Y'));
+    $('#main-container').append(secondDate);
+    $(secondDate).show();
+
+
     /**
      * REFACTOR
      */
@@ -112,6 +136,8 @@ EarthTrekCompare.prototype.compare = function (layer) {
         var slider = document.getElementById('slider');
         var splitPosition = (e.clientX - dragStartX) / slider.parentElement.offsetWidth;
         slider.style.left = 100.0 * splitPosition + "%";
+        $(firstDate).css('left', (100.0 * (splitPosition - 0.047)) + "%");
+        $(secondDate).css('left', 100.0 * (splitPosition) + "%");
         that.viewer.scene.imagerySplitPosition = splitPosition;
     }
 
@@ -123,19 +149,12 @@ EarthTrekCompare.prototype.compare = function (layer) {
 EarthTrekCompare.prototype.remove = function () {
     if ($("#slider").is(':visible')) {
         $("#slider").hide();
+        $('.first-date-compare').remove();
+        $('.second-date-compare').remove();
     }
     earthTrekLayer.removeLayer(this.firstView);
     this.secondView.splitDirection =  ImageryLayer.DEFAULT_SPLIT;
     $('#compare-modal').hide();
 }
-
-/**
- *
- * @param isoDateTime
- * @returns {*}
- */
-EarthTrekCompare.prototype.isoDate = function(isoDateTime) {
-    return isoDateTime.split("T")[0];
-};
 
 module.exports = EarthTrekCompare;
