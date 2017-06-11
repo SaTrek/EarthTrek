@@ -12,8 +12,8 @@ require('slick-carousel/slick/slick.css');
 require('slick-carousel/slick/slick-theme.css');
 require('bootstrap/dist/css/bootstrap.min.css');
 
-var Cesium = require('../cesium');
-var earthTrekToolbar = require('../earthtrek-toolbar');
+var Cesium = require('../utils/cesium');
+var earthTrekToolbar = require('../utils/earthtrek-toolbar');
 
 
 /**

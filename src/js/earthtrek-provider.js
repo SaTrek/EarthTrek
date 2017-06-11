@@ -8,7 +8,7 @@
 
 var provider = provider || {};
 var WebMapTileServiceImageryProvider = require('cesium/Source/Scene/WebMapTileServiceImageryProvider');
-var gibs = require('./tilling-scheme');
+var gibs = require('./utils/tilling-scheme');
 
 provider.getProvider = function(options) {
     if (!options.layer) {

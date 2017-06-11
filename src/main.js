@@ -13,9 +13,7 @@ var EarthTrek = require('./js/earthtrek');
 require('./css/main.css');
 require('./css/left-toolbar.css');
 require('./css/satellite.css');
-require('./css/tutorial.css');
 require('./css/mobile.css');
-require('./css/compare.css');
 require('./css/fonts/myriad.css');
 var earthTrek = new EarthTrek({
     startTime: Date.UTC(1999, 1, 1),

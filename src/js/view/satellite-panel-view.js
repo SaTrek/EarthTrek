@@ -183,13 +183,5 @@ SatellitePanelView.prototype.addInstruments = function (entity) {
         that.instrumentsContainer.append(instrumentElement);
     });
 }
-/**
- *
- * @param isoDateTime
- * @returns {*}
- */
-SatellitePanelView.prototype.isoDate = function(isoDateTime) {
-    return isoDateTime.split("T")[0];
-};
 
 module.exports = SatellitePanelView;

@@ -14,3 +14,14 @@
     color: black;
     height: 20px;
 }
+.first-date-compare,
+.second-date-compare {
+    bottom: 10%;
+    padding-right: 8px;
+}
+.first-date-compare {
+    left: 45%;
+}
+.second-date-compare {
+    left: 50%
+}
