@@ -1,8 +1,12 @@
 Change Log
 ==========
 # 0.176
-### 0.176.08 - 2017-06-08
+### 0.176.11 - 2017-06-11
+* New features
+### 0.176.10 - 2017-06-10
+* Compare improvements
 * IE11 partial support
+* Code refactor (utils)
 ### 0.176.07 - 2017-06-07
 * RequireJS to Webpack
 ### 0.176.04 - 2017-06-04

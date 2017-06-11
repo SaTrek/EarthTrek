@@ -35,7 +35,7 @@ EarthTrekCompare.prototype.showCompare = function (layer) {
 
     $('#compare-layer-name').html(layer.title);
 
-    var compareButton = '#remove-comparation';
+    var compareButton = '#remove-comparison';
     $(compareButton).click(function() {
         that.remove();
     });
@@ -101,17 +101,20 @@ EarthTrekCompare.prototype.compare = function (layer) {
     var slider = document.getElementById('slider');
     this.viewer.scene.imagerySplitPosition = (slider.offsetLeft) / slider.parentElement.offsetWidth;
 
+    var dateContainer = '#compare-date-container';
+    $(dateContainer).show();
+    $(dateContainer).empty();
     var firstDate = document.createElement('div');
-    $(firstDate).addClass('earthtrek-panel first-date-compare');
+    $(firstDate).addClass('first-date-compare');
     $(firstDate).html(moment(layer.firstDate).format('DD MMM Y'));
-    $('#main-container').append(firstDate);
-    $(firstDate).show();
+    $(dateContainer).append(firstDate);
+   // $(firstDate).show();
 
     var secondDate = document.createElement('div');
-    $(secondDate).addClass('earthtrek-panel second-date-compare');
+    $(secondDate).addClass('second-date-compare');
     $(secondDate).html(moment(layer.secondDate).format('DD MMM Y'));
-    $('#main-container').append(secondDate);
-    $(secondDate).show();
+    $(dateContainer).append(secondDate);
+   // $(secondDate).show();
 
 
     /**
@@ -136,7 +139,7 @@ EarthTrekCompare.prototype.compare = function (layer) {
         var slider = document.getElementById('slider');
         var splitPosition = (e.clientX - dragStartX) / slider.parentElement.offsetWidth;
         slider.style.left = 100.0 * splitPosition + "%";
-        $(firstDate).css('left', (100.0 * (splitPosition - 0.047)) + "%");
+        $(firstDate).css('right', 100 - (100.0 * splitPosition) + "%");
         $(secondDate).css('left', 100.0 * (splitPosition) + "%");
         that.viewer.scene.imagerySplitPosition = splitPosition;
     }
