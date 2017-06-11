@@ -19,28 +19,26 @@
 }
 #compare-date-container {
     text-transform: uppercase;
-    display: none;
-    margin: auto;
     color: white;
-    border: 1px solid rgba(255, 255, 255, 0.5);
     z-index: 2;
-    padding-left: 8px;
     font-weight: normal;
+    font-size: 1.3rem;
 }
 .first-date-compare,
 .second-date-compare {
     background-color: rgba(18, 20, 24, 0.5);
     border: 1px solid rgba(255, 255, 255, 0.5);
-    border-radius: 10px;
     position: absolute;
     bottom: 10%;
-    padding-right: 8px;
-    font-size: 1.3rem;
     z-index: 3;
+    padding-left: 10px;
+    padding-right: 10px;
 }
 .first-date-compare {
     right: 50%;
+    border-radius: 10px 0px 0px 10px;
 }
 .second-date-compare {
-    left: 50%
+    left: 50%;
+    border-radius: 0px 10px 10px 0px;
 }
