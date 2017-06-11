@@ -6,7 +6,7 @@
  * @description EarthTrek - NASA Space Apps 2017 23 APR 2017.
  */
 window.CESIUM_BASE_URL = './';
-var Cesium = require('./cesium');
+var Cesium = require('./utils/cesium');
 require('cesium/Build/Cesium/Widgets/widgets.css');
 var _ = require('underscore');
 
@@ -19,6 +19,8 @@ var earthTrekSatellite = require('./earthtrek-satellite');
 var EarthTrekEntity = require('./earthtrek-entity');
 var EarthTrekHandler = require('./earthtrek-handler');
 var EarthTrekTutorialView = require('./view/earthtrek-tutorial-view');
+
+var earthTrekUtils = require('./utils/earthtrek-utils');
 //var Cesium = window.Cesium;
 
 /**
@@ -77,7 +79,7 @@ function EarthTrek(options) {
     this.initialTime = Cesium.JulianDate.fromDate(
         new Date(options.initialTime));
 
-    this.previousTime = this.isoDate(this.initialTime.toString());
+    this.previousTime = earthTrekUtils.isoDate(this.initialTime.toString());
     this.lastPropagationTime = this.initialTime;
 
     this.mainContainerId = options.mainContainer;
@@ -155,7 +157,7 @@ EarthTrek.prototype.createViewer = function () {
 }
 
 /**
- *
+ * Show Welcome Screen
  */
 EarthTrek.prototype.showWelcomeScreen = function () {
     var mainView = new EarthTrekView(this.viewer, {showTutorial: false});
@@ -203,7 +205,10 @@ EarthTrek.prototype.init = function () {
     });
 }
 
-
+/**
+ * ADD Handlers
+ * @param satellitePanel
+ */
 EarthTrek.prototype.addHandlers = function (satellitePanel) {
     var that = this;
     var handler = new EarthTrekHandler(this.viewer);
@@ -234,14 +239,6 @@ EarthTrek.prototype.addHandlers = function (satellitePanel) {
     );
 };
 
-/**
- *
- * @param isoDateTime
- * @returns {*}
- */
-EarthTrek.prototype.isoDate = function (isoDateTime) {
-    return isoDateTime.split("T")[0];
-};
 
 /**
  * onClockUpdate
@@ -249,7 +246,7 @@ EarthTrek.prototype.isoDate = function (isoDateTime) {
  */
 EarthTrek.prototype.onClockUpdate = function (clock) {
     var isoDateTime = clock.currentTime.toString();
-    var time = this.isoDate(isoDateTime);
+    var time = earthTrekUtils.isoDate(isoDateTime);
     if (time !== this.previousTime) {
 
         if (this.viewer.selectedEntity != null) {
@@ -341,7 +338,6 @@ EarthTrek.prototype.goToEntity = function (entity, panel, viewer, track) {
     if (this != undefined && viewer == undefined) {
         viewer = this.viewer;
     }
-    console.log(viewer.clock.currentTime)
     if (entity == undefined || !entity.isAvailable(viewer.clock.currentTime)) {
         return false;
     }
