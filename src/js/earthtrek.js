@@ -72,12 +72,6 @@ function EarthTrek(options) {
     if (!options.fadeOrbit) {
         options.fadeOrbit = true;
     }
-    if (!options.newFeatures) {
-        options.newFeatures = {
-            container: 'earthtrek-features',
-            show: true
-        };
-    }
     this.startTime = Cesium.JulianDate.fromDate(
         new Date(options.startTime));
     this.endTime = Cesium.JulianDate.fromDate(

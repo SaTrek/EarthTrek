@@ -27,7 +27,7 @@
 #satellite-panel .satellite-description {
     font-weight: normal;
     text-transform: none;
-    font-size: 0.8rem;;
+    font-size: 0.8rem;
     overflow-y: auto;
     max-height: 20vh;
     margin-bottom: 5px;
