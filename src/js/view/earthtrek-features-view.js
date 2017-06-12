@@ -28,9 +28,9 @@ function EarthTrekFeaturesView(viewer, options) {
 
     this.container = '#' + options.container;
     this.show = options.show;
-    $('#new-features-button').click(function () {
+   /* $('#new-features-button').click(function () {
         $('#' + that.options.container).show();
-    });
+    });*/
 }
 
 /**
