@@ -20,9 +20,9 @@ function EarthTrekView(viewer, options) {
     this.showTutorial = options.showTutorial;
     this.welcomeContainer = '#earthtrek-welcome';
 
- //   if (localStorage.getItem("displayed-features") == null) {
+    if (localStorage.getItem("displayed-features") == null) {
         this.showNewFeatures();
-//    }
+    }
     var startButton = $('.earthtrek-start');
     $(startButton).click(function() {
         $(that.welcomeContainer).remove();
