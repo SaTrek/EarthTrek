@@ -75,11 +75,14 @@ button:disabled {
     text-align: center;
     top: 20%;
     padding-bottom: 10px;
-    max-height: 70%;
+    overflow-y: auto;
+    overflow-x: hidden;
+    max-height: 70vh;
     left: 0;
     right: 0;
     margin-left: auto;
     margin-right: auto;
     text-transform: uppercase;
     font-family: 'Myriad Pro Bold Condensed';
+    background-color: rgba(18, 20, 24, 0.7);
 }

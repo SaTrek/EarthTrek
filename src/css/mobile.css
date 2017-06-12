@@ -23,4 +23,9 @@
     #satellite-toolbar-description {
         display:none;
     }
+    .earthtrek-modal {
+        top: 25%;
+        min-width: 80%;
+        max-width: 80%;
+    }
 }

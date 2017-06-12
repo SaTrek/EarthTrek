@@ -66,8 +66,8 @@ EarthTrekView.prototype.welcome = function (tutorialView) {
  */
 EarthTrekView.prototype.showNewFeatures = function () {
     var that = this;
+    var newFeaturesView = new EarthTrekFeaturesView(this.viewer, this.options.newFeatures || {});
     earthTrekData.getFeatures().then(function(data) {
-        var newFeaturesView = new EarthTrekFeaturesView(that.viewer, that.options.showFeatures || {});
         newFeaturesView.display(data);
     });
 }

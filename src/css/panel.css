@@ -14,11 +14,14 @@
 }
 .earthtrek-panel .panel-title {
     font-family: 'Myriad Pro Bold Condensed';
-    font-size: 2.5rem;
+    font-size: 2.0rem;
     text-align: center;
+    margin-top: 15px;
 }
 .earthtrek-panel .panel-text {
     font-family: 'Myriad Pro Condensed';
+    padding-left: 10px;
+    padding-right: 10px;
 }
 .earthtrek-panel .panel-buttons {
     text-align: center;
