@@ -77,7 +77,7 @@ button:disabled {
     padding-bottom: 10px;
     overflow-y: auto;
     overflow-x: hidden;
-    max-height: 70vh;
+    max-height: 65vh;
     left: 0;
     right: 0;
     margin-left: auto;

@@ -1,15 +1,15 @@
 #earthtrek-features {
     text-transform: none;
     text-align: left;
-    min-width: 40%;
+    min-width: 35%;
     background-color: rgba(18, 20, 24, 0.7);
 }
 #earthtrek-features button {
     font-size: 1.5rem;
 }
 #earthtrek-features .panel-text img {
-    max-width: 65%;
-    margin-left: 2px;
+    max-width: 85%;
+    margin-left: 10px;
     float: right;
 }
 #new-features-button {
