@@ -1,12 +1,13 @@
 {
   "name": "EarthTrek",
-  "version": "0.176.10",
+  "version": "0.176.11",
   "description": "Global Nominee NASA Space Apps Challenge 2017 Buenos Aires - Global Finalist (Best Use of Data) NASA Space Apps Challenge 2017 - 1D, 2D, 3D, Go! Challenge",
   "homepage": "http://github.com/SATrek/EarthTrek",
   "author": {
     "name": "SATrek",
     "url": "http://github.com/SATrek"
   },
+  "license": "Apache-2.0",
   "main": "main.js",
   "scripts": {
     "start": "node server.js",

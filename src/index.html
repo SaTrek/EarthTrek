@@ -5,28 +5,27 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
 
-    <title>EarthTrek - ALPHA v0.176.10</title>
+    <title>EarthTrek - ALPHA v0.176.11</title>
 
 </head>
     <body>
 
     <div id="main-container">
-
-
-        <div id="compare-modal" class="earthtrek-modal container earthtrek-panel">
-            <div class="top">COMPARE</div>
+        <div id="compare-modal" class="container earthtrek-panel">
+            <div class="panel-title">COMPARE</div>
             <div>
                 <div id="compare-layer-name"></div>
                 Select a date to compare
                 <input id="compare-date" class="datepicker" data-date-format="yyyy-mm-dd">
                 <button id="accept-date">OK</button>
             </div>
-            <div class="buttons">
-                <button id="remove-comparation" disabled="disabled">Remove comparative</button>
+            <div class="panel-buttons">
+                <button id="remove-comparison" disabled="disabled">Remove comparison</button>
             </div>
         </div>
 
         <div id="slider" style="display: none;"></div>
+        <div id="compare-date-container" > </div>
 
         <div id="satellite-panel" class="container earthtrek-panel">
             <div class="row satellite-panel-top">
@@ -60,6 +59,14 @@
             <div id="earthtrek-tutorial-buttons">
                 <button id="earthtrek-tutorial-skip">SKIP</button>
                 <button id="earthtrek-tutorial-finish">FINISH</button>
+            </div>
+        </div>
+
+        <div id="earthtrek-features" class="earthtrek-modal container earthtrek-panel">
+            <div class='panel-title'>NEW FEATURE!</div>
+            <div class="panel-text"></div>
+            <div class="panel-buttons">
+                <button class="earthtrek-start">START</button>
             </div>
         </div>
     </div>

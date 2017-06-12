@@ -11,6 +11,7 @@
 var EarthTrek = require('./js/earthtrek');
 /**CSS*/
 require('./css/main.css');
+require('./css/panel.css');
 require('./css/left-toolbar.css');
 require('./css/satellite.css');
 require('./css/mobile.css');
@@ -21,7 +22,11 @@ var earthTrek = new EarthTrek({
     initialTime: Date.now(),
     mainContainer: 'main-container',
     frequency: 50,
-    maxDistanceCamera: 10000000000 //10,000,000,000 meters
+    maxDistanceCamera: 10000000000, //10,000,000,000 meters
+    newFeatures: {
+        container: 'earthtrek-features',
+        show: true
+    }
 });
 earthTrek.createViewer();
 earthTrek.init();

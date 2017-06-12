@@ -160,7 +160,7 @@ EarthTrek.prototype.createViewer = function () {
  * Show Welcome Screen
  */
 EarthTrek.prototype.showWelcomeScreen = function () {
-    var mainView = new EarthTrekView(this.viewer, {showTutorial: false});
+    var mainView = new EarthTrekView(this.viewer, this.options);
     if (localStorage.getItem("started") == null) {
         var tutorialView = new EarthTrekTutorialView(this.viewer);
         mainView.welcome(tutorialView);

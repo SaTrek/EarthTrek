@@ -1,0 +1,8 @@
+{
+  "data": [
+    {
+      "title": "",
+      "text": "<img src='images/screens/compare.jpg'/><p>From now on, once a satellite is selected, two satellite images of the Earth can be compared.</p><p>By determining a geographic location through the geolocation finder and selecting a date before the current one, the screen will be divided in two.</p><p>It is display a comparison of the same geographic location on two different dates on which the satellite's instruments have been collecting information, being able to appreciate the changes over time and being able to vary the selection of amount of data displayed at the same time. </p>"
+    }
+  ]
+}
