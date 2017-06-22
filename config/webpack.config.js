@@ -48,7 +48,8 @@ module.exports = {
         loaders: [
             { test: /\.css$/, loader: ExtractTextPlugin.extract("style-loader", "css-loader") },
             { test: /\.(png|gif|jpg|jpeg)$/,  loader: "file-loader?name=/images/[name].[ext]" },
-            { test: /\.(eot|svg|ttf|woff|woff2)$/, loader: 'file?name=css/fonts/[name].[ext]' }
+            { test: /\.(eot|svg|ttf|woff|woff2)$/, loader: 'file?name=css/fonts/[name].[ext]' },
+            { test: /\.js$/, exclude: /node_modules/, loader: "babel-loader" }
         ]
     }
 };
