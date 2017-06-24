@@ -14,14 +14,12 @@ var JulianDate = require('cesium/Source/Core/JulianDate');
 
 var provider = require('../earthtrek-provider');
 var earthTrekLayer = require('../earthtrek-layer');
-var EarthTrekCompare = require('../earthtrek-compare');
 
 require('bootstrap/dist/css/bootstrap.min.css');
 require('bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css');
 
 function SatelliteLayerView(viewer, options) {
     this.viewer = viewer;
-    this.earthTrekCompare = new EarthTrekCompare(viewer);
 
 }
 

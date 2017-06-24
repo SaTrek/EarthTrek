@@ -15,19 +15,6 @@ html, body, #main-container {
     cursor: default;
 }
 
-#slider {
-    position: absolute;
-    left: 50%;
-    top: 0px;
-    background-color: #D3D3D3;
-    width: 6px;
-    height: 100%;
-    z-index: 9999;
-}
-
-#slider:hover {
-    cursor: ew-resize;
-}
 .earthtrek-toolbar {
     position: absolute;
     color: white;

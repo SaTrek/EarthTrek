@@ -4,20 +4,6 @@
         margin-left: 5%;
         margin-right: 5%;
     }
-    #satellite-panel {
-        display: none;
-        position: absolute;
-        max-width: 100%;
-        top: 65%;
-        max-height: 20vh;
-        overflow-y: auto;
-    }
-    #satellite-panel #satellite-name {
-        font-size: 1.5rem;
-    }
-    #satellite-description {
-        display:none;
-    }
 }
 @media screen and (max-width: 1024px) {
     #satellite-toolbar-description {

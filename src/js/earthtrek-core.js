@@ -1,0 +1,338 @@
+/**
+ * @class EarthTrek
+ * @module EarthTrek
+ * @author SATrek
+ * @author Alejandro Sanchez <alejandro.sanchez.trek@gmail.com>
+ * @description EarthTrek - NASA Space Apps 2017 23 APR 2017.
+ */
+/**EXTERNAL */
+import events from 'events';
+import Cesium from './utils/cesium';
+import _ from 'underscore';
+/***/
+import EarthTrekEntity from './earthtrek-entity';
+import earthTrekData from './earthtrek-data';
+import earthTrekSatellite from './earthtrek-satellite';
+import EarthTrekHandler from './earthtrek-handler';
+
+import earthTrekUtils from './utils/earthtrek-utils';
+window.CESIUM_BASE_URL = './';
+require('cesium/Build/Cesium/Widgets/widgets.css');
+
+let instance = null;
+
+/**
+ *
+ * @returns {*}
+ */
+export function earthTrekInstance() {
+    return instance;
+}
+
+export default class EarthTrekCore {
+
+    /**
+     * Constructor
+     * @param options
+     */
+    constructor(options) {
+        if(!instance){
+            instance = this;
+        }
+
+        this.options = options;
+
+        if (!options.mainContainer) {
+            throw new Error('Invalid Main Container');
+        }
+
+        if (!options.startTime) {
+            throw new Error('Invalid Start Time');
+        }
+
+        if (!options.endTime) {
+            throw new Error('Invalid End Time');
+        }
+        if (!options.initialTime) {
+            this.initialTime = Cesium.JulianDate.fromDate(
+                new Date(options.endTime));
+        }
+
+        if (!options.orbitDuration) {
+            options.orbitDuration = 7200; //seconds
+        }
+
+        if (!options.frequency) {
+            options.frequency = 50; //intervals
+        }
+
+        if (!options.multiplier) {
+            options.multiplier = 10; //intervals
+        }
+
+        if (!options.maxDistanceCamera) {
+            options.maxDistanceCamera = 10000000000; //10,000,000,000 meters
+        }
+
+        if (!options.enableLighting) {
+            options.enableLighting = false;
+        }
+        if (!options.orbitColor) {
+            options.orbitColor = '#F0F8FF';
+        }
+        if (!options.fadeOrbit) {
+            options.fadeOrbit = true;
+        }
+        if (!options.showFeatures) {
+            options.showFeatures = true;
+        }
+        if (!options.orbitalDataUpdateTime) {
+            options.orbitalDataUpdateTime = 10;
+        }
+        this.startTime = Cesium.JulianDate.fromDate(
+            new Date(options.startTime));
+        this.endTime = Cesium.JulianDate.fromDate(
+            new Date(options.endTime));
+        this.initialTime = Cesium.JulianDate.fromDate(
+            new Date(options.initialTime));
+
+        this.previousTime = earthTrekUtils.isoDate(this.initialTime.toString());
+        this.lastPropagationTime = this.initialTime;
+
+        this.mainContainerId = options.mainContainer;
+        this.orbitDuration = options.orbitDuration;
+        this.frequency = options.frequency;
+        this.multiplier = options.multiplier;
+        this.maxDistanceCamera = options.maxDistanceCamera;
+        this.enableLighting = options.enableLighting;
+        this.orbitalDataUpdateTime = options.orbitalDataUpdateTime;
+
+        this.orbitColor = Cesium.Color.fromCssColorString(options.orbitColor);
+        if (options.fadeOrbit == true) {
+            this.orbitMaterial = new Cesium.StripeMaterialProperty({
+                evenColor: this.orbitColor.withAlpha(0.5),
+                oddColor: this.orbitColor.withAlpha(0.01),
+                repeat: 1,
+                offset: 0.2,
+                orientation: Cesium.StripeOrientation.VERTICAL
+            });
+        } else {
+            this.orbitMaterial = this.orbitColor.withAlpha(0.5);
+        }
+
+        this.entities = [];
+        this.layers = [];
+        this.eventEmitter = new events.EventEmitter();
+        this.createViewer();
+        return instance;
+    }
+
+    getLayers() {
+        return this.layers;
+    }
+
+    /**
+     *
+     * @returns {events.EventEmitter}
+     */
+    getEventEmitter()
+    {
+        return this.eventEmitter;
+    }
+
+    /**
+     * getClock
+     * @returns {Cesium.Clock|*}
+     */
+    getClock() {
+        if (this.clock === undefined) {
+            this.clock = new Cesium.Clock({
+                startTime: this.startTime,
+                endTime: this.endTime,
+                currentTime: this.initialTime,
+                multiplier: this.multiplier,
+                clockStep: Cesium.ClockStep.SYSTEM_CLOCK_MULTIPLIER
+            });
+        }
+        return this.clock;
+    }
+
+    /**
+     * Create Viewer
+     * @param mainContainer
+     * @returns {Cesium.Viewer|*}
+     */
+    createViewer() {
+        if (this.viewer === undefined) {
+            this.viewer = new Cesium.Viewer(this.mainContainerId, {
+                clock: this.getClock(),
+                baseLayerPicker: false,
+                requestWaterMask: true,
+                automaticallyTrackDataSourceClocks: false,
+                navigationHelpButton: false,
+                infoBox: false,
+                creditContainer: "credit",
+                terrainExaggeration: 10,
+                // shadows: Cesium.ShadowMode.ENABLED,
+                imageryProvider: new Cesium.createTileMapServiceImageryProvider({
+                    url: 'newassets/imagery/NaturalEarthII/',
+                    maximumLevel: 5,
+                    credit: 'Imagery courtesy Natural Earth',
+                    fileExtension: 'jpg'
+                }),
+            });
+            this.viewer.scene.globe.tileCacheSize = 1000;
+            this.viewer.scene.globe.enableLighting = this.enableLighting;
+            this.getClock().onTick.addEventListener(this.onClockUpdate, this);
+            this.viewer.timeline.zoomTo(this.startTime, this.endTime);
+            this.viewer.camera.frustum.far = this.maxDistanceCamera;
+            this.viewer.camera.defaultZoomAmount = 500000.0;
+        }
+        this.renderViews();
+        return this.viewer;
+    }
+
+    /**
+     * Get Viewer
+     * @returns {Cesium.Viewer}
+     */
+    getViewer() {
+        return this.viewer;
+    }
+
+    /**
+     * Init
+     */
+    render() {
+        this.beforeInit();
+        this.lastOrbitalDataUpdated = this.clock.currentTime;
+        this.init();
+        this.afterInit();
+    }
+    /**
+     * Render Views
+     */
+    renderViews() {
+        throw new Error('You have to implement the method renderViews!');
+    }
+
+    beforeInit() {
+
+    }
+
+    init() {
+
+    }
+
+    afterInit() {
+
+    }
+
+    pullSatellitesData(callback) {
+        earthTrekData.getFullData({getCache: this.options.getCache},  (satellites) => {
+            satellites.forEach((satelliteData) => {
+                const entity = this.viewer.entities.getById(satelliteData.satId);
+                callback(satelliteData, entity);
+            });
+            this.getEventEmitter().emit('entities-added', {entities: this.entities});
+        });
+    }
+
+    /**
+     * Add Entity
+     * @param satelliteData
+     */
+    addEntity(satelliteData) {
+        const entity = this.viewer.entities.add(EarthTrekEntity.create(satelliteData, this.getClock().currentTime, {
+            orbitDuration: this.orbitDuration,
+            frequency: this.frequency
+        }));
+        this.entities.push(entity);
+        this.getEventEmitter().emit('entity-added', {entity: entity, satelliteData: satelliteData});
+    }
+
+    /**
+     * on Clock Update
+     * @param clock
+     */
+    onClockUpdate(clock) {
+        const isoDateTime = clock.currentTime.toString();
+        const time = earthTrekUtils.isoDate(isoDateTime);
+        if (time !== this.previousTime) {
+            this.getEventEmitter().emit('date-updated', {time: time});
+            //  updateLayers();
+        }
+        this.updateEntities(time);
+
+        if (this.viewer.selectedEntity != null &&
+            (Cesium.JulianDate.secondsDifference(this.clock.currentTime, this.lastOrbitalDataUpdated) > this.orbitalDataUpdateTime ||
+            Cesium.JulianDate.secondsDifference(this.lastOrbitalDataUpdated, this.clock.currentTime) > this.orbitalDataUpdateTime)) {
+            this.getEventEmitter().emit('update-orbital-data', {entity: this.viewer.selectedEntity});
+            this.lastOrbitalDataUpdated = this.clock.currentTime;
+        }
+    };
+
+    /**
+     * Update Entities
+     * @param time
+     */
+    updateEntities(time) {
+        if (Cesium.JulianDate.secondsDifference(this.clock.currentTime, this.lastPropagationTime) > this.orbitDuration ||
+            Cesium.JulianDate.secondsDifference(this.lastPropagationTime, this.clock.currentTime) > this.orbitDuration) {
+
+            const p1 = new Promise(
+                (resolve, reject) => {
+                    if (time !== this.previousTime) {
+                        this.previousTime = time;
+                        this.lastPropagationTime = this.clock.currentTime;
+                        const startDate = new Date(time);
+                        startDate.setDate(startDate.getDate());
+                        const endDate = new Date(time);
+                        endDate.setDate(endDate.getDate() + 1);
+                        return resolve(earthTrekData.getTLEs(earthTrekData.getSatelliteIds(), {
+                            startDate: startDate,
+                            endDate: endDate
+                        }));
+                    } else {
+                        reject(time);
+                    }
+                }
+            );
+
+            p1.then((tles) => {
+                tles.data.forEach( (tle)  =>{
+                    const entity = this.viewer.entities.getById(tle.satId);
+                    if (entity != null) {
+                        entity.properties.tle.setValue(tle.tle);
+                        entity.properties.data.setValue(_.extend(entity.properties.data.getValue(), tle.data));
+                    }
+                });
+                return new Promise(propagation).then(() => {
+                    this.getEventEmitter().emit('entities-updated');
+                });
+            }, (time) => {
+                return new Promise(propagation).then(() => {
+                    this.getEventEmitter().emit('entities-updated');
+                });
+            });
+
+            var that = this;
+            var propagation = function(resolve) {
+                that.entities.forEach( (entity) => {
+                    const newStart = that.clock.currentTime;
+                    const tle1 = entity.properties.getValue(newStart).tle[0];
+                    const tle2 = entity.properties.getValue(newStart).tle[1];
+                    const samples = earthTrekSatellite.getSamples(tle1, tle2, newStart, that.orbitDuration, that.frequency);
+                    entity.position = samples.positions
+                    entity.velocity = samples.velocities;
+                    entity.altitude = samples.heights;
+                    that.getEventEmitter().emit('entity-updated', {entity: entity, newStart: newStart});
+                });
+                that.lastPropagationTime = that.clock.currentTime;
+                return resolve();
+            };
+        }
+
+    }
+
+}

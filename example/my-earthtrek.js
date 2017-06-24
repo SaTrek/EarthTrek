@@ -13,14 +13,14 @@ import EarthTrekHandler from '../src/js/earthtrek-handler';
 import EarthTrekCore from '../src/js/earthtrek-core';
 import earthTrekUtils from '../src/js/utils/earthtrek-utils';
 
-class EarthTrek extends EarthTrekCore {
+class MyEarthTrek  {
 
     /**
      * Constructor
      * @param options
      */
     constructor(options) {
-        super(options);
+        this.earthTrek = new EarthTrekCore(options);
         if (!options.showReference) {
             options.showReference = true;
         }
