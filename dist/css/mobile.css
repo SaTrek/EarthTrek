@@ -1,0 +1,17 @@
+@media screen and (max-width: 531px) {
+    #left-toolbar {
+        max-width: 85%;
+        margin-left: 5%;
+        margin-right: 5%;
+    }
+}
+@media screen and (max-width: 1024px) {
+    #satellite-toolbar-description {
+        display:none;
+    }
+    .earthtrek-modal {
+        top: 25%;
+        min-width: 80%;
+        max-width: 80%;
+    }
+}

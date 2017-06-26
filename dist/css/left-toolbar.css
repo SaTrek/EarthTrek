@@ -1,0 +1,77 @@
+#left-toolbar {
+    top: 5%;
+    left: 2%;
+    max-width: 40%;
+}
+#satellite-toolbar-container img {
+    height: 80px;
+}
+#left-toolbar .slick-slide {
+    width: 100px;
+}
+#left-toolbar .slick-slide:hover {
+    background: rgba(80, 150, 200, 0.7);
+}
+#left-toolbar .satellite-selected {
+    background: rgba(80, 150, 200, 0.5);
+}
+#left-toolbar .popover {
+    background-color: rgba(58, 94, 107, 0.5);
+}
+#left-toolbar .popover-title {
+    background-color: rgba(3, 46, 67, 0.5);
+}
+#top-left-toolbar {
+    top: 1%;
+    left: 2%;
+    max-width: 50%;
+}
+.satellite-disabled img {
+    -webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
+    filter: grayscale(100%);
+}
+
+#search-satellite {
+    text-align: right;
+    padding: 5px;
+    z-index: 1;
+    color: black;
+}
+#search-satellite button {
+    width: 30px;
+    height: 23px;
+    background-image: url("../images/mini-search.png");
+    background-repeat: no-repeat;
+}
+/**POPOVER*/
+.satellite-popover {
+    text-transform: uppercase;
+    font-family: 'Myriad Pro Bold Condensed';
+}
+.popover-title img {
+    width: 34px;
+    heighti: 32px !important;
+}
+.satellite-popover .satellite-description{
+    text-transform: none;
+    font-family: 'Myriad Pro Condensed';
+}
+.popover {
+    width: 200px;
+    font-family: 'Myriad Pro Condensed';
+}
+.satellite-options button {
+    width: 34px;
+    height: 32px;
+    margin-right: 5px;
+}
+
+button.satellite-zoom {
+    background-image: url("../images/zoom.png");
+}
+button.satellite-show {
+    background-image: url("../images/view.png");
+}
+button.satellite-hide {
+    background-image: url("../images/hide.png");
+}

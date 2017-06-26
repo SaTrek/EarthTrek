@@ -44,12 +44,12 @@
     "compile": "babel --presets es2015,stage-0 --quiet -d dist/ src/",
     "test": "npm run compile && mocha --compilers js:babel-core/register",
     "clean": "mkdirp public & rimraf public/*",
-    "build": "npm run clean && cpr node_modules/cesium/Build/Cesium public && webpack --config config/webpack.config.js --progress",
-    "build2": "npm run clean && cpr node_modules/cesium/Build/Cesium/Assets public/Assets &&  webpack --config config/webpack.config.js --progress",
+    "build": "npm run clean && cpr node_modules/earthtrek-core/node_modules/cesium/Build/Cesium public && webpack --config config/webpack.config.js --progress",
+    "build2": "npm run clean && cpr node_modules/earthtrek-core/node_modules/cesium/Build/Cesium/Assets public/Assets &&  webpack --config config/webpack.config.js --progress",
     "devserver": "webpack-dev-server --config config/webpack.config.js --progress",
     "dev": "npm run build && npm run devserver",
     "release": "webpack --config config/webpack.prod.config.js --progress",
-    "heroku-postbuild": "npm run clean && cpr node_modules/cesium/Build/Cesium public && npm run release && npm run cache"
+    "heroku-postbuild": "npm run clean && cpr node_modules/earthtrek-core/node_modules/cesium/Build/Cesium public && npm run release && npm run cache"
   },
   "repository": {
     "type": "git",
