@@ -14,7 +14,8 @@
     "nasa",
     "gibs",
     "eos",
-    "cesium"
+    "cesium",
+    "satellites"
   ],
   "scripts": {
     "start": "node server.js",
