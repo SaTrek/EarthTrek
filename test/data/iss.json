@@ -1,0 +1,34 @@
+{
+  "satId": 25544,
+  "tle": [
+    "1 25544U 98067A   17132.15166687  .00016717  00000-0  10270-3 0  9023",
+    "2 25544  51.6405 217.9287 0004884 149.5686 210.5751 15.54020107 16140"
+  ],
+  "data": {
+    "mass": 419455,
+    "agency": "NASA/ROSCOSMOS/JAXA/ESA/CSA",
+    "program": "ISS",
+    "launchDate": "1998-11-20T12:32:00.000Z",
+    "inclination": 51.6429,
+    "eccentricity": 0.0004409,
+    "argumentPerigee": 297.019,
+    "meanAnomaly": 171.4896
+  },
+  "id": "iss",
+  "name": "ISS",
+  "mass": 419455,
+  "launchDate": "1998-11-20T12:32:00.000Z",
+  "endDate": null,
+  "status": "ACTIVE",
+  "type": "SPACE_STATION",
+  "image": "iss.png",
+  "program": "ISS",
+  "agency": "NASA/ROSCOSMOS/JAXA/ESA/CSA",
+  "description": "The International Space Station is a global observation and diagnosis station. It promotes international Earth observations aimed at understanding and resolving the environmental issues of our home planet. The space station offers a unique vantage for observing the Earth's ecosystems with hands-on and automated equipment. These options enable astronauts to observe and explain what they witness in real time. Station crews can observe and collect camera images of events as they unfold and may also provide input to ground personnel programming the station's automated Earth-sensing systems. This flexibility is an advantage over sensors on unmanned spacecraft, especially when unexpected natural events, such as volcanic eruptions and earthquakes, occur.",
+  "color": "#0000FF",
+  "updatedAt": "2017-05-27T18:15:03.364Z",
+  "createdAt": "2017-05-23T15:01:39.935Z",
+  "instruments": [
+    null
+  ]
+}

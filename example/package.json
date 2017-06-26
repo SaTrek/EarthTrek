@@ -1,0 +1,35 @@
+{
+  "name": "my-earthtrek",
+  "version": "1.0.0",
+  "description": "Build with Earth Trek Core",
+  "main": "main.js",
+  "directories": {
+    "example": "example",
+    "test": "test"
+  },
+  "dependencies": {
+    "earthtrek-core": "^0.176.25"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "mocha",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SaTrek/EarthTrek.git"
+  },
+  "keywords": [
+    "earthtrek",
+    "nasa",
+    "gibs",
+    "eos",
+    "cesium"
+  ],
+  "author": "SATrek",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/SaTrek/EarthTrek/issues"
+  },
+  "homepage": "https://github.com/SaTrek/EarthTrek#readme"
+}

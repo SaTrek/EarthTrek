@@ -5,71 +5,120 @@
  * @author Alejandro Sanchez <alejandro.sanchez.trek@gmail.com>
  * @description EarthTrek - NASA Space Apps 2017 - 25 MAY 2017
  */
-var earthTrekProvider = require('./earthtrek-provider');
-var ImageryLayer = require('cesium/Source/Scene/ImageryLayer');
+import ImageryLayer from 'cesium/Source/Scene/ImageryLayer';
 
-var earthTrekLayer = earthTrekLayer || {};
+import earthTrekProvider from './earthtrek-provider';
+import {earthTrekInstance} from './earthtrek-core';
 
-earthTrekLayer.setViewer = function(viewer) {
-    this.layerViewer = viewer;
-}
+class earthTrekLayer {
 
-earthTrekLayer.addLayer = function(today, layer, dontHide) {
-    if (dontHide === undefined) {
-        earthTrekLayer.hideLayer(layer);
+    static addLayer(today, layer, dontHide) {
+        if (dontHide === undefined) {
+            earthTrekLayer.hideLayer(layer);
+        }
+
+        let maximumLevel = (layer.format == 'image/png') ? 2 : 8;
+        if (layer.maximumLevel) {
+            maximumLevel = layer.maximumLevel;
+        }
+        const newLayerProvider = earthTrekProvider.getProvider({
+            layer: layer.id,
+            time: today,
+            format: layer.format,
+            tileMatrixSetID: "epsg4326",
+            resolution: layer.resolution,
+            maximumLevel: maximumLevel
+        });
+
+
+        if (earthTrekInstance().getViewer().scene.imageryLayers._layers[0].format == 'image/jpeg') {
+            earthTrekInstance().getViewer().scene.imageryLayers._layers[0].show = false;
+            //    that.viewer.scene.imageryLayers.lowerToBottom(that.viewer.scene.imageryLayers._layers[0].show = false);
+        }
+        const addedLayer = earthTrekInstance().getViewer().scene.imageryLayers.addImageryProvider(newLayerProvider);
+
+        let layers = earthTrekInstance().getLayers();
+        layers.push({layer: layer, cesiumLayer: addedLayer});
+        layers.forEach( (objLayer) => {
+            if (objLayer.layer.top != undefined && objLayer.layer.top == true) {
+                earthTrekInstance().getViewer().scene.imageryLayers.raiseToTop(objLayer.cesiumLayer);
+            }
+        });
+        return addedLayer;
+        /* if (layer.format == 'image/jpeg') {
+         this.layerViewer.scene.imageryLayers.lowerToBottom(addedLayer);
+         }*/
     }
-    var maximumLevel = (layer.format == 'image/png') ? 2 : 12;
-    var newLayerProvider = earthTrekProvider.getProvider({
-        layer: layer.id,
-        time: today,
-        format: layer.format,
-        tileMatrixSetID: "epsg4326",
-        resolution: layer.resolution,
-        maximumLevel: maximumLevel
-    });
 
-    if (this.layerViewer.scene.imageryLayers._layers[0].format == 'image/jpeg') {
-        this.layerViewer.scene.imageryLayers._layers[0].show = false;
-        //    that.viewer.scene.imageryLayers.lowerToBottom(that.viewer.scene.imageryLayers._layers[0].show = false);
+    /**
+     * Get Imagery Layers
+     * @returns {imageryLayers|{get}|*|ImageryLayerCollection}
+     */
+    static getImageryLayers() {
+        return earthTrekInstance().getViewer().scene.imageryLayers;
     }
-    var addedLayer = this.layerViewer.scene.imageryLayers.addImageryProvider(newLayerProvider);
-    return addedLayer;
-   /* if (layer.format == 'image/jpeg') {
-        this.layerViewer.scene.imageryLayers.lowerToBottom(addedLayer);
-    }*/
-}
 
-earthTrekLayer.getLayers = function() {
-    return this.layerViewer.scene.imageryLayers;
-}
-
-earthTrekLayer.toggleLayer = function() {
-}
-
-earthTrekLayer.removeLayer = function(layer) {
-    var imageryLayers = earthTrekLayer.getLayers();
-    if (layer instanceof ImageryLayer) {
-        imageryLayers.remove(layer);
-        return true;
-    }
-    for (var i = 0; i <= imageryLayers.length - 1; i++) {
-        var imageryLayer = imageryLayers.get(i);
-        if (imageryLayer.imageryProvider._layer == layer.id) {
-            imageryLayers.remove(imageryLayer);
+    /**
+     * Remove Layer
+     * @param object layer
+     * @returns {boolean}
+     */
+    static removeLayer (layer) {
+        const imageryLayers = earthTrekLayer.getImageryLayers();
+        if (layer instanceof ImageryLayer) {
+            imageryLayers.remove(layer);
             return true;
         }
+        for (var i = 0; i <= imageryLayers.length - 1; i++) {
+            let imageryLayer = imageryLayers.get(i);
+            if (imageryLayer.imageryProvider._layer == layer.id) {
+                imageryLayers.remove(imageryLayer);
+                return true;
+            }
+        }
+        return false;
     }
-    return false;
-}
 
-earthTrekLayer.hideLayer = function(layer) {
-    var imageryLayers = earthTrekLayer.getLayers();
-    for (var i = 0; i <= imageryLayers.length - 1; i++) {
-        var imageryLayer = imageryLayers.get(i);
-        if (layer.format == 'image/jpeg' && imageryLayer.imageryProvider.format == 'image/jpeg') {
-            imageryLayer.show = false;
+    /**
+     * Hide Layer
+     * @param object layer
+     */
+    static hideLayer (layer) {
+        const imageryLayers = earthTrekLayer.getImageryLayers();
+        for (var i = 0; i <= imageryLayers.length - 1; i++) {
+            let imageryLayer = imageryLayers.get(i);
+            if (layer.format == 'image/jpeg' && imageryLayer.imageryProvider.format == 'image/jpeg') {
+                imageryLayer.show = false;
+            }
         }
     }
-}
 
+    /**
+     * Toggle Layer By Id
+     * @param layerId
+     * @param callback
+     */
+    static toggleLayerById (layerId, callback) {
+        const imageryLayers = earthTrekLayer.getImageryLayers();
+        for (var i = 0; i <= imageryLayers.length - 1; i++) {
+            let imageryLayer = imageryLayers.get(i);
+            if (imageryLayer.imageryProvider._layer == layerId) {
+                imageryLayer.show = !imageryLayer.show;
+                callback(imageryLayer.show);
+            }
+        }
+    }
+
+    /**
+     * Raise to Top Layer
+     * @param object plainLayer
+     * @param ImageryLayer layer
+     */
+    static raiseToTop(plainLayer, layer) {
+        if (plainLayer.top != undefined && plainLayer.top == true) {
+            earthTrekInstance().getViewer().scene.imageryLayers.raiseToTop(layer);
+        }
+    }
+
+}
 module.exports = earthTrekLayer;

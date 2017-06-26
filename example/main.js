@@ -8,10 +8,8 @@
 /**
  * REQUIRES
  */
-import MyEarthTrek from './my-earthtrek';
+import MyEarthTrek from './src/my-earthtrek';
 /**CSS*/
-require('../src/css/main.css');
-require('../src/css/left-toolbar.css');
 const earthTrek = new MyEarthTrek({
     startTime: Date.UTC(1999, 1, 1),
     endTime: Date.now(),

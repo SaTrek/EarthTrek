@@ -7,7 +7,7 @@
  */
 var assert = require('assert');
 var should = require('should');
-var satellitePropagation = require('../src/js/satellite-propagation');
+var satellitePropagation = require('../src/js/earthtrek-propagation');
 
 describe('Propagate Satellite', function(){
     it('get satellite position by two different dates using one TLE', function(done) {

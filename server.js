@@ -6,7 +6,6 @@ var app = express()
 
 app.use(express.static(__dirname))
 app.use(express.static(__dirname + '/public'))
-app.use(express.static(__dirname + '/API'))
    
 app.get('/', function(req, res) {
     res.sendFile(__dirname + '/public/index.html')

@@ -20,7 +20,11 @@ gibs.GeographicTilingScheme = function(options) {
         { width:  40, height:  20, resolution: 0.00030679615757712823 },
         { width:  80, height:  40, resolution: 0.00015339807878856412 },
         { width: 160, height:  80, resolution: 0.00007669903939428206 },
-        { width: 320, height: 160, resolution: 0.00003834951969714103 }
+        { width: 320, height: 160, resolution: 0.00003834951969714103 },
+        { width: 640, height: 320, resolution: 0.000019175 }
+    /*    { width: 1280, height: 640, resolution: 0.000009587 },
+        { width: 2560, height: 1280, resolution: 0.000004794 },
+        { width: 5120, height: 2560, resolution: 0.000002397 }*/
     ];
 
     self.getNumberOfXTilesAtLevel = function(level) {
@@ -59,6 +63,9 @@ gibs.GeographicTilingScheme = function(options) {
             return undefined;
         }
 
+        if (levels[level] == undefined) {
+            return undefined;
+        }
         var xTiles = levels[level].width;
         var yTiles = levels[level].height;
         var resolution = levels[level].resolution;
@@ -73,7 +80,7 @@ gibs.GeographicTilingScheme = function(options) {
 
         var xTileCoordinate = (longitude - rectangle.west) / xTileWidth | 0;
         if ( xTileCoordinate >= xTiles ) {
-            xTileCordinate = xTiles - 1;
+            xTileCoordinate = xTiles - 1;
         }
 
         var latitude = position.latitude;

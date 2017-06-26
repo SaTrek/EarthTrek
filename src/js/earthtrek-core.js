@@ -13,11 +13,13 @@ import _ from 'underscore';
 import EarthTrekEntity from './earthtrek-entity';
 import earthTrekData from './earthtrek-data';
 import earthTrekSatellite from './earthtrek-satellite';
-import EarthTrekHandler from './earthtrek-handler';
 
 import earthTrekUtils from './utils/earthtrek-utils';
 window.CESIUM_BASE_URL = './';
 require('cesium/Build/Cesium/Widgets/widgets.css');
+
+require('../../src/css/main.css');
+require('../../src/css/left-toolbar.css');
 
 let instance = null;
 
@@ -40,8 +42,6 @@ export default class EarthTrekCore {
             instance = this;
         }
 
-        this.options = options;
-
         if (!options.mainContainer) {
             throw new Error('Invalid Main Container');
         }
@@ -58,6 +58,23 @@ export default class EarthTrekCore {
                 new Date(options.endTime));
         }
 
+        if (!options.maxDistanceCamera) {
+            options.maxDistanceCamera = 10000000000; //10,000,000,000 meters
+        }
+
+        if (!options.enableLighting) {
+            options.enableLighting = false;
+        }
+        if (!options.showFeatures) {
+            options.showFeatures = true;
+        }
+        if (!options.orbitalDataUpdateTime) {
+            options.orbitalDataUpdateTime = 10;
+        }
+        if (!options.multiplier) {
+            options.multiplier = 10; //intervals
+        }
+
         if (!options.orbitDuration) {
             options.orbitDuration = 7200; //seconds
         }
@@ -66,28 +83,14 @@ export default class EarthTrekCore {
             options.frequency = 50; //intervals
         }
 
-        if (!options.multiplier) {
-            options.multiplier = 10; //intervals
+        if (!options.entities) {
+            options.entities = {
+                orbitDuration: options.orbitDuration,
+                frequency: options.frequency
+            };
         }
-
-        if (!options.maxDistanceCamera) {
-            options.maxDistanceCamera = 10000000000; //10,000,000,000 meters
-        }
-
-        if (!options.enableLighting) {
-            options.enableLighting = false;
-        }
-        if (!options.orbitColor) {
-            options.orbitColor = '#F0F8FF';
-        }
-        if (!options.fadeOrbit) {
-            options.fadeOrbit = true;
-        }
-        if (!options.showFeatures) {
-            options.showFeatures = true;
-        }
-        if (!options.orbitalDataUpdateTime) {
-            options.orbitalDataUpdateTime = 10;
+        if (!options.env) {
+            options.env = 'dev';
         }
         this.startTime = Cesium.JulianDate.fromDate(
             new Date(options.startTime));
@@ -98,28 +101,18 @@ export default class EarthTrekCore {
 
         this.previousTime = earthTrekUtils.isoDate(this.initialTime.toString());
         this.lastPropagationTime = this.initialTime;
-
-        this.mainContainerId = options.mainContainer;
-        this.orbitDuration = options.orbitDuration;
-        this.frequency = options.frequency;
         this.multiplier = options.multiplier;
+        this.mainContainerId = options.mainContainer;
         this.maxDistanceCamera = options.maxDistanceCamera;
         this.enableLighting = options.enableLighting;
         this.orbitalDataUpdateTime = options.orbitalDataUpdateTime;
 
-        this.orbitColor = Cesium.Color.fromCssColorString(options.orbitColor);
-        if (options.fadeOrbit == true) {
-            this.orbitMaterial = new Cesium.StripeMaterialProperty({
-                evenColor: this.orbitColor.withAlpha(0.5),
-                oddColor: this.orbitColor.withAlpha(0.01),
-                repeat: 1,
-                offset: 0.2,
-                orientation: Cesium.StripeOrientation.VERTICAL
-            });
-        } else {
-            this.orbitMaterial = this.orbitColor.withAlpha(0.5);
+        this.orbitDuration = options.orbitDuration;
+        this.frequency = options.frequency;
+        if (options.env == 'dev') {
+            this.debugMode = true;
         }
-
+        this.options = options;
         this.entities = [];
         this.layers = [];
         this.eventEmitter = new events.EventEmitter();
@@ -172,14 +165,7 @@ export default class EarthTrekCore {
                 navigationHelpButton: false,
                 infoBox: false,
                 creditContainer: "credit",
-                terrainExaggeration: 10,
-                // shadows: Cesium.ShadowMode.ENABLED,
-                imageryProvider: new Cesium.createTileMapServiceImageryProvider({
-                    url: 'newassets/imagery/NaturalEarthII/',
-                    maximumLevel: 5,
-                    credit: 'Imagery courtesy Natural Earth',
-                    fileExtension: 'jpg'
-                }),
+                terrainExaggeration: 10
             });
             this.viewer.scene.globe.tileCacheSize = 1000;
             this.viewer.scene.globe.enableLighting = this.enableLighting;
@@ -187,8 +173,13 @@ export default class EarthTrekCore {
             this.viewer.timeline.zoomTo(this.startTime, this.endTime);
             this.viewer.camera.frustum.far = this.maxDistanceCamera;
             this.viewer.camera.defaultZoomAmount = 500000.0;
+
+            if (this.debugMode == true) {
+                this.viewer.scene.debugShowFramesPerSecond = true;
+            }
+
         }
-        this.renderViews();
+        this.lastOrbitalDataUpdated = this.clock.currentTime;
         return this.viewer;
     }
 
@@ -198,34 +189,6 @@ export default class EarthTrekCore {
      */
     getViewer() {
         return this.viewer;
-    }
-
-    /**
-     * Init
-     */
-    render() {
-        this.beforeInit();
-        this.lastOrbitalDataUpdated = this.clock.currentTime;
-        this.init();
-        this.afterInit();
-    }
-    /**
-     * Render Views
-     */
-    renderViews() {
-        throw new Error('You have to implement the method renderViews!');
-    }
-
-    beforeInit() {
-
-    }
-
-    init() {
-
-    }
-
-    afterInit() {
-
     }
 
     pullSatellitesData(callback) {
@@ -243,10 +206,9 @@ export default class EarthTrekCore {
      * @param satelliteData
      */
     addEntity(satelliteData) {
-        const entity = this.viewer.entities.add(EarthTrekEntity.create(satelliteData, this.getClock().currentTime, {
-            orbitDuration: this.orbitDuration,
-            frequency: this.frequency
-        }));
+        const entity = this.viewer.entities.add(
+            EarthTrekEntity.create(satelliteData, this.getClock().currentTime, this.options.entities)
+        );
         this.entities.push(entity);
         this.getEventEmitter().emit('entity-added', {entity: entity, satelliteData: satelliteData});
     }
@@ -272,22 +234,19 @@ export default class EarthTrekCore {
         }
     };
 
-    /**
-     * Update Entities
-     * @param time
-     */
-    updateEntities(time) {
-        if (Cesium.JulianDate.secondsDifference(this.clock.currentTime, this.lastPropagationTime) > this.orbitDuration ||
-            Cesium.JulianDate.secondsDifference(this.lastPropagationTime, this.clock.currentTime) > this.orbitDuration) {
+    updateEntities(isoTime) {
+        const currentTime = this.getClock().currentTime;
+        if (Cesium.JulianDate.secondsDifference(this.getClock().currentTime, this.lastPropagationTime) > this.orbitDuration ||
+            Cesium.JulianDate.secondsDifference(this.lastPropagationTime, this.getClock().currentTime) > this.orbitDuration) {
 
             const p1 = new Promise(
                 (resolve, reject) => {
-                    if (time !== this.previousTime) {
-                        this.previousTime = time;
-                        this.lastPropagationTime = this.clock.currentTime;
-                        const startDate = new Date(time);
+                    if (isoTime !== this.previousTime) {
+                        this.previousTime = isoTime;
+                        this.lastPropagationTime = currentTime;
+                        const startDate = new Date(isoTime);
                         startDate.setDate(startDate.getDate());
-                        const endDate = new Date(time);
+                        const endDate = new Date(isoTime);
                         endDate.setDate(endDate.getDate() + 1);
                         return resolve(earthTrekData.getTLEs(earthTrekData.getSatelliteIds(), {
                             startDate: startDate,
@@ -310,7 +269,7 @@ export default class EarthTrekCore {
                 return new Promise(propagation).then(() => {
                     this.getEventEmitter().emit('entities-updated');
                 });
-            }, (time) => {
+            }, (isoTime) => {
                 return new Promise(propagation).then(() => {
                     this.getEventEmitter().emit('entities-updated');
                 });
@@ -334,5 +293,4 @@ export default class EarthTrekCore {
         }
 
     }
-
 }

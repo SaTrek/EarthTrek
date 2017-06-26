@@ -21,7 +21,7 @@ class EarthTrekRightToolbar {
      */
     static add(className, selected, callback) {
         const iconButton = document.createElement('button');
-       /* $(iconButton).append('<i class="fa fa-tag" aria-hidden="true"></i>');*/
+        /* $(iconButton).append('<i class="fa fa-tag" aria-hidden="true"></i>');*/
         $(iconButton).addClass('cesium-toolbar-button cesium-button');
         $(iconButton).addClass(className);
         if (selected == true) {
@@ -43,15 +43,19 @@ class EarthTrekRightToolbar {
      */
     static addToogleLayer(layer, className, selected) {
         earthTrekLayer.addLayer(earthTrekUtils.getCurrentIsoDate(), layer);
-        EarthTrekRightToolbar.add(className, true, (iconButton) => {
-            earthTrekLayer.toggleLayerById(layer.id, (show) => {
-                if (show == true) {
-                    $(iconButton).addClass('selected');
-                } else {
-                    $(iconButton).removeClass('selected');
-                }
-            });
-        });
+        EarthTrekRightToolbar.add(
+            className,
+            selected,
+            (iconButton) => {
+                earthTrekLayer.toggleLayerById(layer.id, (show) => {
+                    if (show == true) {
+                        $(iconButton).addClass('selected');
+                    } else {
+                        $(iconButton).removeClass('selected');
+                    }
+                });
+            }
+        );
     }
 }
 

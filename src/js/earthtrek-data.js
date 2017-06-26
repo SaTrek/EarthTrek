@@ -5,8 +5,8 @@
  * @author Alejandro Sanchez <alejandro.sanchez.trek@gmail.com>
  * @description EarthTrek - NASA Space Apps 2017 23 APR 2017.
  */
-
 var earthTrekData = earthTrekData || {};
+var rp = require('request-promise');
 
 'use strict';
 var _ = require('underscore');
@@ -33,7 +33,11 @@ earthTrekData.getSatelliteIds = function () {
  */
 earthTrekData.getSatellites = function () {
     var config = earthTrekData.getConfig();
-    return $.ajax(config.api.url + config.api.satellites.endpoint);
+    var options = {
+        uri: config.api.url + config.api.satellites.endpoint,
+        json: true
+    };
+    return rp(options);
 }
 
 
@@ -46,7 +50,9 @@ earthTrekData.getSatellites = function () {
 earthTrekData.getTLEs = function (ids, options) {
     var config = earthTrekData.getConfig();
     var params = [];
+    var qs = {};
     params.push('ids=' + ids.join(','));
+    qs.ids = ids.join(',');
     if (options.startDate) {
         var startDate = options.startDate;
 
@@ -58,6 +64,7 @@ earthTrekData.getTLEs = function (ids, options) {
         if (startDate instanceof Date) {
             startDate = startDate.getUTCFullYear() + '-' + (startDate.getUTCMonth() + 1) + '-' + startDate.getUTCDate();
         }
+        qs.startDate = startDate;
         params.push('startDate=' + startDate);
         if (options.endDate) {
             var endDate = options.endDate;
@@ -66,12 +73,20 @@ earthTrekData.getTLEs = function (ids, options) {
             }
             params.push('endDate=' + endDate);
         }
+        qs.endDate = endDate;
     }
     var fields = (!options.fields) ? config.api.tle.fields : options.fields;
     params.push("fields=" + fields);
+    qs.fields = fields;
     params.push("extended=true");
-
-    return $.ajax(config.api.url + config.api.tle.endpoint + "?" + params.join('&'));
+    qs.extended = true;
+    var options = {
+        uri: config.api.url + config.api.tle.endpoint,
+        qs: qs,
+        json: true
+    };
+    return rp(options);
+    //return $.ajax(config.api.url + config.api.tle.endpoint + "?" + params.join('&'));
 }
 
 /**
@@ -96,8 +111,15 @@ earthTrekData.getConfig = function () {
  *
  */
 earthTrekData.getFullData = function (options, callback) {
+    if (!options.getCache) {
+        options.getCache = false;
+    }
+    if (options.getCache == true) {
+        return earthTrekData.getCache().then(function(data) {
+            return callback(data);
+        });
+    }
     var promise = earthTrekData.getSatellites();
-
     var tlePromise = promise.then(function (satellites) {
         var satIds = [];
         satellites.data.forEach(function (satellite) {
@@ -128,9 +150,21 @@ earthTrekData.getFullData = function (options, callback) {
                 }
             });
         });
-
         callback(finalJson);
     });
+}
+
+/**
+ *
+ * @returns {*}
+ */
+earthTrekData.getCache = function () {
+   /* var options = {
+        uri: 'data/satellites.json',
+        json: true
+    };
+    return rp(options);*/
+    return $.ajax('data/satellites.json');
 }
 
 /**

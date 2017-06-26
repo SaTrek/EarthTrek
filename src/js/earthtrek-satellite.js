@@ -6,7 +6,7 @@
  * @description EarthTrek - NASA Space Apps 2017 12 MAY 2017.
  */
 
-var satellitePropagation = require('./satellite-propagation');
+var satellitePropagation = require('./earthtrek-propagation');
 var JulianDate = require('cesium/Source/Core/JulianDate');
 var Cartesian3 = require('cesium/Source/Core/Cartesian3');
 var SampledPositionProperty = require('cesium/Source/DataSources/SampledPositionProperty');

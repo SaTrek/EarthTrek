@@ -5,7 +5,7 @@ var CopyWebpackPlugin = require('copy-webpack-plugin');
 var path = require('path');
 
 module.exports = {
-    context: path.join(__dirname, '../src'),
+    context: path.join(__dirname, '../example'),
     entry: ['core-js/fn/promise',  './main.js'],
     output: {
         path: "./public",
@@ -23,13 +23,14 @@ module.exports = {
         }),
         new ExtractTextPlugin("[name].css"),
         new CopyWebpackPlugin([
-                { from: './models', to: 'models/' },
-                { from: './images', to: 'images/' },
-                { from: './newassets', to: 'newassets/' },
-                { from: './data', to: 'data/' }
+                { from: './images', to: 'images/' }
             ]
             , {copyUnmodified: true}
-        )
+        ),
+        new webpack.DefinePlugin({
+            PRODUCTION: JSON.stringify(false),
+            ENVIRONMENT: JSON.stringify('dev')
+        })
     ],
     devServer: {
         contentBase: "./public",
@@ -48,7 +49,9 @@ module.exports = {
         loaders: [
             { test: /\.css$/, loader: ExtractTextPlugin.extract("style-loader", "css-loader") },
             { test: /\.(png|gif|jpg|jpeg)$/,  loader: "file-loader?name=/images/[name].[ext]" },
-            { test: /\.(eot|svg|ttf|woff|woff2)$/, loader: 'file?name=css/fonts/[name].[ext]' },
+            { test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: "file-loader" },
+            { test: /\.json$/,loader: 'json-loader' },
+            { test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: "url-loader?limit=10000&mimetype=application/font-woff" },
             { test: /\.js$/, exclude: /node_modules/, loader: "babel-loader" }
         ]
     }

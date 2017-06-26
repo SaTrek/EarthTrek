@@ -23,14 +23,15 @@ var VerticalOrigin = require('cesium/Source/Scene/VerticalOrigin');
 var VelocityVectorProperty = require('cesium/Source/DataSources/VelocityVectorProperty');
 var PolylineGlowMaterialProperty =require('cesium/Source/DataSources/PolylineGlowMaterialProperty');
 
+var Cesium = require('./utils/cesium');
 /**EarthTrek*/
 var earthTrekSatellite = require('./earthtrek-satellite');
 var EarthTrekEntity = EarthTrekEntity || {};
 /*
-function EarthTrekEntity(options) {
-    this.orbitDuration = options.orbitDuration;
-    this.frequency = options.frequency;
-}*/
+ function EarthTrekEntity(options) {
+ this.orbitDuration = options.orbitDuration;
+ this.frequency = options.frequency;
+ }*/
 
 /**
  *
@@ -38,30 +39,75 @@ function EarthTrekEntity(options) {
  * @param startTime
  * @returns {Cesium.Entity}
  */
-EarthTrekEntity.create = function (satelliteInfo, startTime, options) {
+EarthTrekEntity.create = function (satelliteInfo, startTime, options = {}) {
 
-    this.orbitDuration = options.orbitDuration;
-    this.frequency = options.frequency;
-    var color;
+    let color;
     if (satelliteInfo.tle == undefined) {
         return false;
     }
 
-    var samples = earthTrekSatellite.getSamples(satelliteInfo.tle[0], satelliteInfo.tle[1], startTime, this.orbitDuration, this.frequency);
+    if (!options.model) {
+        options.model = {
+            show: false
+        };
+    }
+    if (!options.billboard) {
+        options.billboard = {
+            show: false,
+            path: 'images/satellites/',
+            scale: 1
+        };
+    }
+    if (!options.label) {
+        options.label = {
+            show: true
+        };
+    }
+    if (!options.path) {
+        options.path = {
+            show: true
+        };
+    }
+    if (!options.orbitColor) {
+        options.orbitColor = '#F0F8FF';
+    }
 
-    var entity = {
+    if (!options.fadeOrbit) {
+        options.fadeOrbit = true;
+    }
+
+    if (!options.multiplier) {
+        options.multiplier = 10; //intervals
+    }
+
+    if (!options.orbitDuration) {
+        options.orbitDuration = 7200; //seconds
+    }
+    this.orbitDuration = options.orbitDuration;
+    this.frequency = options.frequency;
+
+    this.orbitColor = Cesium.Color.fromCssColorString(options.orbitColor);
+    if (options.fadeOrbit == true) {
+        this.orbitMaterial = new Cesium.StripeMaterialProperty({
+            evenColor: this.orbitColor.withAlpha(0.5),
+            oddColor: this.orbitColor.withAlpha(0.01),
+            repeat: 1,
+            offset: 0.2,
+            orientation: Cesium.StripeOrientation.VERTICAL
+        });
+    } else {
+        this.orbitMaterial = this.orbitColor.withAlpha(0.5);
+    }
+    const samples = earthTrekSatellite.getSamples(satelliteInfo.tle[0], satelliteInfo.tle[1], startTime, this.orbitDuration, this.frequency);
+
+    let entity = {
         id: satelliteInfo.satId,
         name: satelliteInfo.name,
         position: samples.positions,
         velocity: samples.velocities,
         altitude: samples.heights,
-        model: {
-            uri: 'models/' + satelliteInfo.id + '.glb',
-            minimumPixelSize: 512,
-            maximumScale: 1,
-            distanceDisplayCondition: new DistanceDisplayCondition(0.0, 40000.0)
-        },
         path: {
+            path: options.path.show,
             resolution: 5,
             material: this.orbitMaterial,
             width: 1,
@@ -69,7 +115,7 @@ EarthTrekEntity.create = function (satelliteInfo, startTime, options) {
             leadTime: 0
         },
         label: {
-            show: true,
+            show: options.label.show,
             text: satelliteInfo.name,
             scale: 0.6,
             scaleByDistance: new NearFarScalar(0, 1.5, 15.0e6, 0.85),
@@ -83,16 +129,24 @@ EarthTrekEntity.create = function (satelliteInfo, startTime, options) {
             pixelOffset: new Cartesian2(15, 0)
         },
         billboard: {
+            show: options.billboard.show,
             imageSubRegion: new BoundingRectangle(0, 0, 80, 80),
-            //   image: 'images/satellites/test.png',
-            image: 'images/satellites/' + satelliteInfo.image,
+            image:  options.billboard.path + satelliteInfo.image,
             distanceDisplayCondition: new DistanceDisplayCondition(40000.1, 150000000.0),
-            scale: 0.35,
+            scale: options.billboard.scale,
             alignedAxis : new VelocityVectorProperty(samples.positions, true)
         },
         properties: satelliteInfo
     };
 
+    if (options.model != undefined && options.model.show == true) {
+        entity.model = {
+            uri: options.model.uri != undefined ? options.model.uri : 'models/' + satelliteInfo.id + '.glb',
+            minimumPixelSize: 512,
+            maximumScale: 1,
+            distanceDisplayCondition: new DistanceDisplayCondition(0.0, 40000.0)
+        };
+    }
     entity.availability = this.generateInterval(satelliteInfo.launchDate, satelliteInfo.endDate);
     return entity;
 }
@@ -144,5 +198,6 @@ EarthTrekEntity.setGlowPath = function (entity, currentTime) {
     });
     return entity;
 }
+
 
 module.exports = EarthTrekEntity;

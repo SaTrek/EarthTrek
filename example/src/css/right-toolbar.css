@@ -1,0 +1,15 @@
+.cesium-viewer-toolbar .icon-labels .fa-tag {
+    width: 10px;
+}
+
+.cesium-viewer-toolbar .icon-labels {
+    background-image: url("../images/label.png");
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.cesium-viewer-toolbar .icon-borders {
+    background-image: url("../images/borders.png");
+    background-repeat: no-repeat;
+    background-position: center;
+}
