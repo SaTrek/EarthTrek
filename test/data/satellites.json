@@ -1,0 +1,19 @@
+{
+  "data": [{
+    "satId": 20580,
+    "id": "hubble",
+    "name": "Hubble (HST)",
+    "mass": 0,
+    "launchDate": "1990-04-24T00:00:00.000Z",
+    "endDate": null,
+    "status": "INACTIVE",
+    "type": "SPACE_TELESCOPE",
+    "image": "hubble.png",
+    "program": "",
+    "agency": "",
+    "description": "",
+    "updatedAt": "2017-05-23T18:33:08.205Z",
+    "createdAt": "2017-05-23T15:01:52.581Z",
+    "instruments": [null]
+  }]
+}

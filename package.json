@@ -20,8 +20,8 @@
   "scripts": {
     "start": "node server.js",
     "compile": "babel --presets es2015,stage-0 --quiet -d dist/ src/",
-    "dist": "babel --presets es2015,stage-0 --quiet -d dist/ src/ && cpr src/css dist/css",
-    "test": "npm run compile && mocha --compilers js:babel-core/register",
+    "dist": "mkdirp dist & rimraf dist/* && babel --presets es2015,stage-0 -d dist/ src/ && cpr src/css dist/css",
+    "test": "mocha --compilers js:babel-core/register",
     "clean": "mkdirp public & rimraf public/*",
     "build": "npm run clean && cpr node_modules/cesium/Build/Cesium public && webpack --config config/webpack.config.js --progress",
     "build2": "npm run clean && cpr node_modules/cesium/Build/Cesium/Assets public/Assets &&  webpack --config config/webpack.config.js --progress",

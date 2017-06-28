@@ -8,22 +8,6 @@
  * @description EarthTrek - NASA Space Apps 2017 2 JUN 2017.
  */
 /** cesium core*/
-var JulianDate = require('cesium/Source/Core/JulianDate');
-var TimeInterval = require('cesium/Source/Core/TimeInterval');
-var TimeIntervalCollection = require('cesium/Source/Core/TimeIntervalCollection');
-
-var DistanceDisplayCondition = require('cesium/Source/Core/DistanceDisplayCondition');
-var NearFarScalar = require('cesium/Source/Core/NearFarScalar');
-var Cartesian2 = require('cesium/Source/Core/Cartesian2');
-var Color = require('cesium/Source/Core/Color');
-var BoundingRectangle = require('cesium/Source/Core/BoundingRectangle');
-
-var LabelStyle = require('cesium/Source/Scene/LabelStyle');
-var HorizontalOrigin = require('cesium/Source/Scene/HorizontalOrigin');
-var VerticalOrigin = require('cesium/Source/Scene/VerticalOrigin');
-
-var VelocityVectorProperty = require('cesium/Source/DataSources/VelocityVectorProperty');
-var PolylineGlowMaterialProperty = require('cesium/Source/DataSources/PolylineGlowMaterialProperty');
 
 var Cesium = require('./utils/cesium');
 /**EarthTrek*/
@@ -122,23 +106,23 @@ EarthTrekEntity.create = function (satelliteInfo, startTime) {
             show: options.label.show,
             text: satelliteInfo.name,
             scale: 0.6,
-            scaleByDistance: new NearFarScalar(0, 1.5, 15.0e6, 0.85),
-            fillColor: Color.WHITE,
+            scaleByDistance: new Cesium.NearFarScalar(0, 1.5, 15.0e6, 0.85),
+            fillColor: Cesium.Color.WHITE,
             // eyeOffset: new Cesium.Cartesian3(0.0, 300.0, 200.0),
             outlineColor: color,
             outlineWidth: 3,
-            style: LabelStyle.FILL,
-            horizontalOrigin: HorizontalOrigin.LEFT,
-            verticalOrigin: VerticalOrigin.BOTTOM,
-            pixelOffset: new Cartesian2(15, 0)
+            style: Cesium.LabelStyle.FILL,
+            horizontalOrigin: Cesium.HorizontalOrigin.LEFT,
+            verticalOrigin: Cesium.VerticalOrigin.BOTTOM,
+            pixelOffset: new Cesium.Cartesian2(15, 0)
         },
         billboard: {
             show: options.billboard.show,
-            imageSubRegion: new BoundingRectangle(0, 0, 80, 80),
+            imageSubRegion: new Cesium.BoundingRectangle(0, 0, 80, 80),
             image: options.billboard.path + satelliteInfo.image,
-            distanceDisplayCondition: new DistanceDisplayCondition(40000.1, 150000000.0),
+            distanceDisplayCondition: new Cesium.DistanceDisplayCondition(40000.1, 150000000.0),
             scale: options.billboard.scale,
-            alignedAxis: new VelocityVectorProperty(samples.positions, true)
+            alignedAxis: new Cesium.VelocityVectorProperty(samples.positions, true)
         },
         properties: satelliteInfo
     };
@@ -148,7 +132,7 @@ EarthTrekEntity.create = function (satelliteInfo, startTime) {
             uri: options.model.uri != undefined ? options.model.uri : 'models/' + satelliteInfo.id + '.glb',
             minimumPixelSize: 512,
             maximumScale: 1,
-            distanceDisplayCondition: new DistanceDisplayCondition(0.0, 40000.0)
+            distanceDisplayCondition: new Cesium.DistanceDisplayCondition(0.0, 40000.0)
         };
     }
     entity.availability = this.generateInterval(satelliteInfo.launchDate, satelliteInfo.endDate);
@@ -162,14 +146,14 @@ EarthTrekEntity.create = function (satelliteInfo, startTime) {
  * @returns {Cesium.TimeIntervalCollection}
  */
 EarthTrekEntity.generateInterval = function (launchDate, endDate) {
-    var timeInterval = new TimeInterval({
-        start: JulianDate.fromIso8601(launchDate),
-        stop: endDate == null ? JulianDate.fromIso8601("2099-01-01") : JulianDate.fromIso8601(endDate),
+    var timeInterval = new Cesium.TimeInterval({
+        start: Cesium.JulianDate.fromIso8601(launchDate),
+        stop: endDate == null ? Cesium.JulianDate.fromIso8601("2099-01-01") : Cesium.JulianDate.fromIso8601(endDate),
         isStartIncluded: true,
         isStopIncluded: endDate === null ? false : true
     });
 
-    var intervalCollection = new TimeIntervalCollection();
+    var intervalCollection = new Cesium.TimeIntervalCollection();
     intervalCollection.addInterval(timeInterval);
     return intervalCollection;
 };
@@ -196,7 +180,7 @@ EarthTrekEntity.setDefaultPath = function (entity, options) {
 EarthTrekEntity.setGlowPath = function (entity, currentTime) {
     var orbitColor = Color.fromCssColorString(entity.properties.getValue(currentTime).color);
     entity._path.width = 5;
-    entity._path.material = new PolylineGlowMaterialProperty({
+    entity._path.material = new Cesium.PolylineGlowMaterialProperty({
         glowPower: 0.4,
         color: orbitColor
     });

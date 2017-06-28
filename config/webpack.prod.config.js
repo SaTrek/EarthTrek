@@ -30,7 +30,12 @@ module.exports = {
                 { from: './images', to: 'images/' }
             ]
             , {copyUnmodified: true}
-        )
+        ),
+        new webpack.DefinePlugin({
+            PRODUCTION: JSON.stringify(true),
+            ENVIRONMENT: JSON.stringify('prod'),
+            API_URL: JSON.stringify('http://api.orbitaldesign.tk/')
+        })
     ],
     devServer: {
         contentBase: "./public",

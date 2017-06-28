@@ -29,7 +29,8 @@ module.exports = {
         ),
         new webpack.DefinePlugin({
             PRODUCTION: JSON.stringify(false),
-            ENVIRONMENT: JSON.stringify('dev')
+            ENVIRONMENT: JSON.stringify('dev'),
+            API_URL: JSON.stringify('http://api.orbitaldesign.tk/')
         })
     ],
     devServer: {
