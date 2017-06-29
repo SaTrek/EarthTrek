@@ -13,11 +13,6 @@ var Cesium = require('./utils/cesium');
 /**EarthTrek*/
 var earthTrekSatellite = require('./earthtrek-satellite');
 var EarthTrekEntity = EarthTrekEntity || {};
-/*
- function EarthTrekEntity(options) {
- this.orbitDuration = options.orbitDuration;
- this.frequency = options.frequency;
- }*/
 
 /**
  *
@@ -178,7 +173,7 @@ EarthTrekEntity.setDefaultPath = function (entity, options) {
  * @returns {*}
  */
 EarthTrekEntity.setGlowPath = function (entity, currentTime) {
-    var orbitColor = Color.fromCssColorString(entity.properties.getValue(currentTime).color);
+    var orbitColor = Cesium.Color.fromCssColorString(entity.properties.getValue(currentTime).color);
     entity._path.width = 5;
     entity._path.material = new Cesium.PolylineGlowMaterialProperty({
         glowPower: 0.4,

@@ -50,15 +50,13 @@ earthTrekData.getSatellites = function () {
  */
 earthTrekData.getTLEs = function (ids, options) {
     var config = earthTrekData.getConfig();
-    var params = [];
     var qs = {};
-    params.push('ids=' + ids.join(','));
     qs.ids = ids.join(',');
     if (options.startDate) {
         var startDate = options.startDate;
 
         if (!(startDate instanceof Date)) {
-            var startDate = new Date(startDate);
+            startDate = new Date(startDate);
             startDate.setDate(startDate.getDate());
         }
 
@@ -66,28 +64,22 @@ earthTrekData.getTLEs = function (ids, options) {
             startDate = startDate.getUTCFullYear() + '-' + (startDate.getUTCMonth() + 1) + '-' + startDate.getUTCDate();
         }
         qs.startDate = startDate;
-        params.push('startDate=' + startDate);
         if (options.endDate) {
-            var endDate = options.endDate;
-            if (endDate instanceof Date) {
-                endDate = endDate.getUTCFullYear() + '-' + (endDate.getUTCMonth() + 1) + '-' + endDate.getUTCDate();
+            var _endDate = options.endDate;
+            if (_endDate instanceof Date) {
+                _endDate = _endDate.getUTCFullYear() + '-' + (_endDate.getUTCMonth() + 1) + '-' + _endDate.getUTCDate();
             }
-            params.push('endDate=' + endDate);
         }
         qs.endDate = endDate;
     }
     var fields = !options.fields ? config.api.tle.fields : options.fields;
-    params.push("fields=" + fields);
     qs.fields = fields;
-    params.push("extended=true");
     qs.extended = true;
-    var options = {
+    return rp({
         uri: config.api.url + config.api.tle.endpoint,
         qs: qs,
         json: true
-    };
-    return rp(options);
-    //return $.ajax(config.api.url + config.api.tle.endpoint + "?" + params.join('&'));
+    });
 };
 
 /**
@@ -96,7 +88,7 @@ earthTrekData.getTLEs = function (ids, options) {
 earthTrekData.getConfig = function () {
     return {
         api: {
-            url: "http://api.orbitaldesign.tk/",
+            url: 'http://api.orbitaldesign.tk/',
             satellites: {
                 endpoint: "satellites"
             },

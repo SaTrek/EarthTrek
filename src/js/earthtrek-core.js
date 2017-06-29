@@ -92,6 +92,9 @@ export default class EarthTrekCore {
         if (!options.env) {
             options.env = 'dev';
         }
+        if (!options.imageryProvider) {
+            options.imageryProvider = new Cesium.BingMapsImageryProvider();
+        }
         this.startTime = Cesium.JulianDate.fromDate(
             new Date(options.startTime));
         this.endTime = Cesium.JulianDate.fromDate(
@@ -106,6 +109,7 @@ export default class EarthTrekCore {
         this.maxDistanceCamera = options.maxDistanceCamera;
         this.enableLighting = options.enableLighting;
         this.orbitalDataUpdateTime = options.orbitalDataUpdateTime;
+        this.imageryProvider = options.imageryProvider;
 
         this.orbitDuration = options.orbitDuration;
         this.frequency = options.frequency;
@@ -165,7 +169,8 @@ export default class EarthTrekCore {
                 navigationHelpButton: false,
                 infoBox: false,
                 creditContainer: "credit",
-                terrainExaggeration: 10
+                terrainExaggeration: 10,
+                imageryProvider: this.imageryProvider
             });
             this.viewer.scene.globe.tileCacheSize = 1000;
             this.viewer.scene.globe.enableLighting = this.enableLighting;

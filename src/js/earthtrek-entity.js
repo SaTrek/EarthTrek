@@ -11,11 +11,6 @@ var Cesium = require('./utils/cesium');
 /**EarthTrek*/
 var earthTrekSatellite = require('./earthtrek-satellite');
 var EarthTrekEntity = EarthTrekEntity || {};
-/*
- function EarthTrekEntity(options) {
- this.orbitDuration = options.orbitDuration;
- this.frequency = options.frequency;
- }*/
 
 /**
  *

@@ -49,7 +49,7 @@ var EarthTrekRightToolbar = function () {
                     callback(iconButton);
                 });
             }
-            $('.cesium-viewer-toolbar')[0].append(iconButton);
+            $('.cesium-viewer-toolbar').append(iconButton);
         }
 
         /**

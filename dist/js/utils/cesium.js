@@ -25,6 +25,7 @@ var LabelStyle = require('cesium/Source/Scene/LabelStyle');
 var HorizontalOrigin = require('cesium/Source/Scene/HorizontalOrigin');
 var VerticalOrigin = require('cesium/Source/Scene/VerticalOrigin');
 var createTileMapServiceImageryProvider = require('cesium/Source/Scene/createTileMapServiceImageryProvider');
+var BingMapsImageryProvider = require('cesium/Source/Scene/BingMapsImageryProvider');
 
 var StripeOrientation = require('cesium/Source/DataSources/StripeOrientation');
 var StripeMaterialProperty = require('cesium/Source/DataSources/StripeMaterialProperty');
@@ -55,6 +56,7 @@ var Cesium = {
     ClockStep: ClockStep,
     Event: Event,
     BoundingRectangle: BoundingRectangle,
+    BingMapsImageryProvider: BingMapsImageryProvider,
     LabelStyle: LabelStyle,
     HorizontalOrigin: HorizontalOrigin,
     VerticalOrigin: VerticalOrigin,

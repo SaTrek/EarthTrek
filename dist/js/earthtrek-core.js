@@ -128,6 +128,9 @@ var EarthTrekCore = function () {
         if (!options.env) {
             options.env = 'dev';
         }
+        if (!options.imageryProvider) {
+            options.imageryProvider = new _cesium2.default.BingMapsImageryProvider();
+        }
         this.startTime = _cesium2.default.JulianDate.fromDate(new Date(options.startTime));
         this.endTime = _cesium2.default.JulianDate.fromDate(new Date(options.endTime));
         this.initialTime = _cesium2.default.JulianDate.fromDate(new Date(options.initialTime));
@@ -139,6 +142,7 @@ var EarthTrekCore = function () {
         this.maxDistanceCamera = options.maxDistanceCamera;
         this.enableLighting = options.enableLighting;
         this.orbitalDataUpdateTime = options.orbitalDataUpdateTime;
+        this.imageryProvider = options.imageryProvider;
 
         this.orbitDuration = options.orbitDuration;
         this.frequency = options.frequency;
@@ -208,7 +212,8 @@ var EarthTrekCore = function () {
                     navigationHelpButton: false,
                     infoBox: false,
                     creditContainer: "credit",
-                    terrainExaggeration: 10
+                    terrainExaggeration: 10,
+                    imageryProvider: this.imageryProvider
                 });
                 this.viewer.scene.globe.tileCacheSize = 1000;
                 this.viewer.scene.globe.enableLighting = this.enableLighting;
