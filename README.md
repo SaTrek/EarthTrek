@@ -86,7 +86,7 @@ That's it!
 EarthTrek Version| Chrome ![Chrome](https://www.w3schools.com/images/compatible_chrome2020.gif) | Firefox ![Firefox](https://www.w3schools.com/images/compatible_firefox2020.gif)  |  IE 11 ![IE](https://www.masificados.com/propiedadraiz/images/frontend/logo_explorer.png)  | Edge ![IE](https://www.w3schools.com/images/compatible_edge2020.gif)   | Chrome Android ![Android](http://www.nch.com.au/images/android_icon_20x20.gif)
 --- | --- | ---| --- | --- | ---
 0.176.30 (Current) | ![Yes][YesTickmark]|  ![Yes][YesTickmark]|  ![Yes][YesTickmark] (Partial) |  ![Yes][YesTickmark] |  ![Yes][YesTickmark] (Partial)
-NX-Alpha (Early June) | ![Yes][YesTickmark]|  ![Yes][YesTickmark] |  ![Yes][YesTickmark] |  ![Yes][YesTickmark]  |  ![Yes][YesTickmark]
+NX-Alpha (July) | ![Yes][YesTickmark]|  ![Yes][YesTickmark] |  ![Yes][YesTickmark] |  ![Yes][YesTickmark]  |  ![Yes][YesTickmark]
 
 [YesTickmark]: https://dvyn1ggd1flup.cloudfront.net/templates/cre63_ats/img/reserve_tickmark.png
 [NoRedCross]: https://hosting.idiglocal.co.uk/templates/default/img/redcross20.png
