@@ -46,9 +46,16 @@ Earth Trek - "Exploring our World"
 
 ## INSTALLATION
 Clone this repository
-### DEVELOPMENT MODE
+
+Copy the content of example to another directory.
+
+Example:
 ```
-npm install
+cp -R /home/user/earthtrek/example /home/user/
+```
+Then, install the distribution from npm
+```
+npm install earthtrek-core
 npm run dev
 ```
 Finally, in order to launch the app, enter the URL: http://localhost:9080.
