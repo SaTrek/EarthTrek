@@ -47,11 +47,11 @@ Earth Trek - "Exploring our World"
 ## INSTALLATION
 Clone this repository
 
-Copy the content of example to another directory.
+Copy the content of example to another directory. Example:
 
-Example:
 ```
 cp -R /home/user/earthtrek/example /home/user/
+cd /home/user/example
 ```
 Then, install the distribution from npm
 ```
