@@ -5,12 +5,15 @@
 
 [![Global Finalist (Best Use of Data)](http://i.imgur.com/6H29eDd.png)](https://2017.spaceappschallenge.org/awards/global-finalists#data)
 
+* [About](#about)
 * [Roadmap](#roadmap)
 * [Browser support](#browser-support)
 
 **[EARTH TREK CORE](#earth-trek-core)**
 * [Installation](#installation) 
 * [Resources](#resources)
+
+# ABOUT
 
 EarthTrek is an interactive 3D web application that does not require the installation of any plugins, it can be launched through web browsers. It´s easy access for all kinds of users encourages the use of data that NASA´s EOS program compiles and collect with satellites´s different instruments.
 
