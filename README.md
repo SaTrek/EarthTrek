@@ -7,10 +7,10 @@
 
 * [About](#about)
 * [Roadmap](#roadmap)
-* [Browser support](#browser-support)
 
 **[EARTH TREK CORE](#earth-trek-core-)**
 * [Installation](#installation) 
+* [Browser support](#browser-support)
 * [Resources](#resources)
 
 # ABOUT
