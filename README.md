@@ -1,5 +1,5 @@
 
-# EARTH TREK [![Build Status](https://secure.travis-ci.org/SaTrek/EarthTrek.png?branch=master)](http://travis-ci.org/SaTrek/EarthTrek)
+# EARTH TREK [![Build Status](https://secure.travis-ci.org/SaTrek/EarthTrek.png?branch=master)](http://travis-ci.org/SaTrek/EarthTrek) [![Facebook](http://yildizmdf.com.tr/images/facebook.jpg)](http://www.facebook.com/EarthTrekApp)  [![Twitter](http://www.franquicias.libreriasnobel.es/blog/wp-content/plugins/tweet-blender/img/twitter-logo.png)](http://www.twitter.com/EarthTrekApp)
 
 **NASA Space Apps Challenge 2017 - Buenos Aires - Team SATrek**
 
