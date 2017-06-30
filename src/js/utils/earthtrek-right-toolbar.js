@@ -32,7 +32,7 @@ class EarthTrekRightToolbar {
                 callback(iconButton);
             });
         }
-        $('.cesium-viewer-toolbar')[0].append(iconButton);
+        $('.cesium-viewer-toolbar').append(iconButton);
     }
 
     /**

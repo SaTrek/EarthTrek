@@ -6,11 +6,11 @@
  * @description EarthTrek - NASA Space Apps 2017 23 APR 2017.
  */
 var earthTrekData = earthTrekData || {};
-var rp = require('request-promise');
+const rp = require('request-promise');
 
 'use strict';
-var _ = require('underscore');
-var satelliteIds = [];
+const _ = require('underscore');
+let satelliteIds = [];
 /**
  * Get Satellites Ids
  */
@@ -19,7 +19,7 @@ earthTrekData.getSatelliteIds = function () {
         return satelliteIds;
     }
     earthTrekData.getSatellites().then(function (satellites) {
-        var satIds = [];
+        let satIds = [];
         satellites.data.forEach(function (satellite) {
             satIds.push(satellite.satId);
         })
@@ -32,8 +32,8 @@ earthTrekData.getSatelliteIds = function () {
  *
  */
 earthTrekData.getSatellites = function () {
-    var config = earthTrekData.getConfig();
-    var options = {
+    const config = earthTrekData.getConfig();
+    const options = {
         uri: config.api.url + config.api.satellites.endpoint,
         json: true
     };
@@ -48,16 +48,14 @@ earthTrekData.getSatellites = function () {
  * @returns {*}
  */
 earthTrekData.getTLEs = function (ids, options) {
-    var config = earthTrekData.getConfig();
-    var params = [];
-    var qs = {};
-    params.push('ids=' + ids.join(','));
+    const config = earthTrekData.getConfig();
+    let qs = {};
     qs.ids = ids.join(',');
     if (options.startDate) {
-        var startDate = options.startDate;
+        let startDate = options.startDate;
 
         if (!(startDate instanceof Date)) {
-            var startDate = new Date(startDate);
+            startDate = new Date(startDate);
             startDate.setDate(startDate.getDate());
         }
 
@@ -65,28 +63,22 @@ earthTrekData.getTLEs = function (ids, options) {
             startDate = startDate.getUTCFullYear() + '-' + (startDate.getUTCMonth() + 1) + '-' + startDate.getUTCDate();
         }
         qs.startDate = startDate;
-        params.push('startDate=' + startDate);
         if (options.endDate) {
-            var endDate = options.endDate;
+            let endDate = options.endDate;
             if (endDate instanceof Date) {
                 endDate = endDate.getUTCFullYear() + '-' + (endDate.getUTCMonth() + 1) + '-' + endDate.getUTCDate();
             }
-            params.push('endDate=' + endDate);
         }
         qs.endDate = endDate;
     }
-    var fields = (!options.fields) ? config.api.tle.fields : options.fields;
-    params.push("fields=" + fields);
+    const fields = (!options.fields) ? config.api.tle.fields : options.fields;
     qs.fields = fields;
-    params.push("extended=true");
     qs.extended = true;
-    var options = {
+    return rp({
         uri: config.api.url + config.api.tle.endpoint,
         qs: qs,
         json: true
-    };
-    return rp(options);
-    //return $.ajax(config.api.url + config.api.tle.endpoint + "?" + params.join('&'));
+    });
 }
 
 /**
@@ -95,7 +87,7 @@ earthTrekData.getTLEs = function (ids, options) {
 earthTrekData.getConfig = function () {
     return {
         api: {
-            url: "http://api.orbitaldesign.tk/",
+            url: 'http://api.orbitaldesign.tk/',
             satellites: {
                 endpoint: "satellites"
             },

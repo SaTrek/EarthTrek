@@ -99,6 +99,9 @@ export default class EarthTrekCore {
         this.initialTime = Cesium.JulianDate.fromDate(
             new Date(options.initialTime));
 
+        if (options.imageryProvider != undefined) {
+            this.imageryProvider = options.imageryProvider;
+        }
         this.previousTime = earthTrekUtils.isoDate(this.initialTime.toString());
         this.lastPropagationTime = this.initialTime;
         this.multiplier = options.multiplier;
@@ -157,7 +160,7 @@ export default class EarthTrekCore {
      */
     createViewer() {
         if (this.viewer === undefined) {
-            this.viewer = new Cesium.Viewer(this.mainContainerId, {
+            const viewerOptions = {
                 clock: this.getClock(),
                 baseLayerPicker: false,
                 requestWaterMask: true,
@@ -166,7 +169,11 @@ export default class EarthTrekCore {
                 infoBox: false,
                 creditContainer: "credit",
                 terrainExaggeration: 10
-            });
+            }
+            if (!this.imageryProvider) {
+                viewerOptions.imageryProvider = this.imageryProvider;
+            }
+            this.viewer = new Cesium.Viewer(this.mainContainerId, viewerOptions);
             this.viewer.scene.globe.tileCacheSize = 1000;
             this.viewer.scene.globe.enableLighting = this.enableLighting;
             this.getClock().onTick.addEventListener(this.onClockUpdate, this);

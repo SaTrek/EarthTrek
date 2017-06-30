@@ -67,6 +67,7 @@ class MyEarthTrek  {
             EarthTrek.RightToolbar.addToogleLayer(layer, 'icon-borders', true);
         }
     }
+
     parseQueryString() {
         const parsed = EarthTrek.utils.getQueryString();
         if (parsed.geocoder != undefined) {

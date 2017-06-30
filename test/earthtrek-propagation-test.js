@@ -1,5 +1,5 @@
 /**
- * @class SatellitePropagationTest
+ * @class EarthTrekPropagationTest
  * @module EarthTrek
  * @author SATrek
  * @author Alejandro Sanchez <alejandro.sanchez.trek@gmail.com>
