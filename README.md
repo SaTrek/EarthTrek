@@ -8,7 +8,7 @@
 * [Roadmap](#roadmap)
 * [Browser support](#browser-support)
 
-**[EARTH TREK CORE](#earth-trek-core)**  [![Twitter](http://www.franquicias.libreriasnobel.es/blog/wp-content/plugins/tweet-blender/img/twitter-logo.png)](http://www.twitter.com/EarthTrekCore)
+**[EARTH TREK CORE](#earth-trek-core)**
 * [Installation](#installation) 
 * [Resources](#resources)
 
@@ -53,7 +53,7 @@ By determining a geographic location through the geolocation finder and selectin
 
 ![Mato Grosso deforestation](http://i.imgur.com/01GK2is.jpg)
 
-# EARTH TREK CORE
+# EARTH TREK CORE  [![Twitter](http://www.franquicias.libreriasnobel.es/blog/wp-content/plugins/tweet-blender/img/twitter-logo.png)](http://www.twitter.com/EarthTrekCore)
 
 ## DEPENDENCIES
 
