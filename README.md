@@ -3,11 +3,13 @@
 
 **NASA Space Apps Challenge 2017 - Buenos Aires - Team SATrek**
 
-![Global Finalist (Best Use of Data)](http://i.imgur.com/6H29eDd.png)
+[![Global Finalist (Best Use of Data)](http://i.imgur.com/6H29eDd.png)](https://2017.spaceappschallenge.org/awards/global-finalists#data)
 
 * [Roadmap](#roadmap)
-* [Installation](#installation)
 * [Browser support](#browser-support)
+
+**[EARTH TREK CORE](#earth-trek-core)**  [![Twitter](http://www.franquicias.libreriasnobel.es/blog/wp-content/plugins/tweet-blender/img/twitter-logo.png)](http://www.twitter.com/EarthTrekCore)
+* [Installation](#installation) 
 * [Resources](#resources)
 
 EarthTrek is an interactive 3D web application that does not require the installation of any plugins, it can be launched through web browsers. It´s easy access for all kinds of users encourages the use of data that NASA´s EOS program compiles and collect with satellites´s different instruments.
@@ -39,6 +41,20 @@ Earth Trek - "Exploring our World"
 
 ![ROADMAP](https://image.ibb.co/gKeXyF/roadmapv6.png)
 
+## Some aspects of HOW THE APP WORKS
+
+If you select a satellite, firstly you will see details about its missions and instruments:
+
+![TERRA](https://scontent-gru2-1.xx.fbcdn.net/v/t31.0-0/p235x350/18739306_1736311510001386_408202630302674080_o.png?oh=8826445f9a93105e1b11ba5f1d5467a9&oe=59B432D8)
+
+
+Once a satellite is selected, two satellite images of the Earth can be compared.
+By determining a geographic location through the geolocation finder and selecting a date before the current one, the screen will be divided in two, being possible to observe the differences between the state of the zone in those moments. For example using MODIS, Terra´s instrument, deforestation or fire outbreaks can be compared:
+
+![Mato Grosso deforestation](http://i.imgur.com/01GK2is.jpg)
+
+# EARTH TREK CORE
+
 ## DEPENDENCIES
 
 * node.js: https://nodejs.org/es/download/
@@ -66,23 +82,11 @@ That's it!
 ## BROWSER SUPPORT
 EarthTrek Version| Chrome ![Chrome](https://www.w3schools.com/images/compatible_chrome2020.gif) | Firefox ![Firefox](https://www.w3schools.com/images/compatible_firefox2020.gif)  |  IE 11 ![IE](https://www.masificados.com/propiedadraiz/images/frontend/logo_explorer.png)  | Edge ![IE](https://www.w3schools.com/images/compatible_edge2020.gif)   | Chrome Android ![Android](http://www.nch.com.au/images/android_icon_20x20.gif)
 --- | --- | ---| --- | --- | ---
-0.176.08 (Current) | ![Yes][YesTickmark]|  ![Yes][YesTickmark]|  ![No][NoRedCross]  |  ![Yes][YesTickmark] |  ![Yes][YesTickmark] (Partial)
+0.176.30 (Current) | ![Yes][YesTickmark]|  ![Yes][YesTickmark]|  ![Yes][YesTickmark] (Partial) |  ![Yes][YesTickmark] |  ![Yes][YesTickmark] (Partial)
 NX-Alpha (Early June) | ![Yes][YesTickmark]|  ![Yes][YesTickmark] |  ![Yes][YesTickmark] |  ![Yes][YesTickmark]  |  ![Yes][YesTickmark]
 
 [YesTickmark]: https://dvyn1ggd1flup.cloudfront.net/templates/cre63_ats/img/reserve_tickmark.png
 [NoRedCross]: https://hosting.idiglocal.co.uk/templates/default/img/redcross20.png
-
-## Some aspects of HOW THE APP WORKS
-
-If you select a satellite, firstly you will see details about its missions and instruments:
-
-![TERRA](https://scontent-gru2-1.xx.fbcdn.net/v/t31.0-0/p235x350/18739306_1736311510001386_408202630302674080_o.png?oh=8826445f9a93105e1b11ba5f1d5467a9&oe=59B432D8)
-
-
-Once a satellite is selected, two satellite images of the Earth can be compared.
-By determining a geographic location through the geolocation finder and selecting a date before the current one, the screen will be divided in two, being possible to observe the differences between the state of the zone in those moments. For example using MODIS, Terra´s instrument, deforestation or fire outbreaks can be compared:
-
-![Mato Grosso deforestation](http://i.imgur.com/01GK2is.jpg)
 
 ## RESOURCES
 
