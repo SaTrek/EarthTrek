@@ -92,9 +92,6 @@ export default class EarthTrekCore {
         if (!options.env) {
             options.env = 'dev';
         }
-        if (!options.imageryProvider) {
-            options.imageryProvider = new Cesium.BingMapsImageryProvider();
-        }
         this.startTime = Cesium.JulianDate.fromDate(
             new Date(options.startTime));
         this.endTime = Cesium.JulianDate.fromDate(
@@ -102,6 +99,9 @@ export default class EarthTrekCore {
         this.initialTime = Cesium.JulianDate.fromDate(
             new Date(options.initialTime));
 
+        if (options.imageryProvider != undefined) {
+            this.imageryProvider = options.imageryProvider;
+        }
         this.previousTime = earthTrekUtils.isoDate(this.initialTime.toString());
         this.lastPropagationTime = this.initialTime;
         this.multiplier = options.multiplier;
@@ -109,7 +109,6 @@ export default class EarthTrekCore {
         this.maxDistanceCamera = options.maxDistanceCamera;
         this.enableLighting = options.enableLighting;
         this.orbitalDataUpdateTime = options.orbitalDataUpdateTime;
-        this.imageryProvider = options.imageryProvider;
 
         this.orbitDuration = options.orbitDuration;
         this.frequency = options.frequency;
@@ -161,7 +160,7 @@ export default class EarthTrekCore {
      */
     createViewer() {
         if (this.viewer === undefined) {
-            this.viewer = new Cesium.Viewer(this.mainContainerId, {
+            const viewerOptions = {
                 clock: this.getClock(),
                 baseLayerPicker: false,
                 requestWaterMask: true,
@@ -169,9 +168,12 @@ export default class EarthTrekCore {
                 navigationHelpButton: false,
                 infoBox: false,
                 creditContainer: "credit",
-                terrainExaggeration: 10,
-                imageryProvider: this.imageryProvider
-            });
+                terrainExaggeration: 10
+            }
+            if (!this.imageryProvider) {
+                viewerOptions.imageryProvider = this.imageryProvider;
+            }
+            this.viewer = new Cesium.Viewer(this.mainContainerId, viewerOptions);
             this.viewer.scene.globe.tileCacheSize = 1000;
             this.viewer.scene.globe.enableLighting = this.enableLighting;
             this.getClock().onTick.addEventListener(this.onClockUpdate, this);

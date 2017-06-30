@@ -128,13 +128,13 @@ var EarthTrekCore = function () {
         if (!options.env) {
             options.env = 'dev';
         }
-        if (!options.imageryProvider) {
-            options.imageryProvider = new _cesium2.default.BingMapsImageryProvider();
-        }
         this.startTime = _cesium2.default.JulianDate.fromDate(new Date(options.startTime));
         this.endTime = _cesium2.default.JulianDate.fromDate(new Date(options.endTime));
         this.initialTime = _cesium2.default.JulianDate.fromDate(new Date(options.initialTime));
 
+        if (options.imageryProvider != undefined) {
+            this.imageryProvider = options.imageryProvider;
+        }
         this.previousTime = _earthtrekUtils2.default.isoDate(this.initialTime.toString());
         this.lastPropagationTime = this.initialTime;
         this.multiplier = options.multiplier;
@@ -142,7 +142,6 @@ var EarthTrekCore = function () {
         this.maxDistanceCamera = options.maxDistanceCamera;
         this.enableLighting = options.enableLighting;
         this.orbitalDataUpdateTime = options.orbitalDataUpdateTime;
-        this.imageryProvider = options.imageryProvider;
 
         this.orbitDuration = options.orbitDuration;
         this.frequency = options.frequency;
@@ -204,7 +203,7 @@ var EarthTrekCore = function () {
         key: 'createViewer',
         value: function createViewer() {
             if (this.viewer === undefined) {
-                this.viewer = new _cesium2.default.Viewer(this.mainContainerId, {
+                var viewerOptions = {
                     clock: this.getClock(),
                     baseLayerPicker: false,
                     requestWaterMask: true,
@@ -212,9 +211,12 @@ var EarthTrekCore = function () {
                     navigationHelpButton: false,
                     infoBox: false,
                     creditContainer: "credit",
-                    terrainExaggeration: 10,
-                    imageryProvider: this.imageryProvider
-                });
+                    terrainExaggeration: 10
+                };
+                if (!this.imageryProvider) {
+                    viewerOptions.imageryProvider = this.imageryProvider;
+                }
+                this.viewer = new _cesium2.default.Viewer(this.mainContainerId, viewerOptions);
                 this.viewer.scene.globe.tileCacheSize = 1000;
                 this.viewer.scene.globe.enableLighting = this.enableLighting;
                 this.getClock().onTick.addEventListener(this.onClockUpdate, this);
