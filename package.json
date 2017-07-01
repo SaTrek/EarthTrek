@@ -24,7 +24,6 @@
     "test": "mocha --compilers js:babel-core/register",
     "clean": "mkdirp public & rimraf public/*",
     "build": "npm run clean && cpr node_modules/cesium/Build/Cesium public && webpack --config config/webpack.config.js --progress",
-    "build2": "npm run clean && cpr node_modules/cesium/Build/Cesium/Assets public/Assets &&  webpack --config config/webpack.config.js --progress",
     "devserver": "webpack-dev-server --config config/webpack.config.js --progress",
     "dev": "npm run build && npm run devserver",
     "release": "webpack --config config/webpack.prod.config.js --progress",

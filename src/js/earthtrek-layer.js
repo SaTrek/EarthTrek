@@ -12,9 +12,16 @@ import {earthTrekInstance} from './earthtrek-core';
 
 class earthTrekLayer {
 
+    /**
+     *
+     * @param today
+     * @param layer
+     * @param dontHide
+     * @returns {ImageryLayer}
+     */
     static addLayer(today, layer, dontHide) {
         if (dontHide === undefined) {
-            earthTrekLayer.hideLayer(layer);
+            earthTrekLayer.hideBaseLayer(layer);
         }
 
         let maximumLevel = (layer.format == 'image/png') ? 2 : 8;
@@ -63,16 +70,16 @@ class earthTrekLayer {
      * @param object layer
      * @returns {boolean}
      */
-    static removeLayer (layer) {
+    static searchLayer (layer, callback) {
         const imageryLayers = earthTrekLayer.getImageryLayers();
         if (layer instanceof ImageryLayer) {
-            imageryLayers.remove(layer);
+            callback(layer);
             return true;
         }
         for (var i = 0; i <= imageryLayers.length - 1; i++) {
             let imageryLayer = imageryLayers.get(i);
             if (imageryLayer.imageryProvider._layer == layer.id) {
-                imageryLayers.remove(imageryLayer);
+                callback(imageryLayer);
                 return true;
             }
         }
@@ -84,6 +91,26 @@ class earthTrekLayer {
      * @param object layer
      */
     static hideLayer (layer) {
+        earthTrekLayer.searchLayer (layer, (imageryLayer) => {
+            imageryLayer.show = false;
+        });
+    }
+
+    /**
+     * Hide Layer
+     * @param object layer
+     */
+    static removeLayer (layer) {
+        earthTrekLayer.searchLayer (layer, (imageryLayer) => {
+            earthTrekLayer.getImageryLayers().remove(imageryLayer);
+        });
+    }
+
+    /**
+     * Hide Layer
+     * @param object layer
+     */
+    static hideBaseLayer (layer) {
         const imageryLayers = earthTrekLayer.getImageryLayers();
         for (var i = 0; i <= imageryLayers.length - 1; i++) {
             let imageryLayer = imageryLayers.get(i);
