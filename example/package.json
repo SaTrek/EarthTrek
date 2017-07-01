@@ -8,7 +8,7 @@
     "test": "test"
   },
   "dependencies": {
-    "earthtrek-core": "^0.176.*"
+    "earthtrek-core": "0.*.*"
   },
   "devDependencies": {
     "amd-loader": "0.0.8",
