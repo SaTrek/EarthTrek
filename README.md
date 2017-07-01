@@ -62,22 +62,20 @@ By determining a geographic location through the geolocation finder and selectin
 
 * node.js: https://nodejs.org/es/download/
 * npm: https://www.npmjs.com/get-npm
+* git: https://git-scm.com/book/en/v2/Getting-Started-Installing-Git
 
 ## INSTALLATION
-Clone this repository
-
-Copy the content of example to another directory. Example:
-
+Clone the example repository: git@github.com:EarthTrek/MyEarthTrek.git
 ```
-cp -R /home/user/earthtrek/example /home/user/
-cd /home/user/example
+git clone git@github.com:EarthTrek/MyEarthTrek.git
 ```
 Then, install the distribution from npm
 ```
+cd MyEarthTrek
 npm install
 npm run dev
 ```
-Finally, in order to launch the app, enter the URL: http://localhost:9080.
+Finally, in order to launch the app, enter the URL: http://localhost:8081.
 
 That's it!
 
