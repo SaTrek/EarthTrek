@@ -15,7 +15,7 @@ describe('EarthTrek Entity', function(){
         var currentDate = new Date(Date.UTC(2017, 4, 12, 0, 0, 0));
         var julianDate = JulianDate.fromDate(currentDate);
         const satelliteData = (JSON.parse(fs.readFileSync('./test/data/iss.json', "utf8")));
-        const entity = EarthTrekEntity.create(satelliteData, julianDate);
+        const entity = new EarthTrekEntity(satelliteData, julianDate).getEntityData();
 
         entity.name.should.be.eql(satelliteData.name);
         entity.position.should.not.empty();

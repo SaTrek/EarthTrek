@@ -170,7 +170,7 @@ export default class EarthTrekCore {
                 creditContainer: "credit",
                 terrainExaggeration: 10
             }
-            if (!this.imageryProvider) {
+            if (this.imageryProvider) {
                 viewerOptions.imageryProvider = this.imageryProvider;
             }
             this.viewer = new Cesium.Viewer(this.mainContainerId, viewerOptions);
@@ -213,11 +213,10 @@ export default class EarthTrekCore {
      * @param satelliteData
      */
     addEntity(satelliteData) {
-        const entity = this.viewer.entities.add(
-            EarthTrekEntity.create(satelliteData, this.getClock().currentTime, this.options.entities)
-        );
+        const earthTrekEntity = new EarthTrekEntity(satelliteData, this.getClock().currentTime, this.options.entities);
+        const entity = this.viewer.entities.add(earthTrekEntity.getEntityData());
         this.entities.push(entity);
-        this.getEventEmitter().emit('entity-added', {entity: entity, satelliteData: satelliteData});
+        this.getEventEmitter().emit('entity-added', {entity: entity, satelliteData: satelliteData, earthTrekEntity: earthTrekEntity});
     }
 
     /**
