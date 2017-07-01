@@ -74,7 +74,7 @@ cd /home/user/example
 ```
 Then, install the distribution from npm
 ```
-npm install earthtrek-core
+npm install
 npm run dev
 ```
 Finally, in order to launch the app, enter the URL: http://localhost:9080.
