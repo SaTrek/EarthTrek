@@ -2,6 +2,7 @@ var EarthTrekEntity = require('./dist/js/earthtrek-entity');
 var EarthTrekData = require('./dist/js/earthtrek-data');
 var EarthTrekHandler = require( './dist/js/earthtrek-handler');
 var EarthTrekCore = require('./dist/js/earthtrek-core').default;
+var {earthTrekInstance} = require('./dist/js/earthtrek-core');
 var earthTrekUtils = require('./dist/js/utils/earthtrek-utils');
 var EarthTrekLayer = require('./dist/js/earthtrek-layer');
 var EarthTrekProvider = require('./dist/js/earthtrek-propagation');
@@ -21,6 +22,7 @@ var EarthTrek = {
     satellite: EarthTrekSatellite,
     propagation: EarthTrekPropagation,
     Toolbar: EarthTrekToolbar,
-    RightToolbar: EarthTrekRightToolbar
+    RightToolbar: EarthTrekRightToolbar,
+    instance: earthTrekInstance
 };
 module.exports = EarthTrek;

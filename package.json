@@ -1,6 +1,6 @@
 {
   "name": "earthtrek-core",
-  "version": "0.176.35",
+  "version": "0.177.01",
   "description": "Global Nominee NASA Space Apps Challenge 2017 Buenos Aires - Global Finalist (Best Use of Data) NASA Space Apps Challenge 2017 - 1D, 2D, 3D, Go! Challenge",
   "homepage": "http://github.com/SATrek/EarthTrek",
   "author": {
@@ -8,7 +8,7 @@
     "url": "http://github.com/SATrek"
   },
   "license": "Apache-2.0",
-  "main": "earthtrek.js",
+  "main": "earthtrek-dist.js",
   "keywords": [
     "earthtrek",
     "nasa",
@@ -21,10 +21,11 @@
     "start": "node server.js",
     "compile": "babel --presets es2015,stage-0 --quiet -d dist/ src/",
     "dist": "mkdirp dist & rimraf dist/* && babel --presets es2015,stage-0 -d dist/ src/ && cpr src/css dist/css",
+    "publish": "npm run dist && npm publish",
     "test": "mocha --compilers js:babel-core/register",
     "clean": "mkdirp public & rimraf public/*",
-    "build": "npm run clean && cpr node_modules/cesium/Build/Cesium public && webpack --config config/webpack.config.js --progress",
-    "devserver": "webpack-dev-server --config config/webpack.config.js --progress",
+    "build": "npm run clean && cpr node_modules/cesium/Build/Cesium public && webpack --config example-src/config/webpack.config.js --progress",
+    "devserver": "webpack-dev-server --config example-src/config/webpack.config.js --progress",
     "dev": "npm run build && npm run devserver",
     "release": "webpack --config config/webpack.prod.config.js --progress",
     "cache": "node ./src/tasks/cache-api.js",

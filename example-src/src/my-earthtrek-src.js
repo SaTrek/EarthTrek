@@ -6,7 +6,7 @@
  * @description EarthTrek - NASA Space Apps 2017 23 APR 2017.
  */
 
-import EarthTrek from 'earthtrek-core';
+import EarthTrek from '../../earthtrek-src';
 require('./css/right-toolbar.css');
 class MyEarthTrek  {
 

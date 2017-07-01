@@ -77,5 +77,9 @@ class EarthTrekHandler {
             }
         }, ScreenSpaceEventType.MOUSE_MOVE);
     }
+
+    setPickedEntity(entity) {
+        this.pickedEntity = entity;
+    }
 }
 module.exports = EarthTrekHandler;
