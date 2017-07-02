@@ -3,7 +3,7 @@
 
 **NASA Space Apps Challenge 2017 - Buenos Aires - Team SATrek**
 
-[![Global Finalist (Best Use of Data)](http://i.imgur.com/6H29eDd.png)](https://2017.spaceappschallenge.org/awards/global-finalists#data)
+[![Global Finalist (Best Use of Data)](http://i.imgur.com/6H29eDd.png)](https://2017.spaceappschallenge.org/challenges/ideate-and-create/1d-2d-3d-go/teams/satrek/project)
 
 * [About](#about)
 * [Roadmap](#roadmap)
@@ -65,13 +65,13 @@ By determining a geographic location through the geolocation finder and selectin
 * git: https://git-scm.com/book/en/v2/Getting-Started-Installing-Git
 
 ## INSTALLATION
-Clone the example repository: git@github.com:EarthTrek/MyEarthTrek.git
+Clone the example repository: git@github.com:SaTrek/myearthtrek.git
 ```
-git clone git@github.com:EarthTrek/MyEarthTrek.git
+git clone git@github.com:SaTrek/myearthtrek.git
 ```
 Then, install the distribution from npm
 ```
-cd MyEarthTrek
+cd myearthtrek
 npm install
 npm run dev
 ```
@@ -83,7 +83,7 @@ That's it!
 ## BROWSER SUPPORT
 EarthTrek Version| Chrome ![Chrome](https://www.w3schools.com/images/compatible_chrome2020.gif) | Firefox ![Firefox](https://www.w3schools.com/images/compatible_firefox2020.gif)  |  IE 11 ![IE](https://www.masificados.com/propiedadraiz/images/frontend/logo_explorer.png)  | Edge ![IE](https://www.w3schools.com/images/compatible_edge2020.gif)   | Chrome Android ![Android](http://www.nch.com.au/images/android_icon_20x20.gif)
 --- | --- | ---| --- | --- | ---
-0.176.30 (Current) | ![Yes][YesTickmark]|  ![Yes][YesTickmark]|  ![Yes][YesTickmark] (Partial) |  ![Yes][YesTickmark] |  ![Yes][YesTickmark] (Partial)
+0.177.01 (Current) | ![Yes][YesTickmark]|  ![Yes][YesTickmark]|  ![Yes][YesTickmark] (Partial) |  ![Yes][YesTickmark] |  ![Yes][YesTickmark] (Partial)
 NX-Alpha (July) | ![Yes][YesTickmark]|  ![Yes][YesTickmark] |  ![Yes][YesTickmark] |  ![Yes][YesTickmark]  |  ![Yes][YesTickmark]
 
 [YesTickmark]: https://dvyn1ggd1flup.cloudfront.net/templates/cre63_ats/img/reserve_tickmark.png
@@ -93,8 +93,8 @@ NX-Alpha (July) | ![Yes][YesTickmark]|  ![Yes][YesTickmark] |  ![Yes][YesTickmar
 
 * SatelliteJS (Satellite propagation): https://github.com/shashwatak/satellite-js
 * CesiumJs: https://cesiumjs.org/
-* GIB (Imagery) https://earthdata.nasa.gov/about/science-system-de...
-* Celestrak (TLE & orbital Data): http://www.celestrak.com/NORAD/elements/science.txt
+* GIB (Imagery) https://earthdata.nasa.gov
+* Celestrak (TLE & orbital Data): http://www.celestrak.com/
 * NASA 3D Resources: https://nasa3d.arc.nasa.gov/
 
 

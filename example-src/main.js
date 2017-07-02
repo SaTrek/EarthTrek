@@ -8,7 +8,7 @@
 /**
  * REQUIRES
  */
-import MyEarthTrek from './src/my-earthtrek';
+import MyEarthTrek from './src/my-earthtrek-src';
 /**CSS*/
 const earthTrek = new MyEarthTrek({
     startTime: Date.UTC(1999, 1, 1),
