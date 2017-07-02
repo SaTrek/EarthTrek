@@ -77,23 +77,26 @@ class MyEarthTrek  {
     }
 
     listeners() {
-        this.earthTrek.getEventEmitter().on('date-updated', (params) => {
+        this.earthTrek.on('entity-added', (params) => {
+
+        });
+        this.earthTrek.on('date-updated', (params) => {
 
         });
 
-        this.earthTrek.getEventEmitter().on('update-orbital-data', (params) => {
+        this.earthTrek.on('update-orbital-data', (params) => {
         });
 
-        this.earthTrek.getEventEmitter().on('entity-added', (params) => {
+        this.earthTrek.on('entity-added', (params) => {
         });
 
-        this.earthTrek.getEventEmitter().on('entities-added', () => {
+        this.earthTrek.on('entities-added', () => {
         });
 
-        this.earthTrek.getEventEmitter().on('entity-updated', (params) => {
+        this.earthTrek.on('entity-updated', (params) => {
         });
 
-        this.earthTrek.getEventEmitter().on('entities-updated', () => {
+        this.earthTrek.on('entities-updated', () => {
 
         });
     }
