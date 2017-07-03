@@ -240,6 +240,19 @@ export default class EarthTrekCore {
         }
     };
 
+    /**
+     * Register events
+     * @param event
+     * @param callback
+     */
+    on(event, callback) {
+        this.getEventEmitter().on(event, callback);
+    }
+
+    /**
+     * Update Entities
+     * @param isoTime
+     */
     updateEntities(isoTime) {
         const currentTime = this.getClock().currentTime;
         if (Cesium.JulianDate.secondsDifference(this.getClock().currentTime, this.lastPropagationTime) > this.orbitDuration ||
