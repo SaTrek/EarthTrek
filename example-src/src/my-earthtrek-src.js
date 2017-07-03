@@ -7,8 +7,9 @@
  */
 
 import EarthTrek from '../../earthtrek-src';
-require('./css/right-toolbar.css');
-class MyEarthTrek  {
+import Views from './view/earthtrek-views.jsx';
+import './css/right-toolbar.css';
+class MyEarthTrek {
 
     /**
      * Constructor
@@ -27,6 +28,7 @@ class MyEarthTrek  {
     }
 
     render() {
+        this.createViews();
         this.listeners();
         this.earthTrek.pullSatellitesData((satelliteData, entity) => {
             if (entity == null && satelliteData.status == 'ACTIVE') {
@@ -35,7 +37,7 @@ class MyEarthTrek  {
         });
         this.drawReferenceLayers();
 
-     //   this.addHandlers();
+        //   this.addHandlers();
 
         this.parseQueryString();
     }
@@ -99,12 +101,19 @@ class MyEarthTrek  {
         this.earthTrek.on('entities-updated', () => {
 
         });
+
+        this.earthTrek.on('entity-picked', (params) => {
+          //  this.satellitePanel.show(params.entity);
+            //     this.handler.setPickedEntity(params.entity);
+        });
+
     }
 
     /**
      * Render Views
      */
-    renderViews() {
+    createViews() {
+  //      callback();
     }
 
 }

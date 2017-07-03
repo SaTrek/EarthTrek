@@ -24,8 +24,8 @@ module.exports = {
         new ExtractTextPlugin("[name].css"),
         new CopyWebpackPlugin([
                 { from: './images', to: 'images/' }
-            ]
-            , {copyUnmodified: true}
+            ],
+            {copyUnmodified: true}
         ),
         new webpack.DefinePlugin({
             PRODUCTION: JSON.stringify(false),
@@ -53,7 +53,11 @@ module.exports = {
             { test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: "file-loader" },
             { test: /\.json$/,loader: 'json-loader' },
             { test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: "url-loader?limit=10000&mimetype=application/font-woff" },
-            { test: /\.js$/, exclude: /node_modules/, loader: "babel-loader" }
+            { test: /\.js$/, exclude: /node_modules/, loader: "babel-loader", query: {compact: false} },
+            {
+                test: /\.jsx?/,
+                loader: "babel-loader"
+            }
         ]
     }
 };
