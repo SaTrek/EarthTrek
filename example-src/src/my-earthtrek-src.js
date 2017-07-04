@@ -99,6 +99,18 @@ class MyEarthTrek  {
         this.earthTrek.on('entities-updated', () => {
 
         });
+
+        this.earthTrek.on('entities-updated', () => {
+
+        });
+
+        this.earthTrek.on('layer-removed', (params) => {
+
+        });
+
+        this.earthTrek.on('layer-hidden', (params) => {
+
+        });
     }
 
     /**

@@ -93,6 +93,7 @@ class earthTrekLayer {
     static hideLayer (layer) {
         earthTrekLayer.searchLayer (layer, (imageryLayer) => {
             imageryLayer.show = false;
+            earthTrekInstance().raise('layer-hidden', {'imageryLayer': imageryLayer});
         });
     }
 
@@ -103,6 +104,7 @@ class earthTrekLayer {
     static removeLayer (layer) {
         earthTrekLayer.searchLayer (layer, (imageryLayer) => {
             earthTrekLayer.getImageryLayers().remove(imageryLayer);
+            earthTrekInstance().raise('layer-removed', {'imageryLayer': imageryLayer});
         });
     }
 

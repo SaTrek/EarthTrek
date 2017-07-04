@@ -35,7 +35,7 @@ module.exports = {
     ],
     devServer: {
         contentBase: "./public",
-        port: 9080
+        port: 8472
     },
     resolve: {
         alias: {

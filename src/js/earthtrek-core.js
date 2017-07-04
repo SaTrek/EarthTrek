@@ -250,6 +250,14 @@ export default class EarthTrekCore {
     }
 
     /**
+     * Raise Event events
+     * @param event
+     * @param params
+     */
+    raise(event, params = {}) {
+        this.getEventEmitter().emit(event, params);
+    }
+    /**
      * Update Entities
      * @param isoTime
      */
