@@ -144,7 +144,7 @@ class earthTrekLayer {
      * @param ImageryLayer layer
      */
     static raiseToTop(plainLayer, layer) {
-        if (plainLayer.top != undefined && plainLayer.top == true) {
+        if (plainLayer.top != undefined && plainLayer.top == true && earthTrekLayer.getImageryLayers().contains(layer)) {
             earthTrekInstance().getViewer().scene.imageryLayers.raiseToTop(layer);
         }
     }
