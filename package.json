@@ -21,7 +21,7 @@
     "start": "node server.js",
     "compile": "babel --presets es2015,stage-0 --quiet -d dist/ src/",
     "dist": "mkdirp dist & rimraf dist/* && babel --presets es2015,stage-0 -d dist/ src/ && cpr src/css dist/css",
-    "publish": "npm run dist && npm publish",
+    "pubdist": "npm run dist && npm publish",
     "test": "mocha --compilers js:babel-core/register",
     "clean": "mkdirp public & rimraf public/*",
     "build": "npm run clean && cpr node_modules/cesium/Build/Cesium public && webpack --config example-src/config/webpack.config.js --progress",
