@@ -53,6 +53,7 @@ export default class EarthTrekLayerCollection
             //    that.viewer.scene.imageryLayers.lowerToBottom(that.viewer.scene.imageryLayers._layers[0].show = false);
         }
         layer.imagery = addedLayer;
+        layer.index = this.layers.length;
         this.layers.push(layer);
 
         this.layers.forEach( (earthTrekLayer) => {
@@ -60,6 +61,19 @@ export default class EarthTrekLayerCollection
         });
 
         return layer;
+    }
+
+    [Symbol.iterator]() {
+        var index = -1;
+        var data  = this.layers;
+
+        return {
+            next: () => ({ value: data[++index], done: !(index in data) })
+        };
+    };
+
+    length() {
+        return this.layers.length;
     }
 
     getInstance() {
@@ -130,6 +144,7 @@ export default class EarthTrekLayerCollection
     remove (layer) {
         return this.iterate(layer, (imageryLayer) => {
             if (imageryLayer.imageryProvider._layer == layer.id && layer.removable != false) {
+                this.layers.splice(layer.index, 1);
                 this.getInstance().raise('layer-removed', {'imageryLayer': imageryLayer});
                 return this.getImageryLayers().remove(imageryLayer);
             }
@@ -141,11 +156,14 @@ export default class EarthTrekLayerCollection
      * @param layer
      * @param callback
      */
-    toggle (layer) {
+    toggle (layer, callback) {
         return this.iterate(layer, (imageryLayer) => {
             if (imageryLayer.imageryProvider._layer == layer.id) {
                 imageryLayer.show = !imageryLayer.show;
-                return imageryLayer.show;
+                if (callback == undefined) {
+                    return imageryLayer.show;
+                }
+                return callback(imageryLayer.show);
             }
         });
     }

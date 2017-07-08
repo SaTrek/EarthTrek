@@ -49,7 +49,10 @@ describe('EarthTrekLayerCollection',  () => {
 
     it('Remove layer from collection', (done) => {
         //Try to remove
+        assert.equal(1, collection.length());
         assert.isTrue(collection.remove(removablelayer));
+        assert.equal(0, collection.length());
+
         //If the result is true, then try to remove again the same layer.
         assert.isFalse(collection.remove(removablelayer));
         //The result should by false
@@ -72,6 +75,18 @@ describe('EarthTrekLayerCollection',  () => {
         assert.isFalse(collection.toggle(layerWithImagery));
         //Show Layer
         assert.isTrue(collection.toggle(layerWithImagery));
+        done();
+    });
+
+    it('Toggle Layer visibility with callback', (done) => {
+        //Hide Layer
+        assert.isFalse(collection.toggle(layerWithImagery), (show) => {
+            return show;
+        });
+        //Show Layer
+        assert.isTrue(collection.toggle(layerWithImagery), (show) => {
+            return show;
+        });
         done();
     });
 
