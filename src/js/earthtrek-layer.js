@@ -29,7 +29,7 @@ class earthTrekLayer {
             maximumLevel = layer.maximumLevel;
         }
         const newLayerProvider = earthTrekProvider.getProvider({
-            layer: layer.id,
+            id: layer.id,
             time: today,
             format: layer.format,
             tileMatrixSetID: "epsg4326",

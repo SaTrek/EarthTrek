@@ -13,13 +13,9 @@ import _ from 'underscore';
 import EarthTrekEntity from './earthtrek-entity';
 import earthTrekData from './earthtrek-data';
 import earthTrekSatellite from './earthtrek-satellite';
+import EarthTrekLayerCollection from './earthtrek-layer-collection';
 
 import earthTrekUtils from './utils/earthtrek-utils';
-window.CESIUM_BASE_URL = './';
-require('cesium/Build/Cesium/Widgets/widgets.css');
-
-require('../../src/css/main.css');
-require('../../src/css/left-toolbar.css');
 
 let instance = null;
 
@@ -38,6 +34,11 @@ export default class EarthTrekCore {
      * @param options
      */
     constructor(options) {
+        window.CESIUM_BASE_URL = './';
+        require('cesium/Build/Cesium/Widgets/widgets.css');
+
+        require('../../src/css/main.css');
+        require('../../src/css/left-toolbar.css');
         if(!instance){
             instance = this;
         }
@@ -117,7 +118,7 @@ export default class EarthTrekCore {
         }
         this.options = options;
         this.entities = [];
-        this.layers = [];
+        this.layers = new EarthTrekLayerCollection();
         this.eventEmitter = new events.EventEmitter();
         this.createViewer();
         return instance;

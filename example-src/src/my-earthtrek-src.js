@@ -50,7 +50,8 @@ class MyEarthTrek  {
                 format: "image/png",
                 resolution: '250m',
                 top: true,
-                maximumLevel: 9
+                maximumLevel: 9,
+                removable: false
             };
 
             EarthTrek.RightToolbar.addToogleLayer(layer, 'icon-labels', true);
@@ -62,7 +63,8 @@ class MyEarthTrek  {
                 format: "image/png",
                 resolution: '250m',
                 top: true,
-                maximumLevel: 9
+                maximumLevel: 9,
+                removable: false
             };
             EarthTrek.RightToolbar.addToogleLayer(layer, 'icon-borders', true);
         }
