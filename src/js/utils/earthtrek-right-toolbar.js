@@ -6,7 +6,7 @@
  * @description EarthTrek - 23 JUN 2017.
  */
 
-import earthTrekLayer from '../earthtrek-layer';
+import { earthTrekInstance } from '../earthtrek-core';
 import earthTrekUtils from '../utils/earthtrek-utils';
 
 import '../../css/right-toolbar.css';
@@ -42,12 +42,13 @@ class EarthTrekRightToolbar {
      * @param selected
      */
     static addToogleLayer(layer, className, selected) {
-        earthTrekLayer.addLayer(earthTrekUtils.getCurrentIsoDate(), layer);
+        layer.time = earthTrekUtils.getCurrentIsoDate();
+        earthTrekInstance().getLayers().add(layer);
         EarthTrekRightToolbar.add(
             className,
             selected,
             (iconButton) => {
-                earthTrekLayer.toggleLayerById(layer.id, (show) => {
+                earthTrekInstance().getLayers().toggle(layer, (show) => {
                     if (show == true) {
                         $(iconButton).addClass('selected');
                     } else {

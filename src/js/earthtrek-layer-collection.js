@@ -12,6 +12,9 @@ import {earthTrekInstance} from './earthtrek-core';
 
 export default class EarthTrekLayerCollection
 {
+    /**
+     *
+     */
     constructor() {
         this.layers = [];
     }
@@ -38,9 +41,11 @@ export default class EarthTrekLayerCollection
         if (layer.removable == undefined) {
             layer.removable = true;
         }
+        if (layer.top == undefined) {
+            layer.top = false;
+        }
         layer.tileMatrixSetID = "epsg4326";
         const newLayerProvider = earthTrekProvider.getProvider(layer);
-
 
         const addedLayer = this.getImageryLayers().addImageryProvider(newLayerProvider);
         if (this.getImageryLayers()._layers[0].format == 'image/jpeg') {
@@ -49,6 +54,11 @@ export default class EarthTrekLayerCollection
         }
         layer.imagery = addedLayer;
         this.layers.push(layer);
+
+        this.layers.forEach( (earthTrekLayer) => {
+            this.raiseToTop(earthTrekLayer);
+        });
+
         return layer;
     }
 
@@ -146,7 +156,7 @@ export default class EarthTrekLayerCollection
      * @returns {boolean}
      */
     raiseToTop(layer) {
-        if (layer.top != undefined && layer.top == true && this.getImageryLayers().contains(layer.imagery)) {
+        if (layer.top == true && this.getImageryLayers().contains(layer.imagery)) {
             this.getImageryLayers().raiseToTop(layer.imagery);
             return true;
         }

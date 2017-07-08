@@ -10,7 +10,7 @@ import ImageryLayer from 'cesium/Source/Scene/ImageryLayer';
 import earthTrekProvider from './earthtrek-provider';
 import {earthTrekInstance} from './earthtrek-core';
 
-class EarthTrekLayer {
+class earthTrekLayer {
 
     /**
      *
@@ -29,7 +29,7 @@ class EarthTrekLayer {
             maximumLevel = layer.maximumLevel;
         }
         const newLayerProvider = earthTrekProvider.getProvider({
-            layer: layer.id,
+            id: layer.id,
             time: today,
             format: layer.format,
             tileMatrixSetID: "epsg4326",
@@ -150,4 +150,4 @@ class EarthTrekLayer {
     }
 
 }
-module.exports = EarthTrekLayer;
+module.exports = earthTrekLayer;
