@@ -13,6 +13,7 @@ import _ from 'underscore';
 import EarthTrekEntity from './earthtrek-entity';
 import earthTrekData from './earthtrek-data';
 import earthTrekSatellite from './earthtrek-satellite';
+import EarthTrekLayerCollection from './earthtrek-layer-collection';
 
 import earthTrekUtils from './utils/earthtrek-utils';
 window.CESIUM_BASE_URL = './';
@@ -117,7 +118,7 @@ export default class EarthTrekCore {
         }
         this.options = options;
         this.entities = [];
-        this.layers = [];
+        this.layers = new EarthTrekLayerCollection();
         this.eventEmitter = new events.EventEmitter();
         this.createViewer();
         return instance;

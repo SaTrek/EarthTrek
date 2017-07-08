@@ -5,12 +5,16 @@
  * @author Alejandro Sanchez <alejandro.sanchez.trek@gmail.com>
  * @description EarthTrek - NASA Space Apps 2017 - 25 MAY 2017
  */
-import ImageryLayer from 'cesium/Source/Scene/ImageryLayer';
+//import ImageryLayer from 'cesium/Source/Scene/ImageryLayer';
 
-import earthTrekProvider from './earthtrek-provider';
-import {earthTrekInstance} from './earthtrek-core';
+//import earthTrekProvider from './earthtrek-provider';
+//import {earthTrekInstance} from './earthtrek-core';
 
-class earthTrekLayer {
+class EarthTrekLayer {
+
+    constructor(layer) {
+        console.log(layer)
+    }
 
     /**
      *
@@ -144,10 +148,10 @@ class earthTrekLayer {
      * @param ImageryLayer layer
      */
     static raiseToTop(plainLayer, layer) {
-        if (plainLayer.top != undefined && plainLayer.top == true) {
+        if (plainLayer.top != undefined && plainLayer.top == true && earthTrekLayer.getImageryLayers().contains(layer)) {
             earthTrekInstance().getViewer().scene.imageryLayers.raiseToTop(layer);
         }
     }
 
 }
-module.exports = earthTrekLayer;
+module.exports = EarthTrekLayer;
