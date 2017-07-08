@@ -24,6 +24,7 @@ var HorizontalOrigin = require('cesium/Source/Scene/HorizontalOrigin');
 var VerticalOrigin = require('cesium/Source/Scene/VerticalOrigin');
 var createTileMapServiceImageryProvider = require('cesium/Source/Scene/createTileMapServiceImageryProvider');
 var BingMapsImageryProvider = require('cesium/Source/Scene/BingMapsImageryProvider');
+var ImageryLayerCollection = require('cesium/Source/Scene/ImageryLayerCollection');
 
 var StripeOrientation = require('cesium/Source/DataSources/StripeOrientation');
 var StripeMaterialProperty = require('cesium/Source/DataSources/StripeMaterialProperty');
@@ -32,6 +33,7 @@ var PolylineGlowMaterialProperty =require('cesium/Source/DataSources/PolylineGlo
 var SampledPositionProperty = require('cesium/Source/DataSources/SampledPositionProperty');
 var SampledProperty = require('cesium/Source/DataSources/SampledProperty');
 
+var ImageryLayer = require ('cesium/Source/Scene/ImageryLayer');
 var Cesium = {
     ScreenSpaceEventHandler: ScreenSpaceEventHandler,
     ScreenSpaceEventType: ScreenSpaceEventType,
@@ -49,6 +51,8 @@ var Cesium = {
     defined: defined,
     StripeMaterialProperty: StripeMaterialProperty,
     StripeOrientation: StripeOrientation,
+    ImageryLayer: ImageryLayer,
+    ImageryLayerCollection: ImageryLayerCollection,
     Viewer: Viewer,
     Clock: Clock,
     ClockStep: ClockStep,

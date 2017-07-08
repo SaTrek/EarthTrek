@@ -16,11 +16,6 @@ import earthTrekSatellite from './earthtrek-satellite';
 import EarthTrekLayerCollection from './earthtrek-layer-collection';
 
 import earthTrekUtils from './utils/earthtrek-utils';
-window.CESIUM_BASE_URL = './';
-require('cesium/Build/Cesium/Widgets/widgets.css');
-
-require('../../src/css/main.css');
-require('../../src/css/left-toolbar.css');
 
 let instance = null;
 
@@ -39,6 +34,11 @@ export default class EarthTrekCore {
      * @param options
      */
     constructor(options) {
+        window.CESIUM_BASE_URL = './';
+        require('cesium/Build/Cesium/Widgets/widgets.css');
+
+        require('../../src/css/main.css');
+        require('../../src/css/left-toolbar.css');
         if(!instance){
             instance = this;
         }
