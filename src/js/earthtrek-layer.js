@@ -10,6 +10,9 @@ import ImageryLayer from 'cesium/Source/Scene/ImageryLayer';
 import earthTrekProvider from './earthtrek-provider';
 import {earthTrekInstance} from './earthtrek-core';
 
+/**
+ * @deprecated
+ */
 class earthTrekLayer {
 
     /**
