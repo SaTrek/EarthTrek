@@ -68,8 +68,8 @@ earthTrekData.getTLEs = function (ids, options) {
             if (endDate instanceof Date) {
                 endDate = endDate.getUTCFullYear() + '-' + (endDate.getUTCMonth() + 1) + '-' + endDate.getUTCDate();
             }
+            qs.endDate = endDate;
         }
-        qs.endDate = endDate;
     }
     const fields = (!options.fields) ? config.api.tle.fields : options.fields;
     qs.fields = fields;
