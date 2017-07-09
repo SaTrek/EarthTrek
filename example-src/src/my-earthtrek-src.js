@@ -8,7 +8,8 @@
 
 import EarthTrek from '../../earthtrek-src';
 require('./css/right-toolbar.css');
-class MyEarthTrek  {
+
+export default class MyEarthTrek  {
 
     /**
      * Constructor
@@ -26,6 +27,9 @@ class MyEarthTrek  {
         this.showBorders = options.showBorders;
     }
 
+    /**
+     * Render
+     */
     render() {
         this.listeners();
         this.earthTrek.pullSatellitesData((satelliteData, entity) => {
@@ -70,6 +74,9 @@ class MyEarthTrek  {
         }
     }
 
+    /**
+     * Parse Query String example: Geocoder
+     */
     parseQueryString() {
         const parsed = EarthTrek.utils.getQueryString();
         if (parsed.geocoder != undefined) {
@@ -78,6 +85,9 @@ class MyEarthTrek  {
         }
     }
 
+    /**
+     * Listeners examples
+     */
     listeners() {
         this.earthTrek.on('entity-added', (params) => {
 
@@ -122,5 +132,3 @@ class MyEarthTrek  {
     }
 
 }
-
-module.exports = MyEarthTrek;

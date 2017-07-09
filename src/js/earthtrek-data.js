@@ -20,7 +20,7 @@ earthTrekData.getSatelliteIds = function () {
     }
     earthTrekData.getSatellites().then(function (satellites) {
         let satIds = [];
-        satellites.data.forEach(function (satellite) {
+        satellites.forEach(function (satellite) {
             satIds.push(satellite.satId);
         })
         satelliteIds = satIds;
@@ -72,8 +72,8 @@ earthTrekData.getTLEs = function (ids, options) {
             if (endDate instanceof Date) {
                 endDate = endDate.getUTCFullYear() + '-' + (endDate.getUTCMonth() + 1) + '-' + endDate.getUTCDate();
             }
+            qs.endDate = endDate;
         }
-        qs.endDate = endDate;
     }
     const fields = (!options.fields) ? config.api.tle.fields : options.fields;
     qs.fields = fields;
@@ -118,7 +118,7 @@ earthTrekData.getFullData = function (options, callback) {
     var promise = earthTrekData.getSatellites();
     var tlePromise = promise.then(function (satellites) {
         var satIds = [];
-        satellites.data.forEach(function (satellite) {
+        satellites.forEach(function (satellite) {
             satIds.push(satellite.satId);
         })
         satelliteIds = satIds;
@@ -129,7 +129,7 @@ earthTrekData.getFullData = function (options, callback) {
          * @TODO -TEMPORAL
          */
         var finalJson = [];
-        tles[0].data.forEach(function (satellite) {
+        tles[0].forEach(function (satellite) {
             if (satellite.color == undefined) {
                 satellite.color = '#8FBC8F';
             }

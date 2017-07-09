@@ -31,11 +31,9 @@ module.exports = {
         new webpack.DefinePlugin({
             PRODUCTION: JSON.stringify(false),
             ENVIRONMENT: JSON.stringify('dev'),
-            API_URL: JSON.stringify(earthtrekConfig.app.dev.apiUrl),
-            EARTHTREK_USERNAME: JSON.stringify(earthtrekConfig.app.dev.username),
-            EARTHTREK_TOKEN: JSON.stringify(earthtrekConfig.app.dev.token),
-            ENTITY_ORBIT_DURATION: JSON.stringify(earthtrekConfig.app.dev.orbitDuration),
-            ENTITY_FREQUENCY: JSON.stringify(earthtrekConfig.app.dev.frequency)
+            API_URL: JSON.stringify(earthtrekConfig.dev.api.url),
+            EARTHTREK_USERNAME: JSON.stringify(earthtrekConfig.dev.api.username),
+            EARTHTREK_TOKEN: JSON.stringify(earthtrekConfig.dev.api.token)
         })
     ],
     devServer: {
