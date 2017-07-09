@@ -15,9 +15,15 @@ const earthTrek = new MyEarthTrek({
     endTime: Date.now(),
     initialTime: Date.now(),
     mainContainer: 'main-container',
-    frequency: 50,
     maxDistanceCamera: 10000000000, //10,000,000,000 meters
     showReference: true,
-    orbitalDataUpdateTime: 10
+    orbitalDataUpdateTime: 10,
+    entities: {
+        orbitDuration: ENTITY_ORBIT_DURATION,
+        frequency: ENTITY_FREQUENCY,
+        label: {
+            show: true
+        }
+    }
 });
 earthTrek.render();

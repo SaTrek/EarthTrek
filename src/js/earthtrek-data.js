@@ -35,7 +35,11 @@ earthTrekData.getSatellites = function () {
     const config = earthTrekData.getConfig();
     const options = {
         uri: config.api.url + config.api.satellites.endpoint,
-        json: true
+        json: true,
+        headers: {
+            'EarthTrek-Username': EARTHTREK_USERNAME,
+            'EarthTrek-Token': EARTHTREK_TOKEN
+        }
     };
     return rp(options);
 }
@@ -87,7 +91,7 @@ earthTrekData.getTLEs = function (ids, options) {
 earthTrekData.getConfig = function () {
     return {
         api: {
-            url: 'http://api.orbitaldesign.tk/',
+            url: API_URL,
             satellites: {
                 endpoint: "satellites"
             },

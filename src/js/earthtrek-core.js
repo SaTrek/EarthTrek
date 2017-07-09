@@ -73,7 +73,7 @@ export default class EarthTrekCore {
             options.orbitalDataUpdateTime = 10;
         }
         if (!options.multiplier) {
-            options.multiplier = 10; //intervals
+            options.multiplier = 10;
         }
 
         if (!options.orbitDuration) {

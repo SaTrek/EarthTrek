@@ -6,8 +6,7 @@
  * @description EarthTrek - NASA Space Apps 2017 2 JUN 2017.
  */
 /** cesium core*/
-
-var Cesium = require('./utils/cesium');
+import Cesium from './utils/cesium';
 /**EarthTrek*/
 import earthTrekSatellite from './earthtrek-satellite';
 
@@ -163,7 +162,7 @@ class EarthTrekEntity {
 
     /**
      *
-     * @returns {{id: *, name, position, velocity, altitude, defaultMaterial: (Cesium.StripeMaterialProperty|Color|*), path: {path: boolean, resolution: number, material: (Cesium.StripeMaterialProperty|Color|*), width: number, trailTime: number, leadTime: number}, label: {show: boolean, text, scale: number, scaleByDistance, fillColor: Color, outlineColor, outlineWidth: number, style: (number|Number), horizontalOrigin: (*|number|Number), verticalOrigin: (Number|number), pixelOffset}, billboard: {show: boolean, imageSubRegion, image: string, distanceDisplayCondition, scale: number, alignedAxis}, properties: *}|*}
+     * @returns entityData
      */
     getEntityData() {
         return this.entity;

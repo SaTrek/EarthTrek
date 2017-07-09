@@ -3,6 +3,7 @@ var webpack = require("webpack");
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
 var CopyWebpackPlugin = require('copy-webpack-plugin');
 var path = require('path');
+var earthtrekConfig = require('./earthtrek.config');
 
 module.exports = {
     context: path.join(__dirname, '../src'),
@@ -30,7 +31,11 @@ module.exports = {
         new webpack.DefinePlugin({
             PRODUCTION: JSON.stringify(false),
             ENVIRONMENT: JSON.stringify('dev'),
-            API_URL: JSON.stringify('http://api.orbitaldesign.tk/')
+            API_URL: JSON.stringify(earthtrekConfig.app.dev.apiUrl),
+            EARTHTREK_USERNAME: JSON.stringify(earthtrekConfig.app.dev.username),
+            EARTHTREK_TOKEN: JSON.stringify(earthtrekConfig.app.dev.token),
+            ENTITY_ORBIT_DURATION: JSON.stringify(earthtrekConfig.app.dev.orbitDuration),
+            ENTITY_FREQUENCY: JSON.stringify(earthtrekConfig.app.dev.frequency)
         })
     ],
     devServer: {
