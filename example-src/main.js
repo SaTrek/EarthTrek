@@ -10,7 +10,6 @@
  */
 import MyEarthTrek from './src/my-earthtrek-src';
 import earthtrekConfig from './config/earthtrek.config'
-/**CSS*/
 const earthTrek = new MyEarthTrek({
     startTime: Date.UTC(1999, 1, 1),
     endTime: Date.now(),
@@ -20,8 +19,8 @@ const earthTrek = new MyEarthTrek({
     showReference: true,
     orbitalDataUpdateTime: 10,
     entities: {
-        orbitDuration: earthtrekConfig[ENVIRONMENT].app.orbitDuration,
-        frequency: earthtrekConfig[ENVIRONMENT].app.frequency,
+        orbitDuration: earthtrekConfig.app.orbitDuration,
+        frequency: earthtrekConfig.app.frequency,
         label: {
             show: true
         }

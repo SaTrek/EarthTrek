@@ -1,11 +1,8 @@
-var config = {
+var merge = require('deepmerge');
+var earthtrekConfig = {
     dev: {
-        app: {
-            frequency: 30,
-            orbitDuration: 7200
-        },
         api: {
-            url: "http://localhost:9081/",
+            url: "http://localhost:9081",
             username: "DEMO",
             app: "DEMO",
             token: "123456"
@@ -25,5 +22,17 @@ var config = {
             token: "DEMO"
         }
     }*/
-}
-module.exports = config;
+};
+var defaultConfig = {
+    app: {
+        frequency: 15,
+        orbitDuration: 3600
+    },
+    api: {
+        url: "http://api.orbitaldesign.tk",
+        username: "DEMO",
+        app: "DEMO",
+        token: "123456"
+    }
+};
+module.exports = merge(defaultConfig, earthtrekConfig.dev);

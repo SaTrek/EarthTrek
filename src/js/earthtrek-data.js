@@ -91,7 +91,7 @@ earthTrekData.getTLEs = function (ids, options) {
 earthTrekData.getConfig = function () {
     return {
         api: {
-            url: API_URL,
+            url: API_URL + '/',
             satellites: {
                 endpoint: "satellites"
             },
