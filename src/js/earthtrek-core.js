@@ -205,10 +205,10 @@ export default class EarthTrekCore {
      */
     pullSatellitesData(callback) {
         earthTrekData.getFullData({getCache: this.options.getCache},  (satellites) => {
-            satellites.forEach((satelliteData) => {
+            for (var satelliteData of satellites) {
                 const entity = this.viewer.entities.getById(satelliteData.satId);
                 callback(satelliteData, entity);
-            });
+            };
             this.raise('entities-added', {entities: this.entities});
         });
     }

@@ -118,7 +118,7 @@ earthTrekData.getFullData = function (options, callback) {
     var promise = earthTrekData.getSatellites();
     var tlePromise = promise.then(function (satellites) {
         var satIds = [];
-        satellites.forEach(function (satellite) {
+        satellites.data.forEach(function (satellite) {
             satIds.push(satellite.satId);
         })
         satelliteIds = satIds;
@@ -129,7 +129,7 @@ earthTrekData.getFullData = function (options, callback) {
          * @TODO -TEMPORAL
          */
         var finalJson = [];
-        tles[0].forEach(function (satellite) {
+        tles[0].data.forEach(function (satellite) {
             if (satellite.color == undefined) {
                 satellite.color = '#8FBC8F';
             }

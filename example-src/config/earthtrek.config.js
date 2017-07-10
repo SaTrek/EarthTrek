@@ -10,8 +10,8 @@ var earthtrekConfig = {
     },
     mobileDev: {
         app: {
-            frequency: 10,
-            orbitDuration: 1000
+            frequency: 3,
+            orbitDuration: 500
         },
         api: {
             url: "http://api.orbitaldesign.tk",
