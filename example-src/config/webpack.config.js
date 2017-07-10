@@ -4,7 +4,6 @@ var ExtractTextPlugin = require("extract-text-webpack-plugin");
 var CopyWebpackPlugin = require('copy-webpack-plugin');
 var path = require('path');
 var earthtrekConfig = require('./earthtrek.config');
-var merge = require('deepmerge');
 
 module.exports = {
     context: path.join(__dirname, '../src'),
@@ -31,10 +30,13 @@ module.exports = {
         ),
         new webpack.DefinePlugin({
             PRODUCTION: JSON.stringify(false),
-            ENVIRONMENT: JSON.stringify('dev'),
+            ENVIRONMENT: JSON.stringify(process.env.NODE_ENV),
             API_URL: JSON.stringify(earthtrekConfig.api.url),
             EARTHTREK_USERNAME: JSON.stringify(earthtrekConfig.api.username),
-            EARTHTREK_TOKEN: JSON.stringify(earthtrekConfig.api.token)
+            EARTHTREK_TOKEN: JSON.stringify(earthtrekConfig.api.token),
+        }),
+        new webpack.EnvironmentPlugin({
+            'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV)
         })
     ],
     devServer: {

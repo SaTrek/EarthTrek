@@ -9,7 +9,7 @@
  * REQUIRES
  */
 import MyEarthTrek from './src/my-earthtrek-src';
-import earthtrekConfig from './config/earthtrek.config'
+import earthtrekConfig from './config/earthtrek.config';
 const earthTrek = new MyEarthTrek({
     startTime: Date.UTC(1999, 1, 1),
     endTime: Date.now(),
@@ -24,6 +24,7 @@ const earthTrek = new MyEarthTrek({
         label: {
             show: true
         }
-    }
+    },
+    api: earthtrekConfig.api
 });
 earthTrek.render();

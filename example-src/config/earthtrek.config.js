@@ -7,32 +7,40 @@ var earthtrekConfig = {
             app: "DEMO",
             token: "123456"
         }
-    }
-    /*
-        prod: {
-            apiUrl: "http://api.earthtrekapp.org",
-            username: "DEMO",
-            app: "DEMO",
-            token: "DEMO"
+    },
+    mobileDev: {
+        app: {
+            frequency: 10,
+            orbitDuration: 1000
         },
-        mobile: {
-            apiUrl: "http://api.earthtrekapp.org",
+        api: {
+            url: "http://api.orbitaldesign.tk",
             username: "DEMO",
             app: "DEMO",
-            token: "DEMO"
+            token: "123456"
         }
-    }*/
+    }
 };
 var defaultConfig = {
     app: {
-        frequency: 15,
-        orbitDuration: 3600
+        frequency: 30,
+        orbitDuration: 7200
     },
     api: {
         url: "http://api.orbitaldesign.tk",
         username: "DEMO",
         app: "DEMO",
-        token: "123456"
+        token: "123456",
+        satellites: {
+            endpoint: "satellites"
+        },
+        tle: {
+            endpoint: "tles",
+            fields: "tle,satId"
+        }
     }
 };
-module.exports = merge(defaultConfig, earthtrekConfig.dev);
+if (process.env.NODE_ENV == undefined) {
+    process.env.NODE_ENV = ENVIRONMENT;
+}
+module.exports = merge(defaultConfig, earthtrekConfig[process.env.NODE_ENV]);
