@@ -29,11 +29,7 @@
         "dev": "npm run build && npm run devserver",
         "release": "webpack --config config/webpack.prod.config.js --progress",
         "cache": "node ./src/tasks/cache-api.js",
-        "heroku-postbuild": "npm run clean && cpr node_modules/cesium/Build/Cesium public && npm run release && npm run cache",
-        "clean-device": "mkdirp www & rimraf www/*",
-        "build-device": "npm run clean-device && cpr node_modules/cesium/Build/Cesium www/ && cross-env NODE_ENV=mobileDev webpack --config example-src/config/webpack.config.device.js --progress",
-        "device": "npm run build-device && cordova run --device",
-        "device-release": "npm run build-device && cordova run --device --release"
+        "heroku-postbuild": "npm run clean && cpr node_modules/cesium/Build/Cesium public && npm run release && npm run cache"
     },
     "repository": {
         "type": "git",

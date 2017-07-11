@@ -7,18 +7,6 @@ var earthtrekConfig = {
             app: "DEMO",
             token: "123456"
         }
-    },
-    mobileDev: {
-        app: {
-            frequency: 3,
-            orbitDuration: 500
-        },
-        api: {
-            url: "http://api.orbitaldesign.tk",
-            username: "DEMO",
-            app: "DEMO",
-            token: "123456"
-        }
     }
 };
 var defaultConfig = {

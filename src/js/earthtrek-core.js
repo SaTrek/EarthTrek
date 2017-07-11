@@ -90,9 +90,6 @@ export default class EarthTrekCore {
                 frequency: options.frequency
             };
         }
-        if (!options.env) {
-            options.env = 'dev';
-        }
         this.startTime = Cesium.JulianDate.fromDate(
             new Date(options.startTime));
         this.endTime = Cesium.JulianDate.fromDate(
