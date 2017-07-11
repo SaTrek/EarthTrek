@@ -29,7 +29,7 @@ class earthTrekLayer {
             maximumLevel = layer.maximumLevel;
         }
         const newLayerProvider = earthTrekProvider.getProvider({
-            layer: layer.id,
+            id: layer.id,
             time: today,
             format: layer.format,
             tileMatrixSetID: "epsg4326",
@@ -93,6 +93,7 @@ class earthTrekLayer {
     static hideLayer (layer) {
         earthTrekLayer.searchLayer (layer, (imageryLayer) => {
             imageryLayer.show = false;
+            earthTrekInstance().raise('layer-hidden', {'imageryLayer': imageryLayer});
         });
     }
 
@@ -103,6 +104,7 @@ class earthTrekLayer {
     static removeLayer (layer) {
         earthTrekLayer.searchLayer (layer, (imageryLayer) => {
             earthTrekLayer.getImageryLayers().remove(imageryLayer);
+            earthTrekInstance().raise('layer-removed', {'imageryLayer': imageryLayer});
         });
     }
 
@@ -142,7 +144,7 @@ class earthTrekLayer {
      * @param ImageryLayer layer
      */
     static raiseToTop(plainLayer, layer) {
-        if (plainLayer.top != undefined && plainLayer.top == true) {
+        if (plainLayer.top != undefined && plainLayer.top == true && earthTrekLayer.getImageryLayers().contains(layer)) {
             earthTrekInstance().getViewer().scene.imageryLayers.raiseToTop(layer);
         }
     }

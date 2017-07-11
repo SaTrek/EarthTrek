@@ -20,7 +20,7 @@ earthTrekData.getSatelliteIds = function () {
     }
     earthTrekData.getSatellites().then(function (satellites) {
         let satIds = [];
-        satellites.data.forEach(function (satellite) {
+        satellites.forEach(function (satellite) {
             satIds.push(satellite.satId);
         })
         satelliteIds = satIds;
@@ -35,7 +35,11 @@ earthTrekData.getSatellites = function () {
     const config = earthTrekData.getConfig();
     const options = {
         uri: config.api.url + config.api.satellites.endpoint,
-        json: true
+        json: true,
+        headers: {
+            'EarthTrek-Username': EARTHTREK_USERNAME,
+            'EarthTrek-Token': EARTHTREK_TOKEN
+        }
     };
     return rp(options);
 }
@@ -68,8 +72,8 @@ earthTrekData.getTLEs = function (ids, options) {
             if (endDate instanceof Date) {
                 endDate = endDate.getUTCFullYear() + '-' + (endDate.getUTCMonth() + 1) + '-' + endDate.getUTCDate();
             }
+            qs.endDate = endDate;
         }
-        qs.endDate = endDate;
     }
     const fields = (!options.fields) ? config.api.tle.fields : options.fields;
     qs.fields = fields;
@@ -87,7 +91,7 @@ earthTrekData.getTLEs = function (ids, options) {
 earthTrekData.getConfig = function () {
     return {
         api: {
-            url: 'http://api.orbitaldesign.tk/',
+            url: API_URL + '/',
             satellites: {
                 endpoint: "satellites"
             },

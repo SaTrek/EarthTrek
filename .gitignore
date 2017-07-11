@@ -3,3 +3,8 @@ node_modules
 public/*
 dist/*
 *.log
+platforms
+res
+plugins
+hooks
+www/*

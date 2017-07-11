@@ -13,13 +13,9 @@ import _ from 'underscore';
 import EarthTrekEntity from './earthtrek-entity';
 import earthTrekData from './earthtrek-data';
 import earthTrekSatellite from './earthtrek-satellite';
+import EarthTrekLayerCollection from './earthtrek-layer-collection';
 
 import earthTrekUtils from './utils/earthtrek-utils';
-window.CESIUM_BASE_URL = './';
-require('cesium/Build/Cesium/Widgets/widgets.css');
-
-require('../../src/css/main.css');
-require('../../src/css/left-toolbar.css');
 
 let instance = null;
 
@@ -38,6 +34,11 @@ export default class EarthTrekCore {
      * @param options
      */
     constructor(options) {
+        window.CESIUM_BASE_URL = './';
+        require('cesium/Build/Cesium/Widgets/widgets.css');
+
+        require('../../src/css/main.css');
+        require('../../src/css/left-toolbar.css');
         if(!instance){
             instance = this;
         }
@@ -72,7 +73,7 @@ export default class EarthTrekCore {
             options.orbitalDataUpdateTime = 10;
         }
         if (!options.multiplier) {
-            options.multiplier = 10; //intervals
+            options.multiplier = 10;
         }
 
         if (!options.orbitDuration) {
@@ -117,7 +118,7 @@ export default class EarthTrekCore {
         }
         this.options = options;
         this.entities = [];
-        this.layers = [];
+        this.layers = new EarthTrekLayerCollection();
         this.eventEmitter = new events.EventEmitter();
         this.createViewer();
         return instance;
@@ -198,13 +199,17 @@ export default class EarthTrekCore {
         return this.viewer;
     }
 
+    /**
+     *  Pull Satellite Data
+     * @param callback
+     */
     pullSatellitesData(callback) {
         earthTrekData.getFullData({getCache: this.options.getCache},  (satellites) => {
-            satellites.forEach((satelliteData) => {
+            for (var satelliteData of satellites) {
                 const entity = this.viewer.entities.getById(satelliteData.satId);
                 callback(satelliteData, entity);
-            });
-            this.getEventEmitter().emit('entities-added', {entities: this.entities});
+            };
+            this.raise('entities-added', {entities: this.entities});
         });
     }
 
@@ -216,7 +221,7 @@ export default class EarthTrekCore {
         const earthTrekEntity = new EarthTrekEntity(satelliteData, this.getClock().currentTime, this.options.entities);
         const entity = this.viewer.entities.add(earthTrekEntity.getEntityData());
         this.entities.push(entity);
-        this.getEventEmitter().emit('entity-added', {entity: entity, satelliteData: satelliteData, earthTrekEntity: earthTrekEntity});
+        this.raise('entity-added', {entity: entity, satelliteData: satelliteData, earthTrekEntity: earthTrekEntity});
     }
 
     /**
@@ -227,7 +232,7 @@ export default class EarthTrekCore {
         const isoDateTime = clock.currentTime.toString();
         const time = earthTrekUtils.isoDate(isoDateTime);
         if (time !== this.previousTime) {
-            this.getEventEmitter().emit('date-updated', {time: time});
+            this.raise('date-updated', {time: time});
             //  updateLayers();
         }
         this.updateEntities(time);
@@ -235,7 +240,7 @@ export default class EarthTrekCore {
         if (this.viewer.selectedEntity != null &&
             (Cesium.JulianDate.secondsDifference(this.clock.currentTime, this.lastOrbitalDataUpdated) > this.orbitalDataUpdateTime ||
             Cesium.JulianDate.secondsDifference(this.lastOrbitalDataUpdated, this.clock.currentTime) > this.orbitalDataUpdateTime)) {
-            this.getEventEmitter().emit('update-orbital-data', {entity: this.viewer.selectedEntity});
+            this.raise('update-orbital-data', {entity: this.viewer.selectedEntity});
             this.lastOrbitalDataUpdated = this.clock.currentTime;
         }
     };
@@ -247,6 +252,24 @@ export default class EarthTrekCore {
      */
     on(event, callback) {
         this.getEventEmitter().on(event, callback);
+    }
+
+    /**
+     * Raise Event (alias emit)
+     * @param event
+     * @param params
+     */
+    raise(event, params = {}) {
+        this.getEventEmitter().emit(event, params);
+    }
+
+    /**
+     * Emit Event (alias raise)
+     * @param event
+     * @param params
+     */
+    emit(event, params = {}) {
+        this.getEventEmitter().emit(event, params);
     }
 
     /**
@@ -286,11 +309,11 @@ export default class EarthTrekCore {
                     }
                 });
                 return new Promise(propagation).then(() => {
-                    this.getEventEmitter().emit('entities-updated');
+                    this.raise('entities-updated');
                 });
             }, (isoTime) => {
                 return new Promise(propagation).then(() => {
-                    this.getEventEmitter().emit('entities-updated');
+                    this.raise('entities-updated');
                 });
             });
 
@@ -304,7 +327,7 @@ export default class EarthTrekCore {
                     entity.position = samples.positions
                     entity.velocity = samples.velocities;
                     entity.altitude = samples.heights;
-                    that.getEventEmitter().emit('entity-updated', {entity: entity, newStart: newStart});
+                    that.raise('entity-updated', {entity: entity, newStart: newStart});
                 });
                 that.lastPropagationTime = that.clock.currentTime;
                 return resolve();

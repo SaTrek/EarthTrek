@@ -27,6 +27,9 @@ class MyEarthTrek {
         this.showBorders = options.showBorders;
     }
 
+    /**
+     * Render
+     */
     render() {
         this.createViews();
         this.listeners();
@@ -37,7 +40,7 @@ class MyEarthTrek {
         });
         this.drawReferenceLayers();
 
-        //   this.addHandlers();
+     //   this.addHandlers();
 
         this.parseQueryString();
     }
@@ -52,7 +55,8 @@ class MyEarthTrek {
                 format: "image/png",
                 resolution: '250m',
                 top: true,
-                maximumLevel: 9
+                maximumLevel: 9,
+                removable: false
             };
 
             EarthTrek.RightToolbar.addToogleLayer(layer, 'icon-labels', true);
@@ -64,12 +68,16 @@ class MyEarthTrek {
                 format: "image/png",
                 resolution: '250m',
                 top: true,
-                maximumLevel: 9
+                maximumLevel: 9,
+                removable: false
             };
             EarthTrek.RightToolbar.addToogleLayer(layer, 'icon-borders', true);
         }
     }
 
+    /**
+     * Parse Query String example: Geocoder
+     */
     parseQueryString() {
         const parsed = EarthTrek.utils.getQueryString();
         if (parsed.geocoder != undefined) {
@@ -78,6 +86,9 @@ class MyEarthTrek {
         }
     }
 
+    /**
+     * Listeners examples
+     */
     listeners() {
         this.earthTrek.on('entity-added', (params) => {
 
@@ -102,6 +113,18 @@ class MyEarthTrek {
 
         });
 
+        this.earthTrek.on('entities-updated', () => {
+
+        });
+
+        this.earthTrek.on('layer-removed', (params) => {
+
+        });
+
+        this.earthTrek.on('layer-hidden', (params) => {
+
+        });
+
         this.earthTrek.on('entity-picked', (params) => {
           //  this.satellitePanel.show(params.entity);
             //     this.handler.setPickedEntity(params.entity);
@@ -112,8 +135,7 @@ class MyEarthTrek {
     /**
      * Render Views
      */
-    createViews() {
-  //      callback();
+    renderViews() {
     }
 
 }

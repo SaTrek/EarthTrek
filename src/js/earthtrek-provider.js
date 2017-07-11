@@ -25,7 +25,7 @@ provider.getProvider = function(options) {
     }
     var provider = new WebMapTileServiceImageryProvider({
         url: "https://gibs-c.earthdata.nasa.gov/wmts/" + options.tileMatrixSetID + "/best/wmts.cgi?time=" + options.time,
-        layer: options.layer,
+        layer: options.id,
         style: "",
         format: options.format,
         tileMatrixSetID: options.tileMatrixSetID.toUpperCase() + "_" + options.resolution,

@@ -16,7 +16,6 @@ var EarthTrek = {
     Data: EarthTrekData,
     Entity: EarthTrekEntity,
     Handler: EarthTrekHandler,
-    Layer: EarthTrekLayer,
     utils: earthTrekUtils,
     provider: EarthTrekProvider,
     satellite: EarthTrekSatellite,
