@@ -90,6 +90,11 @@ export default class EarthTrekCore {
                 frequency: options.frequency
             };
         }
+
+        if (!options.viewAdapter) {
+            options.viewAdapter = 50; //intervals
+        }
+
         this.startTime = Cesium.JulianDate.fromDate(
             new Date(options.startTime));
         this.endTime = Cesium.JulianDate.fromDate(

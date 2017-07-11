@@ -8,6 +8,7 @@
 
 import EarthTrek from '../../earthtrek-src';
 require('./css/right-toolbar.css');
+import SatellitePanel from './views/satellite-panel-vue/satellite-panel';
 
 export default class MyEarthTrek  {
 
@@ -89,8 +90,8 @@ export default class MyEarthTrek  {
      * Listeners examples
      */
     listeners() {
-        this.earthTrek.on('entity-added', (params) => {
-
+        this.earthTrek.on('entity-picked', (params) => {
+            SatellitePanel.satelliteName = params.entity.properties.name.getValue();
         });
         this.earthTrek.on('date-updated', (params) => {
 

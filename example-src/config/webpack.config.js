@@ -34,6 +34,9 @@ module.exports = {
             API_URL: JSON.stringify(earthtrekConfig.api.url),
             EARTHTREK_USERNAME: JSON.stringify(earthtrekConfig.api.username),
             EARTHTREK_TOKEN: JSON.stringify(earthtrekConfig.api.token),
+            'process.env': {
+                NODE_ENV: JSON.stringify(process.env.NODE_ENV)
+            }
         }),
         new webpack.EnvironmentPlugin({
             'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV)
