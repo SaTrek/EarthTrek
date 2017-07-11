@@ -8,7 +8,7 @@
 
 import EarthTrek from '../../earthtrek-src';
 require('./css/right-toolbar.css');
-import SatellitePanel from './views/satellite-panel-vue/satellite-panel';
+import SatellitePanel from './views/satellite-panel-vue/satellite-panel.vue';
 
 export default class MyEarthTrek  {
 
