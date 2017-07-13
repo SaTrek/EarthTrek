@@ -26,6 +26,8 @@ const earthTrek = new MyEarthTrek({
             show: true
         }
     },
-    api: earthtrekConfig.api
+    adapterView: earthtrekConfig.app.adapterView,
+    api: earthtrekConfig.api,
+    env: ENVIRONMENT
 });
 earthTrek.render();

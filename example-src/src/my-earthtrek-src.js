@@ -7,7 +7,7 @@
  */
 
 import EarthTrek from '../../earthtrek-src';
-import Views from './view/earthtrek-views.jsx';
+import Views from '../../src/js/view/earthtrek-react.jsx';
 import './css/right-toolbar.css';
 class MyEarthTrek {
 

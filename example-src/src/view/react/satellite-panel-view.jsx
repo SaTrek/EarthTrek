@@ -6,7 +6,7 @@
  * @description EarthTrek - 2 JUL 2017.
  */
 import React from 'react'
-import '../css/panel.css';
+import '../../css/panel.css';
 
 class SatellitePanelView extends React.Component {
 

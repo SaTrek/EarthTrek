@@ -13,7 +13,7 @@ import {earthTrekInstance} from './earthtrek-core';
 export default class EarthTrekLayerCollection
 {
     /**
-     *
+     * Constructor
      */
     constructor() {
         this.layers = [];

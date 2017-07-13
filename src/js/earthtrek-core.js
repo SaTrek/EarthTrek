@@ -14,6 +14,7 @@ import EarthTrekEntity from './earthtrek-entity';
 import earthTrekData from './earthtrek-data';
 import earthTrekSatellite from './earthtrek-satellite';
 import EarthTrekLayerCollection from './earthtrek-layer-collection';
+import EarthTrekAdapterView from './earthtrek-adapter-view';
 
 import earthTrekUtils from './utils/earthtrek-utils';
 
@@ -93,6 +94,10 @@ export default class EarthTrekCore {
         if (!options.env) {
             options.env = 'dev';
         }
+        if (!options.adapterView) {
+            options.adapterView = 'vanilla';
+        }
+
         this.startTime = Cesium.JulianDate.fromDate(
             new Date(options.startTime));
         this.endTime = Cesium.JulianDate.fromDate(
@@ -120,6 +125,7 @@ export default class EarthTrekCore {
         this.entities = [];
         this.layers = new EarthTrekLayerCollection();
         this.eventEmitter = new events.EventEmitter();
+        this.adapterView = options.adapterView;
         this.createViewer();
         return instance;
     }
@@ -334,5 +340,12 @@ export default class EarthTrekCore {
             };
         }
 
+    }
+
+    getAdapterView() {
+        if (this.adapterView == 'react') {
+            return new
+        }
+        return this.adapterView;
     }
 }

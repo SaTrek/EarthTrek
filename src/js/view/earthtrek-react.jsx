@@ -1,9 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import '../css/main.css';
+import '../../../example-src/src/css/main.css';
 import SatellitePanelView from './satellite-panel-view.jsx';
 
-class Views extends React.Component {
+class EarthTrekReact extends React.Component {
 
     render() {
         return (
@@ -13,4 +13,4 @@ class Views extends React.Component {
 
 };
 
-ReactDOM.render(<Views/>, document.getElementById("main-container"));
+ReactDOM.render(<EarthTrekReact/>, document.getElementById("main-container"));

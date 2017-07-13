@@ -1,6 +1,9 @@
 var merge = require('deepmerge');
 var earthtrekConfig = {
     dev: {
+        app: {
+            adapterView: 'react'
+        },
         api: {
             url: "http://localhost:9081",
             username: "DEMO",
@@ -24,7 +27,8 @@ var earthtrekConfig = {
 var defaultConfig = {
     app: {
         frequency: 30,
-        orbitDuration: 7200
+        orbitDuration: 7200,
+        adapterView: 'vanilla'
     },
     api: {
         url: "http://api.orbitaldesign.tk",
