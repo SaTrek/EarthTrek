@@ -44,7 +44,7 @@ Earth Trek - "Exploring our World"
 
 # ROADMAP
 
-![ROADMAP](https://image.ibb.co/gKeXyF/roadmapv6.png)
+![ROADMAP](http://i.imgur.com/4KH7U6h.png)
 
 ## Some aspects of HOW THE APP WORKS
 
