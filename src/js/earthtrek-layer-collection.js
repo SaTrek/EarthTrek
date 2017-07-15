@@ -9,7 +9,7 @@ import earthTrekProvider from './earthtrek-provider';
 import {ImageryLayerCollection} from './utils/cesium';
 import {ImageryLayer} from './utils/cesium';
 import {earthTrekInstance} from './earthtrek-core';
-
+import 'babel-polyfill';
 export default class EarthTrekLayerCollection
 {
     /**
