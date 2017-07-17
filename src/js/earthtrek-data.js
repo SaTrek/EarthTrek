@@ -11,6 +11,24 @@ const rp = require('request-promise');
 'use strict';
 const _ = require('underscore');
 let satelliteIds = [];
+
+/**
+ *
+ */
+earthTrekData.getConfig = function () {
+    return {
+        api: {
+            url: 'http://api.orbitaldesign.tk/',
+            satellites: {
+                endpoint: "satellites"
+            },
+            tle: {
+                endpoint: "tles",
+                fields: "tle,satId"
+            }
+        }
+    };
+}
 /**
  * Get Satellites Ids
  */
@@ -81,23 +99,6 @@ earthTrekData.getTLEs = function (ids, options) {
     });
 }
 
-/**
- *
- */
-earthTrekData.getConfig = function () {
-    return {
-        api: {
-            url: 'http://api.orbitaldesign.tk/',
-            satellites: {
-                endpoint: "satellites"
-            },
-            tle: {
-                endpoint: "tles",
-                fields: "tle,satId"
-            }
-        }
-    };
-}
 
 /**
  *
