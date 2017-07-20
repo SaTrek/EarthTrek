@@ -6,7 +6,6 @@
  * @description EarthTrek - NASA Space Apps 2017 - 02 JUN 2017
  */
 
-import Cesium from './utils/cesium';
 import ScreenSpaceEventHandler from 'cesium/Source/Core/ScreenSpaceEventHandler';
 import ScreenSpaceEventType from 'cesium/Source/Core/ScreenSpaceEventType';
 
@@ -37,7 +36,7 @@ class EarthTrekHandler {
                 defaultCallback(this.pickedEntity);
                 this.pickedEntity = undefined;
             }
-            if (Cesium.defined(pick)) {
+            if (pick !== undefined && pick !== null) {
                 let entity = this.viewer.entities.getById(pick.id._id);
                 if (entity != undefined) {
                     callbackPicked(entity);
@@ -59,7 +58,7 @@ class EarthTrekHandler {
     onMouseMove (callbackPicked, callbackUnpick) {
         this.handler.setInputAction((movement) => {
             let pick = this.scene.pick(movement.endPosition);
-            if (Cesium.defined(pick)) {
+            if (pick !== undefined && pick !== null) {
                 let entity = this.viewer.entities.getById(pick.id._id);
                 if (entity != undefined) {
                     this.earthTrek.getEventEmitter().emit('entity-over', {entity: entity});

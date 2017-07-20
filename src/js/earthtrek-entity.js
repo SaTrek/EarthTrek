@@ -7,7 +7,7 @@
  */
 /** cesium core*/
 
-var Cesium = require('./utils/cesium');
+var Cesium = require('./engines/cesium');
 /**EarthTrek*/
 import earthTrekSatellite from './earthtrek-satellite';
 

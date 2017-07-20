@@ -8,7 +8,7 @@
 import EarthTrekLayerCollection from '../src/js/earthtrek-layer-collection';
 import sinon from 'sinon';
 import { assert } from 'chai';
-import {ImageryLayerCollection} from '../src/js/utils/cesium';
+import {ImageryLayerCollection} from '../src/js/engines/cesium';
 
 describe('EarthTrekLayerCollection',  () => {
 

@@ -1,5 +1,5 @@
 
-var Cesium = require('./cesium');
+var Cesium = require('../engines/cesium');
 var gibs = gibs || {};
 
 gibs.GeographicTilingScheme = function(options) {

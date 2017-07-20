@@ -7,7 +7,6 @@
  */
 /**EXTERNAL */
 import events from 'events';
-import Cesium from './utils/cesium';
 import _ from 'underscore';
 /***/
 import EarthTrekEntity from './earthtrek-entity';
@@ -43,6 +42,11 @@ export default class EarthTrekCore {
             instance = this;
         }
 
+        if (!options.engine) {
+            throw new Error('The engine adapter is require');
+        }
+        this.engine = options.engine;
+
         if (!options.mainContainer) {
             throw new Error('Invalid Main Container');
         }
@@ -55,7 +59,7 @@ export default class EarthTrekCore {
             throw new Error('Invalid End Time');
         }
         if (!options.initialTime) {
-            this.initialTime = Cesium.JulianDate.fromDate(
+            this.initialTime = this.engine.JulianDate.fromDate(
                 new Date(options.endTime));
         }
 
@@ -93,11 +97,11 @@ export default class EarthTrekCore {
         if (!options.env) {
             options.env = 'dev';
         }
-        this.startTime = Cesium.JulianDate.fromDate(
+        this.startTime = this.engine.JulianDate.fromDate(
             new Date(options.startTime));
-        this.endTime = Cesium.JulianDate.fromDate(
+        this.endTime = this.engine.JulianDate.fromDate(
             new Date(options.endTime));
-        this.initialTime = Cesium.JulianDate.fromDate(
+        this.initialTime = this.engine.JulianDate.fromDate(
             new Date(options.initialTime));
 
         if (options.imageryProvider != undefined) {
@@ -139,18 +143,9 @@ export default class EarthTrekCore {
 
     /**
      * getClock
-     * @returns {Cesium.Clock|*}
+     * @returns {this.engine.Clock|*}
      */
     getClock() {
-        if (this.clock === undefined) {
-            this.clock = new Cesium.Clock({
-                startTime: this.startTime,
-                endTime: this.endTime,
-                currentTime: this.initialTime,
-                multiplier: this.multiplier,
-                clockStep: Cesium.ClockStep.SYSTEM_CLOCK_MULTIPLIER
-            });
-        }
         return this.clock;
     }
 

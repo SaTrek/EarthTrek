@@ -6,8 +6,8 @@
  * @description EarthTrekCore - 08 JUL 2017.
  */
 import earthTrekProvider from './earthtrek-provider';
-import {ImageryLayerCollection} from './utils/cesium';
-import {ImageryLayer} from './utils/cesium';
+import {ImageryLayerCollection} from './engines/cesium';
+import {ImageryLayer} from './engines/cesium';
 import {earthTrekInstance} from './earthtrek-core';
 import 'babel-polyfill';
 export default class EarthTrekLayerCollection
