@@ -77,7 +77,7 @@ cd myearthtrek
 npm install
 npm run dev
 ```
-Finally, in order to launch the app, enter the URL: http://localhost:9081.
+Finally, in order to launch the app, enter the URL: http://localhost:9080.
 
 That's it!
 
