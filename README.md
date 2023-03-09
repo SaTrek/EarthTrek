@@ -3,7 +3,8 @@
 
 **NASA Space Apps Challenge 2017 - Buenos Aires - Team SATrek**
 
-[![Global Finalist (Best Use of Data)](http://i.imgur.com/6H29eDd.png)](https://2017.spaceappschallenge.org/challenges/ideate-and-create/1d-2d-3d-go/teams/satrek/project)
+[![Global Finalist (Best Use of Data)](http://i.imgur.com/6H29eDd.png)](https://web.archive.org/web/20170710061806/https://earthdata.nasa.gov/2017-space-apps-global-award-nominees
+)
 
 [Global Finalist (Best Use of Data)](https://web.archive.org/web/20170710061806/https://earthdata.nasa.gov/2017-space-apps-global-award-nominees)
 
